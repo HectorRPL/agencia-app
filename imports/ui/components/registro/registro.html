@@ -1,0 +1,65 @@
+<form role="form" class="property-submit-form" id="registroUsuarioFrmId" name="registroUsuarioFrm" novalidate>
+      <div class="form-group" ng-class="{ 'has-error' : registroUsuarioFrm.email.$invalid && !registroUsuarioFrm.email.$pristine}">
+        <div ng-messages="registroUsuarioFrm.email.$dirty && registroUsuarioFrm.email.$error" role="alert">
+          <div ng-message="required" style="color:yellow;">Campo requerido</div>
+          <div ng-message="email" style="color:yellow;">Formato de correo incorrecto</div>
+          <div ng-message="maxlength" style="color:yellow;">Máximo 50 caracteres
+          </div>
+        </div>
+        <div class="input-group input-group-lg">
+          <span class="input-group-addon span-demos">
+            @
+          </span>
+          <input id="agenciaEmailID" class="form-control" name="email" type="email" placeholder="Correo Electrónico" aria-describedby="sizing-addon1" maxlength="50" required ng-model="registro.credentials.email">
+        </div>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error' : registroUsuarioFrm.password.$invalid && !registroUsuarioFrm.password.$pristine}">
+        <div ng-messages="registroUsuarioFrm.password.$dirty && registroUsuarioFrm.password.$error" role="alert">
+          <div ng-message="required" style="color:yellow;">Campo requerido</div>
+          <div ng-message="minlength, maxlength" style="color:yellow;">Longitud mínima 5, máxima 8 caracteres</div>
+        </div>
+        <div class="input-group
+              input-group-lg">
+          <span class="input-group-addon span-demos">
+            <i class="fa fa-key" aria-hidden="true"></i>
+          </span>
+          <input id="agenciaPasswordID" class="form-control " name="password" type="password"
+          placeholder="Contraseña" aria-describedby="sizing-addon2" maxlength="8" minlength="5"
+          required ng-model="registro.credentials.password">
+        </div>
+      </div>
+      <!-- CONFIRMAR CONTRASEÑA
+          <div class="form-group" ng-class="{ 'has-error' : registroUsuarioFrm.passwordConfirmar.$invalid && !registroUsuarioFrm.passwordConfirmar.$pristine}">
+            <div ng-messages="registroUsuarioFrm.passwordConfirmar.$dirty && registroUsuarioFrm.passwordConfirmar.$error" role="alert">
+              <div ng-message="required" style="color:yellow;">Campo requerido </div>
+              <div ng-message="minlength, maxlength" style="color:yellow;">Longitud mínima 5, máxima 8 caracteres</div>
+              <div ng-message="compareTo" style="color:yellow;">Password y confirmación no son iguales </div>
+            </div>
+            <div class="input-groupinput-group-lg">
+              <span class="input-group-addon">
+                <i class="fa fa-key" aria-hidden="true"></i>
+              </span>
+              <input id="agenciaPasswordConfirmID" class="form-control "
+              name="passwordConfirmar" type="password"
+              placeholder="Confirma Contraseña" aria-describedby="sizing-addon3"
+              maxlength="8" minlength="5" required
+              ng-model="passwordConfirmar">
+            </div>
+          </div> -->
+      <!-- BOTÓN ENVIAR -->
+      <button type="button" class="btn btn-default btn-lg btn-block"
+      ng-click="registro.crearUsuario()" ng-disabled="registroUsuarioFrm.$invalid">
+        REGISTRAR
+      </button>
+      <br>
+      <!-- ALERTA: COMBINACIÓN INCORRECTA -->
+      <div class="row">
+        <div class="col-xs-12" ng-show="registro.error">
+          <uib-alert type="danger">
+            <span class="fa fa-exclamation-triangle"></span>
+            <strong>{{registro.error.mensaje}}</strong>
+          </uib-alert>
+        </div>
+      </div>
+      <br>
+    </form>
