@@ -1,0 +1,18 @@
+<!-- TÍTULO de la página, esto es fijo en todas las pantallas que llevan metismenu -->
+<div class="row">
+  <div class="col-lg-12">
+    <h4 class="page-header">{{datosBancarios.titulo}}</h4>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div
+  class="panel-heading">Mi Tarjeta Bancaria
+    <eliminar-tarjeta
+    ng-show="datosBancarios.tarjetaBancaria.owner"
+    tarjeta="datosBancarios.tarjetaBancaria">
+    </eliminar-tarjeta>
+  </div>
+  <div class="panel-body">
+    <tarjeta></tarjeta>
+  </div>
+</div>
