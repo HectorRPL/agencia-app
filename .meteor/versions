@@ -1,6 +1,7 @@
 accounts-base@1.2.7
 accounts-password@1.1.8
 alanning:roles@1.2.15
+aldeed:simple-schema@1.5.3
 allow-deny@1.0.4
 angular-templates@1.0.3
 angular-templates-runtime@0.0.1
@@ -41,6 +42,8 @@ less@2.6.0
 livedata@1.0.18
 localstorage@1.0.9
 logging@1.0.12
+mdg:validated-method@1.1.0
+mdg:validation-error@0.2.0
 meteor@1.1.14
 meteor-base@1.0.4
 miguelvalverde:font-awesome-4.1.0@0.0.1
@@ -76,6 +79,7 @@ standard-minifier-css@1.0.6
 standard-minifier-js@1.0.6
 templating-tools@1.0.4
 tracker@1.0.13
+tunifight:loggedin-mixin@0.1.0
 ui@1.0.11
 underscore@1.0.8
 url@1.0.9
