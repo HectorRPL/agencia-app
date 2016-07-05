@@ -1,0 +1,94 @@
+<!-- TÍTULO de la página, esto es fijo en todas las pantallas que llevan metismenu -->
+<div class="row">
+  <div class="col-lg-12">
+    <h4 class="page-header">{{detallesCompra.titulo}}</h4>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <!-- PANEL DEFAULT -->
+  <div class="panel-heading">Orden de Compra</div>
+  <div class="panel-body">
+    <!-- DESCRIPCIÓN DEL PRODUCTO -->
+    <p><strong>Descripción: </strong> {{ detallesCompra.cantidad }} {{detallesCompra.descripcion}}</p>
+
+    <!-- TABLA -->
+    <table class="table text-center">
+      <tr>
+        <td><strong>Cantidad</strong></td>
+        <td><strong>Precio/u</strong></td>
+        <td><strong>Importe</strong></td>
+      </tr>
+      <tr>
+        <td><input class="form-control" type="number" placeholder="Introduce número" autofocus ng-model="detallesCompra.cantidad"></td>
+        <td>{{detallesCompra.precioUnitario | currency }}</td>
+        <td>{{ importe = (+detallesCompra.cantidad) * (+detallesCompra.precioUnitario) | currency }}</td>
+      </tr>
+    </table>
+    <hr>
+    <!-- SECCION TARJETA BANCARIA -->
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+            <strong>Datos bancarios</strong><br><br>
+            <tarjeta></tarjeta>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row text-right">
+      <!-- SECCIÓN DEL DESGLOSE -->
+      <div class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8">
+        <div class="text-center"><strong >Desglose</strong></div><br>
+
+        <!-- SUBTOTAL -->
+        <div class="row">
+          <div class="col-xs-7 col-sm-6">
+            <div>Subtotal:</div>
+          </div>
+          <strong class="col-xs-5 col-sm-6">
+            {{ importe | currency }}
+          </strong>
+        </div>
+
+        <!-- DESCUENTO -->
+        <div class="row">
+          <div class="col-xs-7 col-sm-6" ng-hide="detallesCompra.descuento<=0">
+            - {{ (detallesCompra.descuento) * 100 }} %desc.:
+          </div>
+          <strong class="col-xs-5 col-sm-6" ng-hide="detallesCompra.descuento<=0">
+            - {{ ( (importe) * (detallesCompra.descuento) )  | currency }}
+          </strong>
+          <!-- NUEVO SUB-TOTAL -->
+          <div class="col-xs-7 col-sm-6" ng-hide="detallesCompra.descuento<=0">
+            Nvo. SubTotal:
+          </div>
+          <strong class="col-xs-5 col-sm-6" ng-hide="detallesCompra.descuento<=0">
+            {{  (importe) - ( (importe) * (detallesCompra.descuento) )  | currency }}
+          </strong>
+        </div>
+
+        <!-- IMPORTE IVA -->
+        <div class="row">
+          <div class="col-xs-7 col-sm-6">
+            IVA({{ (detallesCompra.iva) * (100) }}%):
+          </div>
+          <strong class="col-xs-5 col-sm-6">
+            {{ (total) - (importe) - ( (importe) * (detallesCompra.descuento)) | currency }}
+          </strong>
+        </div>
+
+        <!-- GRAN TOTAL -->
+        <div class="row">
+          <div class="col-xs-7 col-sm-6">
+            TOTAL:
+          </div>
+          <strong class="col-xs-5 col-sm-6">
+            {{ total = ((importe)  - ( (importe) * (detallesCompra.descuento) )) * (1 + (detallesCompra.iva)) | currency}}
+          </strong>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <button class="btn btn-primary pull-right">Pagar ahora</button>
+  </div>
+</div>
