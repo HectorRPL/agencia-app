@@ -5,6 +5,10 @@ import {
   name as Navigation
 } from '../navigation/navigation';
 
+import { name as Compras } from '../compras/compras';
+import { name as DatosBancarios } from '../datosBancarios/datosBancarios';
+
+
 class Agencia {}
 
 const name = 'agencia';
@@ -12,7 +16,9 @@ const name = 'agencia';
 
 export default angular.module(name, [
     angularMeteor,
-    Navigation
+    Navigation,
+    Compras,
+    DatosBancarios
   ]).component(name, {
     templateUrl: `imports/ui/components/${name}/${name}.html`,
     controllerAs: name,
