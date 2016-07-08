@@ -28,3 +28,6 @@ mdg:validated-method
 aldeed:simple-schema
 mdg:validation-error
 tunifight:loggedin-mixin
+aldeed:collection2
+rlivingston:simple-schema-mixin
+ddp-rate-limiter
