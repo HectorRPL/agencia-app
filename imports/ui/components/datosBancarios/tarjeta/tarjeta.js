@@ -4,10 +4,13 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import ngAnimate from 'angular-animate';
 import { Meteor } from 'meteor/meteor';
+import { ValidationError } from 'meteor/mdg:validation-error';
 
 import './tarjeta.html';
 
-import { TarjetaBancaria } from '../../../../api/tarjetaBancaria';
+import { TarjetaBancaria } from '../../../../api/tarjetaBancaria/index.js';
+import { insert } from '../../../../api/tarjetaBancaria/methods.js';
+import { update } from '../../../../api/tarjetaBancaria/methods.js';
 
 class Tarjeta {
   constructor($scope, $reactive) {
@@ -27,24 +30,11 @@ class Tarjeta {
       }
     });
   }
-  guardarCambios () {
-    TarjetaBancaria.update({
-      _id: this.tarjetaBancaria._id
-    }, {
-      $set: {
-        nombreBanco: this.tarjetaBancaria.nombreBanco,
-        tipoTarjeta: this.tarjetaBancaria.tipoTarjeta,
-        numeroTarjetaBloque1: this.tarjetaBancaria.numeroTarjetaBloque1,
-        numeroTarjetaBloque2: this.tarjetaBancaria.numeroTarjetaBloque2,
-        numeroTarjetaBloque3: this.tarjetaBancaria.numeroTarjetaBloque3,
-        numeroTarjetaBloque4: this.tarjetaBancaria.numeroTarjetaBloque4,
-        fechaExpiracionMes: this.tarjetaBancaria.fechaExpiracionMes,
-        fechaExpiracionAnio: this.tarjetaBancaria.fechaExpiracionAnio,
-        codigoSeguridad: this.tarjetaBancaria.codigoSeguridad
-      }
-    }, this.$bindToContext((error) => {
+
+  guardarCambios() {
+    update.call(this.tarjetaBancaria, this.$bindToContext((err) => {
       this.respuesta.mostrar = true;
-      if (error) {
+      if (err) {
         this.respuesta.mensaje = 'No se pudieron realizar los cambios bancarios.';
         this.respuesta.tipo = 'danger';
       } else {
@@ -52,20 +42,19 @@ class Tarjeta {
         this.respuesta.tipo = 'success';
       }
     }));
-
   }
-  guardar(){
-    this.tarjetaBancaria.owner = Meteor.user()._id;
-    TarjetaBancaria.insert(this.tarjetaBancaria, this.$bindToContext((error) => {
+
+  guardar() {
+    insert.call(this.tarjetaBancaria, this.$bindToContext((err) => {
       this.respuesta.mostrar = true;
-      if (error) {
-        this.respuesta.mensaje = 'No se pudieron guardar los datos de tarjeta bancarios.';
+      if (err) {
+        this.respuesta.mensaje = 'No se pudieron realizar los cambios bancarios.';
         this.respuesta.tipo = 'danger';
       } else {
-        this.respuesta.mensaje = 'Éxito al guardar los datos de tarjeta bancarios.';
+        this.respuesta.mensaje = 'Éxito al realizar los cambios bancarios.';
         this.respuesta.tipo = 'success';
       }
-     }));
+    }));
   }
 }
 

@@ -3,16 +3,39 @@ import angularMeteor from 'angular-meteor';
 
 import './eliminarTarjeta.html';
 
-import { TarjetaBancaria } from '../../../../api/tarjetaBancaria';
+import { TarjetaBancaria } from '../../../../api/tarjetaBancaria/index.js';
+import { remove } from '../../../../api/tarjetaBancaria/methods.js';
+
 
 class EliminarTarjeta {
+  constructor($scope, $reactive) {
+    'ngInject';
+
+    $reactive(this).attach($scope);
+
+    this.respuesta = {mostrar: false, mensaje: '', tipo: ''};
+
+    this.subscribe('tarjetaBancaria');
+
+    // LLENAR LOS COMBOS CON DATOS DE LA BASE
+    this.helpers({
+      tarjetaBancaria() {
+        return TarjetaBancaria.findOne();
+      }
+    });
+  }
+
   eliminar() {
-    console.log(this.tarjeta);
-    if (this.tarjeta) {
-      TarjetaBancaria.remove(this.tarjeta._id);
-    } else {
-      console.log('No se eliminó ninguna tarjeta');
-    }
+    remove.call(this.tarjetaBancaria, this.$bindToContext((err) => {
+      this.respuesta.mostrar = true;
+      if (err) {
+        this.respuesta.mensaje = 'No se pudieron realizar los cambios bancarios.';
+        this.respuesta.tipo = 'danger';
+      } else {
+        this.respuesta.mensaje = 'Éxito al realizar los cambios bancarios.';
+        this.respuesta.tipo = 'success';
+      }
+    }));
   }
 }
 

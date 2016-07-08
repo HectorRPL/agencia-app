@@ -7,11 +7,11 @@ nonvalidate>
   <div class="row">
     <!-- NOMBRE DE LA PERSONA -->
     <div class="col-sm-6 ">
-      <div class="form-group" ng-class="{ 'has-error' : tarjetaFrm.nombreBanco.$invalid && !tarjetaFrm.nombreBanco.$pristine}">
+      <div class="form-group" ng-class="{ 'has-error' : tarjetaFrm.nombreApellidos.$invalid && !tarjetaFrm.nombreApellidos.$pristine}">
         <input
-        id="nombreBancoId"
+        id="nombreApellidosId"
         class="form-control"
-        name="nombreBanco"
+        name="nombreApellidos"
         type="text"
         autocomplete="off"
         placeholder="Nombre y Apellidos"
@@ -20,10 +20,10 @@ nonvalidate>
         maxlength="31"
         ng-minlength="1"
         ng-maxlength="30"
-        ng-pattern="/^[a-zA-Z-ñáéíóú\s\d]+$/"
-        ng-model="tarjeta.tarjetaBancaria.nombreBanco"
+        ng-pattern="/^[a-zA-Z-ñáéíóú\s]+$/"
+        ng-model="tarjeta.tarjetaBancaria.nombreApellidos"
         ng-disabled="deshabilitarCampos" />
-        <div ng-messages="tarjetaFrm.nombreBanco.$dirty && tarjetaFrm.nombreBanco.$error" role="alert">
+        <div ng-messages="tarjetaFrm.nombreApellidos.$dirty && tarjetaFrm.nombreApellidos.$error" role="alert">
           <div style="color:red;" ng-message="required">Campo requerido.</div>
           <div style="color:red;" ng-message="minlength, maxlength">30 caracteres máximo</div>
           <div style="color:red;" ng-message="pattern">Únicamente caracteres alfabéticos</div>
@@ -44,8 +44,8 @@ nonvalidate>
         ng-model="tarjeta.tarjetaBancaria.tipoTarjeta"
         ng-disabled="deshabilitarCampos">
           <option value="">Clase</option>
-          <option value="1">Visa</option>
-          <option value="2">MasterCard</option>
+          <option value="Visa">Visa</option>
+          <option value="MasterCard">MasterCard</option>
         </select>
         <div ng-messages="tarjetaFrm.tipoTarjeta.$dirty && tarjetaFrm.tipoTarjeta.$error" role="alert">
           <div style="color:red;" ng-message="required">Campo requerido.</div>
@@ -90,6 +90,7 @@ nonvalidate>
         type="password"
         autocomplete="off"
         placeholder="0000"
+        required
         minlength="4"
         maxlength="4"
         ng-minlength="4"
@@ -255,7 +256,7 @@ nonvalidate>
       type="button"
       ng-click="tarjeta.guardar()"
       ng-disabled="tarjetaFrm.$invalid"
-      ng-hide="tarjeta.tarjetaBancaria.owner">
+      ng-hide="tarjeta.tarjetaBancaria.propietario">
         Guardar Tarjeta
       </button>
       <!-- GUARDAR CAMBIOS -->
@@ -264,7 +265,7 @@ nonvalidate>
       type="button"
       ng-click="tarjeta.guardarCambios()"
       ng-disabled="tarjetaFrm.$invalid"
-      ng-show="tarjeta.tarjetaBancaria.owner">
+      ng-show="tarjeta.tarjetaBancaria.propietario">
         Guardar Cambios
       </button>
     </div>
