@@ -4,12 +4,12 @@ export const Paquetes = new Mongo.Collection('paquetes');
 
 // Paquetes.allow({
 //   insert(userId, paquete) {
-//     return userId && paquete.owner === userId;
+//     return userId && paquete.propietario === userId;
 //   },
 //   update(userId, paquete, fields, modifier) {
-//     return userId && paquete.owner === userId;
+//     return userId && paquete.propietario === userId;
 //   },
 //   remove(userId, paquete) {
-//     return userId && paquete.owner === userId;
+//     return userId && paquete.propietario === userId;
 //   }
 // });
