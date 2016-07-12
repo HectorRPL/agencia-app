@@ -1,65 +1,69 @@
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-  <!-- CORREO / CONTRASEÑA -->
-  <form role="form" class="property-submit-form" id="loginFormId" name="loginForm" nonvalidate>
-    <!-- CORREO-->
-    <div class="form-group" ng-class="{ 'has-error' : loginForm.usuario.$invalid && !loginForm.usuario.$pristine }">
-      <div ng-messages="loginForm.usuario.$dirty && loginForm.usuario.$error" role="alert">
-        <div ng-message="required" style="color:yellow">Campo requerido</div>
-        <div ng-message="email" style="color:yellow">El formato de email es incorrecto.</div>
-      </div>
-      <div class="input-group input-group-lg">
-        <span class="input-group-addon span-demos">@
-        </span>
-        <input id="candidatoEmailID" class="form-control" name="usuario" type="email" placeholder="" aria-describedby="basic-addon1" required ng-model="login.credentials.email">
-      </div>
-    </div>
-    <!-- CONTASEÑA -->
-    <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
-      <div ng-messages="loginForm.password.$dirty && loginForm.password.$error" role="alert">
-        <div ng-message="required" style="color:yellow">Campo requerido</div>
-      </div>
-      <div class="input-group
-      input-group-lg">
-        <span class="input-group-addon span-demos">
-          <i class="fa fa-key" aria-hidden="true"></i>
-        </span>
-        <input id="candidatoPasswordID" class="form-control" name="password" type="password" placeholder="" aria-describedby="basic-addon1" required ng-model="login.credentials.password">
-      </div>
-    </div>
-    <!-- BOTON INGRESAR-->
-    <button class="btn btn-default btn-lg btn-block" type="submit" ng-click="login.login()" ng-disabled="loginForm.$invalid">
-      Ingresar
-    </button>
-    <!-- ALERTA: COMBINACIÓN INCORRECTA -->
-    <div class="row">
-      <div class="col-xs-12" ng-show="login.error">
-        <uib-alert type="danger">
-          <span class="fa fa-exclamation-triangle"></span>
-          <strong>Combinación de usuario y contraseña incorrectos.</strong>
-        </uib-alert>
-      </div>
-    </div>
-    <!-- LINKS: RECORDARME | RECUPERAR | REGISTRAR-->
-    <div class="form-group row">
-      <!-- RECORDARME -->
-      <div class="col-xs-4">
-        <div class="form-group">
-          <input type="checkbox" value="agree"/>
-          <span class="textoBlanco">Recordar</span>
+<div class="col-md-offset-3 col-md-6 col-xs-12 panelRegistro">
+  <br>
+  <div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <!-- CORREO / CONTRASEÑA -->
+    <form role="form" class="property-submit-form" id="loginFormId" name="loginForm" nonvalidate>
+      <!-- CORREO-->
+      <div class="form-group" ng-class="{ 'has-error' : loginForm.usuario.$invalid && !loginForm.usuario.$pristine }">
+        <div class="input-group input-group-lg">
+          <span class="input-group-addon span-demos">@
+          </span>
+          <input id="candidatoEmailID" class="form-control" name="usuario" type="email" placeholder="" aria-describedby="basic-addon1" required ng-model="login.credentials.email">
+        </div>
+        <div ng-messages="loginForm.usuario.$dirty && loginForm.usuario.$error" role="alert">
+          <div ng-message="required" style="color:red">Campo requerido</div>
+          <div ng-message="email" style="color:red">El formato de email es incorrecto.</div>
         </div>
       </div>
-      <!-- RECUPERAR -->
-      <div class="col-xs-4">
-        <div class="form-group text-center">
-          <a class="textoBlanco" ui-sref="recuperar">Recuperar</a>
+      <!-- CONTASEÑA -->
+      <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
+        <div class="input-group
+            input-group-lg">
+          <span class="input-group-addon span-demos">
+            <i class="fa fa-key" aria-hidden="true"></i>
+          </span>
+          <input id="candidatoPasswordID" class="form-control" name="password" type="password" placeholder="" aria-describedby="basic-addon1" required ng-model="login.credentials.password">
+        </div>
+        <div ng-messages="loginForm.password.$dirty && loginForm.password.$error" role="alert">
+          <div ng-message="required" style="color:red">Campo requerido</div>
         </div>
       </div>
-      <!-- REGISTRAR -->
-      <div class="col-xs-4">
-        <div class="form-group pull-right">
-          <a class="textoBlanco" ui-sref="registro">Registro</a>
+      <!-- BOTON INGRESAR-->
+      <button class="btn btn-default btn-lg btn-block" type="submit" ng-click="login.login()" ng-disabled="loginForm.$invalid">
+        Ingresar
+      </button>
+      <br>
+      <!-- ALERTA: COMBINACIÓN INCORRECTA -->
+      <div class="row">
+        <div class="col-xs-12" ng-show="login.error">
+          <uib-alert type="danger">
+            <span class="fa fa-exclamation-triangle"></span>
+            <strong>Combinación de usuario y contraseña incorrectos.</strong>
+          </uib-alert>
         </div>
       </div>
-    </div>
-  </form>
+      <!-- LINKS: RECORDARME | RECUPERAR | REGISTRAR-->
+      <div class="form-group row">
+        <!-- RECORDARME -->
+        <div class="col-xs-4">
+          <div class="form-group">
+            <input type="checkbox" value="agree"/>
+            <span class="textoBlanco"  ui-sref="inicio.recuperar">Recordar</span>
+          </div>
+        </div>
+        <!-- RECUPERAR -->
+        <div class="col-xs-4">
+          <div class="form-group text-center">
+            <a class="textoBlanco" ui-sref="inicio.recuperar">Recuperar</a>
+          </div>
+        </div>
+        <!-- REGISTRAR -->
+        <div class="col-xs-4">
+          <div class="form-group pull-right">
+            <a class="textoBlanco" ui-sref="inicio.registro">Registro</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

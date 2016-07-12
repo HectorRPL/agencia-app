@@ -1,0 +1,30 @@
+<div class="row">
+  <div ng-repeat="habilidad in checkboxHabilidades.arrayHabilidades" class="col-xs-12 col-sm-6 col-md-3">
+    <div class="checkbox">
+      <div class="btn-group">
+        <label class="btn btn-default" uib-btn-checkbox name="{{habilidad.DisplayName}}" id="{{habilidad.id}}" ng-model="habilidad.activo" ng-checked="checkboxHabilidades.disabledCheks"
+        ng-click="checkboxHabilidades.agregarOEliminar($index, habilidad.activo)">{{habilidad.DisplayName}}</label>
+    </div>
+      <!--label>
+        <input type="checkbox" name="{{day.DisplayName}}" id="{{day.id}}" ng-model="day.activo" ng-checked="checkboxHabilidades.disabledCheks" ng-disabled="checkboxHabilidades.disabledCheks" ng-click="checkboxHabilidades.formarStringDias(day.id)" ng-true-value="1" ng-false-value="0">
+        {{day.DisplayName}}
+      </label -->
+    </div>
+  </div>
+
+  <div class="col-xs-6 col-sm-6 col-md-3">
+    <div class="checkbox">
+      <div class="btn-group">
+        <label class="btn btn-default" uib-btn-checkbox name="otra" id="otraId" ng-model="checkboxHabilidades.otra.activo"
+        ng-click="checkboxHabilidades.agregarOtraHab()" >{{checkboxHabilidades.otra.DisplayName}}</label>
+      </div>
+      <!--label>
+        <input type="checkbox" name="diario" id="diario" ng-model="checkboxHabilidades.diario.activo" ng-true-value="1" ng-false-value="0" ng-click="checkboxHabilidades.validarDiario()">
+        Diario
+      </label -->
+    </div>
+  </div>
+  <div class="col-xs-6 col-sm-6 col-md-4" ng-show="checkboxHabilidades.otra.activo">
+    <textarea class="form-control" name="otraHabilidad" id="otraHabilidadbId" rows="2" ng-model="checkboxHabilidades.otraHabilidadText" placeholder="Otra Habilidad." maxlength="15"></textarea>
+  </div>
+</div>

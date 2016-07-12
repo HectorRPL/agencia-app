@@ -1,2 +1,1 @@
-import '../imports/startup/fixtures';
-import '../imports/api/usuarios';
+import '/imports/startup/server';

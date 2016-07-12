@@ -7,10 +7,6 @@ import {
 } from 'meteor/meteor';
 import './login.html';
 import { name as Registro } from '../registro/registro';
-import { name as Agencia } from '../agencia/agencia';
-import {
-  Roles
-} from 'meteor/alanning:roles';
 
 class Login {
   constructor($scope, $reactive, $state) {
@@ -41,15 +37,13 @@ class Login {
 }
 
 const name = 'login';
-const group = 'agencia:';
 
 // create a module
 export default angular.module(name, [
   angularMeteor,
   angularMessages,
   uiRouter,
-  Registro,
-  Agencia
+  Registro
 ]).component(name, {
   templateUrl: `imports/ui/components/login/${name}.html`,
   controllerAs: name,
@@ -61,7 +55,7 @@ export default angular.module(name, [
 function config($stateProvider) {
   'ngInject';
   $stateProvider
-    .state('login', {
+    .state('inicio.login', {
       url: '/login',
       template: '<login></login>'
     });

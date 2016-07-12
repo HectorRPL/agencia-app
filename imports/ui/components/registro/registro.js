@@ -6,8 +6,13 @@ import './registro.html';
 import {
   Accounts
 } from 'meteor/accounts-base';
+import {
+  Roles
+} from 'meteor/alanning:roles';
 
+const tipoUsuario = 'agencia:';
 class Registro {
+
   constructor($scope, $reactive, $state) {
     'ngInject';
 
@@ -17,8 +22,11 @@ class Registro {
 
     this.credentials = {
       email: '',
-      password: ''
+      password: '',
+      username:'',
+      profile:''
     };
+
 
     this.error = '';
   }
@@ -26,7 +34,8 @@ class Registro {
   crearUsuario() {
     this.error = '';
     this.credentials.email = this.credentials.email.toLowerCase();
-    this.credentials.password = 'agencia:' + this.credentials.password;
+    this.credentials.password = tipoUsuario + this.credentials.password;
+    this.credentials.profile.tipoUsuario = tipoUsuario;
     Accounts.createUser(this.credentials,
       this.$bindToContext((err) => {
         if (err) {
@@ -35,7 +44,7 @@ class Registro {
             this.error.mensaje = `El correo ${this.credentials.email} ya se encuentra registrado`;
           }
         } else {
-          this.$state.go('login');
+          this.$state.go('app');
         }
       })
     );
@@ -43,6 +52,7 @@ class Registro {
 }
 
 const name = 'registro';
+
 
 // create a module
 export default angular.module(name, [
@@ -60,7 +70,7 @@ export default angular.module(name, [
 function config($stateProvider) {
   'ngInject';
   $stateProvider
-    .state('registro', {
+    .state('inicio.registro', {
       url: '/registro',
       template: '<registro></registro>'
     });

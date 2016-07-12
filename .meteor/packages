@@ -24,3 +24,9 @@ onokumus:metismenu
 alanning:roles
 accounts-base
 accounts-password
+aldeed:collection2
+session
+mdg:validated-method
+mdg:validation-error
+tunifight:loggedin-mixin
+rlivingston:simple-schema-mixin
