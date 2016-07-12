@@ -8,6 +8,9 @@ import {
   name as AgregarVacante
 } from '../vacantes/agregarVacante/agregarVacante';
 
+import { name as Compras } from '../compras/compras';
+import { name as DatosBancarios } from '../datosBancarios/datosBancarios';
+
 class app {}
 
 const name = 'app';
@@ -16,6 +19,8 @@ const name = 'app';
 export default angular.module(name, [
     angularMeteor,
     Navigation,
+    Compras,
+    DatosBancarios,
     AgregarVacante
   ]).component(name, {
     templateUrl: `imports/ui/components/${name}/${name}.html`,

@@ -1,0 +1,14 @@
+<!-- PAQUETES -->
+<div class="col-sm-6 col-md-4" ng-repeat="paquete in listaPaquetes.paquetes">
+  <a ui-sref="app.detallesCompra({ paqueteId: paquete._id })" class="thumbnail"  style="text-decoration:none;">
+    <img ng-src="{{paquete.imagen}}" />
+    <div class="caption" style="color: gray;">
+      <h4 class="text-center">{{paquete.nombre}}</h4>
+      <ul>
+        <li>{{paquete.numeroContactos}} Contactos </li>
+        <li>{{paquete.precio | currency}} + IVA mxn</li>
+        <li ng-hide="paquete.descuento<=0">-{{paquete.descuento}}% {{paquete.descuentoCondicion}}</li>
+      </ul>
+    </div>
+  </a>
+</div>
