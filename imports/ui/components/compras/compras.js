@@ -3,8 +3,7 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
 import { name as ListaPaquetes } from './listaPaquetes/listaPaquetes';
-import { name as DetallesCompra } from './detallesCompra/detallesCompra';
-import { name as CompraSimple } from './compraSimple/compraSimple';
+
 
 import './compras.html';
 
@@ -21,9 +20,8 @@ export default angular
 .module(name, [
   angularMeteor,
   uiRouter,
-  ListaPaquetes,
-  DetallesCompra,
-  CompraSimple
+  ListaPaquetes
+
 ])
 .component(name, {
   templateUrl: `imports/ui/components/${name}/${name}.html`,
@@ -38,6 +36,7 @@ function config($stateProvider) {
   $stateProvider
     .state('app.compras', {
       url: '/compras',
-      template: '<compras></compras>'
+      template: '<compras></compras>',
+      abstract:true
     });
 }

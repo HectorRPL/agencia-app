@@ -55,7 +55,6 @@ export const insert = new ValidatedMethod({
             fechaExpiracionAnio,
             codigoSeguridad
         };
-        console.log('esto es documentoBancario', documentoBancario);
         TarjetaBancaria.insert(documentoBancario);
     }
 });
@@ -72,7 +71,6 @@ export const update = new ValidatedMethod({
     .simpleSchema()
     .pick([
         '_id',
-        'propietario',
         'nombreApellidos',
         'tipoTarjeta',
         'numeroTarjetaBloque1',
@@ -89,7 +87,6 @@ export const update = new ValidatedMethod({
     }),
     run({
         _id,
-        propietario,
         nombreApellidos,
         tipoTarjeta,
         numeroTarjetaBloque1,
@@ -128,7 +125,6 @@ export const remove = new ValidatedMethod({
   .simpleSchema()
   .pick([
       '_id',
-      'propietario',
       'nombreApellidos',
       'tipoTarjeta',
       'numeroTarjetaBloque1',
@@ -142,7 +138,6 @@ export const remove = new ValidatedMethod({
   .validator({ clean: true, filter: false }),
   run({
       _id,
-      propietario,
       nombreApellidos,
       tipoTarjeta,
       numeroTarjetaBloque1,
@@ -153,8 +148,6 @@ export const remove = new ValidatedMethod({
       fechaExpiracionAnio,
       codigoSeguridad
   }) {
-    const documentoBancario = TarjetaBancaria.findOne(_id);
-    console.log('llegó a remove', TarjetaBancaria);
 
     TarjetaBancaria.remove(_id);
   },

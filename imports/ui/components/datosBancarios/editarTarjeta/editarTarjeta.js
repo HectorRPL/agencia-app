@@ -3,21 +3,49 @@ import angularMeteor from 'angular-meteor';
 import angularMessages from 'angular-messages';
 
 import { Meteor } from 'meteor/meteor';
-
+import { name as Tarjeta } from '../tarjeta/tarjeta';
 import './editarTarjeta.html';
+import {
+    update
+} from '../../../../api/tarjetaBancaria/methods.js';
 
+class EditarTarjeta {
+  constructor($scope, $reactive){
+    'ngInject';
+    $reactive(this).attach($scope);
+    this.tarjeta = {};
+    this.respuesta = {
+        mostrar: false,
+        mensaje: '',
+        tipo: ''
+    };
+  }
 
-class EditarTarjeta {}
+  guardarCambios() {
+    update.call(this.tarjeta, this.$bindToContext((err) => {
+      this.respuesta.mostrar = true;
+      if (err) {
+        this.respuesta.mensaje = 'No se pudieron realizar los cambios bancarios.';
+        this.respuesta.tipo = 'danger';
+      } else {
+        this.respuesta.mensaje = 'Éxito al realizar los cambios bancarios.';
+        this.respuesta.tipo = 'success';
+      }
+    }));
+  }
+}
 
 const name = 'editarTarjeta';
 
 // Módulo
 export default angular
 .module(name, [
-  angularMeteor
+  angularMeteor,
+  angularMessages
 ])
 .component(name, {
   templateUrl: `imports/ui/components/datosBancarios/${name}/${name}.html`,
   controllerAs: name,
-  controller: EditarTarjeta
+  controller: EditarTarjeta,
+  bindings: { tarjeta: '<' }
 });

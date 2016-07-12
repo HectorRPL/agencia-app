@@ -8,30 +8,23 @@ import { remove } from '../../../../api/tarjetaBancaria/methods.js';
 
 
 class EliminarTarjeta {
-  constructor($scope, $reactive) {
+  constructor($scope, $reactive, $state) {
     'ngInject';
 
     $reactive(this).attach($scope);
-
+    this.tarjeta = {};
+    this.$state = $state;
     this.respuesta = {mostrar: false, mensaje: '', tipo: ''};
-
-    this.subscribe('tarjetaBancaria');
-
-    // LLENAR LOS COMBOS CON DATOS DE LA BASE
-    this.helpers({
-      tarjetaBancaria() {
-        return TarjetaBancaria.findOne();
-      }
-    });
   }
 
   eliminar() {
-    remove.call(this.tarjetaBancaria, this.$bindToContext((err) => {
+    remove.call(this.tarjeta, this.$bindToContext((err) => {
       this.respuesta.mostrar = true;
       if (err) {
         this.respuesta.mensaje = 'No se pudieron realizar los cambios bancarios.';
         this.respuesta.tipo = 'danger';
       } else {
+        this.$state.reload();
         this.respuesta.mensaje = 'Éxito al realizar los cambios bancarios.';
         this.respuesta.tipo = 'success';
       }
@@ -48,7 +41,7 @@ export default angular
 ])
 .component(name, {
   templateUrl: `imports/ui/components/datosBancarios/${name}/${name}.html`,
-  bindings: { tarjeta: '<' },
   controllerAs: name,
+  bindings: { tarjeta: '<' },
   controller: EliminarTarjeta
 });

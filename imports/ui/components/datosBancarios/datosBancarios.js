@@ -10,22 +10,20 @@ import { Meteor } from 'meteor/meteor';
 import './datosBancarios.html';
 
 import { TarjetaBancaria } from '../../../api/tarjetaBancaria';
-import { name as Tarjeta } from './tarjeta/tarjeta';
 import { name as EditarTarjeta } from './editarTarjeta/editarTarjeta';
 import { name as EliminarTarjeta } from './eliminarTarjeta/eliminarTarjeta';
+import { name as AgregarTarjeta } from './agregarTarjeta/agregarTarjeta';
 
 class DatosBancarios {
   constructor($scope, $reactive) {
     'ngInject';
     $reactive(this).attach($scope);
+    this.subscribe('tarjetaBancaria');
 
     this.titulo = 'Datos Bancarios';
 
-    this.subscribe('tarjetaBancaria');
-
-    // LLENAR LOS COMBOS CON DATOS DE LA BASE
     this.helpers({
-      tarjetaBancaria() {
+      tarjeta() {
         return TarjetaBancaria.findOne();
       }
     });
@@ -41,9 +39,9 @@ export default angular
   uiRouter,
   uiBootstrap,
   ngAnimate,
-  Tarjeta,
   EditarTarjeta,
-  EliminarTarjeta
+  EliminarTarjeta,
+  AgregarTarjeta,
 ])
 .component(name, {
   templateUrl: `imports/ui/components/${name}/${name}.html`,

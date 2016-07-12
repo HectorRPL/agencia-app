@@ -1,94 +1,126 @@
-<!-- TÍTULO de la página, esto es fijo en todas las pantallas que llevan metismenu -->
-<div class="row">
-  <div class="col-lg-12">
-    <h4 class="page-header">{{detallesCompra.titulo}}</h4>
-  </div>
-</div>
+<div class="col-md-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <!-- PANEL DEFAULT -->
+      <div class="panel-heading">Orden de Compra</div>
+      <div class="panel-body">
+        <form
+        id="detallesCompraFrmId"
+        class="property-submit-form"
+        role="form"
+        name="detallesCompraFrm"
+        nonvalidate>
+        <!-- DESCRIPCIÓN DEL PRODUCTO -->
+        <p><strong>Descripción: </strong> {{ detallesCompra.cantidad }} {{detallesCompra.descripcion}}</p>
 
-<div class="panel panel-default">
-  <!-- PANEL DEFAULT -->
-  <div class="panel-heading">Orden de Compra</div>
-  <div class="panel-body">
-    <!-- DESCRIPCIÓN DEL PRODUCTO -->
-    <p><strong>Descripción: </strong> {{ detallesCompra.cantidad }} {{detallesCompra.descripcion}}</p>
+        <!-- TABLA -->
+        <table class="table text-center">
+          <tr>
+            <td><strong>Cantidad</strong></td>
+            <td><strong>Precio/u</strong></td>
+            <td><strong>Importe</strong></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group" ng-class="{ 'has-error' : detallesCompraFrm.cantidadContactos.$invalid && !detallesCompraFrm.cantidadContactos.$pristine}">
+                <input
+                id="cantidadContactosId"
+                class="form-control"
+                name="cantidadContactos"
+                type="number"
+                placeholder="Cantidad deseada de contactos"
+                autofocus
+                required
+                minlength="0"
+                maxlength="4"
+                min="0"
+                max="1001"
+                ng-min="1"
+                ng-max="1000"
+                ng-model="detallesCompra.cantidad"
+                ng-disabled="deshabilitarCampos" />
+                <div ng-messages="detallesCompraFrm.cantidadContactos.$dirty && detallesCompraFrm.cantidadContactos.$error" role="alert">
+                  <div style="color:red;" ng-message="required">Campo requerido.</div>
+                  <div style="color:red;" ng-message="min">Órden mínima de compra es de 1 contacto</div>
+                  <div style="color:red;" ng-message="max">Órden máxima de compra es de 1,000 contactos</div>
+                </div>
+              </div>
+            </td>
+            <td>{{detallesCompra.precioUnitario | currency }}</td>
+            <td>{{ importe = (+detallesCompra.cantidad) * (+detallesCompra.precioUnitario) | currency }}</td>
+          </tr>
+        </table>
+        <hr>
+        <div class="row text-right">
+          <!-- SECCIÓN DEL DESGLOSE -->
+          <div class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8">
+            <div class="text-center"><strong >Desglose</strong></div><br>
 
-    <!-- TABLA -->
-    <table class="table text-center">
-      <tr>
-        <td><strong>Cantidad</strong></td>
-        <td><strong>Precio/u</strong></td>
-        <td><strong>Importe</strong></td>
-      </tr>
-      <tr>
-        <td><input class="form-control" type="number" placeholder="Introduce número" autofocus ng-model="detallesCompra.cantidad"></td>
-        <td>{{detallesCompra.precioUnitario | currency }}</td>
-        <td>{{ importe = (+detallesCompra.cantidad) * (+detallesCompra.precioUnitario) | currency }}</td>
-      </tr>
-    </table>
-    <hr>
-    <!-- SECCION TARJETA BANCARIA -->
-    <div class="row">
-      <div class="col-sm-12 col-md-12">
-            <strong>Datos bancarios</strong><br><br>
-            <tarjeta></tarjeta>
+            <!-- SUBTOTAL -->
+            <div class="row">
+              <div class="col-xs-7 col-sm-6">
+                <div>Subtotal:</div>
+              </div>
+              <strong class="col-xs-5 col-sm-6">
+                {{ importe | currency }}
+              </strong>
+            </div>
+
+            <!-- DESCUENTO -->
+            <div class="row">
+              <div class="col-xs-7 col-sm-6" ng-hide="detallesCompra.descuento<=0">
+                - {{ (detallesCompra.descuento) * 100 }} %desc.:
+              </div>
+              <strong class="col-xs-5 col-sm-6" ng-hide="detallesCompra.descuento<=0">
+                - {{ ( (importe) * (detallesCompra.descuento) )  | currency }}
+              </strong>
+              <!-- NUEVO SUB-TOTAL -->
+              <div class="col-xs-7 col-sm-6" ng-hide="detallesCompra.descuento<=0">
+                Nvo. SubTotal:
+              </div>
+              <strong class="col-xs-5 col-sm-6" ng-hide="detallesCompra.descuento<=0">
+                {{  (importe) - ( (importe) * (detallesCompra.descuento) )  | currency }}
+              </strong>
+            </div>
+
+            <!-- IMPORTE IVA -->
+            <div class="row">
+              <div class="col-xs-7 col-sm-6">
+                IVA({{ (detallesCompra.iva) * (100) }}%):
+              </div>
+              <strong class="col-xs-5 col-sm-6">
+                {{ (total) - (importe) - ( (importe) * (detallesCompra.descuento)) | currency }}
+              </strong>
+            </div>
+
+            <!-- GRAN TOTAL -->
+            <div class="row">
+              <div class="col-xs-7 col-sm-6">
+                TOTAL:
+              </div>
+              <strong class="col-xs-5 col-sm-6">
+                {{ total = ((importe)  - ( (importe) * (detallesCompra.descuento) )) * (1 + (detallesCompra.iva)) | currency}}
+              </strong>
+            </div>
+            <hr>
+            <button
+            class="btn btn-primary pull-right"
+            ng-click="detallesCompra.pagarAhora()"
+            ng-show="detallesCompra.tarjeta._id"
+            ng-disabled="detallesCompraFrm.$invalid">
+            Pagar ahora
+          </button>
+          </div>
+        </div>
+      </form>
+      <br>
+      <agregar-tarjeta
+      ng-hide="detallesCompra.tarjeta._id"
+      >
+    </agregar-tarjeta>
+    <editar-tarjeta
+    ng-show="detallesCompra.tarjeta._id"
+    tarjeta="detallesCompra.tarjeta">
+  </editar-tarjeta>
       </div>
-    </div>
-    <hr>
-
-    <div class="row text-right">
-      <!-- SECCIÓN DEL DESGLOSE -->
-      <div class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8">
-        <div class="text-center"><strong >Desglose</strong></div><br>
-
-        <!-- SUBTOTAL -->
-        <div class="row">
-          <div class="col-xs-7 col-sm-6">
-            <div>Subtotal:</div>
-          </div>
-          <strong class="col-xs-5 col-sm-6">
-            {{ importe | currency }}
-          </strong>
-        </div>
-
-        <!-- DESCUENTO -->
-        <div class="row">
-          <div class="col-xs-7 col-sm-6" ng-hide="detallesCompra.descuento<=0">
-            - {{ (detallesCompra.descuento) * 100 }} %desc.:
-          </div>
-          <strong class="col-xs-5 col-sm-6" ng-hide="detallesCompra.descuento<=0">
-            - {{ ( (importe) * (detallesCompra.descuento) )  | currency }}
-          </strong>
-          <!-- NUEVO SUB-TOTAL -->
-          <div class="col-xs-7 col-sm-6" ng-hide="detallesCompra.descuento<=0">
-            Nvo. SubTotal:
-          </div>
-          <strong class="col-xs-5 col-sm-6" ng-hide="detallesCompra.descuento<=0">
-            {{  (importe) - ( (importe) * (detallesCompra.descuento) )  | currency }}
-          </strong>
-        </div>
-
-        <!-- IMPORTE IVA -->
-        <div class="row">
-          <div class="col-xs-7 col-sm-6">
-            IVA({{ (detallesCompra.iva) * (100) }}%):
-          </div>
-          <strong class="col-xs-5 col-sm-6">
-            {{ (total) - (importe) - ( (importe) * (detallesCompra.descuento)) | currency }}
-          </strong>
-        </div>
-
-        <!-- GRAN TOTAL -->
-        <div class="row">
-          <div class="col-xs-7 col-sm-6">
-            TOTAL:
-          </div>
-          <strong class="col-xs-5 col-sm-6">
-            {{ total = ((importe)  - ( (importe) * (detallesCompra.descuento) )) * (1 + (detallesCompra.iva)) | currency}}
-          </strong>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <button class="btn btn-primary pull-right">Pagar ahora</button>
   </div>
 </div>

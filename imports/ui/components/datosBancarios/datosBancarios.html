@@ -8,11 +8,18 @@
   <div
   class="panel-heading">Mi Tarjeta Bancaria
     <eliminar-tarjeta
-    ng-show="datosBancarios.tarjetaBancaria.propietario"
-    tarjeta="datosBancarios.tarjetaBancaria">
+    ng-show="datosBancarios.tarjeta._id"
+    tarjeta="datosBancarios.tarjeta">
     </eliminar-tarjeta>
   </div>
   <div class="panel-body">
-    <tarjeta></tarjeta>
+    <agregar-tarjeta
+      ng-hide="datosBancarios.tarjeta._id"
+      >
+    </agregar-tarjeta>
+    <editar-tarjeta
+      ng-show="datosBancarios.tarjeta._id"
+      tarjeta="datosBancarios.tarjeta">
+    </editar-tarjeta>
   </div>
 </div>

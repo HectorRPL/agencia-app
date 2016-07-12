@@ -1,3 +1,21 @@
+<!-- COMPRA SIMPLE -->
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail" style="text-decoration:none;">
+    <img ng-src="/images/paquete-1.jpg" />
+    <div class="caption" style="color: gray;">
+      <h4 class="text-center">Compra Tradicional{{commpraSimple.nombre}}</h4>
+      <ul>
+        <li>Contactos</li>
+        <li>$30 + IVA mxn</li>
+        <li ng-hide="commpraSimple.descuento<=0">-{{commpraSimple.descuento}}% {{commpraSimple.descuentoCondicion}}</li>
+      </ul>
+      <button class="btn btn-default center-block" type="button" ui-sref="app.compras.sencillo">Comprar</button>
+      <a href="app.detallesCompraSimple" style="text-decoration: none;">
+        <h6 class="text-center">Mas detalles del producto</h6>
+      </a>
+    </div>
+  </div>
+</div>
 <!-- PAQUETES -->
 <div class="col-sm-6 col-md-4" ng-repeat="paquete in listaPaquetes.paquetes">
   <a ui-sref="app.detallesCompra({ paqueteId: paquete._id })" class="thumbnail"  style="text-decoration:none;">

@@ -7,3 +7,7 @@ import '../../api/tarjetaBancaria/index.js';
 import '../../api/tarjetaBancaria/methods.js';
 import '../../api/vacantes/index.js';
 import '../../api/vacantes/methods.js';
+import '../../api/creditos/index.js';
+import '../../api/creditos/methods.js';
+import '../../api/compras/index.js';
+import '../../api/compras/methods.js';

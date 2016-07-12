@@ -5,26 +5,26 @@ role="form"
 name="tarjetaFrm"
 nonvalidate>
 
-<tarjeta tarjeta="editarTarjeta.tarjeta"></tarjeta>
+<tarjeta tarjeta="agregarTarjeta.tarjeta"></tarjeta>
 <div class="row">
   <div class="col-sm-8">
     <!-- ALERTA:  -->
     <div class="row">
-      <div class="col-xs-12" ng-show="editarTarjeta.respuesta.mostrar">
-        <uib-alert type="{{ editarTarjeta.respuesta.tipo }}">
+      <div class="col-xs-12" ng-show="agregarTarjeta.respuesta.mostrar">
+        <uib-alert type="{{ agregarTarjeta.respuesta.tipo }}">
           <span class="fa fa-exclamation-triangle"></span>
-          <strong> {{ editarTarjeta.respuesta.mensaje }} </strong>
+          <strong> {{ agregarTarjeta.respuesta.mensaje }} </strong>
         </uib-alert>
       </div>
     </div>
   </div>
   <div class="col-sm-4">    
     <button
-    class="btn btn-default btn-block pull-right"
+    class="btn btn-primary btn-block pull-right"
     type="button"
-    ng-click="editarTarjeta.guardarCambios()"
+    ng-click="agregarTarjeta.guardar()"
     ng-disabled="tarjetaFrm.$invalid">
-    Guardar Cambios
+    Guardar Tarjeta
   </button>
   </div>
 </div>

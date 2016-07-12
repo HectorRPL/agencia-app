@@ -1,9 +1,5 @@
-<form
-id="tarjetaFrmId"
-class="property-submit-form"
-role="form"
-name="tarjetaFrm"
-nonvalidate>
+<ng-form name="tarjetaFrm">
+
   <div class="row">
     <!-- NOMBRE DE LA PERSONA -->
     <div class="col-sm-6 ">
@@ -20,8 +16,8 @@ nonvalidate>
         maxlength="31"
         ng-minlength="1"
         ng-maxlength="30"
-        ng-pattern="/^[a-zA-Z-ñáéíóú\s]+$/"
-        ng-model="tarjeta.tarjetaBancaria.nombreApellidos"
+        ng-pattern="/^[a-zA-Zñáéíóú\s]+$/"
+        ng-model="tarjeta.tarjeta.nombreApellidos"
         ng-disabled="deshabilitarCampos" />
         <div ng-messages="tarjetaFrm.nombreApellidos.$dirty && tarjetaFrm.nombreApellidos.$error" role="alert">
           <div style="color:red;" ng-message="required">Campo requerido.</div>
@@ -41,7 +37,7 @@ nonvalidate>
         autocomplete="off"
         placeholder="Débito / Crédito"
         required
-        ng-model="tarjeta.tarjetaBancaria.tipoTarjeta"
+        ng-model="tarjeta.tarjeta.tipoTarjeta"
         ng-disabled="deshabilitarCampos">
           <option value="">Clase</option>
           <option value="Visa">Visa</option>
@@ -53,7 +49,7 @@ nonvalidate>
       </div>
     </div>
   </div>
-  <!-- Sección (Datos Bancarios) -->
+  <!-- Sección (tarjeta Bancarios) -->
   <div class="row">
     <!-- NÚMERO DE TARJETA BANCARIA (BLOQUE 1)-->
     <div class="col-sm-3 ">
@@ -71,7 +67,7 @@ nonvalidate>
         ng-minlength="4"
         ng-maxlength="4"
         ng-pattern="/^[0-9]{4}$/"
-        ng-model="tarjeta.tarjetaBancaria.numeroTarjetaBloque1"
+        ng-model="tarjeta.tarjeta.numeroTarjetaBloque1"
         ng-disabled="deshabilitarCampos" />
         <div ng-messages="tarjetaFrm.numeroTarjetaBloque1.$dirty && tarjetaFrm.numeroTarjetaBloque1.$error" role="alert">
           <div style="color:red;" ng-message="required" >Campo requerido.</div>
@@ -96,7 +92,7 @@ nonvalidate>
         ng-minlength="4"
         ng-maxlength="4"
         ng-pattern="/^[0-9]{4}$/"
-        ng-model="tarjeta.tarjetaBancaria.numeroTarjetaBloque2"
+        ng-model="tarjeta.tarjeta.numeroTarjetaBloque2"
         ng-disabled="deshabilitarCampos" />
         <div ng-messages="tarjetaFrm.numeroTarjetaBloque2.$dirty && tarjetaFrm.numeroTarjetaBloque2.$error" role="alert">
           <div style="color:red;" ng-message="required">Campo requerido.</div>
@@ -121,7 +117,7 @@ nonvalidate>
         ng-minlength="4"
         ng-maxlength="4"
         ng-pattern="/^[0-9]{4}$/"
-        ng-model="tarjeta.tarjetaBancaria.numeroTarjetaBloque3"
+        ng-model="tarjeta.tarjeta.numeroTarjetaBloque3"
         ng-disabled="deshabilitarCampos" />
         <div ng-messages="tarjetaFrm.numeroTarjetaBloque3.$dirty && tarjetaFrm.numeroTarjetaBloque3.$error" role="alert">
           <div style="color:red;" ng-message="required">Campo requerido.</div>
@@ -147,7 +143,7 @@ nonvalidate>
         ng-minlength="4"
         ng-maxlength="4"
         ng-pattern="/^[0-9]{4}$/"
-        ng-model="tarjeta.tarjetaBancaria.numeroTarjetaBloque4"
+        ng-model="tarjeta.tarjeta.numeroTarjetaBloque4"
         ng-disabled="deshabilitarCampos" />
         <div ng-messages="tarjetaFrm.numeroTarjetaBloque4.$dirty && tarjetaFrm.numeroTarjetaBloque4.$error" role="alert">
           <div style="color:red;" ng-message="required">Campo requerido.</div>
@@ -174,7 +170,7 @@ nonvalidate>
         ng-minlength="2"
         ng-maxlength="2"
         ng-pattern="/^[0-9]{2}$/"
-        ng-model="tarjeta.tarjetaBancaria.fechaExpiracionMes"
+        ng-model="tarjeta.tarjeta.fechaExpiracionMes"
         ng-disabled="deshabilitarCampos" />
         <div ng-messages="tarjetaFrm.fechaExpiracionMes.$dirty && tarjetaFrm.fechaExpiracionMes.$error" role="alert">
           <div style="color:red;" ng-message="required">Campo requerido.</div>
@@ -200,7 +196,7 @@ nonvalidate>
         ng-minlength="2"
         ng-maxlength="2"
         ng-pattern="/^[0-9]{2}$/"
-        ng-model="tarjeta.tarjetaBancaria.fechaExpiracionAnio"
+        ng-model="tarjeta.tarjeta.fechaExpiracionAnio"
         ng-disabled="deshabilitarCampos" />
         <div ng-messages="tarjetaFrm.fechaExpiracionAnio.$dirty && tarjetaFrm.fechaExpiracionAnio.$error" role="alert">
           <div style="color:red;" ng-message="required">Campo requerido.</div>
@@ -226,7 +222,7 @@ nonvalidate>
         ng-minlength="3"
         ng-maxlength="3"
         ng-pattern="/^[0-9]{3}$/"
-        ng-model="tarjeta.tarjetaBancaria.codigoSeguridad"
+        ng-model="tarjeta.tarjeta.codigoSeguridad"
         ng-disabled="deshabilitarCampos" />
         <div ng-messages="tarjetaFrm.codigoSeguridad.$dirty && tarjetaFrm.codigoSeguridad.$error" role="alert">
           <div style="color:red;" ng-message="required">Campo requerido.</div>
@@ -236,38 +232,4 @@ nonvalidate>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-8">
-      <!-- ALERTA:  -->
-      <div class="row">
-        <div class="col-xs-12" ng-show="tarjeta.respuesta.mostrar">
-          <uib-alert type="{{ tarjeta.respuesta.tipo }}">
-            <span class="fa fa-exclamation-triangle"></span>
-            <strong> {{ tarjeta.respuesta.mensaje }} </strong>
-          </uib-alert>
-        </div>
-      </div>
-    </div>
-    <!-- BOTON AÑADIR TARJETA -->
-    <div class="col-sm-4">
-      <!-- GUARDAR -->
-      <button
-      class="btn btn-primary btn-block pull-right"
-      type="button"
-      ng-click="tarjeta.guardar()"
-      ng-disabled="tarjetaFrm.$invalid"
-      ng-hide="tarjeta.tarjetaBancaria.propietario">
-        Guardar Tarjeta
-      </button>
-      <!-- GUARDAR CAMBIOS -->
-      <button
-      class="btn btn-default btn-block pull-right"
-      type="button"
-      ng-click="tarjeta.guardarCambios()"
-      ng-disabled="tarjetaFrm.$invalid"
-      ng-show="tarjeta.tarjetaBancaria.propietario">
-        Guardar Cambios
-      </button>
-    </div>
-  </div>
-</form>
+</ng-form>

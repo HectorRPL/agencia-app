@@ -5,6 +5,7 @@ import uiRouter from 'angular-ui-router';
 import './listaPaquetes.html';
 
 import { Paquetes } from '../../../../api/paquetes';
+import { name as DetallesCompra } from '../detallesCompra/detallesCompra';
 
 class ListaPaquetes {
   constructor($scope, $reactive) {
@@ -27,7 +28,8 @@ const name = 'listaPaquetes';
 export default angular
 .module(name, [
   angularMeteor,
-  uiRouter
+  uiRouter,
+  DetallesCompra
 ])
 .component(name, {
   templateUrl: `imports/ui/components/compras/${name}/${name}.html`,
@@ -40,8 +42,8 @@ function config($stateProvider) {
   'ngInject';
 
   $stateProvider
-    .state('app.listaPaquetes', {
-      url: '/descuentos',
+    .state('app.compras.paquetes', {
+      url: '/paquetes',
       template: '<lista-paquetes></lista-paquetes>'
     });
 }
