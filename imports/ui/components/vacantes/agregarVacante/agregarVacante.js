@@ -1,6 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
+import uiBootstrap from 'angular-ui-bootstrap';
 import angularMessages from 'angular-messages';
 import './agregarVacante.html';
 import {
@@ -30,16 +31,21 @@ class AgregarVacante {
     this.$state = $state;
     this.vacante = {};
     this.vacante = Session.get('vacanteParaPub');
-
+    this.popup1 = {opened: false};
+    this.popup2 = {opened: false};
     this.helpers({
     });
+  }
+  abrirCalendario1() {
+    this.popup1.opened = true;
+  }
+  abrirCalendario2() {
+    this.popup2.opened = true;
   }
   siguiente() {
     Session.set('vacanteParaPub', this.vacante);
     this.$state.go('^.vacanteXtienda');
   }
-
-
 }
 
 const name = 'agregarVacante';
@@ -48,6 +54,7 @@ const name = 'agregarVacante';
 export default angular.module(name, [
   angularMeteor,
   uiRouter,
+  uiBootstrap,
   angularMessages,
   CheckboxDias,
   CheckboxHabilidades,

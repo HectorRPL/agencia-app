@@ -26,28 +26,31 @@
               </div>
             </div>
           </div>
+          <!-- RESUMEN (marca)-->
           <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-offset-4 col-md-4">
-              <!-- SUELDO DIARIO -->
-              <div class="form-group" ng-class="{ 'has-error' : vacanteXtiendaFrm.sueldoDiario.$invalid && !vacanteXtiendaFrm.sueldoDiario.$pristine}">
-                <input class="form-control" id="sueldoDiarioID" type="number" placeholder="Sueldo x día (pesos mexicanos)" min="1" name="sueldoDiario" ng-model="vacanteXtienda.datosFijos.sueldoDiario" required>
-                <div ng-messages="vacanteXtiendaFrm.sueldoDiario.$dirty && vacanteXtiendaFrm.sueldoDiario.$error" role="alert">
-                  <div ng-message="number,required" style="color:red;">Campo Númerico
-                  </div>
-                </div>
-              </div>
+            <div class="col-xs-12 col-sm-8 col-md-8">
+                Marca a representar:
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4">
-              <!-- MARCA (Marca o compañía a la cual el candidato va a representar)-->
-              <div class="form-group" ng-class="{ 'has-error' : vacanteXtiendaFrm.marca.$invalid && !vacanteXtiendaFrm.marca.$pristine}">
-                <input class="form-control" id="marcaID" name="marca" type="text" placeholder="Marca Ej.: Suavitel" ng-model="vacanteXtienda.datosFijos.marca" maxlength="20" minlength="1" required>
-                <div ng-messages="vacanteXtiendaFrm.marca.$dirty && vacanteXtiendaFrm.marca.$error" role="alert">
-                  <div ng-message="required" style="color:red;">Campo requerido
-                  </div>
-                  <div ng-message="minlength,maxlength" style="color:red;">Mínimo 1 dígito requerido, máximo 20
-                  </div>
-                </div>
-              </div>
+            <div class="col-xs-12 col-sm-4 col-md-4">
+              {{ vacanteXtienda.vacante.marca }}
+            </div>
+          </div>
+          <!-- RESUMEN (duración)-->
+          <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-8">
+              Duración de la promoción:
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4">
+              {{ vacanteXtienda.vacante.horarios.duracion }}
+            </div>
+          </div>
+          <!-- RESUMEN (sueldo)-->
+          <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-8">
+                Sueldo diario:
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4">
+              {{ vacanteXtienda.vacante.sueldo }}
             </div>
           </div>
           <hr>
@@ -124,10 +127,10 @@
                   {{tienda.sucursal}}
                   /
                   {{tienda.estadoId}}
-                  <span class="badge">{{vacanteXtienda.datosFijos.numeroVacantes}}</span>
                   <button type="button" class="close" aria-label="Close" ng-click="vacanteXtienda.eliminarTienda($index)">
                     <span class="fa fa-trash-o" aria-hidden="true"></span>
                   </button>
+                  <span class="badge">{{vacanteXtienda.datosFijos.numeroVacantes}}</span>
                 </li>
               </ul>
             </div>
