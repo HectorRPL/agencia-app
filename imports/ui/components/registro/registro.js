@@ -41,7 +41,7 @@ class Registro {
         if (err) {
           this.error = err;
           if(this.error.error === 403){
-            this.error.mensaje = `El correo ${this.credentials.email} ya se encuentra registrado`;
+            this.error.mensaje = `El correo ${this.credentials.email} y/o Usuario ya se encuentra registrado`;
           }
         } else {
           this.$state.go('app');
