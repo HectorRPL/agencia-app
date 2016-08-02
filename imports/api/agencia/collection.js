@@ -24,7 +24,14 @@ let DireccionSchema = new SimpleSchema({
   },
   estado: {
     type: String,
-    max:20
+    min : 1,
+    max : 30,
+    regEx: /^[a-zA-Zñáéíóú.\s]+$/
+  },
+  codigoEstado: {
+    type: String,
+    min: 1,
+    max: 3
   },
   colonia: {
     type: String,
@@ -33,25 +40,34 @@ let DireccionSchema = new SimpleSchema({
   codigoPostal: {
     type: String,
     min:5,
-    max: 5
+    max: 5,
+    regEx: /^[0-9]{5}$/
   },
   numExt: {
-    type: Number,
-    min:1
+    type: String,
+    min:1,
+    regEx: /^[a-zA-Z-/.&ñáéíóú-\s\d]+$/
   },
   numInt: {
-    type: Number,
+    type: String,
     min:1,
+    regEx: /^[a-zA-Z-/.&ñáéíóú-\s\d]+$/,
     optional: true
   }
 });
 
 Agencia.schema = new SimpleSchema({
   nombre: {
-    type: String
+    type: String,
+    regEx: /^[a-zA-Z-.&ñáéíóú-\s\d]+$/,
+    min: 2,
+    max: 50
   },
   telefono: {
-    type: Number
+    type: String,
+    regEx: /^[0-9]{10}$/,
+    min: 10,
+    max: 10
   },
   direccion: {
     type: DireccionSchema

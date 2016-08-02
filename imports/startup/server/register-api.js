@@ -11,3 +11,5 @@ import '../../api/creditos/index.js';
 import '../../api/creditos/methods.js';
 import '../../api/compras/index.js';
 import '../../api/compras/methods.js';
+import '../../api/codigosPostales/index.js';
+import '../../api/codigosPostales/methods.js';
