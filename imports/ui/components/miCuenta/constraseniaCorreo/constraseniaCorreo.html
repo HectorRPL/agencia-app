@@ -1,0 +1,44 @@
+<form id="emailUserPassFrmId" class="property-submit-form" name="emailUserPassFrm" role="form" nonvalidate>
+  <div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <!--NOMBRE DE LA EMPRESA-->
+    <div class="form-group" ng-class="{ 'has-error' : emailUserPassFrm.nombre.$invalid && !emailUserPassFrm.nombre.$pristine}">
+        <input id="nombreID" class="form-control" name="nombre" type="text" placeholder="Agencia de Publicidad S.A. de C.V." aria-describedby="sizing-addon1" minlength="2" maxlength="51" ng-minlength="2" ng-maxlength="50" ng-pattern="/^[a-zA-Z-.&ñáéíóú-\s\d]+$/" required ng-model="registro.credentials.profile.nombre" />
+        <div ng-messages="emailUserPassFrm.nombre.$dirty && emailUserPassFrm.nombre.$error" role="alert">
+          <div style="color:red;" ng-message="required"> Campo requerido</div>
+          <div style="color:red;" ng-message="minlength"> Longitud mínima 2 caracteres</div>
+          <div style="color:red;" ng-message="maxlength"> Longitud máxima 50 caracteres</div>
+          <div style="color:red;" ng-message="pattern"> Sólo caracteres alfabéticos</div>
+        </div>
+    </div>
+    <!-- CORREO-->
+    <div class="form-group" ng-class="{ 'has-error' : emailUserPassFrm.usuario.$invalid && !emailUserPassFrm.usuario.$pristine }">
+        <input id="candidatoEmailID" class="form-control" name="usuario" type="email" placeholder="Correo Electrónico" aria-describedby="basic-addon1" required ng-model="contraseniaCorreo.credentials.email">
+        <div ng-messages="emailUserPassFrm.usuario.$dirty && emailUserPassFrm.usuario.$error" role="alert">
+          <div style="color:red" ng-message="required"> Campo requerido</div>
+          <div style="color:red" ng-message="email"> Formato de email incorrecto.</div>
+        </div>
+    </div>
+    <!-- CONTASEÑA -->
+    <div class="form-group" ng-class="{ 'has-error' : emailUserPassFrm.password.$invalid && !emailUserPassFrm.password.$pristine }">
+      <input id="candidatoPasswordID" class="form-control" name="password" type="password" placeholder="Contraseña" aria-describedby="basic-addon1" required ng-model="contraseniaCorreo.credentials.password">
+      <div ng-messages="emailUserPassFrm.password.$dirty && emailUserPassFrm.password.$error" role="alert">
+        <div style="color:red" ng-message="required"> Campo requerido</div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- BOTON GUARDAR CAMBIOS-->
+      <div class="col-xs-12">
+        <button class="btn btn-default" type="submit" ng-click="contraseniaCorreo.actualizar()" ng-disabled="emailUserPassFrm.$invalid">
+          Guardar Cambios
+        </button>
+      </div>
+      <!-- ALERTA: CAMBIOS EXITOSO -->
+      <div class="col-xs-12" ng-show="contraseniaCorreo.error">
+        <uib-alert type="{{ tarjeta.respuesta.tipo }}">
+          <span class="fa fa-exclamation-triangle"></span>
+          <strong> {{ tarjeta.respuesta.mensaje }} </strong>
+        </uib-alert>
+      </div>
+    </div>
+  </div>
+</form>

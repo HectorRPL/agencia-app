@@ -1,0 +1,18 @@
+<!-- FOTO -->
+<form id="userPassFormId" class="property-submit-form" name="fotoFrm" role="form" nonvalidate>
+  <h3
+  class="list-group-item-heading text-center"
+  style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">
+    {{ foto.nombreAgencia }}
+  </h3>
+  <div class="thumbnail">
+    <!-- <img src="images/usuario_demos_500x500_gris.png" width="50%"> -->
+    <div style="height: 100%; width:100%;">
+      <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+        <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+          <img ng-src="{{slide.image}}" style="margin:auto;">
+        </uib-slide>
+      </uib-carousel>
+    </div>
+  </div>
+</form>
