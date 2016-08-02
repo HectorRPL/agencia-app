@@ -4,12 +4,14 @@ import uiRouter from 'angular-ui-router';
 import angularMessages from 'angular-messages';
 import './registro.html';
 import {
-  Accounts
+    Accounts
 } from 'meteor/accounts-base';
 import {
-  Roles
+    Roles
 } from 'meteor/alanning:roles';
-
+import {
+    obtenerColonias
+} from '../../../api/codigosPostales/methods.js';
 const tipoUsuario = 'agencia:';
 class Registro {
 
@@ -27,21 +29,42 @@ class Registro {
       profile:''
     };
 
+    this.error      = '';
 
-    this.error = '';
+    this.helpers({
+      colonias() {
+      }
+    });
+
+  }
+
+  obtenerColonias() {
+    obtenerColonias.call({
+      cp: this.credentials.profile.direccion.codigoPostal
+    }, (err, result) => {
+      if (result.length === 0 || result === null) {
+        this.credentials.profile.direccion.codigoPostal = 'Código Postal no valido';
+      } else {
+        console.log('this.colonias'                     , this.colonias);
+        this.colonias = result;
+        this.credentials.profile.direccion.estado = this.colonias[0].ciudad;
+        this.credentials.profile.direccion.codigoEstado = this.colonias[0].codigoEstado;
+        this.credentials.profile.direccion.delMpio = this.colonias[0].delegacionMunicipio;      }
+    });
   }
 
   crearUsuario() {
     this.error = '';
     this.credentials.email = this.credentials.email.toLowerCase();
     this.credentials.password = tipoUsuario + this.credentials.password;
+    this.credentials.profile.direccion.colonia = this.credentials.profile.direccion.colonia.colonia;
     this.credentials.profile.tipoUsuario = tipoUsuario;
     Accounts.createUser(this.credentials,
       this.$bindToContext((err) => {
         if (err) {
           this.error = err;
           if(this.error.error === 403){
-            this.error.mensaje = `El correo ${this.credentials.email} y/o Usuario ya se encuentra registrado`;
+            this.error.mensaje = `El CORREO ${this.credentials.email} y/o USUARIO ya se encuentra registrado`;
           }
         } else {
           this.$state.go('app');
