@@ -1,0 +1,25 @@
+<div class="modal-body">
+    <div class="row">
+        <div class="col-xs-12">
+            <a class="btn close" ng-click="eliminarVacante.cancelar()">
+                <span class="fa fa-times" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div uib-alert type="{{eliminarVacante.respuesta.tipo}}"  class="text-center">
+                <span class="{{eliminarVacante.respuesta.icono}}"></span>&nbsp;&nbsp;
+                <strong>{{eliminarVacante.respuesta.mensaje}}</strong>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-offset-7 col-md-2">
+            <button class="btn btn-success" type="button" ng-click="eliminarVacante.eliminar()" ng-disabled="eliminarVacante.respuesta.disable">Aceptar</button>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-2">
+            <button class="btn btn-danger" type="button" ng-click="eliminarVacante.cancelar()">Cancelar</button>
+        </div>
+    </div>
+</div>

@@ -3,24 +3,10 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import angularMessages from 'angular-messages';
 import './agregarVacante.html';
-import {
-  name as CheckboxDias
-} from '../../checkBoxes/checkboxDias/checkboxDias';
-import {
-  name as CheckboxHabilidades
-} from '../../checkBoxes/checkboxHabilidades/checkboxHabilidades';
-import {
-  Agencia
-} from '../../../../api/agencia/index';
-import {
-  Vacantes
-} from '../../../../api/vacantes/index';
-import {
-  name as VacanteXtienda
-} from '../vacanteXtienda/vacanteXtienda';
-import {
-  Session
-} from 'meteor/session';
+import { name as CheckboxDias } from '../../checkBoxes/checkboxDias/checkboxDias';
+import { name as CheckboxHabilidades } from '../../checkBoxes/checkboxHabilidades/checkboxHabilidades';
+import { name as VacanteXtienda } from '../vacanteXtienda/vacanteXtienda';
+import { Session } from 'meteor/session';
 
 class AgregarVacante {
   constructor($scope, $reactive, $state) {
@@ -63,8 +49,8 @@ export default angular.module(name, [
 function config($stateProvider) {
   'ngInject';
   $stateProvider
-    .state('app.agregarVacante', {
-      url: '/agregarvacante',
+    .state('app.vacantes.agregar', {
+      url: '/agregar',
       template: '<agregar-vacante></agregar-vacante>'
     });
 }

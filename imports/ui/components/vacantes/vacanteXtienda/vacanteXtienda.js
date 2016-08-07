@@ -3,21 +3,11 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import angularMessages from 'angular-messages';
 import './vacanteXtienda.html';
-import {
-  name as ComboEstados
-} from '../../comboEstados/comboEstados';
-import {
-  name as ComboCadenas
-} from '../../comboCadenas/comboCadenas';
-import {
-  insert
-} from '../../../../api/vacantes/methods.js';
-import {
-  Session
-} from 'meteor/session';
-import {
-  ValidationError
-} from 'meteor/mdg:validation-error';
+import { name as ComboEstados } from '../../comboEstados/comboEstados';
+import { name as ComboCadenas } from '../../comboCadenas/comboCadenas';
+import { insert } from '../../../../api/vacantes/methods.js';
+import { Session } from 'meteor/session';
+import { ValidationError } from 'meteor/mdg:validation-error';
 
 class VacanteXtienda {
   constructor($scope, $reactive) {
@@ -115,11 +105,8 @@ export default angular.module(name, [
 function config($stateProvider) {
   'ngInject';
   $stateProvider
-    .state('app.vacanteXtienda', {
+    .state('app.vacantes.vacanteXtienda', {
       url: '/tiendas',
-      template: '<vacante-xtienda></vacante-xtienda>',
-      params: {
-        vacante: null
-      }
+      template: '<vacante-xtienda></vacante-xtienda>'
     });
 }

@@ -12,7 +12,7 @@ import {
 
 const permisos = ['addVacante'];
 
-Vacante = function(doc) {
+/*Vacante = function(doc) {
   _.extend(this, doc);
 };
 _.extend(Vacante.prototype, {
@@ -32,12 +32,10 @@ _.extend(Vacante.prototype, {
       }
     });
   }
-});
-export const Vacantes = new Mongo.Collection('vacantes', {
-  transform: (doc)=> {
-    return new Vacante(doc);
-  }
-});
+});*/
+
+export const Vacantes = new Mongo.Collection('vacantes');
+
 Vacantes.deny({
   insert() {
     return true;

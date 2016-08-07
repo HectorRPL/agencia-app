@@ -1,13 +1,10 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
-import { TarjetaBancaria } from '../../../../api/tarjetaBancaria';
-import { name as EditarTarjeta } from '../../datosBancarios/editarTarjeta/editarTarjeta';
-import { name as AgregarTarjeta } from '../../datosBancarios/agregarTarjeta/agregarTarjeta';
 import './detallesCompra.html';
-import {
-    insert
-} from '../../../../api/compras/methods.js';
+import { getToken } from '../../../../api/braintree/methods.js';
+import {Meteor} from 'meteor/meteor';
+import  braintreeWeb from 'braintree-web';
 
 class DetallesCompra {
   constructor($scope, $reactive) {
@@ -26,14 +23,23 @@ class DetallesCompra {
 
     // LLENAR LOS COMBOS CON DATOS DE LA BASE
     this.helpers({
-      tarjeta() {
-        return TarjetaBancaria.findOne();
+      initBrainTree(){
+        Meteor.call('getToken');
+        /*
+        getToken.call(1, (err, response)=>{
+          console.log(err);
+          console.log(response);
+        });*/
+        braintreeWeb.setup(tokenId, 'dropin', {
+          container: 'payment-form'
+        });
       }
     });
   }
 
   comprar(){
-    
+
+
   }
 }
 
@@ -43,9 +49,7 @@ const name = 'detallesCompra';
 export default angular
 .module(name, [
   angularMeteor,
-  uiRouter,
-  EditarTarjeta,
-  AgregarTarjeta
+  uiRouter
 ])
 .component(name, {
   templateUrl: `imports/ui/components/compras/${name}/${name}.html`,

@@ -10,4 +10,5 @@ import '../../api/vacantes/methods.js';
 import '../../api/creditos/index.js';
 import '../../api/creditos/methods.js';
 import '../../api/compras/index.js';
-import '../../api/compras/methods.js';
+import '../../api/braintree/methods.js';
+import '../../api/braintree/index.js';

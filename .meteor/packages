@@ -32,3 +32,7 @@ tunifight:loggedin-mixin
 aldeed:collection2
 rlivingston:simple-schema-mixin
 ddp-rate-limiter
+http
+service-configuration
+ziarno:provide-mixin
+smrsoftware:angular-ui-grid

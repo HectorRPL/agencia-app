@@ -104,8 +104,7 @@
             <hr>
             <button
             class="btn btn-primary pull-right"
-            ng-click="detallesCompra.pagarAhora()"
-            ng-show="detallesCompra.tarjeta._id"
+            ng-click="detallesCompra.comprar()"
             ng-disabled="detallesCompraFrm.$invalid">
             Pagar ahora
           </button>
@@ -113,14 +112,10 @@
         </div>
       </form>
       <br>
-      <agregar-tarjeta
-      ng-hide="detallesCompra.tarjeta._id"
-      >
-    </agregar-tarjeta>
-    <editar-tarjeta
-    ng-show="detallesCompra.tarjeta._id"
-    tarjeta="detallesCompra.tarjeta">
-  </editar-tarjeta>
       </div>
   </div>
+    <form id="checkout">
+        <div id="payment-form"></div>
+        <input type="submit" value="Pay $10">
+    </form>
 </div>
