@@ -1,22 +1,13 @@
-import {
-  Meteor
-} from 'meteor/meteor';
-import {
-  Accounts
-} from 'meteor/accounts-base';
-import {
-  Roles
-} from 'meteor/alanning:roles';
-import {
-  Agencia
-} from '../api/agencia/index';
-import {
-  Creditos
-} from '../api/creditos/index';
+import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
+import { Roles } from 'meteor/alanning:roles';
+import { Agencia } from '../api/agencia/index';
+import { Creditos } from '../api/creditos/index';
 
 const agenciaRoles = {
   'agencia': ['addReclutador', 'addVacante']
 };
+
 if (Meteor.isServer) {
   Meteor.publish('users', function() {
 
@@ -34,9 +25,6 @@ if (Meteor.isServer) {
         let agencia = options.profile;
         agencia._id = user._id;
         Agencia.insert(agencia,
-          (success) => {
-
-          },
           (error) => {
             throw new Error('No se puedo crear la agencia.');
           });
@@ -47,13 +35,11 @@ if (Meteor.isServer) {
         creditos.propietario  = user._id;
         Creditos.insert(creditos,
            (error) => {
-
              if (error) {
                console.log(error);
                throw new Error('No se puedieron crear los créditos.');
              }
           });
-
         user.roles = agenciaRoles;
         user.username = agencia.nombre;
       } else {
