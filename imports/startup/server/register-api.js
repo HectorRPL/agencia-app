@@ -12,3 +12,5 @@ import '../../api/creditos/methods.js';
 import '../../api/compras/index.js';
 import '../../api/braintree/methods.js';
 import '../../api/braintree/index.js';
+import '../../api/codigosPostales/index.js';
+import '../../api/codigosPostales/methods.js';

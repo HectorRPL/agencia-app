@@ -1,0 +1,122 @@
+<form id="userPassFormId" class="property-submit-form" name="perfilFrm" role="form" nonvalidate>
+  <!-- EXPERIENCIA EN  -->
+  <div class="form-group" ng-class="{ 'has-error' : perfilFrm.nombre.$invalid && !perfilFrm.nombre.$pristine}">
+    <input id="datosNombreID" class="form-control" name="nombre" type="text" placeholder="Experiencia en..." aria-describedby="sizing-addon1" maxlength="51" minlength="1" required ng-pattern="/^[a-zA-Zñáéíóú\s\d]+$/" ng-maxlength="50" ng-minlength="1" ng-model="perfil.candidato.datosPersonales.nombre" />
+    <div ng-messages="perfilFrm.nombre.$dirty && perfilFrm.nombre.$error" role="alert">
+      <div style="color:red;" ng-message="required">Campo requerido</div>
+      <div style="color:red;" ng-message="minlength">Longitud mínima 4 caracteres</div>
+      <div style="color:red;" ng-message="maxlength">Longitud máxima 25 caracteres</div>
+      <div style="color:red;" ng-message="pattern">Únicamente caracteres Alfanuméricos</div>
+    </div>
+  </div>
+  <!-- TALLA -->
+  <div class="form-group" ng-class="{ 'has-error' : perfilFrm.nacimientoDia.$invalid && !perfilFrm.nacimientoDia.$pristine}">
+    <select id="datosNacimientoDiaID" class="form-control " name="nacimientoDia" required ng-model="perfil.candidato.datosPersonales.nacimientoDia" ng-options="dia for dia in perfil.dias">
+      <option value="">Talla</option>
+    </select>
+    <div ng-messages="perfilFrm.nacimientoDia.$dirty && perfilFrm.nacimientoDia.$error" role="alert">
+      <div ng-message="required" style="color:red;">Campo requerido</div>
+    </div>
+  </div>
+  <!-- ESTATURA -->
+  <div class="form-group" ng-class="{ 'has-error' : perfilFrm.nacimientoDia.$invalid && !perfilFrm.nacimientoDia.$pristine}">
+    <select id="datosNacimientoDiaID" class="form-control " name="nacimientoDia" ng-model="perfil.candidato.datosPersonales.nacimientoDia" ng-options="dia for dia in perfil.dias" required>
+      <option value="">Estatura</option>
+    </select>
+    <div ng-messages="perfilFrm.nacimientoDia.$dirty && perfilFrm.nacimientoDia.$error" role="alert">
+      <div ng-message="required" style="color:red;">Campo requerido</div>
+    </div>
+  </div>
+  <!-- PESO -->
+  <div class="form-group" ng-class="{ 'has-error' : perfilFrm.nacimientoDia.$invalid && !perfilFrm.nacimientoDia.$pristine}">
+    <select id="datosNacimientoDiaID" class="form-control " name="nacimientoDia" ng-model="perfil.candidato.datosPersonales.nacimientoDia" ng-options="dia for dia in perfil.dias" required>
+      <option value="">Peso</option>
+    </select>
+    <div ng-messages="perfilFrm.nacimientoDia.$dirty && perfilFrm.nacimientoDia.$error" role="alert">
+      <div ng-message="required" style="color:red;">Campo requerido</div>
+    </div>
+  </div>
+  <!-- SEXO -->
+  <div class="form-group" ng-class="{ 'has-error' : perfilFrm.nacimientoDia.$invalid && !perfilFrm.nacimientoDia.$pristine}">
+    <select id="datosNacimientoDiaID" class="form-control " name="nacimientoDia" ng-model="perfil.candidato.datosPersonales.nacimientoDia" ng-options="dia for dia in perfil.dias" required>
+      <option value="">Sexo</option>
+    </select>
+    <div ng-messages="perfilFrm.nacimientoDia.$dirty && perfilFrm.nacimientoDia.$error" role="alert">
+      <div ng-message="required" style="color:red;">Campo requerido</div>
+    </div>
+  </div>
+  <!-- PUESTO -->
+  <div class="form-group" ng-class="{ 'has-error' : perfilFrm.tipoPuesto.$dirty && perfilFrm.tipoPuesto.$error}">
+    <select id="tipoPuestoID" class="form-control" name="tipoPuesto" required ng-model="perfil.candidato.puesto" ng-options="puesto._id as puesto.descripcion for puesto in perfil.puestos track by puesto._id">
+      <option value="">Puesto</option>
+    </select>
+    <div ng-messages="perfilFrm.tipoPuesto.$dirty && perfilFrm.tipoPuesto.$error" role="alert">
+      <div ng-message="required" style="color:red;">Campo requerido</div>
+    </div>
+  </div>
+  <div class="form-group text-left">
+    <label class="control-label">
+      Fecha de nacimiento:
+    </label>
+  </div>
+  <!-- /////////// DIA MES AÑO /////////// -->
+  <div class="row">
+    <!-- DIA -->
+    <div class="col-xs-12 col-md-4">
+      <div class="form-group" ng-class="{ 'has-error' : perfilFrm.nacimientoDia.$invalid && !perfilFrm.nacimientoDia.$pristine}">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+          <select id="datosNacimientoDiaID" class="form-control " name="nacimientoDia" ng-model="perfil.candidato.datosPersonales.nacimientoDia" ng-options="dia for dia in perfil.dias" required>
+            <option value="">Día</option>
+          </select>
+          <div ng-messages="perfilFrm.nacimientoDia.$dirty && perfilFrm.nacimientoDia.$error" role="alert">
+            <div ng-message="required" style="color:red;">Campo requerido</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- MES -->
+    <div class="col-xs-12 col-md-4">
+      <div class="form-group" ng-class="{ 'has-error' : perfilFrm.nacimientoMes.$invalid && !perfilFrm.nacimientoMes.$pristine}">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+          <select id="datosNacimientoMesID" class="form-control" name="nacimientoMes" ng-model="perfil.candidato.datosPersonales.nacimientoMes" ng-options="mes.id as mes.descripcion for mes in perfil.meses track by mes.id" required>
+            <option value="">Mes</option>
+          </select>
+          <div ng-messages="perfilFrm.nacimientoMes.$dirty && perfilFrm.nacimientoMes.$error" role="alert">
+            <div ng-message="required" style="color:red;">Campo requerido</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- AÑO -->
+    <div class="col-xs-12 col-md-4">
+      <div class="form-group" ng-class="{ 'has-error' : perfilFrm.nacimientoAnio.$invalid && !perfilFrm.nacimientoAnio.$pristine}">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+          <select id="datosNacimientoAnioID" class="form-control" name="nacimientoAnio" ng-model="perfil.candidato.datosPersonales.nacimientoAnio" ng-options="anio for anio in perfil.anios" required>
+            <option value="">Año</option>
+          </select>
+        </div>
+        <div ng-messages="perfilFrm.nacimientoAnio.$dirty && perfilFrm.nacimientoAnio.$error" role="alert">
+          <div ng-message="required" style="color:red;">Campo requerido</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- BOTON GUARDAR CAMBIOS-->
+      <div class="col-xs-12">
+        <button class="btn btn-default" type="submit" ng-click="perfil.actualizar()" ng-disabled="perfilFrm.$invalid">
+          Guardar Cambios
+        </button>
+      </div>
+      <!-- ALERTA: CAMBIOS EXITOSO -->
+      <div class="col-xs-12" ng-show="perfil.error">
+        <uib-alert type="{{ tarjeta.respuesta.tipo }}">
+          <span class="fa fa-exclamation-triangle"></span>
+          <strong> {{ tarjeta.respuesta.mensaje }} </strong>
+        </uib-alert>
+      </div>
+    </div>
+  </div>
+</form>

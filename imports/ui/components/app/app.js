@@ -1,12 +1,12 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-
 import './app.html';
 
 import {  name as Navigation } from '../navigation/navigation';
 import {  name as Vacantes} from '../vacantes/vacantes';
 import { name as Compras } from '../compras/compras';
 import { name as DatosBancarios } from '../datosBancarios/datosBancarios';
+import { name as MiCuenta } from '../miCuenta/miCuenta';
 
 class app {}
 
@@ -18,7 +18,8 @@ export default angular.module(name, [
     Navigation,
     Compras,
     DatosBancarios,
-    Vacantes
+    Vacantes,
+	MiCuenta
   ]).component(name, {
     templateUrl: `imports/ui/components/${name}/${name}.html`,
     controllerAs: name,

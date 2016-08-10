@@ -10,6 +10,9 @@ import {
 import {
   Agencia
 } from '../api/agencia/index';
+import {
+  Creditos
+} from '../api/creditos/index';
 
 const agenciaRoles = {
   'agencia': ['addReclutador', 'addVacante']
@@ -37,6 +40,20 @@ if (Meteor.isServer) {
           (error) => {
             throw new Error('No se puedo crear la agencia.');
           });
+          // Aquí se insertan los Creditos
+        let creditos = {};
+        creditos.disponible   = 0;
+        creditos.usados   = 0;
+        creditos.propietario  = user._id;
+        Creditos.insert(creditos,
+           (error) => {
+
+             if (error) {
+               console.log(error);
+               throw new Error('No se puedieron crear los créditos.');
+             }
+          });
+
         user.roles = agenciaRoles;
         user.username = agencia.nombre;
       } else {

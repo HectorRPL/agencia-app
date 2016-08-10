@@ -42,12 +42,12 @@ Creditos.deny({
     },
     disponible: {
       type: Number,
-      min : 1,
+      min : 0,
       max : 3,
     },
     usados: {
       type: Number,
-      min : 1,
+      min : 0,
       max : 3,
     }
   });
