@@ -1,62 +1,34 @@
-import {
-  Mongo
-} from 'meteor/mongo';
-import {
-  SimpleSchema
-} from 'meteor/aldeed:simple-schema';
+import {Mongo} from "meteor/mongo";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
 
 export const Agencia = new Mongo.Collection('agencia');
 
-Agencia.allow({
-  insert(agencia) {
-    return agencia._id === this.userId;
-  }
-});
-
-let DireccionSchema = new SimpleSchema({
-  calle: {
-    type: String,
-    max: 30
+Agencia.deny({
+  insert() {
+    return true;
   },
-  delMpio: {
-    type: String,
-    max: 30
+  update() {
+    return true;
   },
-  estado: {
-    type: String,
-    min : 1,
-    max : 30,
-    regEx: /^[a-zA-Zñáéíóú.\s]+$/
-  },
-  codigoEstado: {
-    type: String,
-    min: 1,
-    max: 3
-  },
-  colonia: {
-    type: String,
-    max: 30
-  },
-  codigoPostal: {
-    type: String,
-    min:5,
-    max: 5,
-    regEx: /^[0-9]{5}$/
-  },
-  numExt: {
-    type: String,
-    min:1,
-    regEx: /^[a-zA-Z-/.&ñáéíóú-\s\d]+$/
-  },
-  numInt: {
-    type: String,
-    min:1,
-    regEx: /^[a-zA-Z-/.&ñáéíóú-\s\d]+$/,
-    optional: true
+  remove() {
+    return true;
   }
 });
 
 Agencia.schema = new SimpleSchema({
+  _id: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id
+  },
+  propietario: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id
+  },
+  fechaCreacion: {
+    type: Date,
+    defaultValue: new Date(),
+    denyUpdate: true
+  },
   nombre: {
     type: String,
     regEx: /^[a-zA-Z-.&ñáéíóú-\s\d]+$/,
@@ -68,9 +40,6 @@ Agencia.schema = new SimpleSchema({
     regEx: /^[0-9]{10}$/,
     min: 10,
     max: 10
-  },
-  direccion: {
-    type: DireccionSchema
   }
 });
 
