@@ -1,38 +1,12 @@
-import {
-  Mongo
-} from 'meteor/mongo';
-
-import {
-  SimpleSchema
-} from 'meteor/aldeed:simple-schema';
-
-import {
-  Roles
-} from 'meteor/alanning:roles';
+import {Mongo} from "meteor/mongo";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {Roles} from "meteor/alanning:roles";
+import {Puestos} from '../puestos/collection';
+import {Estados} from '../estados/collection';
+import {Cadenas} from '../cadenas/collection';
 
 const permisos = ['addVacante'];
 
-/*Vacante = function(doc) {
-  _.extend(this, doc);
-};
-_.extend(Vacante.prototype, {
-  foramtoDias: () => {
-    const dias = [];
-    this.horarios.dias.forEach((item, index) => {
-      if (item.activo) {
-        dias.push(item.DisplayName);
-      }
-    });
-  },
-  formatoHabilidades: () => {
-    const habilidades = [];
-    this.perfil.habilidades.forEach((item, index) => {
-      if (item.activo) {
-        habilidades.push(item.DisplayName);
-      }
-    });
-  }
-});*/
 
 export const Vacantes = new Mongo.Collection('vacantes');
 
@@ -64,7 +38,7 @@ Schema.vacante = new SimpleSchema({
     defaultValue: new Date(),
     denyUpdate: true,
   },
-  numeroVacantes: {
+  numVacantes: {
     type: Number,
   },
   sueldo: {
@@ -73,24 +47,18 @@ Schema.vacante = new SimpleSchema({
   estadoId: {
     type: String
   },
-  estadoDesc: {
-    type: String
-  },
   delMpio: {
     type: String,
     max: 30,
     optional: true,
   },
-  tipoVacanteId: {
+  puestoId: {
     type: String
   },
   sucursal: {
     type: String
   },
   cadenaId: {
-    type: String
-  },
-  cadenaDesc: {
     type: String
   },
   marca: {
@@ -108,10 +76,38 @@ Schema.vacante = new SimpleSchema({
     type: Object,
     blackbox: true,
   },
-  activo: {
+  eliminada: {
     type: Boolean,
-    defaultValue: true,
+    defaultValue: false,
+  },
+  fechaElimincacion: {
+    type: Date,
+    optional: true,
+  },
+  numPostulaciones:{
+    type: Number,
+    defaultValue: 0,
+  },
+  numSeleccionados:{
+    type: Number,
+    defaultValue: 0,
+  },
+  cubierta:{
+    type: Boolean,
+    defaultValue: false,
   }
 });
 
 Vacantes.attachSchema(Schema.vacante);
+
+Vacantes.helpers({
+  puesto(){
+    return Puestos.findOne({_id: this.puestoId});
+  },
+  estado(){
+    return Estados.findOne({_id: this.estadoId});
+  },
+  cadena(){
+    return Cadenas.findOne({_id:this.cadenaId});
+  }
+});

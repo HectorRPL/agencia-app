@@ -1,16 +1,17 @@
-import { Meteor } from 'meteor/meteor';
-import { ValidatedMethod } from 'meteor/mdg:validated-method';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { LoggedInMixin } from 'meteor/tunifight:loggedin-mixin';
-import { _ } from 'meteor/underscore';
-import { Vacantes } from './collection.js';
+import {Meteor} from "meteor/meteor";
+import {ValidatedMethod} from "meteor/mdg:validated-method";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {LoggedInMixin} from "meteor/tunifight:loggedin-mixin";
+import {_} from "meteor/underscore";
+import {Vacantes} from "./collection.js";
+import {Agencia} from "../agencia/collection.js";
 
-const CAMPOS_SIN_IDS = ['sueldo', 'numeroVacantes', 'estadoId', 'estadoDesc', 'delMpio', 'tipoVacanteId', 'sucursal', 'cadenaId', 'cadenaDesc', 'marca', 'perfil', 'horarios', 'entrevista'];
+const CAMPOS_SIN_IDS = ['sueldo', 'numVacantes', 'estadoId', 'delMpio', 'puestoId', 'sucursal', 'cadenaId', 'marca', 'perfil', 'horarios', 'entrevista'];
 
 const ID = ['_id'];
 
 export const insert = new ValidatedMethod({
-    name: 'vacante.insert',
+    name: 'vacantes.insert',
     mixins: [LoggedInMixin],
     checkLoggedInError: {
         error: 'noLogeado',
@@ -21,24 +22,26 @@ export const insert = new ValidatedMethod({
         clean: true,
         filter: false
     }),
-    run({numeroVacantes, sueldo, estadoId, estadoDesc, delMpio, tipoVacanteId, sucursal, cadenaId, cadenaDesc, marca, perfil, horarios, entrevista}) {
-        const vacante = {
-            propietario: this.userId,
-            numeroVacantes,
-            sueldo,
-            estadoId,
-            estadoDesc,
-            delMpio,
-            tipoVacanteId,
-            sucursal,
-            cadenaId,
-            cadenaDesc,
-            marca,
-            perfil,
-            horarios,
-            entrevista
-        };
-        return Vacantes.insert(vacante);
+    run({numVacantes, sueldo, estadoId, delMpio, puestoId, sucursal, cadenaId, marca, perfil, horarios, entrevista}) {
+        if (Meteor.isServer) {
+            const agencia = Agencia.findOne({propietario: this.userId});
+            const vacante = {
+                propietario: agencia._id,
+                numVacantes,
+                sueldo,
+                estadoId,
+                delMpio,
+                puestoId,
+                sucursal,
+                cadenaId,
+                marca,
+                perfil,
+                horarios,
+                entrevista
+            };
+            return Vacantes.insert(vacante);
+        }
+
     },
 });
 
@@ -56,18 +59,11 @@ export const desactivar = new ValidatedMethod({
     }),
     run({_id}){
         return Vacantes.update({
-                _id: _id
-            }, {
-                $set: {
-                    activo: false
-                }
-            }, (error) => {
-                if (error) {
-                    console.log(error);
-                    throw new Meteor.Error('vacante.desactivar.error',
-                        'Error al eliminar la vacante, porfavor intente mas tarde');
-                }
+            _id: _id
+        }, {
+            $set: {
+                eliminada: true
             }
-        );
+        });
     }
 });

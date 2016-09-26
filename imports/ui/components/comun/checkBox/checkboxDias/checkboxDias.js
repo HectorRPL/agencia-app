@@ -67,7 +67,7 @@ const name = 'checkboxDias';
 export default angular.module(name, [
   angularMeteor
 ]).component(name, {
-  templateUrl: `imports/ui/components/checkBoxes/${name}/${name}.html`,
+  templateUrl: `imports/ui/components/comun/checkBox/${name}/${name}.html`,
   controllerAs: name,
   bindings: {
     dias: '='

@@ -11,46 +11,41 @@
             <div class="col-xs-12 col-sm-12 col-md-8">
               <p>
                 <strong>Descripción:</strong>
-                Este campo indica el número de personal que acudira por tienda.
+                Indica el número de personas que acudiran por tienda.
               </p>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4">
               <!-- NÚMERO DE VACANTES SOLICITADAS -->
               <div class="form-group" ng-class="{ 'has-error' : vacanteXtiendaFrm.numeroVacantes.$invalid && !vacanteXtiendaFrm.numeroVacantes.$pristine}">
-                <input class="form-control" id="numeroVacantesID" name="numeroVacantes" type="number" min="1" placeholder="No. vacantes por tienda" ng-model="vacanteXtienda.datosFijos.numeroVacantes" required>
+                <input class="form-control" id="numeroVacantesID" name="numeroVacantes" type="number" min="1" max="5"
+                       placeholder="No. vacantes por tienda" ng-model="vacanteXtienda.numVacantes" required>
                 <div ng-messages="vacanteXtiendaFrm.numeroVacantes.$dirty && vacanteXtiendaFrm.numeroVacantes.$error" role="alert">
-                  <div ng-message="number, required" style="color:red;">
-                    Campo Númerico
-                  </div>
+                  <div ng-message="number, required" style="color:red;">Campo Númerico</div>
+                  <div ng-message="min, max" style="color:red;">Valor minimo 1, maximo 5</div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- RESUMEN (marca)-->
+
           <div class="row">
+              <div class="well col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8">
+                  <dl class="dl-horizontal">
+                      <!-- RESUMEN (marca)-->
+                      <dt>Marca a representar:</dt>
+                      <dd>{{ vacanteXtienda.vacante.marca }}</dd>
+                      <!-- RESUMEN (duración)-->
+                      <dt>Duración de la promoción:</dt>
+                      <dd>{{ vacanteXtienda.vacante.horarios.duracion }}</dd>
+                      <!-- RESUMEN (sueldo)-->
+                      <dt>Sueldo diario:</dt>
+                      <dd>{{ vacanteXtienda.vacante.sueldo | currency}}</dd>
+                  </dl>
+              </div>
             <div class="col-xs-12 col-sm-8 col-md-8">
-                Marca a representar:
+
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4">
-              {{ vacanteXtienda.vacante.marca }}
-            </div>
-          </div>
-          <!-- RESUMEN (duración)-->
-          <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-8">
-              Duración de la promoción:
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4">
-              {{ vacanteXtienda.vacante.horarios.duracion }}
-            </div>
-          </div>
-          <!-- RESUMEN (sueldo)-->
-          <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-8">
-                Sueldo diario:
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4">
-              {{ vacanteXtienda.vacante.sueldo }}
+
             </div>
           </div>
           <hr>
@@ -58,9 +53,9 @@
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-3">
                 <!-- ESTADO -->
-                <div class="form-group" ng-class="{ 'has-error' : tiendaFrm.estado.$invalid && !tiendaFrm.estado.$pristine}">
-                  <combo-estados estado="vacanteXtienda.estado"></combo-estados>
-                  <div ng-messages="tiendaFrm.estado.$dirty && tiendaFrm.estado.$error" role="alert">
+                <div class="form-group" ng-class="{ 'has-error' : tiendaFrm.elegirEstado.$invalid && !tiendaFrm.elegirEstado.$pristine}">
+                  <elegir-estado estadoid="vacanteXtienda.tienda.estadoId"></elegir-estado>
+                  <div ng-messages="tiendaFrm.elegirEstado.$dirty && tiendaFrm.elegirEstado.$error" role="alert">
                     <div ng-message="required" style="color:red;">Campo requerido
                     </div>
                   </div>
@@ -77,9 +72,9 @@
               </div>
               <div class="col-xs-12 col-sm-12 col-md-3">
                 <!-- CADENA -->
-                <div class="form-group" ng-class="{ 'has-error' : tiendaFrm.cadena.$invalid && !tiendaFrm.cadena.$pristine}">
-                  <combo-cadenas cadena="vacanteXtienda.cadena"></combo-cadenas>
-                  <div ng-messages="tiendaFrm.cadena.$dirty && tiendaFrm.cadena.$error" role="alert">
+                <div class="form-group" ng-class="{ 'has-error' : tiendaFrm.elegirCadena.$invalid && !tiendaFrm.elegirCadena.$pristine}">
+                  <elegir-cadena cadenaid="vacanteXtienda.tienda.cadenaId"></elegir-cadena>
+                  <div ng-messages="tiendaFrm.elegirCadena.$dirty && tiendaFrm.elegirCadena.$error" role="alert">
                     <div ng-message="required" style="color:red;">Campo requerido
                     </div>
                   </div>
@@ -121,8 +116,8 @@
           <div class="row">
             <div class="col-xs-12">
               <ul class="list-group">
-                <li class="list-group-item" ng-repeat="tienda in vacanteXtienda.tiendas">
-                  {{tienda.cadenaDesc}}
+                <li class="list-group-item" ng-repeat="tienda in vacanteXtienda.tiendas" ng-init="cadena = vacanteXtienda.obtenerCadena(tienda.cadenaId)">
+                  {{cadena.descripcion}}
                   /
                   {{tienda.sucursal}}
                   /
@@ -130,7 +125,7 @@
                   <button type="button" class="close" aria-label="Close" ng-click="vacanteXtienda.eliminarTienda($index)">
                     <span class="fa fa-trash-o" aria-hidden="true"></span>
                   </button>
-                  <span class="badge">{{vacanteXtienda.datosFijos.numeroVacantes}}</span>
+                  <span class="badge">{{vacanteXtienda.numVacantes}}</span>
                 </li>
               </ul>
             </div>
@@ -175,9 +170,10 @@
     <div class="col-sx-12 col-sm-8 col-md-8">
       <div class="row" ng-show="vacanteXtienda.respuesta.mostrar">
         <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-8 ">
-          <uib-alert type="{{vacanteXtienda.respuesta.tipo}}">
+          <uib-alert type="info">
             <span class="fa fa-exclamation-triangle"></span>
-            <strong>{{vacanteXtienda.respuesta.mensaje}}.</strong>
+            <strong>{{vacanteXtienda.respuesta.mensajeExito}}</strong>
+            <strong>{{vacanteXtienda.respuesta.mensajeErr}}</strong>
           </uib-alert>
         </div>
       </div>

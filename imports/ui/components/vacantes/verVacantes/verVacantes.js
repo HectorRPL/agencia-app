@@ -6,8 +6,9 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
 import './verVacantes.html';
-import {Vacantes} from '../../../../api/vacantes/index';
+import {Vacantes} from '../../../../api/vacantes/collection';
 import { name as EliminarVacante } from '../eliminarVacante/eliminarVacante';
+import { name as VerCandidatos } from '../verCandidatos/verCandidatos';
 
 
 class VerVacantes {
@@ -44,6 +45,14 @@ class VerVacantes {
             }
         });
     }
+
+    numPostulaciones(vacanteId){
+
+    }
+
+    numSeleccionados(vacanteId){
+
+    }
 }
 
 const name = 'verVacantes';
@@ -53,7 +62,8 @@ export default angular
     .module(name, [
         angularMeteor,
         uiRouter,
-        EliminarVacante
+        EliminarVacante,
+        VerCandidatos
     ])
     .component(name, {
         templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,

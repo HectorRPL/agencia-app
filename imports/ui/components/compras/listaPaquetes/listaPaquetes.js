@@ -4,7 +4,7 @@ import uiRouter from 'angular-ui-router';
 
 import './listaPaquetes.html';
 
-import { Paquetes } from '../../../../api/paquetes';
+import { Paquetes } from '../../../../api/paquetes/collection';
 import { name as DetallesCompra } from '../detallesCompra/detallesCompra';
 
 class ListaPaquetes {

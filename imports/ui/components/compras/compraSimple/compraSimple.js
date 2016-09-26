@@ -1,8 +1,7 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-
-import './compraSimple.html';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import "./compraSimple.html";
 
 class CompraSimple {
   constructor() {

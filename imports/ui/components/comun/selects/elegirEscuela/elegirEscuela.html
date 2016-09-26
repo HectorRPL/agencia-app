@@ -1,0 +1,5 @@
+<select id="elegirEscuelaId" class="form-control" name="elegirEscuela" required
+        ng-model="elegirEscuela.escolaridad">
+    <option value=""> Escolaridad</option>
+    <option ng-repeat="escuela in elegirEscuela.escuelas" value="{{escuela._id}}">{{escuela.descripcion}}</option>
+</select>

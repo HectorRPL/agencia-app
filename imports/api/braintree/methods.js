@@ -61,7 +61,7 @@ let gateway = braintree.connect({
 
 Meteor.methods({ getToken: (clientId) => {
 
-    /*var generateToken = Meteor.wrapAsync(gateway.clientToken.generate, gateway.clientToken);
+    var generateToken = Meteor.wrapAsync(gateway.clientToken.generate, gateway.clientToken);
     var options = {};
 
     if (clientId) {
@@ -70,14 +70,14 @@ Meteor.methods({ getToken: (clientId) => {
 
     var response = generateToken(options);
 
-    return response.clientToken;*/
+    return response.clientToken;
 
-    gateway.clientToken.generate({}, function (err, response) {
+    /*gateway.clientToken.generate({}, function (err, response) {
         console.log('-------------------------------------------------------------------------------------------');
         console.log(response);
         console.log('-------------------------------------------------------------------------------------------');
         return response.clientToken;
-    });
+    });*/
 
 }});
 

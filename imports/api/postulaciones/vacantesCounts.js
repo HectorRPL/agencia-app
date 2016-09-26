@@ -8,7 +8,6 @@ import { check } from 'meteor/check';
 
 const vacantesCounts = {
     _updateVacante(vacanteId) {
-
         const selectorPost = {$and: [{vacanteId: vacanteId}, {estado: 1}]};
         const selectorSelec = {$and: [{vacanteId: vacanteId}, {estado: 2}]};
         let vacanteCubierta = false;
@@ -17,27 +16,25 @@ const vacantesCounts = {
         const numSelec = Postulaciones.find(selectorSelec).count();
         const vacante = Vacantes.findOne({_id: vacanteId});
 
-        if (numPost === vacante.numVacantes) {
+
+        if (vacante != undefined && vacante.numVacantes === numPost) {
             vacanteCubierta = true;
         }
-        Vacantes.update({
-            _id: vacante._id
-        }, {
+        Vacantes.update({_id: vacanteId},
+            {
             $set: {
                 cubierta: vacanteCubierta,
                 numPostulaciones: numPost,
                 numSeleccionados: numSelec
-
             }
         });
     },
     afterInsertPostulacion(postulacion) {
         this._updateVacante(postulacion.vacanteId);
     },
-    afterUpdateTodo(selector, modifier) {
+    afterUpdatePostulacion(selector, modifier) {
         check(modifier, { $set: Object });
-
-        if (_.has(modifier.$set, 'checked')) {
+        if (_.has(modifier.$set, 'estado')) {
             Postulaciones.find(selector, { fields: { vacanteId: 1 } }).forEach(postulacion => {
                 this._updateVacante(postulacion.vacanteId);
             });

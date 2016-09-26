@@ -1,6 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import './elegirEstados.html';
+import './elegirEstado.html';
 import {Estados} from '../../../../../api/estados/collection';
 
 
@@ -17,7 +17,7 @@ class ElegirEstados {
     }
 }
 
-const name = 'elegirEstados';
+const name = 'elegirEstado';
 // create a module
 
 export default angular.module(name, [

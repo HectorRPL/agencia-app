@@ -5,14 +5,17 @@ import angularMessages from 'angular-messages';
 
 import './tarjeta.html';
 
+import {getToken} from '../../../../api/braintree/methods.js';
+
+
 class Tarjeta {
     constructor($scope, $reactive) {
         'ngInject';
-
         $reactive(this).attach($scope);
         this.tarjeta = {};
-    }
 
+
+    }
 }
 
 const name = 'tarjeta';

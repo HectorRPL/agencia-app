@@ -18,7 +18,7 @@ class ElegirCadenas {
     }
 }
 
-const name = 'elegirCadenas';
+const name = 'elegirCadena';
 // create a module
 
 export default angular.module(name, [

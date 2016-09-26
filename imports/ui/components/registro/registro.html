@@ -45,7 +45,9 @@
       <!-- CÓDIGO POSTAL -->
       <div class="col-xs-12 col-md-4 col-sm-4">
         <div class="form-group" ng-class="{ 'has-error' : registroAgenciaFrm.codigoPostal.$invalid && !registroAgenciaFrm.codigoPostal.$pristine}">
-          <input id="codigoPostalID" class="form-control" name="codigoPostal" type="text" placeholder="Código Postal" aria-describedby="sizing-addon1" maxlength="5" minlength="5" ng-maxlength="5" ng-minlength="5" ng-pattern="/^[0-9]{5}$/" required ng-change="registro.obtenerColonias()" ng-model="registro.credentials.profile.direccion.codigoPostal" />
+          <input id="codigoPostalID" class="form-control" name="codigoPostal" type="text" placeholder="Código Postal" aria-describedby="sizing-addon1"
+                 maxlength="5" minlength="5" ng-maxlength="5" ng-minlength="5" ng-pattern="/^[0-9]{5}$/" required
+                 ng-change="registro.obtenerColonias()" ng-model="registro.credentials.profile.direccion.codigoPostal" />
           <div ng-messages="registroAgenciaFrm.codigoPostal.$dirty && registroAgenciaFrm.codigoPostal.$error" role="alert">
             <div style="color:red;" ng-message="required"> Campo requerido</div>
             <div style="color:red;" ng-message="minlength"> Longitud mínima 5 caracteres</div>

@@ -18,7 +18,6 @@ class EliminarVacante {
     }
 
     eliminar() {
-        console.log('id', this.id);
         desactivar.call({_id: this.id}, this.$bindToContext((err)=> {
             this.respuesta.disable = true;
             if (err) {
@@ -26,9 +25,9 @@ class EliminarVacante {
                 this.respuesta.tipo = 'danger';
                 this.respuesta.icono = 'fa fa-times';
             } else {
-                this.respuesta.mensaje = 'La vacante ha sido eliminada con exito.'
-                this.respuesta.tipo = 'success'
-                this.respuesta.icono = 'fa fa-check'
+                this.respuesta.mensaje = 'La vacante ha sido eliminada con exito.';
+                this.respuesta.tipo = 'success';
+                this.respuesta.icono = 'fa fa-check';
             }
         }));
     }

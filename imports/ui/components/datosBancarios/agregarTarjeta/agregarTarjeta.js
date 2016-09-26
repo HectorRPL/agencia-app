@@ -1,20 +1,13 @@
 // modules
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-import ngAnimate from 'angular-animate';
-import {
-    Meteor
-} from 'meteor/meteor';
-import {
-    ValidationError
-} from 'meteor/mdg:validation-error';
-
-import './agregarTarjeta.html';
-import { name as Tarjeta } from '../tarjeta/tarjeta';
-import {
-    insert
-} from '../../../../api/tarjetaBancaria/methods.js';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import ngAnimate from "angular-animate";
+import {Meteor} from "meteor/meteor";
+import {ValidationError} from "meteor/mdg:validation-error";
+import "./agregarTarjeta.html";
+import {name as Tarjeta} from "../tarjeta/tarjeta";
+import {insert} from "../../../../api/tarjetaBancaria/methods.js";
 
 class AgregarTarjeta {
     constructor($scope, $reactive) {

@@ -16,27 +16,41 @@
         </ul -->
         <table class="table table-condensed">
             <thead>
-                <tr>
-                    <th>Marca</th>
-                    <th>Cadena</th>
-                    <th>Sucursal</th>
-                    <th>Estado</th>
-                    <th>Fecha Creación</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>Marca</th>
+                <th>Cadena</th>
+                <th>Sucursal</th>
+                <th>Estado</th>
+                <th>Fecha Creación</th>
+                <th>No. Postulaciones</th>
+                <th>No. Seleccionadas</th>
+                <th>Eliminar/Detalle</th>
+            </tr>
             </thead>
-            <tr ng-repeat="vacante in verVacantes.vacantesPublicadas">
+            <tr ng-repeat="vacante in verVacantes.vacantesPublicadas" ng-init="cadena = vacante.cadena()">
                 <td>{{vacante.marca}}</td>
-                <td>{{vacante.cadenaId}}</td>
+                <td>{{cadena.descripcion}}</td>
                 <td>{{vacante.sucursal}}</td>
                 <td>{{vacante.estadoId}}</td>
-                <td>{{vacante.fechaCreacion}}</td>
+                <td>{{vacante.fechaCreacion | date : format : dd/MM/YYYY}}</td>
                 <td>
-                    <a class="btn close" ng-click="verVacantes.eliminar(vacante._id)">
+                    <a class="btn btn-warning" ui-sref="app.vacantes.candidatos({vacanteId:vacante._id})">
+                        <span class="fa fa-users" aria-hidden="true"></span>
+                        <span class="badge">{{vacante.numPostulaciones}}</span>
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-success" ui-sref="app.vacantes.candidatos({vacanteId:vacante._id})">
+                        <span class="fa fa-users" aria-hidden="true"></span>
+                        <span class="badge">{{vacante.numSeleccionados}}</span>
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" ng-click="verVacantes.eliminar(vacante._id)">
                         <span class="fa fa-trash-o" aria-hidden="true"></span>
                     </a>
                     &nbsp;
-                    <a class="btn close" ui-sref="app.vacantes.detalle({vacanteId:vacante._id})">
+                    <a class="btn btn-default" ui-sref="app.vacantes.detalle({vacanteId:vacante._id})">
                         <span class="fa fa-search-plus" aria-hidden="true"></span>
                     </a>
                 </td>

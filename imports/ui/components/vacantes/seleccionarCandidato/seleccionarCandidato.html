@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-xs-12">
+            <a class="btn close" ng-click="seleccionarCandidato.cancelar()">
+                <span class="fa fa-times" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div uib-alert type="{{seleccionarCandidato.respuesta.tipo}}"  class="text-center">
+                <span class="{{seleccionarCandidato.respuesta.icono}}"></span>&nbsp;&nbsp;
+                <strong>{{seleccionarCandidato.respuesta.mensaje}}</strong>
+            </div>
+        </div>
+    </div>
+    {{this.id}}
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-offset-7 col-md-2">
+            <button class="btn btn-success" type="button" ng-click="seleccionarCandidato.seleccionar()" ng-disabled="seleccionarCandidato.respuesta.disable">Aceptar</button>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-2">
+            <button class="btn btn-danger" type="button" ng-click="seleccionarCandidato.cancelar()">Cancelar</button>
+        </div>
+    </div>
+</div>

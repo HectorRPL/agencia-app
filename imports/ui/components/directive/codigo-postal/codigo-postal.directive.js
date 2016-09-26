@@ -3,15 +3,16 @@ import angularMeteor from 'angular-meteor';
 import {
     obtenerColonias
 } from '../../../../api/codigosPostales/methods.js';
-class CodigosPostales {}
+class CodigosPostales {
 
-const name = 'dCodigoPostal';
+}
+
+const name = 'ngcp';
 
 // Módulo
 export default angular.module(name, [
   angularMeteor,
-])
-.directive(name, ['$q', function($q) {
+]).directive(name, ['$q', function($q) {
   return {
     restrict: 'EA',
     require: '?ngModel',

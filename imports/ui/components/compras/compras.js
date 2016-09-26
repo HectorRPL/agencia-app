@@ -1,11 +1,8 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-
-import { name as ListaPaquetes } from './listaPaquetes/listaPaquetes';
-
-
-import './compras.html';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import {name as ListaPaquetes} from "./listaPaquetes/listaPaquetes";
+import "./compras.html";
 
 class Compras {
   constructor() {

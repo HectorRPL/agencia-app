@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<!--OPCIÓN "A.2" -->
+<div class="row">
+    <div class="col-xs-12">
+        <div class="list-group">
+            <a href ng-click="verCandidatos.contactar(postulado._id)"  ng-repeat="postulado in verCandidatos.postulados" class="list-group-item">
+                <!-- (FOTO) Y (DATOS | AVIÓN) -->
+                <div class="row">
+                    <!-- DATOS Y AVIÓN-->
+                    <div class="col-xs-12 col-sm-10" ng-init="candidato = postulado.candidato(); perfil = postulado.perfilLaboral()">
+                        <h4 class="list-group-item-heading">{{candidato.nombre}} {{candidato.apellidos}}</h4>
+                        <div class="row">
+                            <!-- DATOS -->
+                            <div class="col-xs-12 col-sm-10">
+                                <p class="list-group-item-text" ng-init="puestoDesc = perfil.puesto(); escolaridad = perfil.escolaridad();
+                                experiencias = perfil.experienciasEn(); habilidades = perfil.hibilidadesEn()">
+                                    <strong>Perfil</strong>: {{candidato.sexo}} | {{puestoDesc.descripcion}}
+                                    | {{escolaridad.descripcion}} | Talla {{perfil.talla}}|
+                                    Estatura {{perfil.estatura}}
+                                </p>
+                                <ul class="list-inline">
+                                    <li><strong>Experiencia</strong>:</li>
+                                    <li ng-repeat="experiencia in experiencias">{{experiencia.descripcion}}&nbsp;|</li>
+                                </ul>
+                                <ul class="list-inline">
+                                    <li><strong>Habilidades</strong>:</li>
+                                    <li ng-repeat="habilidad in habilidades">{{habilidad.descripcion}}&nbsp;|</li>
+                                </ul>
+                            </div>
+                            <!-- AVIÓN -->
+                            <div class="col-xs-12 col-sm-2">
+                                <i class="fa fa-paper-plane fa-3x" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+<select id="elegirPuestoId" class="form-control" name="elegirPuesto" required
+        ng-model="elegirPuesto.puestoid">
+    <option value="">---Puesto deseado---</option>
+    <option ng-repeat="puesto in elegirPuesto.puestos" value="{{puesto._id}}">{{puesto.descripcion}}</option>
+</select>

@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="list-group">
+            <a href ng-click="verSeleccionados.contactar(postulado._id)"  class="list-group-item"
+               ng-repeat="postulado in verSeleccionados.postulados">
+                <!-- (FOTO) Y (DATOS | AVIÓN) -->
+                {{postulado}}
+                <div class="row">
+                    <!-- DATOS Y AVIÓN-->
+                    <div class="col-xs-12 col-sm-10" ng-init="datosGrls = verSeleccionados.verDatosGenerales(postulado.candidatoId)">
+                        <h4 class="list-group-item-heading">{{datosGrls.nombre}} {{datosGrls.apellidos}}</h4>
+                        <div class="row">
+                            <!-- DATOS -->
+                            <div class="col-xs-12 col-sm-10" ng-init="perfilLaboral = verSeleccionados.verPerfil(postulado.candidatoId)">
+                                <p class="list-group-item-text">
+                                    <strong>Perfil</strong>: {{datosGrls.sexo}} | {{perfilLaboral.puesto}}
+                                    | {{perfilLaboral.escolaridad}} | Talla {{perfilLaboral.talla}}|
+                                    Estatura {{perfilLaboral.estatura}}
+                                </p>
+                                <p>
+                                    <strong>Experiencia</strong>:
+                                <ul class="list-inline">
+                                    <li ng-repeat="experiencia in perfilLaboral.experiencias.listado">{{experiencia}}&nbsp;&nbsp;|</li>
+                                </ul>
+                                </p>
+                                <strong>Habilidades</strong>:
+                                <p class="list-group-item-text">
+                                    Buena presentación | Facilidad de Palabra | Gusto por
+                                </p>
+                            </div>
+                            <!-- AVIÓN -->
+                            <div class="col-xs-12 col-sm-2">
+                                <i class="fa fa-paper-plane fa-3x" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import './detalleVacante.html';
-import {Vacantes} from '../../../../api/vacantes/index';
+import {Vacantes} from '../../../../api/vacantes/collection';
 
 
 class DetalleVacante {
@@ -10,7 +10,7 @@ class DetalleVacante {
         'ngInject';
         $reactive(this).attach($scope);
         this.vacanteId = $stateParams.vacanteId;
-        this.subscribe('vacantes.detalle');
+        this.subscribe('vacantes.detalle', ()=> [{_id: this.vacanteId}]);
 
         this.helpers({
             vacante(){

@@ -5,9 +5,9 @@
       <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-3">
           <!-- TALLA -->
-          <div class="form-group" ng-class="{ 'has-error' : vacanteFrm.talla.$invalid && !vacanteFrm.talla.$pristine}">
-            <input class="form-control" id="tallaID" type="text" placeholder="Talla 10-20" name="talla" ng-model="agregarVacante.vacante.perfil.talla" required>
-            <div ng-messages="vacanteFrm.talla.$dirty && vacanteFrm.talla.$error" role="alert">
+          <div class="form-group" ng-class="{ 'has-error' : vacanteFrm.elegirTalla.$invalid && !vacanteFrm.elegirTalla.$pristine}">
+              <elegir-talla talla="agregarVacante.vacante.perfil.talla"></elegir-talla>
+            <div ng-messages="vacanteFrm.elegirTalla.$dirty && vacanteFrm.elegirTalla.$error" role="alert">
               <div ng-message="required" style="color:red;">Campo Requerido
               </div>
             </div>
@@ -30,30 +30,19 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
           <!-- ESCOLARIDAD -->
-          <div class="form-group" ng-class="{ 'has-error' : vacanteFrm.escolaridad.$invalid && !vacanteFrm.escolaridad.$pristine}">
-            <select class="form-control" id="escolaridadID" name="escolaridad" ng-model="agregarVacante.vacante.perfil.escolaridad" required>
-              <option value="">-- Escolaridad --</option>
-              <option value="Primaria">Primaria</option>
-              <option value="Secundaria">Secundaria</option>
-              <option value="Bachillerato">Bachillerato</option>
-              <option value="Licenciatura">Licenciatura</option>
-            </select>
-            <div ng-messages="vacanteFrm.escolaridad.$dirty && vacanteFrm.escolaridad.$error" role="alert">
+          <div class="form-group" ng-class="{ 'has-error' : vacanteFrm.elegirEscuela.$invalid && !vacanteFrm.elegirEscuela.$pristine}">
+              <elegir-escuela escolaridad="agregarVacante.vacante.perfil.escolaridad"></elegir-escuela>
+            <div ng-messages="vacanteFrm.elegirEscuela.$dirty && vacanteFrm.elegirEscuela.$error" role="alert">
               <div ng-message="required" style="color:red;">Campo requerido
               </div>
             </div>
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-          <!-- PERFIL (Tipo de vacante)-->
-          <div class="form-group" ng-class="{ 'has-error' : vacanteFrm.tipoVacante.$invalid && !vacanteFrm.tipoVacante.$pristine}">
-            <select class="form-control" id="tipoVacanteID" name="tipoVacante" ng-model="agregarVacante.vacante.tipoVacante" required>
-              <option value="">Tipo de Vacante</option>
-              <option value="DEMOSTRADORA">Demostrador(a)</option>
-              <option value="PROMOTORA">Promotor(a)</option>
-              <option value="SUPERVISOR">Supervisor(a)</option>
-            </select>
-            <div ng-messages="vacanteFrm.tipoVacante.$dirty && vacanteFrm.tipoVacante.$error" role="alert">
+          <!-- PUESTO (Tipo de vacante)-->
+          <div class="form-group" ng-class="{ 'has-error' : vacanteFrm.elegirPuesto.$invalid && !vacanteFrm.elegirPuesto.$pristine}">
+              <elegir-puesto puestoid="agregarVacante.vacante.puestoId"></elegir-puesto>
+            <div ng-messages="vacanteFrm.elegirPuesto.$dirty && vacanteFrm.elegirPuesto.$error" role="alert">
               <div ng-message="required" style="color:red;">Campo requerido
               </div>
             </div>
@@ -75,11 +64,12 @@
           <div class="form-group" ng-class="{ 'has-error' : vacanteFrm.experiencia.$invalid && !vacanteFrm.experiencia.$pristine}">
             <select class="form-control" id="experienciaID" name="experiencia" ng-model="agregarVacante.vacante.perfil.experiencia.descripcion" ng-required="agregarVacante.vacante.experiencia.requerida">
               <option value="">-- Experiencia --</option>
-              <option value="Alimentos">Alimentos</option>
-              <option value="Electronica">Electronica</option>
-              <option value="CuidadoSalud">Cuidado y Salud</option>
-              <option value="VinosLicores">Vinos y Licores</option>
-              <option value="Abarrotes">Abarrotes</option>
+              <option value="1">Alimentos</option>
+              <option value="2">Electronica</option>
+              <option value="3">Cuidado / Salud</option>
+                <option value="4">Belleza</option>
+                <option value="5">Vinos / Licores</option>
+                <option value="6">Abarrotes</option>
             </select>
             <div ng-messages="vacanteFrm.experiencia.$dirty && vacanteFrm.experiencia.$error" role="alert">
               <div ng-message="required" style="color:red;">Campo requerido
@@ -186,7 +176,8 @@
         <!-- SUELDO DIARIO -->
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="form-group" ng-class="{ 'has-error' : vacanteFrm.sueldo.$invalid && !vacanteFrm.sueldo.$pristine}">
-            <input class="form-control" id="sueldoDiarioID" type="number" placeholder="Sueldo x día (pesos mexicanos)" min="1" name="sueldo" ng-model="agregarVacante.vacante.sueldo" required>
+            <input class="form-control" id="sueldoDiarioID" type="number" placeholder="Sueldo x día (pesos mexicanos)" min="1" name="sueldo"
+                   ng-model="agregarVacante.vacante.sueldo" required>
             <div ng-messages="agregarVacante.sueldo.$dirty && agregarVacante.sueldo.$error" role="alert">
               <div ng-message="number,required" style="color:red;">Campo Númerico
               </div>
