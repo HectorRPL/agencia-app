@@ -22,7 +22,7 @@ if (Meteor.isServer) {
                 sucursal: 1,
                 estadoDesc: 1,
                 sueldo: 1,
-                numeroVacantes: 1
+                numVacantes: 1
             }
         });
     });

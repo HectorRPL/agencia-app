@@ -1,0 +1,5 @@
+<select class="form-control" id="elegirCadenaID" name="elegirCadena"
+ required ng-model="comboCadenas.cadenaid">
+  <option value="">-- Cadenas --</option>
+    <option ng-repeat="cadena in elegirCadenas.estados" value="{{cadena._id}}">{{cadena.nombre}}</option>
+</select>
