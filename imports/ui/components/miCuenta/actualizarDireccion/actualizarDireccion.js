@@ -30,7 +30,6 @@ class ActualizarDireccion {
       cp: this.direccion.codigoPostal
     }, (err, result) => {
       this.colonias = result;
-      console.log(this.direccion.colonia);
     });
   }
 }

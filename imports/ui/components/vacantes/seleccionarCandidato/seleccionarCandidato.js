@@ -18,7 +18,6 @@ class SeleccionarCandidato {
     }
 
     seleccionar() {
-        console.log('Dentro del seleccionar', this.id);
         contactar.call({postulacionId: this.id}, this.$bindToContext((err)=> {
             this.respuesta.disable = true;
             if (err) {

@@ -46,7 +46,6 @@ class CheckboxExperiencias {
     }
 
     habilitarCheck(experiencia) {
-      console.log(this.listado);
       if (Array.isArray(this.listado) && this.listado.length > 0) {
         let resultado = this.listado.indexOf(experiencia._id);
         if (resultado > -1 ) {

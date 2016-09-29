@@ -124,7 +124,6 @@ if (Meteor.isServer) {
                             {
                                 find: function (perfil) {
                                     const selector = {_id: {$in: perfil.habilidades.listado}};
-                                    console.log(selector);
                                     return Habilidades.find(selector);
                                 }
                             },

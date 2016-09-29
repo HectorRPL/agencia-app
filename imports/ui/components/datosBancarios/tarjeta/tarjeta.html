@@ -44,7 +44,6 @@
     authorization: clientAuthorization
     }, function (err, clientInstance) {
     if (err) {
-    console.log('No se puedo iniciar el braintree');
     return;
     }
     braintree.hostedFields.create({

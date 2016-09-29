@@ -4,7 +4,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
-import { name as SeleccionarCandidato } from '../seleccionarCandidato/seleccionarCandidato';
+import {name as SeleccionarCandidato} from '../seleccionarCandidato/seleccionarCandidato';
 import './verCandidatos.html';
 import {Postulaciones} from '../../../../api/postulaciones/collection';
 
@@ -14,9 +14,10 @@ class VerCandidatos {
         'ngInject';
         $reactive(this).attach($scope);
         this.vacanteId = $stateParams.vacanteId;
-        this.subscribe('vacantes.candidatosOseleccionados', ()=> [{vacanteId: this.vacanteId}, {estado:1}]);
+        this.subscribe('vacantes.candidatosOseleccionados', ()=> [{vacanteId: this.vacanteId}, {estado: 1}]);
         this.titulo = 'vista de vacantes';
         this.$uibModal = $uibModal;
+        this.seleccionados = [];
 
         this.helpers({
             postulados (){
@@ -26,15 +27,15 @@ class VerCandidatos {
     }
 
 
-    contactar(postulacionId){
+    contactar(postulacionId) {
         this.$uibModal.open({
             animation: true,
             controllerAs: '$ctrl',
-            controller: [ '$uibModalInstance', 'id', function ($uibModalInstance, id) {
+            controller: ['$uibModalInstance', 'id', function ($uibModalInstance, id) {
                 this.id = id;
                 this.close = $uibModalInstance.close;
                 this.dismiss = $uibModalInstance.dismiss;
-            } ],
+            }],
             template: '<seleccionar-candidato id="$ctrl.id" dismiss="$ctrl.close()"></seleccionar-candidato>',
             size: '',
             resolve: {
@@ -44,6 +45,20 @@ class VerCandidatos {
             }
         });
     }
+
+    agregar(postulado) {
+
+        let index = this.seleccionados.indexOf(postulado._id);
+        if (postulado.estado === 1 && index === -1) {
+            this.seleccionados.push(postulado._id);
+            postulado.estado = 2;
+        } else if (postulado.estado === 2 && index > -1) {
+            this.seleccionados.splice(index, 1);
+            postulado.estado = 1;
+        }
+    }
+
+
 }
 
 const name = 'verCandidatos';
