@@ -6,7 +6,7 @@ import {_} from "meteor/underscore";
 import {Vacantes} from "./collection.js";
 import {Agencia} from "../agencia/collection.js";
 
-const CAMPOS_SIN_IDS = ['sueldo', 'numVacantes', 'estadoId', 'delMpio', 'puestoId', 'sucursal', 'cadenaId', 'marca', 'perfil', 'horarios', 'entrevista'];
+const CAMPOS_SIN_IDS = ['sueldo', 'numVacantes', 'estadoId', 'delMpio', 'puestoId', 'sucursal', 'cadenaId', 'marca', 'perfil', 'horarios'];
 
 const ID = ['_id'];
 
@@ -22,7 +22,7 @@ export const insert = new ValidatedMethod({
         clean: true,
         filter: false
     }),
-    run({numVacantes, sueldo, estadoId, delMpio, puestoId, sucursal, cadenaId, marca, perfil, horarios, entrevista}) {
+    run({numVacantes, sueldo, estadoId, delMpio, puestoId, sucursal, cadenaId, marca, perfil, horarios}) {
         if (Meteor.isServer) {
             const agencia = Agencia.findOne({propietario: this.userId});
             const vacante = {
@@ -36,8 +36,7 @@ export const insert = new ValidatedMethod({
                 cadenaId,
                 marca,
                 perfil,
-                horarios,
-                entrevista
+                horarios
             };
             return Vacantes.insert(vacante);
         }

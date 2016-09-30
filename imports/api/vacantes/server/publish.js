@@ -17,23 +17,22 @@ if (Meteor.isServer) {
         if (this.userId) {
             const agencia = Agencia.findOne({propietario: this.userId});
             const selector = {$and: [{propietario: agencia._id}, {eliminada: false}]};
-
+            let options = {};
+            options.sort = {fechaCreacion: -1};
+            options.fields = {
+                fechaCreacion: 1,
+                cadenaId: 1,
+                marca: 1,
+                sucursal: 1,
+                estadoId: 1,
+                sueldo: 1,
+                numVacantes: 1,
+                numPostulaciones: 1,
+                numSeleccionados: 1
+            };
             return {
                 find: function () {
-                    return Vacantes.find(selector, {
-                        fields: {
-                            _id: 1,
-                            fechaCreacion: 1,
-                            cadenaId: 1,
-                            marca: 1,
-                            sucursal: 1,
-                            estadoId: 1,
-                            sueldo: 1,
-                            numVacantes: 1,
-                            numPostulaciones: 1,
-                            numSeleccionados: 1
-                        }
-                    });
+                    return Vacantes.find(selector, options);
                 },
                 children: [
                     {
@@ -100,9 +99,16 @@ if (Meteor.isServer) {
                         children: [
                             {
                                 find: function (candidato) {
-                                    return Direcciones.find({propietario: candidato._id});
+                                    return Direcciones.find({propietario: candidato._id}, {
+                                        fields: {
+                                            codigoPostal: 0,
+                                            fechaCreacion: 0,
+                                            calle: 0,
+                                            colonia: 0
+                                        }
+                                    });
                                 }
-                            }
+                            },
                         ]
                     },
                     {

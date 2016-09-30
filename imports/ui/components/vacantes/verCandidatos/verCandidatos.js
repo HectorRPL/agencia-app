@@ -24,6 +24,7 @@ class VerCandidatos {
                 return Postulaciones.find();
             }
         });
+
     }
 
 

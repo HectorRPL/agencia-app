@@ -72,10 +72,6 @@ Schema.vacante = new SimpleSchema({
     type: Object,
     blackbox: true,
   },
-  entrevista: {
-    type: Object,
-    blackbox: true,
-  },
   eliminada: {
     type: Boolean,
     defaultValue: false,

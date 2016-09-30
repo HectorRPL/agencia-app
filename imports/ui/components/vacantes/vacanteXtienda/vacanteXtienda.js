@@ -17,9 +17,12 @@ class VacanteXtienda {
         this.numVacantes = 5;
         this.tienda = {};
         this.vacante = Session.get('vacanteParaPub');
-        this.respuesta = {
+        this.respuestaExito = {
             mostrar: false,
-            tipo: '',
+            mensaje: ''
+        };
+        this.respuestaError = {
+            mostrar: false,
             mensaje: ''
         };
         this.$scope = $scope;
@@ -70,20 +73,41 @@ class VacanteXtienda {
     agregar() {
         let numErrores = 0;
         let numInsertados = 0;
-        for(let i = 0; i< this.tiendas.length; i++){
+        for (let i = 0; i < this.tiendas.length; i++) {
             const tempItem = angular.copy(this.tiendas[i]);
             insert.call(tempItem, this.$bindToContext((error) => {
-                this.respuesta.mostrar = true;
-                if (error) {
-                    numErrores ++;
-                } else {
-                    numInsertados ++;
-                }
-                this.respuesta.mensajeExito = `Cantidad de tiendas registradas ${numInsertados}, numero de vacantes soclitadas ${this.totalVacantes * numInsertados}.`
-                this.respuesta.mensajeErr = `Tiendas que NO pudieron ser regsitradas ${numErrores}.`
 
+                if (i % 2 === 0) {
+                    this.tiendas[i].error = true;
+                    numErrores++;
+                }else {
+                    if (error) {
+                        console.log(error);
+                        this.tiendas[i].error = true;
+                        numErrores++;
+                    } else {
+                        this.tiendas[i].exito = true;
+                        numInsertados++;
+                    }
+                }
+                if (numInsertados > 0) {
+                    this.respuestaExito.mostrar = true;
+                }
+                if (numErrores > 0) {
+                    this.respuestaError.mostrar = true;
+                }
+                this.respuestaExito.mensaje = `Tiendas registradas ${numInsertados}, Vacantes soclitadas ${this.numVacantes * numInsertados}.`;
+                this.respuestaError.mensaje = `Tiendas NO regsitradas ${numErrores}.`;
             }));
         }
+
+    }
+
+    limpiar() {
+        this.tiendas = [];
+        this.totalVacantes = 0;
+        this.respuestaExito.mostrar = false;
+        this.respuestaError.mostrar = false;
     }
 
 }

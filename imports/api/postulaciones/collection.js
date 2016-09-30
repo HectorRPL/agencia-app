@@ -6,6 +6,7 @@ import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import vacantesCounts from './vacantesCounts';
 import {Candidatos}  from '../candidatos/collection'
 import {Perfiles}  from '../perfiles/collection'
+import {Direcciones}  from '../direcciones/collection'
 
 class PostulacionesCollection extends Mongo.Collection {
     update(selector, modifier) {
@@ -72,6 +73,12 @@ Postulaciones.helpers({
     },
     perfilLaboral(){
         return Perfiles.findOne({candidatoId: this.candidatoId});
+    },
+    direccionCandidato(){
+
+        console.log('helper direccionCandidato', );
+        console.log('helper direccionCandidato', Direcciones.findOne({propietario: this.candidatoId}));
+        return Direcciones.findOne({propietario: this.candidatoId});
     }
 
 });

@@ -1,37 +1,54 @@
 <!--OPCIÓN "A.2" -->
+<h2>{{verCandidatos.seleccionados.length}} Han sido agregados a tu carrito</h2>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6" ng-repeat="postulado in verCandidatos.postulados">
         <a  href ng-click="verCandidatos.agregar(postulado)" style="text-decoration:none;">
             <div class="panel panel-default" ng-class="{ 'panel-success' : postulado.estado == 2}">
-                <div  class="panel-body" ng-init="candidato = postulado.candidato(); perfil = postulado.perfilLaboral()">
+                <div  class="panel-body" ng-init="candidato = postulado.candidato(); perfil = postulado.perfilLaboral();">
                     <div class="row">
                         <!-- DATOS Y AVIÓN-->
-                        <div class="col-xs-12 col-sm-10">
+                        <div class="col-xs-12">
                             <div class="row">
                                 <!-- AVIÓN -->
                                 <div class="col-xs-1">
-                                    <i class="fa fa-square-o fa-3x" ng-show="postulado.estado==1" aria-hidden="true"></i>
-                                    <i class="fa fa-check-square-o fa-3x" style="color:green;" ng-show="postulado.estado==2" aria-hidden="true"></i>
+                                    <i class="fa fa-square-o fa-2x" ng-show="postulado.estado==1" aria-hidden="true"></i>
+                                    <i class="fa fa-check-square-o fa-2x" style="color:green;" ng-show="postulado.estado==2" aria-hidden="true"></i>
                                 </div>
                                 <!-- DATOS -->
                                 <div class="col-xs-11">
-                                    <h3 class="panel-title">{{candidato.nombre}} {{candidato.apellidos}}</h3>
-                                    <p class="list-group-item-text" ng-init="puestoDesc = perfil.puesto(); escolaridad = perfil.escolaridad();
-                                experiencias = perfil.experienciasEn(); habilidades = perfil.hibilidadesEn()">
-                                        <strong>Perfil</strong>: {{candidato.sexo}} | {{puestoDesc.descripcion}}
-                                        | {{escolaridad.descripcion}} | Talla {{perfil.talla}}|
-                                        Estatura {{perfil.estatura}}
-                                    </p>
-                                    <ul class="list-inline">
-                                        <li><strong>Experiencia</strong>:</li>
-                                        <li ng-repeat="experiencia in experiencias">{{experiencia.descripcion}}&nbsp;|</li>
-                                    </ul>
-                                    <ul class="list-inline">
-                                        <li><strong>Habilidades</strong>:</li>
-                                        <li ng-repeat="habilidad in habilidades">{{habilidad.descripcion}}&nbsp;|</li>
-                                    </ul>
+                                    <div class="row" ng-init="direccion = candidato.direccion();">
+                                        <div class="col-xs-7">
+                                            <p class="text-uppercase"><strong>{{candidato.nombre}} {{candidato.apellidos}}</strong></p>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <p class="text-right">Sexo: {{candidato.sexo}}, Edad: 25 años</p>
+                                        </div>
+                                    </div>
                                 </div>
-
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row" ng-init="puestoDesc = perfil.puesto(); escolaridad = perfil.escolaridad();
+                                experiencias = perfil.experienciasEn(); habilidades = perfil.hibilidadesEn();">
+                                        <div class="col-xs-12">
+                                            <p class="text-left"><strong>Direccion:</strong> {{direccion.estado}} | {{direccion.delMpio}}</p>
+                                            <p class="text-left"><strong>Perfil:</strong> {{puestoDesc.descripcion}} | {{escolaridad.descripcion}}
+                                                | Talla: {{perfil.talla}} | Estatura: {{perfil.estatura}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <ul class="list-inline">
+                                                <li><strong>Experiencia:</strong></li>
+                                                <li ng-repeat="experiencia in experiencias"><small>{{experiencia.descripcion}}&nbsp;|</small></li>
+                                            </ul>
+                                            <ul class="list-inline">
+                                                <li><strong>Habilidades:</strong></li>
+                                                <li ng-repeat="habilidad in habilidades"><small>{{habilidad.descripcion}}&nbsp;|</small></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
