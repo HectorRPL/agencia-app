@@ -41,7 +41,7 @@ if (Meteor.isServer) {
                         }
                     }
                 ]
-            }
+            };
         } else {
             this.ready();
         }
@@ -74,7 +74,7 @@ if (Meteor.isServer) {
                     }
                 },
             ]
-        }
+        };
 
     });
 
@@ -142,7 +142,7 @@ if (Meteor.isServer) {
                     }
 
                 ]
-            }
+            };
         } else {
             this.ready();
         }
