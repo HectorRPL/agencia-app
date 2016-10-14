@@ -1,12 +1,13 @@
 /**
  * Created by jvltmtz on 8/09/16.
  */
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-import {name as SeleccionarCandidato} from '../seleccionarCandidato/seleccionarCandidato';
-import './verCandidatos.html';
-import {Postulaciones} from '../../../../api/postulaciones/collection';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import {name as SeleccionarCandidato} from "../seleccionarCandidato/seleccionarCandidato";
+import {name as CallToActionComprarYa} from "../../compras/callToActionComprarYa/callToActionComprarYa";
+import "./verCandidatos.html";
+import {Postulaciones} from "../../../../api/postulaciones/collection";
 
 
 class VerCandidatos {
@@ -69,7 +70,8 @@ export default angular
     .module(name, [
         angularMeteor,
         uiRouter,
-        SeleccionarCandidato
+        SeleccionarCandidato,
+        CallToActionComprarYa
     ])
     .component(name, {
         templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,

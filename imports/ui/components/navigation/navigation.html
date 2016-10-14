@@ -48,7 +48,12 @@ $(function() {
     <!-- /.navbar-header -->
 
     <ul class="nav navbar-top-links navbar-right">
-        <!-- /.dropdown -->
+        <!--FONT AWESOME MI CARRITO-->
+        <li>
+            <a ui-sref="app.compras.carritoCompras">
+                <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i> <span class="badge">14</span>
+            </a>
+        <!--FONT AWESOME MI CUENTA-->
         <li uib-dropdown on-toggle="toggled(open)">
             <a href id="simple-dropdown" uib-dropdown-toggle>
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -98,10 +103,6 @@ $(function() {
                 </li>
                 <li>
                     <a ui-sref="app.datosBancarios"><i class="fa fa-credit-card"></i> Tarjetas Bancarias</a>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a ui-sref="app.compras.paquetes"><i class="fa fa-shopping-cart"></i> Comprar contactos</a>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
