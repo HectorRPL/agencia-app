@@ -1,0 +1,267 @@
+<form role="form" class="property-submit-form" id="vacanteFrmId" name="vacanteFrm" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-heading">Perfil</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-3">
+                    <!-- TALLA -->
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : vacanteFrm.elegirTalla.$invalid && !vacanteFrm.elegirTalla.$pristine}">
+                        <elegir-talla talla="agregarVacante.vacante.perfil.talla"></elegir-talla>
+                        <div ng-messages="vacanteFrm.elegirTalla.$dirty && vacanteFrm.elegirTalla.$error" role="alert">
+                            <div ng-message="required" style="color:red;">Campo Requerido
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3">
+                    <!-- SEXO -->
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : vacanteFrm.sexo.$invalid && !vacanteFrm.sexo.$pristine}">
+                        <select class="form-control" id="sexoID" name="sexo"
+                                ng-model="agregarVacante.vacante.perfil.sexo" required>
+                            <option value="">Sexo</option>
+                            <option value="Hombre">Hombre</option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Indistino">Indistinto</option>
+                        </select>
+                        <div ng-messages="vacanteFrm.sexo.$dirty && vacanteFrm.sexo.$error" role="alert">
+                            <div ng-message="required" style="color:red;">Campo requerido
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <!-- ESCOLARIDAD -->
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : vacanteFrm.elegirEscuela.$invalid && !vacanteFrm.elegirEscuela.$pristine}">
+                        <elegir-escuela escolaridad="agregarVacante.vacante.perfil.escolaridad"></elegir-escuela>
+                        <div ng-messages="vacanteFrm.elegirEscuela.$dirty && vacanteFrm.elegirEscuela.$error"
+                             role="alert">
+                            <div ng-message="required" style="color:red;">Campo requerido
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <!-- PUESTO (Tipo de vacante)-->
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : vacanteFrm.elegirPuesto.$invalid && !vacanteFrm.elegirPuesto.$pristine}">
+                        <elegir-puesto puestoid="agregarVacante.vacante.puestoId"></elegir-puesto>
+                        <div ng-messages="vacanteFrm.elegirPuesto.$dirty && vacanteFrm.elegirPuesto.$error"
+                             role="alert">
+                            <div ng-message="required" style="color:red;">Campo requerido
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <label for="horario">Experiencia Necesaria:
+                    </label>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <div class="form-group">
+                        <label class="btn btn-default" ng-model="agregarVacante.vacante.perfil.experiencia.requerida"
+                               uib-btn-radio="true">SI</label>
+                        <label class="btn btn-default" ng-model="agregarVacante.vacante.perfil.experiencia.requerida"
+                               uib-btn-radio="false">NO</label>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4" ng-show="agregarVacante.vacante.perfil.experiencia.requerida">
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : vacanteFrm.experiencia.$invalid && !vacanteFrm.experiencia.$pristine}">
+                        <select class="form-control" id="experienciaID" name="experiencia"
+                                ng-model="agregarVacante.vacante.perfil.experiencia.descripcion"
+                                ng-required="agregarVacante.vacante.experiencia.requerida">
+                            <option value="">-- Experiencia --</option>
+                            <option value="1">Alimentos</option>
+                            <option value="2">Electronica</option>
+                            <option value="3">Cuidado / Salud</option>
+                            <option value="4">Belleza</option>
+                            <option value="5">Vinos / Licores</option>
+                            <option value="6">Abarrotes</option>
+                        </select>
+                        <div ng-messages="vacanteFrm.experiencia.$dirty && vacanteFrm.experiencia.$error" role="alert">
+                            <div ng-message="required" style="color:red;">Campo requerido
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4" ng-show="agregarVacante.vacante.perfil.experiencia.requerida">
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : vacanteFrm.otraExpe.$invalid && !vacanteFrm.otraExpe.$pristine}">
+                        <textarea class="form-control" name="otraExpe" id="otraExpeId" rows="1"
+                                  ng-model="agregarVacante.vacante.perfil.experiencia.otra"
+                                  placeholder="Otra Experiencia...." ng-pattern="" maxlength="15"></textarea>
+                    </div>
+                    <div ng-messages="vacanteFrm.otraExpe.$dirty && vacanteFrm.otraExpe.$error" role="alert">
+                        <div ng-message="pattern" style="color:red;">Solo texto
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <label for="horario">Habilidades:
+                    </label>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <div class="form-group">
+                        <label class="btn btn-default" ng-model="agregarVacante.vacante.perfil.habilidades.requerida"
+                               uib-btn-radio="true">SI</label>
+                        <label class="btn btn-default" ng-model="agregarVacante.vacante.perfil.habilidades.requerida"
+                               uib-btn-radio="false">NO</label>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-8" ng-show="agregarVacante.vacante.perfil.habilidades.requerida">
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : vacanteFrm.textHabilidades.$invalid && !vacanteFrm.textHabilidades.$pristine}">
+                        <checkbox-habilidades
+                                habilidades="agregarVacante.perfil.habilidades.listado"></checkbox-habilidades>
+                        <div ng-messages="vacanteFrm.textHabilidades.$dirty && vacanteFrm.textHabilidades.$error"
+                             role="alert">
+                            <div ng-message="required" style="color:red;">Campo requerido
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--PANEL BODY -->
+    </div>
+    <!--PANEL PANEL-DEFAULT -->
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Dias, Horario y Duracion</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8">
+                    <!-- DIAS A LABORAR -->
+                    <checkbox-dias dias="agregarVacante.vacante.horarios.dias"></checkbox-dias>
+                </div>
+                <!-- Horario -->
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <div class="form-group row">
+                        <div class="col-md-1">
+                            <label for="horario">Horario</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-5">
+                            <uib-timepicker ng-model="agregarVacante.vacante.horarios.hrsInicio"></uib-timepicker>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-5">
+                            <uib-timepicker ng-model="agregarVacante.vacante.horarios.hrsFin"></uib-timepicker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <!-- ESTADO -->
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : tiendaFrm.elegirEstado.$invalid && !tiendaFrm.elegirEstado.$pristine}">
+                        <elegir-estado estadoid="agregarVacante.vacante.estadoId"></elegir-estado>
+                        <div ng-messages="tiendaFrm.elegirEstado.$dirty && tiendaFrm.elegirEstado.$error"
+                             role="alert">
+                            <div ng-message="required" style="color:red;">Campo requerido
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <!-- PERIODO DE CONTRATACIÓN -->
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : vacanteFrm.duracion.$invalid && !vacanteFrm.duracion.$pristine}">
+                        <select class="form-control" name="duracion" id="duracionID"
+                                ng-model="agregarVacante.vacante.horarios.duracion" required>
+                            <option value="">
+                                Duración de la promoción
+                            </option>
+                            <option value="1 Semana">
+                                1 Semana
+                            </option>
+                            <option value="2 Semanas">
+                                2 Semanas
+                            </option>
+                            <option value="3 Semanas">
+                                3 Semanas
+                            </option>
+                            <option value="4 Semanas">
+                                4 Semanas
+                            </option>
+                            <option value="5 Semanas">
+                                5 Semanas
+                            </option>
+                            <option value="6 Semanas">
+                                6 Semanas
+                            </option>
+                            <option value="2 Meses">
+                                2 Meses
+                            </option>
+                            <option value="3 Meses">
+                                3 Meses
+                            </option>
+                            <option value="4 Meses">
+                                4 Meses
+                            </option>
+                            <option value="5 Meses">
+                                5 Meses
+                            </option>
+                            <option value="Indefinido">
+                                Tiempo indefinido
+                            </option>
+                        </select>
+                        <div ng-messages="vacanteFrm.duracion.$dirty && vacanteFrm.duracion.$error" role="alert">
+                            <div ng-message="required" style="color:red;">Campo requerido
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- SUELDO DIARIO -->
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : vacanteFrm.sueldo.$invalid && !vacanteFrm.sueldo.$pristine}">
+                        <input class="form-control" id="sueldoDiarioID" type="number"
+                               placeholder="Sueldo x día (pesos mexicanos)" min="1" name="sueldo"
+                               ng-model="agregarVacante.vacante.sueldo" required>
+                        <div ng-messages="agregarVacante.sueldo.$dirty && agregarVacante.sueldo.$error" role="alert">
+                            <div ng-message="number,required" style="color:red;">Campo Númerico
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- MARCA (Marca o compañía a la cual el candidato va a representar)-->
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : vacanteFrm.marca.$invalid && !vacanteFrm.marca.$pristine}">
+                        <input class="form-control" id="marcaID" name="marca" type="text"
+                               placeholder="Marca Ej.: Suavitel" ng-model="agregarVacante.vacante.marca" maxlength="20"
+                               minlength="1" required>
+                        <div ng-messages="agregarVacante.marca.$dirty && agregarVacante.marca.$error" role="alert">
+                            <div ng-message="required" style="color:red;">Campo requerido
+                            </div>
+                            <div ng-message="minlength,maxlength" style="color:red;">Mínimo 1 dígito requerido, máximo
+                                20
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--PANEL BODY -->
+    </div>
+    <!--PANEL PANEL-DEFAULT -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-offset-8 col-sm-4 col-md-4">
+            <!-- FOOTER (Botón guardar) -->
+            <button class="btn btn-primary  btn-lg btn-block" type="button" ng-click="agregarVacante.siguiente()"
+                    ng-disabled="vacanteFrm.$invalid">
+                Siguiente
+            </button>
+        </div>
+    </div>
+    <br>
+    <br>
+</form>

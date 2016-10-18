@@ -22,7 +22,7 @@ class DetalleVacante {
     }
 }
 
-const name = 'detalleVacante';
+const name = 'tabsDetalleVacante';
 // create a module
 
 export default angular.module(name, [

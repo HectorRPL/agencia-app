@@ -5,19 +5,21 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import {name as SeleccionarCandidato} from '../seleccionarCandidato/seleccionarCandidato';
-import './verCandidatos.html';
-import {Postulaciones} from '../../../../api/postulaciones/collection';
+import './listaPostulados.html';
+import {Postulaciones} from '../../../../../../api/postulaciones/collection';
+import {Session} from 'meteor/session';
+import {_} from "meteor/underscore";
 
 
-class VerCandidatos {
+class ListaPostulados {
     constructor($scope, $reactive, $uibModal, $stateParams) {
         'ngInject';
         $reactive(this).attach($scope);
-        this.vacanteId = $stateParams.vacanteId;
-        this.subscribe('vacantes.candidatosOseleccionados', ()=> [{vacanteId: this.vacanteId}, {estado: 1}]);
+        this.tiendaId = $stateParams.tiendaId;
+        this.subscribe('postulaciones.postuladosOseleccionados', ()=> [{tiendaId: this.tiendaId}, {estado: 1}]);
         this.titulo = 'vista de vacantes';
         this.$uibModal = $uibModal;
-        this.seleccionados = [];
+        this.seleccionados = Session.get('carritoCompras');
 
         this.helpers({
             postulados (){
@@ -48,21 +50,32 @@ class VerCandidatos {
     }
 
     agregar(postulado) {
-
-        let index = this.seleccionados.indexOf(postulado._id);
-        if (postulado.estado === 1 && index === -1) {
+        let index = _.indexOf(this.seleccionados , postulado._id);
+        if (postulado.seleccionado == false && index === -1) {
             this.seleccionados.push(postulado._id);
-            postulado.estado = 2;
-        } else if (postulado.estado === 2 && index > -1) {
+            postulado.seleccionado = true;
+        } else if (postulado.seleccionado && index > -1) {
             this.seleccionados.splice(index, 1);
-            postulado.estado = 1;
+            postulado.seleccionado = false;
+        }
+        Session.set('carritoCompras', this.seleccionados);
+    }
+
+    seleccionarParaCarrito(postulado) {
+        console.log('seleccionarParaCarrito ', postulado._id);
+        let index = _.indexOf(Session.get('carritoCompras'), postulado._id);
+        console.log('seleccionarParaCarrito ', index);
+        if (index > -1) {
+            postulado.seleccionado = true;
+        } else {
+            postulado.seleccionado = false;
         }
     }
 
 
 }
 
-const name = 'verCandidatos';
+const name = 'listaPostulados';
 
 // Módulo
 export default angular
@@ -72,9 +85,9 @@ export default angular
         SeleccionarCandidato
     ])
     .component(name, {
-        templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
+        templateUrl: `imports/ui/components/vacantes/postulados/${name}/${name}.html`,
         controllerAs: name,
-        controller: VerCandidatos
+        controller: ListaPostulados
     })
     .config(config);
 
@@ -82,8 +95,8 @@ function config($stateProvider) {
     'ngInject';
 
     $stateProvider
-        .state('app.vacantes.candidatos', {
-            url: '/candidatos/:vacanteId',
-            template: '<ver-candidatos></ver-candidatos>'
+        .state('app.vacantes.postulados.tienda', {
+            url: '/tienda/:tiendaId',
+            template: '<ver-postulados></ver-postulados>'
         });
 }

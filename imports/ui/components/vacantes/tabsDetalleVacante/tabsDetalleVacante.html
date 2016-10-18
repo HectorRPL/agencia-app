@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Detalle de la Vacante.
+    </div>
+    <div class="panel-body">
+        <uib-tabset active="activeForm">
+            <!--TAB DATOS-->
+            <uib-tab index="0" heading="Datos">
+                <br>
+                <strong>Marca:</strong>
+                {{ vacanteDetalle.vacante.marca}}<br>
+                <strong>Tipo Vacante:</strong>
+                {{ vacanteDetalle.vacante.puesto().descripcion }}<br>
+                <strong>Estado:</strong>
+                {{ vacanteDetalle.vacante.estado().descripcion }}<br>
+                <strong>Sueldo:</strong>
+                {{ vacanteDetalle.vacante.sueldo | currency }} por día<br><br><br>
+            </uib-tab>
+            <!--TAB PERFIL-->
+            <uib-tab index="1" heading="Perfil">
+                <br>
+                <strong>Sexo:</strong>
+                {{vacanteDetalle.vacante.perfil.sexo}} <br>
+                <strong>Talla:</strong>
+                {{vacanteDetalle.vacante.perfil.talla}} <br>
+                <strong>Escolaridad:</strong>
+                {{vacanteDetalle.vacante.perfil.escolaridad}} <br>
+                <strong>Habilidades:</strong>
+                Facilidad de Palabra, Buena Presentación, Disp. de Trasladarse, Gusto por las Ventas <br>
+                <strong>Exp. Descripcion:</strong>
+                Alimentos y {{vacanteDetalle.vacante.perfil.experiencia.otra}}
+            </uib-tab>
+            <!-- TAB HORARIOS-->
+            <uib-tab index="2" heading="Horario">
+                <br>
+                <dl class="dl-horizontal">
+                    <strong>Dias a laborar:</strong>
+                    <span ng-repeat="dia in vacanteDetalle.vacante.horarios.dias"> {{ dia.id }} </span> <br>
+                    <strong>Horario:</strong>
+                    de {{vacanteDetalle.vacante.horarios.hrsInicio | date : "shortTime" }} a
+                    {{vacanteDetalle.vacante.horarios.hrsFin | date : "shortTime" }} <br>
+                    <strong>Duracion:</strong>
+                    {{vacanteDetalle.vacante.horarios.duracion}}
+                    <br><br><br>
+                </dl>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

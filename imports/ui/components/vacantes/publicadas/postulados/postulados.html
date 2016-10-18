@@ -1,0 +1,47 @@
+<br>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Detalle de la Promocions y tiendas a cubrir.
+            </div>
+            <div class="panel-body">
+                <tabs-detalle-vacante vacante="postulados.vacante"></tabs-detalle-vacante>
+                <br>
+                <ol class="breadcrumb">
+                    <li>Número de candidatos postulados por tienda:</li>
+                </ol>
+                <div class="list-group">
+                    <a ng-repeat="tienda in postulados.tiendas" class="list-group-item" ng-init="cadena = tienda.cadena()"
+                       ui-sref="app.vacantes.postulados.tienda({tiendaId: tienda._id})"  ui-sref-active="active">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <span class="badge">
+                                    <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+                                    {{tienda.numPostulados}}
+                                </span>
+                            </div>
+                            <div class="col-xs-10">
+                                <small>
+                                    <strong>{{ cadena.descripcion }}</strong> /
+                                    {{ tienda.delMpio }} /
+                                    {{ tienda.sucursal }}
+                                </small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Candidatos postulados, seleeccione la mejor opcion:
+            </div>
+            <div class="panel-body">
+                <ui-view></ui-view>
+            </div>
+        </div>
+    </div>
+</div>

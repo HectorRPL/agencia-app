@@ -1,0 +1,49 @@
+<!--OPCIÓN "A.2" -->
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12" ng-repeat="postulado in verPostulados.postulados" ng-init="verPostulados.seleccionarParaCarrito(postulado)">
+        <a  href ng-click="verPostulados.agregar(postulado)" style="text-decoration:none;">
+            <div class="panel panel-default" ng-class="{ 'panel-success' : postulado.seleccionado}">
+                <div  class="panel-body" ng-init="candidato = postulado.candidato(); perfil = postulado.perfilLaboral();">
+                    <div class="row">
+                        <!-- DATOS Y AVIÓN-->
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <!-- AVIÓN -->
+                                <div class="col-xs-1">
+                                    <i class="fa fa-square-o fa-2x" ng-hide="postulado.seleccionado" aria-hidden="true"></i>
+                                    <i class="fa fa-check-square-o fa-2x" style="color:green;" ng-show="postulado.seleccionado" aria-hidden="true"></i>
+                                </div>
+                                <!-- DATOS -->
+                                <div class="col-xs-11">
+                                    <div class="row" ng-init="direccion = candidato.direccion();">
+                                        <div class="col-xs-8">
+                                            <strong>{{candidato.nombre}} {{candidato.apellidos}}</strong></p>
+                                        </div>
+                                        <div class="col-xs-4 text-left">
+                                            Sexo: {{candidato.sexo}}, Edad: 25 años
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row" ng-init="puestoDesc = perfil.puesto(); escolaridad = perfil.escolaridad();
+                                experiencias = perfil.experienciasEn(); habilidades = perfil.hibilidadesEn();">
+                                        <div class="col-xs-12 text-left">
+                                            <strong>Direccion:</strong> {{direccion.estado}} | {{direccion.delMpio}}<br>
+                                            <strong>Perfil:</strong> {{puestoDesc.descripcion}} | {{escolaridad.descripcion}}
+                                                | Talla: {{perfil.talla}} | Estatura: {{perfil.estatura}}<br>
+                                            <strong>Experiencia:&nbsp;</strong><small>{{experiencias}}</small><br>
+                                            <strong>Habilidades:&nbsp;</strong><small>{{habilidades}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+

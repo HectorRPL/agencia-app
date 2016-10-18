@@ -5,10 +5,10 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
-import './verVacantes.html';
-import {Vacantes} from '../../../../api/vacantes/collection';
-import { name as EliminarVacante } from '../eliminarVacante/eliminarVacante';
-import { name as VerCandidatos } from '../verCandidatos/verCandidatos';
+import './listaPublicadas.html';
+import {Vacantes} from '../../../../../api/vacantes/collection';
+import { name as EliminarVacante } from '../../eliminarVacante/eliminarVacante';
+import { name as Postulados } from '../../postulados/postulados';
 
 
 class VerVacantes {
@@ -55,7 +55,7 @@ class VerVacantes {
     }
 }
 
-const name = 'verVacantes';
+const name = 'listaVacantes';
 
 // Módulo
 export default angular
@@ -63,7 +63,7 @@ export default angular
         angularMeteor,
         uiRouter,
         EliminarVacante,
-        VerCandidatos
+        Postulados
     ])
     .component(name, {
         templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,

@@ -3,17 +3,23 @@ import angularMeteor from "angular-meteor";
 import uiRouter from "angular-ui-router";
 import angularMessages from "angular-messages";
 import "./vacanteXtienda.html";
-import {name as ElegirEstados} from "../../comun/selects/elegirEstado/elegirEstado";
 import {name as ElegirCadenas} from "../../comun/selects/elegirCadena/elegirCadena";
-import {insert} from "../../../../api/vacantes/methods";
+import {insertVacante} from "../../../../api/vacantes/methods";
+import {insertTienda} from "../../../../api/tiendas/methods";
 import {Cadenas} from "../../../../api/cadenas/collection";
 import {Session} from "meteor/session";
 import {ValidationError} from "meteor/mdg:validation-error";
+import {Estados} from '../../../../api/estados/collection';
+import {Puestos} from '../../../../api/puestos/collection';
+import {Escuelas} from '../../../../api/escuelas/collection';
 
 class VacanteXtienda {
     constructor($scope, $reactive) {
         'ngInject';
         $reactive(this).attach($scope);
+        this.subscribe('estados');
+        this.subscribe('puestos');
+        this.subscribe('escuelas');
         this.numVacantes = 5;
         this.tienda = {};
         this.vacante = Session.get('vacanteParaPub');
@@ -28,6 +34,17 @@ class VacanteXtienda {
         this.$scope = $scope;
         this.tiendas = [];
         this.totalVacantes = 0;
+        this.helpers({
+            estadoDesc(){
+                return Estados.findOne({_id: this.vacante.estadoId});
+            },
+            puestoDesc(){
+                return Puestos.findOne({_id: this.vacante.puestoId});
+            },
+            escuelaDesc(){
+                return Escuelas.findOne({_id: this.vacante.perfil.escolaridad});
+            }
+        });
     }
 
     reset() {
@@ -38,22 +55,15 @@ class VacanteXtienda {
         }
     }
 
-    agregarTienda() {
+    agregarResumen() {
 
-        const infoVacante = {
-            estadoId: this.tienda.estadoId,
+        const tienda = {
             cadenaId: this.tienda.cadenaId,
             delMpio: this.tienda.delMpio,
             sucursal: this.tienda.sucursal,
-            sueldo: this.vacante.sueldo,
-            numVacantes: this.numVacantes,
-            puestoId: this.vacante.puestoId,
-            marca: this.vacante.marca,
-            perfil: this.vacante.perfil,
-            horarios: this.vacante.horarios,
-            entrevista: this.vacante.entrevista,
+            numVacantes: this.numVacantes
         };
-        this.tiendas.push(infoVacante);
+        this.tiendas.push(tienda);
         this.calcularVacantes();
     }
 
@@ -70,25 +80,32 @@ class VacanteXtienda {
         return Cadenas.findOne({_id: id});
     }
 
-    agregar() {
+    agregarVacante() {
+        const vacante = angular.copy(this.vacante);
+        insertVacante.call(vacante, this.$bindToContext((error, result)=> {
+            if (error) {
+                console.log(error);
+            } else {
+                this.agregarTiendas(result);
+            }
+        }));
+
+    }
+
+    agregarTiendas(vacanteId) {
         let numErrores = 0;
         let numInsertados = 0;
         for (let i = 0; i < this.tiendas.length; i++) {
-            const tempItem = angular.copy(this.tiendas[i]);
-            insert.call(tempItem, this.$bindToContext((error) => {
-
-                if (i % 2 === 0) {
+            let tempItem = angular.copy(this.tiendas[i]);
+            tempItem.vacanteId = vacanteId;
+            insertTienda.call(tempItem, this.$bindToContext((error) => {
+                if (error) {
+                    console.log(error);
                     this.tiendas[i].error = true;
                     numErrores++;
-                }else {
-                    if (error) {
-                        console.log(error);
-                        this.tiendas[i].error = true;
-                        numErrores++;
-                    } else {
-                        this.tiendas[i].exito = true;
-                        numInsertados++;
-                    }
+                } else {
+                    this.tiendas[i].exito = true;
+                    numInsertados++;
                 }
                 if (numInsertados > 0) {
                     this.respuestaExito.mostrar = true;
@@ -100,7 +117,6 @@ class VacanteXtienda {
                 this.respuestaError.mensaje = `Tiendas NO regsitradas ${numErrores}.`;
             }));
         }
-
     }
 
     limpiar() {
@@ -119,7 +135,6 @@ export default angular.module(name, [
     angularMeteor,
     uiRouter,
     angularMessages,
-    ElegirEstados,
     ElegirCadenas
 ]).component(name, {
     templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
