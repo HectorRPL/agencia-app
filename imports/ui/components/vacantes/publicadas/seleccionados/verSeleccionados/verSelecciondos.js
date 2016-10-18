@@ -5,9 +5,9 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import './verSeleccionados.html';
-import {Postulaciones} from '../../../../api/postulaciones/collection';
-import {Perfiles} from '../../../../api/perfiles/collection';
-import {Candidatos} from '../../../../api/candidatos/collection';
+import {Postulaciones} from '../../../../../../api/postulaciones/collection';
+import {Perfiles} from '../../../../../../api/perfiles/collection';
+import {Candidatos} from '../../../../../../api/candidatos/collection';
 
 
 class VerSleccionados {

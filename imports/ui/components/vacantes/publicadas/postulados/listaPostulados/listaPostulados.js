@@ -85,7 +85,7 @@ export default angular
         SeleccionarCandidato
     ])
     .component(name, {
-        templateUrl: `imports/ui/components/vacantes/postulados/${name}/${name}.html`,
+        templateUrl: `imports/ui/components/vacantes/publicadas/postulados/${name}/${name}.html`,
         controllerAs: name,
         controller: ListaPostulados
     })
@@ -97,6 +97,6 @@ function config($stateProvider) {
     $stateProvider
         .state('app.vacantes.postulados.tienda', {
             url: '/tienda/:tiendaId',
-            template: '<ver-postulados></ver-postulados>'
+            template: '<lista-postulados></lista-postulados>'
         });
 }

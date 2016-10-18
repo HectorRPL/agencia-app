@@ -2,18 +2,18 @@ import angular from "angular";
 import angularMeteor from "angular-meteor";
 import uiRouter from "angular-ui-router";
 import angularMessages from "angular-messages";
-import "./vacanteXtienda.html";
-import {name as ElegirCadenas} from "../../comun/selects/elegirCadena/elegirCadena";
-import {insertVacante} from "../../../../api/vacantes/methods";
-import {insertTienda} from "../../../../api/tiendas/methods";
-import {Cadenas} from "../../../../api/cadenas/collection";
+import "./agregarTiendas.html";
+import {name as ElegirCadenas} from "../../../comun/selects/elegirCadena/elegirCadena";
+import {insertVacante} from "../../../../../api/vacantes/methods";
+import {insertTienda} from "../../../../../api/tiendas/methods";
+import {Cadenas} from "../../../../../api/cadenas/collection";
 import {Session} from "meteor/session";
 import {ValidationError} from "meteor/mdg:validation-error";
-import {Estados} from '../../../../api/estados/collection';
-import {Puestos} from '../../../../api/puestos/collection';
-import {Escuelas} from '../../../../api/escuelas/collection';
+import {Estados} from '../../../../../api/estados/collection';
+import {Puestos} from '../../../../../api/puestos/collection';
+import {Escuelas} from '../../../../../api/escuelas/collection';
 
-class VacanteXtienda {
+class AgregarTiendas {
     constructor($scope, $reactive) {
         'ngInject';
         $reactive(this).attach($scope);
@@ -128,7 +128,7 @@ class VacanteXtienda {
 
 }
 
-const name = 'vacanteXtienda';
+const name = 'agregarTiendas';
 // create a module
 
 export default angular.module(name, [
@@ -137,9 +137,9 @@ export default angular.module(name, [
     angularMessages,
     ElegirCadenas
 ]).component(name, {
-    templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
+    templateUrl: `imports/ui/components/vacantes/agregar/${name}/${name}.html`,
     controllerAs: name,
-    controller: VacanteXtienda
+    controller: AgregarTiendas
 })
 
     .config(config);
@@ -147,8 +147,8 @@ export default angular.module(name, [
 function config($stateProvider) {
     'ngInject';
     $stateProvider
-        .state('app.vacantes.vacanteXtienda', {
-            url: '/tiendas',
-            template: '<vacante-xtienda></vacante-xtienda>'
+        .state('app.vacantes.tiendas', {
+            url: '/agregar/tiendas',
+            template: '<agregar-tiendas></agregar-tiendas>'
         });
 }

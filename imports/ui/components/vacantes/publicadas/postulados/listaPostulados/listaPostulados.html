@@ -1,7 +1,7 @@
 <!--OPCIÓN "A.2" -->
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12" ng-repeat="postulado in verPostulados.postulados" ng-init="verPostulados.seleccionarParaCarrito(postulado)">
-        <a  href ng-click="verPostulados.agregar(postulado)" style="text-decoration:none;">
+    <div class="col-xs-12 col-sm-12 col-md-12" ng-repeat="postulado in listaPostulados.postulados" ng-init="listaPostulados.seleccionarParaCarrito(postulado)">
+        <a  href ng-click="listaPostulados.agregar(postulado)" style="text-decoration:none;">
             <div class="panel panel-default" ng-class="{ 'panel-success' : postulado.seleccionado}">
                 <div  class="panel-body" ng-init="candidato = postulado.candidato(); perfil = postulado.perfilLaboral();">
                     <div class="row">

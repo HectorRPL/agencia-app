@@ -3,13 +3,13 @@ import angularMeteor from "angular-meteor";
 import uiRouter from "angular-ui-router";
 import angularMessages from "angular-messages";
 import "./agregarVacante.html";
-import {name as CheckboxDias} from "../../comun/checkBox/checkboxDias/checkboxDias";
-import {name as CheckboxHabilidades} from "../../comun/checkBox/checkboxHabilidades/checkboxHabilidades";
-import {name as ElegirEstados} from "../../comun/selects/elegirEstado/elegirEstado";
-import {name as VacanteXtienda} from "../vacanteXtienda/vacanteXtienda";
-import {name as  ElegirTalla} from "../../comun/selects/elegirTalla/elegirTalla";
-import {name as  ElegirEscuela} from "../../comun/selects/elegirEscuela/elegirEscuela";
-import {name as  ElegirPuesto} from "../../comun/selects/elegirPuesto/elegirPuesto";
+import {name as CheckboxDias} from "../../../comun/checkBox/checkboxDias/checkboxDias";
+import {name as CheckboxHabilidades} from "../../../comun/checkBox/checkboxHabilidades/checkboxHabilidades";
+import {name as ElegirEstados} from "../../../comun/selects/elegirEstado/elegirEstado";
+import {name as VacanteXtienda} from "../agregarTiendas/agregarTiendas";
+import {name as  ElegirTalla} from "../../../comun/selects/elegirTalla/elegirTalla";
+import {name as  ElegirEscuela} from "../../../comun/selects/elegirEscuela/elegirEscuela";
+import {name as  ElegirPuesto} from "../../../comun/selects/elegirPuesto/elegirPuesto";
 import {Session} from "meteor/session";
 
 class AgregarVacante {
@@ -23,7 +23,7 @@ class AgregarVacante {
 
     siguiente() {
         Session.set('vacanteParaPub', this.vacante);
-        this.$state.go('^.vacanteXtienda');
+        this.$state.go('^.tiendas');
     }
 }
 

@@ -28,7 +28,7 @@
                 <th>Eliminar</th>
             </tr>
             </thead>
-            <tr ng-repeat="vacante in verVacantes.vacantesPublicadas"
+            <tr ng-repeat="vacante in vacantesPublicadas.vacantes"
                 ng-init="puesto = vacante.puesto(); estado = vacante.estado()">
                 <td>{{vacante.marca}}</td>
                 <td>{{puesto.descripcion}}</td>
@@ -47,7 +47,7 @@
                     </a>
                 </td>
                 <td>
-                    <a class="btn btn-danger" ng-click="verVacantes.eliminar(vacante._id)">
+                    <a class="btn btn-danger" ng-click="vacantesPublicadas.eliminar(vacante._id)">
                         <span class="fa fa-trash-o" aria-hidden="true"></span>
                     </a>
                 </td>

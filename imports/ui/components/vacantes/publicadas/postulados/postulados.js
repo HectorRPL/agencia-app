@@ -4,10 +4,10 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
-import {Vacantes} from '../../../../api/vacantes/collection';
-import {Tiendas} from '../../../../api/tiendas/collection';
-import {name as TabsDetalleVacante} from '../tabsDetalleVacante/tabsDetalleVacante';
-import {name as VerPostulados} from '../postulados/verPostulados/verPostulados';
+import {Vacantes} from '../../../../../api/vacantes/collection';
+import {Tiendas} from '../../../../../api/tiendas/collection';
+import {name as TabsDetalleVacante} from '../../tabsDetalleVacante/tabsDetalleVacante';
+import {name as ListaPostulados} from './listaPostulados/listaPostulados';
 
 import './postulados.html';
 
@@ -42,10 +42,10 @@ export default angular
         angularMeteor,
         uiRouter,
         TabsDetalleVacante,
-        VerPostulados
+        ListaPostulados
     ])
     .component(name, {
-        templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
+        templateUrl: `imports/ui/components/vacantes/publicadas/${name}/${name}.html`,
         controllerAs: name,
         controller: Postulados
     })

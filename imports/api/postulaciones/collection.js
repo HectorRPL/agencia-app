@@ -3,7 +3,7 @@
  */
 import {Mongo} from 'meteor/mongo';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-import vacantesCounts from './vacantesCounts';
+import postulacionesCounts from './postulacionesCounts';
 import {Candidatos}  from '../candidatos/collection'
 import {Perfiles}  from '../perfiles/collection'
 import {Direcciones}  from '../direcciones/collection'
@@ -11,7 +11,7 @@ import {Direcciones}  from '../direcciones/collection'
 class PostulacionesCollection extends Mongo.Collection {
     update(selector, modifier) {
         const result = super.update(selector, modifier);
-        vacantesCounts.afterUpdatePostulacion(selector, modifier);
+        postulacionesCounts.afterUpdatePostulacion(selector, modifier);
         return result;
     }
 
@@ -47,10 +47,19 @@ Schema.postulaciones = new SimpleSchema({
         regEx: SimpleSchema.RegEx.Id,
         denyUpdate: true,
     },
+    tiendaId: {
+        type: String,
+        regEx: SimpleSchema.RegEx.Id,
+        denyUpdate: true,
+    },
     estado: {
         type: Number,
     },
-    visto: {
+    vistoCandidato: {
+        type: Boolean,
+        defaultValue: false,
+    },
+    vistoAgencia: {
         type: Boolean,
         defaultValue: false,
     },

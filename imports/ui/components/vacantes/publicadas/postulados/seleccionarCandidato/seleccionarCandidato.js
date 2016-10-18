@@ -1,7 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import './seleccionarCandidato.html';
-import { contactar } from '../../../../api/postulaciones/methods.js';
+import { contactar } from '../../../../../../api/postulaciones/methods.js';
 
 class SeleccionarCandidato {
     constructor($scope, $reactive) {

@@ -26,9 +26,19 @@ Perfiles.helpers({
         return Escuelas.findOne({_id: this.escolaridadId});
     },
     experienciasEn(){
-        return Experiencias.find({_id: {$in: this.experiencias.listado}}).fetch();
+        let strExperiencias = '';
+        let experiencias = Experiencias.find({_id: {$in: this.experiencias.listado}});
+        experiencias.forEach((experiencia)=>{
+            strExperiencias = experiencia.descripcion + ' | ';
+        });
+        return strExperiencias;
     },
     hibilidadesEn(){
-        return Habilidades.find({_id: {$in: this.habilidades.listado}}).fetch();
+        let strHabilidades = '';
+        let habilidades = Habilidades.find({_id: {$in: this.habilidades.listado}}, {fields:{descripcion:1}});
+        habilidades.forEach((habilidad)=>{
+            strHabilidades += habilidad.descripcion + ' | ';
+        });
+        return strHabilidades;
     }
 });

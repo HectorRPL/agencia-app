@@ -16,3 +16,6 @@ import '../../api/habilidades/server/publish';
 import '../../api/tallas/server/publish';
 import '../../api/puestos/server/publish';
 import '../../api/postulaciones/methods';
+import '../../api/postulaciones/server/publish';
+import '../../api/tiendas/server/publish';
+import '../../api/tiendas/methods';

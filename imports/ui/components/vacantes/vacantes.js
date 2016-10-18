@@ -2,9 +2,9 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
-import { name as AgregarVacante} from './agregarVacante/agregarVacante';
-import { name as VerVacantes } from './verVacantes/verVacantes';
-import { name as DetalleVacante } from './detalleVacante/detalleVacante';
+import { name as AgregarVacante} from './agregar/agregarVacante/agregarVacante';
+import { name as VacantesPublicadas } from './publicadas/vacantesPublicadas/vacantesPublicadas';
+import { name as DetalleVacante } from './tabsDetalleVacante/tabsDetalleVacante';
 
 import './vacantes.html';
 
@@ -22,7 +22,7 @@ export default angular
         angularMeteor,
         uiRouter,
         AgregarVacante,
-        VerVacantes,
+        VacantesPublicadas,
         DetalleVacante
     ])
     .component(name, {

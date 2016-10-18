@@ -1,9 +1,8 @@
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Roles} from "meteor/alanning:roles";
-import {Puestos} from '../puestos/collection';
-import {Estados} from '../estados/collection';
-import {Cadenas} from '../cadenas/collection';
+import {Puestos} from "../puestos/collection";
+import {Estados} from "../estados/collection";
 
 const permisos = ['addVacante'];
 
@@ -38,8 +37,13 @@ Schema.vacante = new SimpleSchema({
     defaultValue: new Date(),
     denyUpdate: true,
   },
-  numVacantes: {
+  totalVacantes: {
     type: Number,
+    defaultValue: 0,
+  },
+  totalTiendas: {
+    type: Number,
+    defaultValue: 0,
   },
   sueldo: {
     type: Number,
@@ -47,18 +51,7 @@ Schema.vacante = new SimpleSchema({
   estadoId: {
     type: String
   },
-  delMpio: {
-    type: String,
-    max: 30,
-    optional: true,
-  },
   puestoId: {
-    type: String
-  },
-  sucursal: {
-    type: String
-  },
-  cadenaId: {
     type: String
   },
   marca: {
@@ -80,11 +73,11 @@ Schema.vacante = new SimpleSchema({
     type: Date,
     optional: true,
   },
-  numPostulaciones:{
+  totalPostulados:{
     type: Number,
     defaultValue: 0,
   },
-  numSeleccionados:{
+  totalSeleccionados:{
     type: Number,
     defaultValue: 0,
   },
@@ -102,8 +95,5 @@ Vacantes.helpers({
   },
   estado(){
     return Estados.findOne({_id: this.estadoId});
-  },
-  cadena(){
-    return Cadenas.findOne({_id:this.cadenaId});
   }
 });

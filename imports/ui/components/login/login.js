@@ -1,10 +1,11 @@
-import angular from "angular";
-import angularMeteor from "angular-meteor";
-import uiRouter from "angular-ui-router";
-import angularMessages from "angular-messages";
-import {Meteor} from "meteor/meteor";
-import "./login.html";
-import {name as Registro} from "../registro/registro";
+import angular from 'angular';
+import angularMeteor from 'angular-meteor';
+import uiRouter from 'angular-ui-router';
+import angularMessages from 'angular-messages';
+import {Meteor} from 'meteor/meteor';
+import {Session} from 'meteor/session';
+import './login.html';
+import {name as Registro} from '../registro/registro';
 
 class Login {
     constructor($scope, $reactive, $state) {
@@ -27,7 +28,8 @@ class Login {
                 if (err) {
                     this.error = err;
                 } else {
-                    this.$state.go('app');
+                    Session.setDefault('carritoCompras', []);
+                    this.$state.go('app.vacantes.publicadas');
                 }
             })
         );

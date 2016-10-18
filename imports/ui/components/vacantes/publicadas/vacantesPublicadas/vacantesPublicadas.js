@@ -5,13 +5,13 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
-import './listaPublicadas.html';
+import './vacantesPublicadas.html';
 import {Vacantes} from '../../../../../api/vacantes/collection';
 import { name as EliminarVacante } from '../../eliminarVacante/eliminarVacante';
-import { name as Postulados } from '../../postulados/postulados';
+import { name as Postulados } from '../postulados/postulados';
 
 
-class VerVacantes {
+class VacantesPublicadas {
     constructor($scope, $reactive, $uibModal) {
         'ngInject';
         $reactive(this).attach($scope);
@@ -20,7 +20,7 @@ class VerVacantes {
         this.$uibModal = $uibModal;
 
         this.helpers({
-            vacantesPublicadas (){
+            vacantes (){
                 return Vacantes.find();
             }
         });
@@ -55,7 +55,7 @@ class VerVacantes {
     }
 }
 
-const name = 'listaVacantes';
+const name = 'vacantesPublicadas';
 
 // Módulo
 export default angular
@@ -66,9 +66,9 @@ export default angular
         Postulados
     ])
     .component(name, {
-        templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
+        templateUrl: `imports/ui/components/vacantes/publicadas/${name}/${name}.html`,
         controllerAs: name,
-        controller: VerVacantes
+        controller: VacantesPublicadas
     })
     .config(config);
 
@@ -78,6 +78,6 @@ function config($stateProvider) {
     $stateProvider
         .state('app.vacantes.publicadas', {
             url: '/publicadas',
-            template: '<ver-vacantes></ver-vacantes>'
+            template: '<vacantes-publicadas></vacantes-publicadas>'
         });
 }
