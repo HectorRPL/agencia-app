@@ -25,8 +25,7 @@ export default angular.module(name, [
     templateUrl: `imports/ui/components/${name}/${name}.html`,
     controllerAs: name,
     controller: app
-})
-    .config(config);
+}).config(config);
 
 function config($stateProvider) {
     'ngInject';

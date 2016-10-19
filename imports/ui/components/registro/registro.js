@@ -6,6 +6,7 @@ import "./registro.html";
 import {Accounts} from "meteor/accounts-base";
 import {Roles} from "meteor/alanning:roles";
 import {obtenerColonias} from "../../../api/codigosPostales/methods";
+
 const tipoUsuario = 'agencia:';
 
 class Registro {
@@ -15,6 +16,16 @@ class Registro {
 
         this.$state = $state;
         this.colonias = [];
+        this.direccion =  {
+            codigoPostal: '',
+            estado: '',
+            delMpio: '',
+            colonia: '',
+            calle: '',
+            numExt: '',
+            numInt: '',
+            estadoId: ''
+        };
 
         $reactive(this).attach($scope);
 
@@ -22,43 +33,27 @@ class Registro {
             email: '',
             password: '',
             username: '',
-            profile: ''
+            profile: {}
         };
-
         this.error = '';
-
-    }
-
-    obtenerColonias() {
-        obtenerColonias.call({
-            cp: this.credentials.profile.direccion.codigoPostal
-        }, (err, result) => {
-            if (Array.isArray(result) && result.length > 0) {
-                this.colonias = result;
-                this.credentials.profile.direccion.estado = this.colonias[0].ciudad;
-                this.credentials.profile.direccion.estadoId = this.colonias[0].codigoEstado;
-                this.credentials.profile.direccion.delMpio = this.colonias[0].delegacionMunicipio;
-            } else {
-                this.colonias = [];
-                this.credentials.profile.direccion.estado = '';
-                this.credentials.profile.direccion.estadoId = '';
-                this.credentials.profile.direccion.delMpio = '';
-            }
-        });
     }
 
     crearUsuario() {
         this.error = '';
         this.credentials.email = this.credentials.email.toLowerCase();
         this.credentials.password = tipoUsuario + this.credentials.password;
-        this.credentials.profile.direccion.colonia = this.credentials.profile.direccion.colonia.colonia;
         this.credentials.profile.tipoUsuario = tipoUsuario;
+        this.credentials.profile.direccion = this.direccion;
+        console.log('this.credentials.profile.direccion', this.credentials.profile.direccion);
         Accounts.createUser(this.credentials,
             this.$bindToContext((err) => {
                 if (err) {
+                    console.log('err', err);
                     this.error = err;
                     if (this.error.error === 403) {
                         this.error.mensaje = `El CORREO ${this.credentials.email} y/o USUARIO ya se encuentra registrado`;
+                    } else {
+                        this.error.mensaje = err.message;
                     }
                 } else {
                     this.$state.go('app');
@@ -80,9 +75,33 @@ export default angular.module(name, [
     templateUrl: `imports/ui/components/${name}/${name}.html`,
     controllerAs: name,
     controller: Registro
-})
-
-    .config(config);
+}).directive('codigoPostal', ['$q', function ($q) {
+    return {
+        restrict: 'EA',
+        require: '?ngModel',
+        link: function (scope, element, attrs, ngModel) {
+            ngModel.$asyncValidators.codigopostal = function (modelValue, viewValue) {
+                let codigoPostal = modelValue || viewValue;
+                return obtenerColonias.callPromise({
+                    cp: codigoPostal
+                }).then(function(result){
+                    scope.registro.colonias = result;
+                    if (result.length === 0) {
+                        scope.registro.direccion.estado = '';
+                        scope.registro.direccion.delMpio = '';
+                        return $q.reject('No encontrado');
+                    } else {
+                        scope.registro.direccion.estado = result[0].estado;
+                        scope.registro.direccion.estadoId = result[0].codigoEstado;
+                        scope.registro.direccion.delMpio = result[0].delegacionMunicipio;
+                    }
+                }).catch(function(err){
+                    return $q.reject('No encontrado');
+                });
+            };
+        }
+    };
+}]).config(config);
 
 function config($stateProvider) {
     'ngInject';

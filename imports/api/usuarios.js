@@ -30,7 +30,7 @@ if (Meteor.isServer) {
 
                 Agencia.insert(agencia, (error, response) => {
                     if (error) {
-                        throw new Error('No se puedo crear la agencia.');
+                        throw new Meteor.Error('No se puedo crear la agencia.', 'agencia-no-creada');
                     } else {
                         agencia._id = response;
                     }
@@ -39,7 +39,7 @@ if (Meteor.isServer) {
                 direccion.propietario = agencia._id;
                 Direcciones.insert(direccion, (error) => {
                     if (error) {
-                        throw new Error('No se puedo crear la agencia.');
+                        throw new Meteor.Error('No se puedo crear la agencia.', 'direccion-no-creada');
                     }
                 });
                 // Aquí se insertan los Creditos
@@ -49,7 +49,7 @@ if (Meteor.isServer) {
                 creditos.propietario = agencia._id;
                 Creditos.insert(creditos, (error) => {
                     if (error) {
-                        throw new Error('No se puedieron crear los créditos.');
+                        throw new Meteor.Error('No se puedo crear la agencia.', 'creditos-no-creados');
                     }
                 });
                 user.roles = agenciaRoles;
