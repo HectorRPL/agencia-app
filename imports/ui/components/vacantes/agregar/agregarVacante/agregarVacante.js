@@ -6,7 +6,7 @@ import "./agregarVacante.html";
 import {name as CheckboxDias} from "../../../comun/checkBox/checkboxDias/checkboxDias";
 import {name as CheckboxHabilidades} from "../../../comun/checkBox/checkboxHabilidades/checkboxHabilidades";
 import {name as ElegirEstados} from "../../../comun/selects/elegirEstado/elegirEstado";
-import {name as VacanteXtienda} from "../agregarTiendas/agregarTiendas";
+import {name as agregarTienda} from "../agregarTiendas/agregarTiendas";
 import {name as  ElegirTalla} from "../../../comun/selects/elegirTalla/elegirTalla";
 import {name as  ElegirEscuela} from "../../../comun/selects/elegirEscuela/elegirEscuela";
 import {name as  ElegirPuesto} from "../../../comun/selects/elegirPuesto/elegirPuesto";
@@ -36,7 +36,7 @@ export default angular.module(name, [
     angularMessages,
     CheckboxDias,
     CheckboxHabilidades,
-    VacanteXtienda,
+    agregarTienda,
     ElegirTalla,
     ElegirEscuela,
     ElegirPuesto,

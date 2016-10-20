@@ -92,6 +92,10 @@ class AgregarTiendas {
 
     }
 
+    probando() {
+        console.log('PROBANDO, LO QUE SEA, IMPRÍMETE');
+    }
+
     agregarTiendas(vacanteId) {
         let numErrores = 0;
         let numInsertados = 0;
