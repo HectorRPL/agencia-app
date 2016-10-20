@@ -42,7 +42,7 @@ export default angular.module(name, [
     ElegirPuesto,
     ElegirEstados
 ]).component(name, {
-    templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
+    templateUrl: `imports/ui/components/vacantes/agregar/${name}/${name}.html`,
     controllerAs: name,
     controller: AgregarVacante
 })
