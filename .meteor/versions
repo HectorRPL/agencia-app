@@ -8,7 +8,6 @@ aldeed:schema-index@1.1.0
 aldeed:simple-schema@1.5.3
 allow-deny@1.0.5
 angular-templates@1.0.9
-angularjs:angular@1.3.15
 autoupdate@1.2.11
 babel-compiler@6.9.1_1
 babel-runtime@0.1.11_1
@@ -86,7 +85,6 @@ service-configuration@1.0.10
 session@1.1.6
 sha@1.0.8
 shell-server@0.2.1
-smrsoftware:angular-ui-grid@3.0.0-rc.22
 spacebars@1.0.12
 spacebars-compiler@1.0.12
 srp@1.0.9
