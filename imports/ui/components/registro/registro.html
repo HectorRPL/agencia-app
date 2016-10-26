@@ -13,7 +13,7 @@
                         <input id="nombreID" class="form-control" name="nombre" type="text"
                                placeholder="Agencia de Publicidad S.A. de C.V." aria-describedby="sizing-addon1"
                                minlength="2" maxlength="51" ng-minlength="2" ng-maxlength="50"
-                               ng-pattern="/^[a-zA-Z-.&ñáéíóú-\s\d]+$/" required
+                               ng-pattern="/^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/" required
                                ng-model="registro.credentials.profile.nombre">
                     </div>
                     <div ng-messages="registroAgenciaFrm.nombre.$dirty && registroAgenciaFrm.nombre.$error"
@@ -143,7 +143,7 @@
                     <div class="input-group">
                         <span class="input-group-addon span-demos" id="basic-addon1">
                             <i class="fa fa-chevron-down" aria-hidden="true"></i></span>
-                        <select id="coloniaID" class="form-control" name="colonia" type="text"
+                        <select style="focus{outline: none;}" id="coloniaID" class="form-control" name="colonia" type="text"
                                 aria-describedby="sizing-addon1" required
                                 ng-options="colonia.colonia as colonia.colonia for colonia in registro.colonias track by colonia.colonia"
                                 ng-model="registro.direccion.colonia">
@@ -151,10 +151,10 @@
                                 Colonia
                             </option>
                         </select>
-                    </div>
-                    <div ng-messages="registroAgenciaFrm.colonia.$dirty && registroAgenciaFrm.colonia.$error"
-                         role="alert">
-                        <div style="color:red;" ng-message="required">Campo requerido</div>
+                        <div ng-messages="registroAgenciaFrm.colonia.$dirty && registroAgenciaFrm.colonia.$error"
+                             role="alert">
+                            <div style="color:red;" ng-message="required">Campo requerido</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -169,7 +169,7 @@
                         <input id="calleID" class="form-control" name="calle" type="text"
                                placeholder="Nombre de la Calle"
                                aria-describedby="sizing-addon1" maxlength="26" minlength="1" ng-maxlength="25"
-                               ng-minlength="1" ng-pattern="/^[a-zA-Z-/.&ñáéíóú-\s\d]+$/" required
+                               ng-minlength="1" ng-pattern="/^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/" required
                                ng-model="registro.direccion.calle"></div>
                     <div ng-messages="registroAgenciaFrm.calle.$dirty && registroAgenciaFrm.calle.$error" role="alert">
                         <div style="color:red;" ng-message="required"> Campo requerido</div>
@@ -190,15 +190,15 @@
                                     <i class="fa fa-circle" aria-hidden="true"></i>
                                 </span>
                                 <input id="numExtID" class="form-control" name="numExt" type="text"
-                                       placeholder="N° Exterior" aria-describedby="sizing-addon1" maxlength="26"
-                                       minlength="1" ng-maxlength="25" ng-minlength="1"
-                                       ng-pattern="/^[a-zA-Z-/.&ñáéíóú-\s\d]+$/" required
+                                       placeholder="N° Exterior" aria-describedby="sizing-addon1" maxlength="11"
+                                       minlength="1" ng-maxlength="10" ng-minlength="1"
+                                       ng-pattern="/^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/" required
                                        ng-model="registro.direccion.numExt"></div>
                             <div ng-messages="registroAgenciaFrm.numExt.$dirty && registroAgenciaFrm.numExt.$error"
                                  role="alert">
                                 <div style="color:red;" ng-message="required"> Campo requerido</div>
                                 <div style="color:red;" ng-message="minlength"> Longitud mínima 1 caracter</div>
-                                <div style="color:red;" ng-message="maxlength"> Longitud máxima 25 caracteres</div>
+                                <div style="color:red;" ng-message="maxlength"> Longitud máxima 10 caracteres</div>
                                 <div style="color:red;" ng-message="pattern"> Sólo caracteres alfanuméricos</div>
                             </div>
                         </div>
@@ -212,15 +212,15 @@
                                     <i class="fa fa-circle" aria-hidden="true"></i>
                                 </span>
                                 <input id="numIntID" class="form-control" name="numInt" type="text"
-                                       placeholder="N° Interior" aria-describedby="sizing-addon1" maxlength="26"
-                                       minlength="1" ng-maxlength="25" ng-minlength="1"
-                                       ng-pattern="/^[a-zA-Z-/.,&ñáéíóú-\s\d]+$/"
+                                       placeholder="N° Interior" aria-describedby="sizing-addon1" maxlength="11"
+                                       minlength="1" ng-maxlength="10" ng-minlength="1"
+                                       ng-pattern="/^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/"
                                        ng-model="registro.direccion.numInt">
                             </div>
                             <div ng-messages="registroAgenciaFrm.numInt.$dirty && registroAgenciaFrm.numInt.$error"
                                  role="alert">
                                 <div style="color:red;" ng-message="minlength"> Longitud mínima 1 caracter</div>
-                                <div style="color:red;" ng-message="maxlength"> Longitud máxima 25 caracteres</div>
+                                <div style="color:red;" ng-message="maxlength"> Longitud máxima 10 caracteres</div>
                                 <div style="color:red;" ng-message="pattern"> Sólo caracteres alfanuméricos</div>
                             </div>
                         </div>

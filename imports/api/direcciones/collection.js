@@ -37,20 +37,18 @@ Schema.candidato = new SimpleSchema({
         type: String,
         max: 30,
         min: 1,
-        regEx: /^[a-zA-Z-/.&ñáéíóú-\s\d]+$/,
+        regEx: /^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/,
         optional: true
     },
     delMpio: {
         type: String,
         max: 30,
-        min: 1,
-        regEx: /^[a-zA-Z-/.&ñáéíóú-\s\d]+$/
+        min: 1
     },
     estado: {
         type: String,
         max: 30,
-        min: 1,
-        regEx: /^[a-zA-Zñáéíóú.\s]+$/
+        min: 1
     },
     estadoId: {
         type: String,
@@ -61,8 +59,7 @@ Schema.candidato = new SimpleSchema({
     colonia: {
         type: String,
         max: 50,
-        min: 1,
-        regEx: /^[a-zA-Z-/.&ñáéíóú-\s\d]+$/
+        min: 1
     },
     codigoPostal: {
         type: String,
@@ -72,16 +69,16 @@ Schema.candidato = new SimpleSchema({
     },
     numExt: {
         type: String,
-        max: 30,
+        max: 10,
         min: 1,
-        regEx: /^[a-zA-Z-/.&ñáéíóú-\s\d]+$/,
+        regEx: /^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/,
         optional: true
     },
     numInt: {
         type: String,
-        max: 30,
+        max: 10,
         min: 1,
-        regEx: /^[a-zA-Z-/.&ñáéíóú-\s\d]+$/,
+        regEx: /^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/,
         optional: true
     }
 });
