@@ -6,11 +6,16 @@
             <div class="col-xs-12 col-md-4 col-sm-4">
                 <div class="form-group"
                      ng-class="{ 'has-error' : registroAgenciaFrm.nombre.$invalid && !registroAgenciaFrm.nombre.$pristine}">
-                    <input id="nombreID" class="form-control" name="nombre" type="text"
-                           placeholder="Agencia de Publicidad S.A. de C.V." aria-describedby="sizing-addon1"
-                           minlength="2" maxlength="51" ng-minlength="2" ng-maxlength="50"
-                           ng-pattern="/^[a-zA-Z-.&ñáéíóú-\s\d]+$/" required
-                           ng-model="registro.credentials.profile.nombre">
+                    <div class="input-group">
+                        <span class="input-group-addon span-demos">
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                        </span>
+                        <input id="nombreID" class="form-control" name="nombre" type="text"
+                               placeholder="Agencia de Publicidad S.A. de C.V." aria-describedby="sizing-addon1"
+                               minlength="2" maxlength="51" ng-minlength="2" ng-maxlength="50"
+                               ng-pattern="/^[a-zA-Z-.&ñáéíóú-\s\d]+$/" required
+                               ng-model="registro.credentials.profile.nombre">
+                    </div>
                     <div ng-messages="registroAgenciaFrm.nombre.$dirty && registroAgenciaFrm.nombre.$error"
                          role="alert">
                         <div style="color:red;" ng-message="required"> Campo requerido</div>
@@ -24,7 +29,7 @@
             <div class="col-xs-12 col-md-4 col-sm-4">
                 <div class="form-group"
                      ng-class="{ 'has-error' : registroAgenciaFrm.email.$invalid && !registroAgenciaFrm.email.$pristine}">
-                    <div class="input-group input-group">
+                    <div class="input-group">
                         <span class="input-group-addon span-demos">@</span>
                         <input id="agenciaEmailID" class="form-control" name="email" type="email"
                                placeholder="Correo Electrónico" aria-describedby="sizing-addon1" minlength="5"
@@ -43,9 +48,15 @@
             <div class="col-xs-12 col-md-4 col-sm-4">
                 <div class="form-group"
                      ng-class="{ 'has-error' : registroAgenciaFrm.telefono.$invalid && !registroAgenciaFrm.telefono.$pristine}">
-                    <input id="telefonoID" class="form-control" type="text" name="telefono" placeholder="Teléfono"
-                           aria-describedby="sizing-addon1" maxlength="10" ng-maxlength="10" ng-pattern="/^[0-9]{10}$/"
-                           required  ng-model="registro.credentials.profile.telefono">
+                    <div class="input-group">
+                        <span class="input-group-addon span-demos">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                        </span>
+                        <input id="telefonoID" class="form-control" type="text" name="telefono" placeholder="Teléfono"
+                               aria-describedby="sizing-addon1" maxlength="10" ng-maxlength="10"
+                               ng-pattern="/^[0-9]{10}$/"
+                               required ng-model="registro.credentials.profile.telefono">
+                    </div>
                     <div ng-messages="registroAgenciaFrm.telefono.$dirty && registroAgenciaFrm.telefono.$error"
                          role="alert">
                         <div style="color:red;" ng-message="required"> Campo requerido</div>
@@ -60,11 +71,15 @@
             <div class="col-xs-12 col-md-4 col-sm-4">
                 <div class="form-group"
                      ng-class="{ 'has-error' : registroAgenciaFrm.codigoPostal.$invalid && !registroAgenciaFrm.codigoPostal.$pristine}">
-                    <input id="codigoPostalID" class="form-control" name="codigoPostal" type="text"
-                           placeholder="Código Postal" aria-describedby="sizing-addon1"
-                           maxlength="5" minlength="5" ng-maxlength="5" ng-minlength="5" ng-pattern="/^[0-9]{5}$/"
-                           required codigo-postal
-                           ng-model="registro.direccion.codigoPostal">
+                    <div class="input-group">
+                        <span class="input-group-addon span-demos">
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                        </span>
+                        <input id="codigoPostalID" class="form-control" name="codigoPostal" type="text"
+                               placeholder="Código Postal" aria-describedby="sizing-addon1"
+                               maxlength="5" minlength="5" ng-maxlength="5" ng-minlength="5" ng-pattern="/^[0-9]{5}$/"
+                               required codigo-postal
+                               ng-model="registro.direccion.codigoPostal"></div>
                     <div ng-messages="registroAgenciaFrm.codigoPostal.$dirty && registroAgenciaFrm.codigoPostal.$error"
                          role="alert">
                         <div style="color:red;" ng-message="required"> Campo requerido</div>
@@ -79,10 +94,15 @@
             <div class="col-xs-12 col-md-4 col-sm-4">
                 <div class="form-group"
                      ng-class="{ 'has-error' : registroAgenciaFrm.estado.$invalid && !registroAgenciaFrm.estado.$pristine}">
-                    <input id="estadoID" class="form-control" name="estado" type="text" placeholder="Estado"
-                           aria-describedby="sizing-addon1" disabled="" maxlength="21" minlength="1" ng-maxlength="20"
-                           ng-minlength="1" ng-pattern="/^[a-zA-Zñáéíóú.\s]+$/" required
-                           ng-model="registro.direccion.estado">
+                    <div class="input-group">
+                        <span class="input-group-addon span-demos">
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                        </span>
+                        <input id="estadoID" class="form-control" name="estado" type="text" placeholder="Estado"
+                               aria-describedby="sizing-addon1" disabled="" maxlength="21" minlength="1"
+                               ng-maxlength="20"
+                               ng-minlength="1" ng-pattern="/^[a-zA-Zñáéíóú.\s]+$/" required
+                               ng-model="registro.direccion.estado"></div>
                     <div ng-messages="registroAgenciaFrm.estado.$dirty && registroAgenciaFrm.estado.$error"
                          role="alert">
                         <div style="color:red;" ng-message="required"> Campo requerido</div>
@@ -96,11 +116,15 @@
             <div class="col-xs-12 col-md-4 col-sm-4">
                 <div class="form-group"
                      ng-class="{ 'has-error' : registroAgenciaFrm.delMpio.$invalid && !registroAgenciaFrm.delMpio.$pristine}">
-                    <input id="delMpioID" class="form-control" name="delMpio" type="text"
-                           placeholder="Delegación/Municipio" aria-describedby="sizing-addon1" disabled=""
-                           maxlength="26" minlength="1" ng-maxlength="25" ng-minlength="1"
-                           ng-pattern="/^[a-zA-Z-.ñáéíóú-\s\d]+$/" required
-                           ng-model="registro.direccion.delMpio">
+                    <div class="input-group">
+                        <span class="input-group-addon span-demos">
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                        </span>
+                        <input id="delMpioID" class="form-control" name="delMpio" type="text"
+                               placeholder="Delegación/Municipio" aria-describedby="sizing-addon1" disabled=""
+                               maxlength="26" minlength="1" ng-maxlength="25" ng-minlength="1"
+                               ng-pattern="/^[a-zA-Z-.ñáéíóú-\s\d]+$/" required
+                               ng-model="registro.direccion.delMpio"></div>
                     <div ng-messages="registroAgenciaFrm.delMpio.$dirty && registroAgenciaFrm.delMpio.$error"
                          role="alert">
                         <div style="color:red;" ng-message="required"> Campo requerido</div>
@@ -116,14 +140,18 @@
             <div class="col-xs-12 col-md-4 col-sm-4">
                 <div class="form-group"
                      ng-class="{ 'has-error' : registroAgenciaFrm.colonia.$invalid && !registroAgenciaFrm.colonia.$pristine}">
-                    <select id="coloniaID" class="form-control" name="colonia" type="text"
-                            aria-describedby="sizing-addon1" required
-                            ng-options="colonia.colonia as colonia.colonia for colonia in registro.colonias track by colonia.colonia"
-                            ng-model="registro.direccion.colonia">
-                        <option value="">
-                            Colonia
-                        </option>
-                    </select>
+                    <div class="input-group">
+                        <span class="input-group-addon span-demos" id="basic-addon1">
+                            <i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                        <select id="coloniaID" class="form-control" name="colonia" type="text"
+                                aria-describedby="sizing-addon1" required
+                                ng-options="colonia.colonia as colonia.colonia for colonia in registro.colonias track by colonia.colonia"
+                                ng-model="registro.direccion.colonia">
+                            <option value="">
+                                Colonia
+                            </option>
+                        </select>
+                    </div>
                     <div ng-messages="registroAgenciaFrm.colonia.$dirty && registroAgenciaFrm.colonia.$error"
                          role="alert">
                         <div style="color:red;" ng-message="required">Campo requerido</div>
@@ -134,10 +162,15 @@
             <div class="col-xs-12 col-md-4 col-sm-4">
                 <div class="form-group"
                      ng-class="{ 'has-error' : registroAgenciaFrm.calle.$invalid && !registroAgenciaFrm.calle.$pristine}">
-                    <input id="calleID" class="form-control" name="calle" type="text" placeholder="Nombre de la Calle"
-                           aria-describedby="sizing-addon1" maxlength="26" minlength="1" ng-maxlength="25"
-                           ng-minlength="1" ng-pattern="/^[a-zA-Z-/.&ñáéíóú-\s\d]+$/" required
-                           ng-model="registro.direccion.calle">
+                    <div class="input-group">
+                        <span class="input-group-addon span-demos">
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                        </span>
+                        <input id="calleID" class="form-control" name="calle" type="text"
+                               placeholder="Nombre de la Calle"
+                               aria-describedby="sizing-addon1" maxlength="26" minlength="1" ng-maxlength="25"
+                               ng-minlength="1" ng-pattern="/^[a-zA-Z-/.&ñáéíóú-\s\d]+$/" required
+                               ng-model="registro.direccion.calle"></div>
                     <div ng-messages="registroAgenciaFrm.calle.$dirty && registroAgenciaFrm.calle.$error" role="alert">
                         <div style="color:red;" ng-message="required"> Campo requerido</div>
                         <div style="color:red;" ng-message="minlength"> Longitud mínima 1 caracter</div>
@@ -152,11 +185,15 @@
                     <div class="col-md-6">
                         <div class="form-group"
                              ng-class="{ 'has-error' : registroAgenciaFrm.numExt.$invalid && !registroAgenciaFrm.numExt.$pristine}">
-                            <input id="numExtID" class="form-control" name="numExt" type="text"
-                                   placeholder="Num. Exterior" aria-describedby="sizing-addon1" maxlength="26"
-                                   minlength="1" ng-maxlength="25" ng-minlength="1"
-                                   ng-pattern="/^[a-zA-Z-/.&ñáéíóú-\s\d]+$/" required
-                                   ng-model="registro.direccion.numExt">
+                            <div class="input-group">
+                                <span class="input-group-addon span-demos">
+                                    <i class="fa fa-circle" aria-hidden="true"></i>
+                                </span>
+                                <input id="numExtID" class="form-control" name="numExt" type="text"
+                                       placeholder="N° Exterior" aria-describedby="sizing-addon1" maxlength="26"
+                                       minlength="1" ng-maxlength="25" ng-minlength="1"
+                                       ng-pattern="/^[a-zA-Z-/.&ñáéíóú-\s\d]+$/" required
+                                       ng-model="registro.direccion.numExt"></div>
                             <div ng-messages="registroAgenciaFrm.numExt.$dirty && registroAgenciaFrm.numExt.$error"
                                  role="alert">
                                 <div style="color:red;" ng-message="required"> Campo requerido</div>
@@ -170,11 +207,16 @@
                     <div class="col-md-6">
                         <div class="form-group"
                              ng-class="{ 'has-error' : registroAgenciaFrm.numInt.$invalid && !registroAgenciaFrm.numInt.$pristine}">
-                            <input id="numIntID" class="form-control" name="numInt" type="text"
-                                   placeholder="Num. Interior" aria-describedby="sizing-addon1" maxlength="26"
-                                   minlength="1" ng-maxlength="25" ng-minlength="1"
-                                   ng-pattern="/^[a-zA-Z-/.,&ñáéíóú-\s\d]+$/"
-                                   ng-model="registro.direccion.numInt">
+                            <div class="input-group">
+                                <span class="input-group-addon span-demos">
+                                    <i class="fa fa-circle" aria-hidden="true"></i>
+                                </span>
+                                <input id="numIntID" class="form-control" name="numInt" type="text"
+                                       placeholder="N° Interior" aria-describedby="sizing-addon1" maxlength="26"
+                                       minlength="1" ng-maxlength="25" ng-minlength="1"
+                                       ng-pattern="/^[a-zA-Z-/.,&ñáéíóú-\s\d]+$/"
+                                       ng-model="registro.direccion.numInt">
+                            </div>
                             <div ng-messages="registroAgenciaFrm.numInt.$dirty && registroAgenciaFrm.numInt.$error"
                                  role="alert">
                                 <div style="color:red;" ng-message="minlength"> Longitud mínima 1 caracter</div>
@@ -192,7 +234,9 @@
                 <div class="form-group"
                      ng-class="{ 'has-error' : registroAgenciaFrm.password.$invalid && !registroAgenciaFrm.password.$pristine}">
                     <div class="input-group input-group">
-                        <span class="input-group-addon span-demos"><i class="fa fa-key" aria-hidden="true"></i></span>
+                        <span class="input-group-addon span-demos">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                        </span>
                         <input id="agenciaPasswordID" class="form-control" name="password" type="password"
                                placeholder="Contraseña" aria-describedby="sizing-addon2" maxlength="9" minlength="4"
                                ng-maxlength="8" ng-minlength="5" required ng-model="registro.credentials.password">
