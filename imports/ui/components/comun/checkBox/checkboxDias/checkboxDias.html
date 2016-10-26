@@ -1,7 +1,7 @@
 <div class="row">
     <div ng-repeat="day in checkboxDias.dias" class="col-xs-6 col-sm-3 col-md-3">
         <div class="checkbox">
-            <div class="btn-group">
+            <div class="btn-group btn-group-justified">
                 <label class="btn btn-default" uib-btn-checkbox name="{{day.nombre}}" id="{{day.id}}"
                        ng-model="day.activo"
                        ng-checked="checkboxDias.disabledCheks" ng-disabled="checkboxDias.disabledCheks && $index<7"

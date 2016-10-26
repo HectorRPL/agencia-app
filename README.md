@@ -9,8 +9,16 @@ Acceder a una misma base de datos, colocar la siguiente linea en la consola.
   mongoexport --db demos-dev --collection tallas --out tallas.json
 
   mongoimport --host localhost --port 27017 --collection puestos --db demos-dev1 --file puestos.json
-  
-  
+
+
   Levantar dos servidores (agencia y demos)
-  Levantar cualquier con normalidad pero en la segunda
-  añadir --port 3001
+  Levantar cualquiera de las dos con normalidad pero
+  al levantar la segunda añadir --port 3001
+
+  de tal manera que quedaría así:
+
+  Si es demos:
+  meteor --settings settings.json --port 3001
+
+  Si es agencia:
+  meteor --port 3001
