@@ -13,4 +13,14 @@ inicio{
     border-radius: 6px;
   }
 
+  select {
+    /*Desaparece la flecha de los selects en Chrome*/
+    -moz-appearance: none;
+    /*Desaparece la flecha de los selects en FireFox*/
+    -webkit-appearance:none;
+  }
+  /*Desaparece la flecha de los selects en IE10*/
+  select::-ms-expand {
+    display: none;
+  }
 }
