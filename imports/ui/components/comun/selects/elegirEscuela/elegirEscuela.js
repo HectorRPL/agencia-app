@@ -31,7 +31,7 @@ export default angular
         templateUrl: `imports/ui/components/comun/selects/${name}/${name}.html`,
         controllerAs: name,
         bindings: {
-            escolaridad: '='
+            escolaridadid: '='
         },
         controller: ElegirEscuela
     });
