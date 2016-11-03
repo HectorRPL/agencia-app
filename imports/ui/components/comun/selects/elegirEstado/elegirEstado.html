@@ -1,5 +1,5 @@
 <select class="form-control" id="elegirEstadoID" name="elegirEstado"
         required ng-model="elegirEstado.estadoid">
-    <option value="">-- Estados --</option>
+    <option value="">Estados</option>
     <option ng-repeat="edo in elegirEstado.estados" value="{{edo._id}}">{{edo.descripcion}}</option>
 </select>
