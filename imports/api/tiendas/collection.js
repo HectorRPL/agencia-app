@@ -5,8 +5,9 @@ import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Roles} from "meteor/alanning:roles";
 import {Cadenas} from '../cadenas/collection';
+import {Postulaciones} from '../postulaciones/collection';
 import tiendasCounts from './tiendasCount';
-
+import {Counts} from 'meteor/tmeasday:publish-counts';
 const permisos = ['addVacante'];
 
 class TiendasCollection extends Mongo.Collection {
@@ -15,6 +16,7 @@ class TiendasCollection extends Mongo.Collection {
         tiendasCounts.afterInsertTienda(doc);
         return result;
     }
+
     update(selector, modifier) {
         const result = super.update(selector, modifier);
         tiendasCounts.afterUpdatePostulacion(selector, modifier);
@@ -75,7 +77,7 @@ Schema.vacante = new SimpleSchema({
     cadenaId: {
         type: String
     },
-    cubierta:{
+    cubierta: {
         type: Boolean,
         defaultValue: false,
     }
@@ -85,6 +87,9 @@ Tiendas.attachSchema(Schema.vacante);
 
 Tiendas.helpers({
     cadena(){
-        return Cadenas.findOne({_id:this.cadenaId});
+        return Cadenas.findOne({_id: this.cadenaId});
+    },
+    postulacionesNuevas(){
+        return Counts.get(`count.postuladosNuevos.${this._id}`);
     }
 });

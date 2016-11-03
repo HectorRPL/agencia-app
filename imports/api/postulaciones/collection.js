@@ -42,12 +42,12 @@ Schema.postulaciones = new SimpleSchema({
         regEx: SimpleSchema.RegEx.Id,
         denyUpdate: true,
     },
-    candidatoId: {
+    tiendaId: {
         type: String,
         regEx: SimpleSchema.RegEx.Id,
         denyUpdate: true,
     },
-    tiendaId: {
+    candidatoId: {
         type: String,
         regEx: SimpleSchema.RegEx.Id,
         denyUpdate: true,
@@ -55,11 +55,19 @@ Schema.postulaciones = new SimpleSchema({
     estado: {
         type: Number,
     },
-    vistoCandidato: {
+    postVistoCandidato: {
         type: Boolean,
         defaultValue: false,
     },
-    vistoAgencia: {
+    postVistoAgencia: {
+        type: Boolean,
+        defaultValue: false,
+    },
+    selecVistoCandidato: {
+        type: Boolean,
+        defaultValue: false,
+    },
+    selecVistoAgencia: {
         type: Boolean,
         defaultValue: false,
     },
@@ -68,9 +76,10 @@ Schema.postulaciones = new SimpleSchema({
         defaultValue: new Date(),
         denyUpdate: true,
     },
-    fechaContacto: {
+    fechaSeleccion: {
         type: Date,
         optional: true,
+        denyUpdate: true,
     }
 });
 
@@ -84,9 +93,6 @@ Postulaciones.helpers({
         return Perfiles.findOne({candidatoId: this.candidatoId});
     },
     direccionCandidato(){
-
-        console.log('helper direccionCandidato', );
-        console.log('helper direccionCandidato', Direcciones.findOne({propietario: this.candidatoId}));
         return Direcciones.findOne({propietario: this.candidatoId});
     }
 

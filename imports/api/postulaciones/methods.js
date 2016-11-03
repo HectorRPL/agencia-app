@@ -20,6 +20,18 @@ export const contactar = new ValidatedMethod({
     }
 });
 
+export const actualizarPostVistoAgencia = new ValidatedMethod({
+    name: 'postulaciones.actualizarVistoAgencia',
+    validate: new SimpleSchema({
+        tiendaId: {type: String}
+    }).validator(),
+    run({tiendaId}) {
+        console.log('actualizarPostVistoAgencia ',tiendaId)
+        return Postulaciones.update({tiendaId: tiendaId},
+            {$set: {postVistoAgencia: true}});
+    }
+});
+
 
 const POSTULACIONES_METODOS = _.pluck([contactar], 'name');
 if (Meteor.isServer) {

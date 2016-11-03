@@ -46,10 +46,6 @@ class VacantesPublicadas {
         });
     }
 
-    numPostulaciones(vacanteId){
-
-    }
-
     numSeleccionados(vacanteId){
 
     }

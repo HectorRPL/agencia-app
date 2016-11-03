@@ -3,6 +3,7 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Roles} from "meteor/alanning:roles";
 import {Puestos} from "../puestos/collection";
 import {Estados} from "../estados/collection";
+import {Counts} from 'meteor/tmeasday:publish-counts';
 
 const permisos = ['addVacante'];
 
@@ -95,5 +96,11 @@ Vacantes.helpers({
   },
   estado(){
     return Estados.findOne({_id: this.estadoId});
+  },
+  postNuevasAgencia(){
+    return Counts.get(`count.vacante.postulados.nuevos.${this._id}`);
+  },
+  selecNuevasAgencia(){
+    return Counts.get(`count.vacante.seleccionados.nuevos.${this._id}`);
   }
 });

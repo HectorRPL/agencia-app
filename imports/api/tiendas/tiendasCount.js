@@ -41,12 +41,14 @@ const tiendasCounts = {
     },
     afterUpdateTienda(selector, modifier) {
         check(modifier, {$set: Object});
-        if (_.has(modifier.$set, 'numPostulados') || _.has(modifier.$set, 'numSeleccionados')) {
+        if (_.has(modifier.$set, 'numPostulados')
+            || _.has(modifier.$set, 'numSeleccionados')) {
             Tiendas.find(selector, {fields: {vacanteId: 1}}).forEach(tienda => {
                 this._updateVacante(tienda.vacanteId);
             });
         }
-    },
+
+    }
 };
 
 export default tiendasCounts;

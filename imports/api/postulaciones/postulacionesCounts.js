@@ -7,35 +7,43 @@ import {Tiendas} from "../tiendas/collection.js";
 import {check} from 'meteor/check';
 
 const postulacionesCounts = {
-    _updateTienda(tiendaId) {
+    _updatePostuladosTienda(tiendaId) {
         let tiendaCubierta = false;
-        const selectorPost = {$and: [{tiendaid: tiendaId}, {estado: 1}]};
-        const selectorSelec = {$and: [{tiendaid: tiendaId}, {estado: 3}]};
+        const selectorPost = {$and: [{tiendaId: tiendaId}]};
 
-        const numPost = Postulaciones.find(selectorPost).count();
-        const numSelec = Postulaciones.find(selectorSelec).count();
+        const countPost = Postulaciones.find(selectorPost).count();
         const tienda = Tiendas.findOne({_id: tiendaId});
 
-        if (tienda.numVacantes === numPost) {
+        if (tienda.numVacantes === countPost) {
             tiendaCubierta = true;
         }
         Tiendas.update({_id: tiendaId},
             {
                 $set: {
                     cubierta: tiendaCubierta,
-                    numPostulados: numPost,
-                    numSeleccionados: numSelec
+                    numPostulados: countPost,
+                }
+            });
+    },
+    _updateSeleccionadosTienda(){
+        const selectorSelec = {$and: [{tiendaId: tiendaId}, {estado: 2}]};
+        const countSelec = Postulaciones.find(selectorSelec).count();
+
+        Tiendas.update({_id: tiendaId},
+            {
+                $set: {
+                    numSeleccionados: countSelec,
                 }
             });
     },
     afterInsertPostulacion(postulacion) {
-        this._updateTienda(postulacion.tiendaid);
+        this._updatePostuladosTienda(postulacion.tiendaId);
     },
     afterUpdatePostulacion(selector, modifier) {
         check(modifier, {$set: Object});
         if (_.has(modifier.$set, 'estado')) {
             Postulaciones.find(selector, {fields: {tiendaId: 1}}).forEach(postulacion => {
-                this._updateTienda(postulacion.tiendaid);
+                this._updateSeleccionadosTienda(postulacion.tiendaId);
             });
         }
     },

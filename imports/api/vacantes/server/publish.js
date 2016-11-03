@@ -1,12 +1,11 @@
-import {Meteor} from 'meteor/meteor';
-import {Vacantes} from '../collection';
-import {Postulaciones} from '../../postulaciones/collection';
-import {Agencia} from '../../agencia/collection';
-import {Candidatos} from '../../candidatos/collection';
-import {Cadenas} from '../../cadenas/collection';
-import {Estados} from '../../estados/collection';
-import {Puestos} from '../../puestos/collection';
-import {Tiendas} from '../../tiendas/collection';
+import {Meteor} from "meteor/meteor";
+import {Vacantes} from "../collection";
+import {Agencia} from "../../agencia/collection";
+import {Cadenas} from "../../cadenas/collection";
+import {Estados} from "../../estados/collection";
+import {Puestos} from "../../puestos/collection";
+import {Tiendas} from "../../tiendas/collection";
+import {Postulaciones} from "../../postulaciones/collection";
 
 
 if (Meteor.isServer) {
@@ -27,11 +26,21 @@ if (Meteor.isServer) {
                 children: [
                     {
                         find: function (vacante) {
+                            console.log(`count.vacante.postulados.nuevos.${vacante._id}`);
+                            Counts.publish(this, `count.vacante.postulados.nuevos.${vacante._id}`,
+                                Postulaciones.find({
+                                    $and: [{vacanteId: vacante._id}, {estado: 1}, {postVistoAgencia: false}]
+                                }), {noReady: true});
                             return Puestos.find({_id: vacante.puestoId});
                         }
                     },
                     {
                         find: function (vacante) {
+                            console.log(`count.vacante.seleccionados.nuevos.${vacante._id}`);
+                            Counts.publish(this, `count.vacante.seleccionados.nuevos.${vacante._id}`,
+                                Postulaciones.find({
+                                    $and: [{vacanteId: vacante._id}, {estado: 2}, {selecVistoAgencia: false}]
+                                }), {noReady: true});
                             return Estados.find({_id: vacante.estadoId});
                         }
                     }
@@ -79,6 +88,8 @@ if (Meteor.isServer) {
             children: [
                 {
                     find: function (tienda) {
+                        Counts.publish(this, `count.postuladosNuevos.${tienda._id}`,
+                            Postulaciones.find({$and: [{tiendaId: tienda._id}, {estado: 1}, {postVistoAgencia: false}]}), {noReady: true});
                         return Cadenas.find({_id: tienda.cadenaId});
                     }
                 }

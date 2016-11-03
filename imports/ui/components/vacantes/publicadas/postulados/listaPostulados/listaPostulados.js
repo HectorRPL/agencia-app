@@ -23,7 +23,7 @@ class ListaPostulados {
 
         this.helpers({
             postulados (){
-                return Postulaciones.find();
+                return Postulaciones.find({$and:[{tiendaId: this.tiendaId}, {estado: 1}]});
             }
         });
 

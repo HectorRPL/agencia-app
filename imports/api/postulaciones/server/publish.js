@@ -15,15 +15,6 @@ import {Counts} from 'meteor/tmeasday:publish-counts';
 
 if (Meteor.isServer) {
 
-    Meteor.publish('postulaciones.countPostulaciones', function (vacanteId) {
-        let selector = {$and: [vacanteId, {estado: 1}]};
-        Counts.publish(this, 'numPostulaciones', Postulaciones.find(selector));
-    });
-
-    Meteor.publish('postulaciones.countSeleccionados', function (vacanteId) {
-        let selector = {$and: [vacanteId, {estado: 2}]};
-        Counts.publish(this, 'numSeleccionados', Postulaciones.find(selector));
-    });
 
     Meteor.publishComposite('postulaciones.postuladosOseleccionados', function (tiendaId, estado) {
         const selector = {$and: [tiendaId, estado]};

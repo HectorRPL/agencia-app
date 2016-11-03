@@ -56,7 +56,6 @@ class AgregarTiendas {
     }
 
     agregarResumen() {
-
         const tienda = {
             cadenaId: this.tienda.cadenaId,
             delMpio: this.tienda.delMpio,

@@ -3,17 +3,6 @@
         Vacantes Publicadas.
     </div>
     <div class="panel-body">
-        <!--ul class="list-group">
-            <li class="list-group-item" ng-repeat="vacante in verVacantes.vacantesPublicadas">{{vacante}}
-                <a class="btn close" ui-sref="app.vacantes.detalle({vacante._id})">
-                    <span class="fa fa-trash-o" aria-hidden="true"></span>
-                </a>
-                &nbsp;
-                <a class="btn close" ng-click="openModal(vacante._id)">
-                    <span class="fa fa-search-plus" aria-hidden="true"></span>
-                </a>
-            </li>
-        </ul -->
     </div>
     <div class="table-responsive">
         <table class="table table-hover table-condensed">
@@ -28,22 +17,23 @@
                 <th>Eliminar</th>
             </tr>
             </thead>
-            <tr ng-repeat="vacante in vacantesPublicadas.vacantes"
-                ng-init="puesto = vacante.puesto(); estado = vacante.estado()">
+            <tr ng-repeat="vacante in vacantesPublicadas.vacantes">
                 <td>{{vacante.marca}}</td>
-                <td>{{puesto.descripcion}}</td>
-                <td>{{estado.descripcion}}</td>
+                <td>{{vacante.puesto().descripcion}}</td>
+                <td>{{vacante.estado().descripcion}}</td>
                 <td>{{vacante.fechaCreacion | date : format : dd/MM/YYYY}}</td>
                 <td>
                     <a class="btn" ui-sref="app.vacantes.postulados({vacanteId:vacante._id})">
                         <span class="fa fa-users" aria-hidden="true"></span>
                         <span class="badge">{{vacante.totalPostulados}}</span>
+                        <small class="text-danger" ng-show="vacante.postNuevasAgencia() > 0"><strong>NUEVO</strong></small>
                     </a>
                 </td>
                 <td>
                     <a class="btn" ui-sref="app.vacantes.seleccionados({vacanteId:vacante._id})">
                         <span class="fa fa-users" aria-hidden="true"></span>
                         <span class="badge">{{vacante.totalSeleccionados}}</span>
+                        <small class="text-danger" ng-show="vacante.selecNuevasAgencia() > 0"><strong>NUEVO</strong></small>
                     </a>
                 </td>
                 <td>

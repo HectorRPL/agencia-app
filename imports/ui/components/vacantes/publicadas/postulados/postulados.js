@@ -1,15 +1,15 @@
 /**
  * Created by jvltmtz on 13/10/16.
  */
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-import {Vacantes} from '../../../../../api/vacantes/collection';
-import {Tiendas} from '../../../../../api/tiendas/collection';
-import {name as TabsDetalleVacante} from '../../tabsDetalleVacante/tabsDetalleVacante';
-import {name as ListaPostulados} from './listaPostulados/listaPostulados';
-
-import './postulados.html';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import {Vacantes} from "../../../../../api/vacantes/collection";
+import {Tiendas} from "../../../../../api/tiendas/collection";
+import {name as TabsDetalleVacante} from "../../tabsDetalleVacante/tabsDetalleVacante";
+import {name as ListaPostulados} from "./listaPostulados/listaPostulados";
+import {actualizarPostVistoAgencia} from '../../../../../api/postulaciones/methods.js';
+import "./postulados.html";
 
 class Postulados {
     constructor($scope, $reactive, $stateParams, $state) {
@@ -17,21 +17,34 @@ class Postulados {
         this.titulo = 'vista de vacantes';
         $reactive(this).attach($scope);
         this.$state = $state;
+        this.tiendaId = '';
         this.vacanteId = $stateParams.vacanteId;
         this.subscribe('vacantes.detalle', ()=> [{_id: this.vacanteId}]);
         this.subscribe('vacantes.tiendas', ()=> [{vacanteId: this.vacanteId}]);
 
         this.helpers({
             vacante() {
-                return Vacantes.findOne({
-                    _id: this.vacanteId
-                });
+                return Vacantes.findOne({_id: this.vacanteId});
             },
             tiendas(){
-                return Tiendas.find({});
-            },
+                return Tiendas.find({vacanteId: this.vacanteId});
+            }
         });
+
     }
+
+    actualizarPostulaciones(tiendaId){
+        console.log(tiendaId);
+        actualizarPostVistoAgencia.call({tiendaId: tiendaId}, this.$bindToContext((error, result)=> {
+            if (error) {
+                console.log(error);
+                this.respuesta = this.danger;
+            } else {
+                this.$state.go('app.vacantes.postulados.tienda', {tiendaId: tiendaId});
+            }
+        }));
+    }
+
 }
 
 const name = 'postulados';
