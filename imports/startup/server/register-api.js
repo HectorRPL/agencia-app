@@ -19,3 +19,4 @@ import '../../api/postulaciones/methods';
 import '../../api/postulaciones/server/publish';
 import '../../api/tiendas/server/publish';
 import '../../api/tiendas/methods';
+import '../../api/diasSemanales/server/publish';
