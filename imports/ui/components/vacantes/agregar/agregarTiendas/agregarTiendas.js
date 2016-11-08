@@ -31,7 +31,6 @@ class AgregarTiendas {
             mostrar: false,
             mensaje: ''
         };
-        this.$scope = $scope;
         this.tiendas = [];
         this.totalVacantes = 0;
         this.helpers({
