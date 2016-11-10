@@ -82,10 +82,10 @@
                                            type="text"
                                            placeholder="Del. ó Mpo."
                                            ng-model="agregarTiendas.tienda.delMpio"
-                                           maxlength="20" ng-pattern="/^[a-zA-Z-ñáéíóú\s\d]+$/"
+                                           maxlength="20" ng-pattern="/^[a-zA-Z-ÑñáéíóúÁÉÍÓÚ\s\d]+$/"
                                            minlength="1">
                                 </div>
-                                <div ng-messages="tiendaFrm.estado.$dirty && tiendaFrm.estado.$error" role="alert">
+                                <div ng-messages="tiendaFrm.delMpio.$dirty && tiendaFrm.delMpio.$error" role="alert">
                                     <div ng-message="pattern" style="color:red;">Caracteres invalidos.</div>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                            placeholder="Sucursal"
                                            ng-model="agregarTiendas.tienda.sucursal"
                                            maxlength="20" minlength="1"
-                                           ng-pattern="/^[a-zA-Z-ñáéíóú\s\d]+$/" required>
+                                           ng-pattern="/^[a-zA-Z-ÑñáéíóúÁÉÍÓÚ\s\d]+$/" required>
                                 </div>
                                 <div ng-messages="tiendaFrm.sucursal.$dirty && tiendaFrm.sucursal.$error"
                                      role="alert">
