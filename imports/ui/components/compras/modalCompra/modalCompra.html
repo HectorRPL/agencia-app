@@ -1,9 +1,24 @@
 <div class="modal-body">
-    <div class="row" ng-show="modalCompra.procesoCompleta">
+    <div class="row" ng-show="modalCompra.compraTerminada">
         <div class="col-xs-12">
-            <a class="btn close" ng-click="ticketCompra.cancelar()">
+            <a class="btn close" ng-click="modalCompra.cancelar()">
                 <span class="fa fa-times" aria-hidden="true"></span>
             </a>
         </div>
+    </div>
+    <div class="row" ng-hide="modalCompra.compraTerminada">
+        <div class="col-xs-offset-4 col-xs-4 text-center">
+            <img src="/images/logo.gif" class="img-responsive">
+            <br>
+            <p class="text-info">Procesando Compra.......</p>
+        </div>
+
+    </div>
+    <div class="row" ng-show="modalCompra.compraTerminada">
+        <div class="col-xs-offset-1 col-xs-10">
+            <alertas tipo="modalCompra.tipoMsjCompra" mensaje="modalCompra.msjCompra"></alertas>
+            <alertas tipo="modalCompra.tipoMsjTarjeta" mensaje="modalCompra.msjTarjeta"></alertas>
+        </div>
+        <ticket-compra id="modalCompra.transaccionId" ng-show="modalCompra.tipoMsjCompra === 'success'"> </ticket-compra>
     </div>
 </div>

@@ -41,3 +41,4 @@ reywood:publish-composite
 meteorhacks:aggregate
 tmeasday:publish-counts
 didericis:callpromise-mixin
+email

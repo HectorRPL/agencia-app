@@ -1,17 +1,17 @@
 import {Meteor} from "meteor/meteor";
 import {Accounts} from "meteor/accounts-base";
 import {Roles} from "meteor/alanning:roles";
-import {Agencia} from "../api/agencia/collection";
-import {Creditos} from "../api/creditos/collection";
-import {CarritoCompras} from "../api/compras/carritoCompras/collection";
-import {Direcciones} from "../api/direcciones/collection";
+import {Agencia} from "../agencia/collection";
+import {Creditos} from "../creditos/collection";
+import {CarritoCompras} from "../compras/carritoCompras/collection";
+import {Direcciones} from "../direcciones/collection";
 
 const agenciaRoles = {
     'agencia': ['addReclutador', 'addVacante']
 };
 
 if (Meteor.isServer) {
-    Meteor.publish('users', function () {
+    /*Meteor.publish('users', function () {
 
         return Meteor.users.find({}, {
             fields: {
@@ -19,7 +19,7 @@ if (Meteor.isServer) {
                 username: 1
             }
         });
-    });
+    });*/
 
     Accounts.onCreateUser((options, user) => {
         if (options.profile) {
@@ -63,4 +63,11 @@ if (Meteor.isServer) {
         }
         return user;
     });
+
+    Accounts.emailTemplates.siteName = "Demostradoras con experiencia";
+    Accounts.emailTemplates.from = "Demostradoras con experiencia <demostradoras01@gmail.com>";
+    Accounts.emailTemplates.resetPassword.subject =  function (user) {
+        return "Cómo restablecer su contraseña en Demostradoras con experiencia";
+    };
+
 }

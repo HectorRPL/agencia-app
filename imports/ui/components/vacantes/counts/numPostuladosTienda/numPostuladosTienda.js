@@ -30,7 +30,7 @@ export default angular
         uiRouter
     ])
     .component(name, {
-        templateUrl: `imports/ui/components/vacantes/publicadas/${name}/${name}.html`,
+        templateUrl: `imports/ui/components/vacantes/counts/${name}/${name}.html`,
         controllerAs: name,
         controller: NumPostuladosTienda,
         bindings: {

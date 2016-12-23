@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="col-md-offset-3 col-md-6 col-xs-12 panelRegistro">
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <br>
+        <!-- CORREO / CONTRASEÑA -->
+        <form role="form" class="property-submit-form" id="recuperarFormId" name="recuperarForm" nonvalidate>
+            <!-- CORREO-->
+            <div class="form-group"
+                 ng-class="{ 'has-error' : recuperarForm.usuario.$invalid && !recuperarForm.usuario.$pristine }">
+                <div class="input-group input-group-lg">
+          <span class="input-group-addon span-demos">@
+          </span>
+                    <input id="candidatoEmailID" class="form-control" name="usuario" type="email" placeholder=""
+                           aria-describedby="basic-addon1" required ng-model="recuperar.credentials.email">
+                </div>
+                <div ng-messages="recuperarForm.usuario.$dirty && recuperarForm.usuario.$error" role="alert">
+                    <div ng-message="required" style="color:red">Campo requerido</div>
+                    <div ng-message="email" style="color:red">El formato de email es incorrecto.</div>
+                </div>
+            </div>
+            <!-- BOTON RECUPERAR-->
+            <button class="btn btn-default btn-lg btn-block" type="submit" ng-click="recuperar.recuperar()"
+                    ng-disabled="recuperarForm.$invalid">
+                Recuperar Contraseña
+            </button>
+            <br>
+            <!-- ALERTA: COMBINACIÓN INCORRECTA -->
+            <div class="row">
+                <div class="col-xs-12" ng-show="recuperar.respuesta.mostrar">
+                    <uib-alert type="{{recuperar.respuesta.tipo}}">
+                        <span class="{{recuperar.respuesta.simbolo}}"></span>
+                        <strong>{{recuperar.respuesta.mensaje}}</strong>
+                    </uib-alert>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

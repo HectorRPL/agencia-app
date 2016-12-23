@@ -14,7 +14,7 @@ class NumSeleccionadosNuevosTienda {
         $reactive(this).attach($scope);
         this.subscribe('tiendas.numSeleccionadosNuevos', ()=>[{tiendaId: this.getReactively('tiendaid')}]);
         this.helpers({
-            totalPostuladosNuevosTienda(){
+            totalSeleccionadosNuevosTienda(){
                 return Counts.get(`count.seleccionados.nuevos.tienda.${this.tiendaid}`);
             }
         });
@@ -30,7 +30,7 @@ export default angular
         uiRouter
     ])
     .component(name, {
-        templateUrl: `imports/ui/components/vacantes/publicadas/${name}/${name}.html`,
+        templateUrl: `imports/ui/components/vacantes/counts/${name}/${name}.html`,
         controllerAs: name,
         controller: NumSeleccionadosNuevosTienda,
         bindings: {

@@ -9,122 +9,33 @@
                 <thead>
                 <tr>
                     <th class="text-center">_</th>
+                    <th><small>Candidato</small></th>
+                    <th><small>Perfil</small></th>
                     <th><small>Marca</small></th>
-                    <th><small>Del/Mun</small></th>
                     <th><small>Cadena</small></th>
                     <th><small>Sucursal</small></th>
-                    <th><small>Candidato</small></th>
+                    <th><small>Del/Mun</small></th>
                 </tr>
                 </thead>
                 <!--DATOS DE LA TABLA-->
-                <tr ng-repeat="item in carritoCompras.items">
+                <tr ng-repeat="producto in carritoCompras.productos">
                     <td class="text-center">
-                        <!-- PALOMEAR / DESPALOMEAR -->
-                        <i class="fa fa-square-o fa-2x" aria-hidden="true"></i>
-                        <i class="fa fa-check-square-o fa-2x" style="color:green;" ng-show="postulado.estado==2" aria-hidden="true"></i>
+                        <button class="btn btn-danger btn-sm" ng-click="carritoCompras.eliminiarProducto(producto._id)">
+                            <span class="fa fa-trash-o" aria-hidden="true"></span>
+                        </button>
                     </td>
-                    <td><small>{{ item.marca }}</small></td>
-                    <td><small>{{ item.delMun }}</small></td>
-                    <td><small>{{ item.tienda }}</small></td>
-                    <td><small>{{ item.sucursal }}</small></td>
-                    <td><small>{{ item.candidato }}</small></td>
+                    <td><small>{{producto.postulacion().candidato().nombre}}&nbsp;{{producto.postulacion().candidato().apellidos}}</small></td>
+                    <td><small>{{producto.puesto()}}</small></td>
+                    <td><small>{{producto.postulacion().vacante().marca}}</small></td>
+                    <td><small>{{producto.postulacion().tienda().cadena().descripcion}}</small></td>
+                    <td><small>{{producto.postulacion().tienda().sucursal}}</small></td>
+                    <td><small>{{producto.postulacion().tienda().delMpio}}</small></td>
                 </tr>
             </table>
         </div>
     </div>
-
-    <!-- DESGLOSE, DATOS BANCARIOS Y BOTÓN 'COMPRAR AHORA' -->
-    <div class="col-xs-12 col-md-4">
-        <div class="panel panel-default">
-            <!-- TÍTULO -->
-            <div class="panel-heading">Orden de Compra</div>
-            <!-- DESCRIPCIÓN DEL PRODUCTO -->
-            <div class="panel-body">
-                <p><strong>Descripción: </strong> {{ carritoCompras.cantidad }} {{carritoCompras.descripcion}}</p>
-                <!-- IMPORTE Y PRECIO UNITARIO -->
-                <div class="row">
-                    <div class="col-xs-12-col-sm-8">
-                        <table class="table text-center">
-                            <tr>
-                                <td><strong>Cantidad</strong></td>
-                                <td><strong>Precio/u</strong></td>
-                                <td><strong>Importe</strong></td>
-                            </tr>
-                            <tr>
-                                <td>14</td>
-                                <td>{{carritoCompras.precioUnitario | currency }}</td>
-                                <td>{{ importe = (+carritoCompras.cantidad) * (+carritoCompras.precioUnitario) | currency }}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <hr>
-                <!--EL DESGLOSE-->
-                <div class="row text-right">
-                    <!-- SECCIÓN DEL DESGLOSE -->
-                    <div class="col-sm-5 col-sm-offset-7 col-md-5 col-md-offset-6">
-                        <div class="text-center"><strong >Desglose</strong></div><br>
-                        <!-- SUBTOTAL -->
-                        <div class="row">
-                            <div class="col-xs-7 col-sm-6">
-                                <div>Subtotal:</div>
-                            </div>
-                            <strong class="col-xs-5 col-sm-6">
-                                {{ importe | currency }}
-                            </strong>
-                        </div>
-                        <!-- DESCUENTO -->
-                        <div class="row">
-                            <div class="col-xs-7 col-sm-6" ng-hide="carritoCompras.descuento<=0">
-                                - {{ (carritoCompras.descuento) * 100 }} %desc.:
-                            </div>
-                            <strong class="col-xs-5 col-sm-6" ng-hide="carritoCompras.descuento<=0">
-                                - {{ ( (importe) * (carritoCompras.descuento) )  | currency }}
-                            </strong>
-                            <!-- NUEVO SUB-TOTAL -->
-                            <div class="col-xs-7 col-sm-6" ng-hide="carritoCompras.descuento<=0">
-                                Nvo. SubTotal:
-                            </div>
-                            <strong class="col-xs-5 col-sm-6" ng-hide="carritoCompras.descuento<=0">
-                                {{  (importe) - ( (importe) * (carritoCompras.descuento) )  | currency }}
-                            </strong>
-                        </div>
-                        <!-- IMPORTE IVA -->
-                        <div class="row">
-                            <div class="col-xs-7 col-sm-6">
-                                IVA({{ (carritoCompras.iva) * (100) }}%):
-                            </div>
-                            <strong class="col-xs-5 col-sm-6">
-                                {{ (total) - (importe) - ( (importe) * (carritoCompras.descuento)) | currency }}
-                            </strong>
-                        </div>
-                        <!-- GRAN TOTAL -->
-                        <div class="row">
-                            <div class="col-xs-7 col-sm-6">
-                                TOTAL:
-                            </div>
-                            <strong class="col-xs-5 col-sm-6">
-                                {{ total = ((importe)  - ( (importe) * (carritoCompras.descuento) )) * (1 + (carritoCompras.iva)) | currency}}
-                            </strong>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <!--DATOS BANCARIOS-->
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="text-center"><strong >Tarjeta Bancaria</strong></div><br>
-                        <tarjeta tarjeta="carritoCompras.datosBancarios"></tarjeta>
-                    </div>
-                </div>
-                <!--BOTON PAGAR AHORA-->
-                <button
-                        class="btn btn-primary pull-right"
-                        ng-click="carritoCompras.comprar()"
-                        ng-disabled="detallesCompraFrm.$invalid"> Pagar ahora
-                </button>
-                <br>
-            </div>
-        </div>
-    </div>
+    <orden-compra totalpersonal="carritoCompras.totalPersonalCarrito" numdemos="carritoCompras.numDemosCarrito"
+                  numpromotor="carritoCompras.numPromotorCarrito" numsupervisor="carritoCompras.numSupervisorCarrito"
+                  carritoid="carritoCompras.carritoId">
+    </orden-compra>
 </div>

@@ -25,16 +25,13 @@
                 <td>{{vacante.fechaCreacion | date : format : dd/MM/YYYY}}</td>
                 <td>
                     <a class="btn" ui-sref="app.vacantes.postulados({vacanteId:vacante._id})">
-                        <span class="fa fa-users" aria-hidden="true"></span>
-                        <span class="badge">{{vacante.totalPostulados}}</span>
-                        <small class="text-danger" ng-show="vacante.postNuevasAgencia() > 0"><strong>NUEVO</strong></small>
+                        <num-postulados vacanteid="vacante._id"></num-postulados>
                     </a>
+
                 </td>
                 <td>
                     <a class="btn" ui-sref="app.vacantes.seleccionados({vacanteId:vacante._id})">
-                        <span class="fa fa-users" aria-hidden="true"></span>
-                        <span class="badge">{{vacante.totalSeleccionados}}</span>
-                        <small class="text-danger" ng-show="vacante.selecNuevasAgencia() > 0"><strong>NUEVO</strong></small>
+                        <num-seleccionados vacanteid="vacante._id"></num-seleccionados>
                     </a>
                 </td>
                 <td>

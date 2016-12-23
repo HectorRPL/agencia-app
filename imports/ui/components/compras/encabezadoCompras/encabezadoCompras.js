@@ -5,12 +5,14 @@ import {Counts} from 'meteor/tmeasday:publish-counts';
 import './encabezadoCompras.html';
 
 class EncabezadoCompras {
-    constructor($scope, $reactive, $state) {
+
+    constructor($scope, $reactive) {
         'ngInject';
-        this.subscribe('productosCarrito.count.candidatos');
+        $reactive(this).attach($scope);
+        this.subscribe('productosCarrito.count.candidatos', ()=>[{carritoId:  this.getReactively('carritoid')}]);
         this.helpers({
             numCandidatosCarrito(){
-                return Counts.get('count.candidatos.carrito');
+                return Counts.get(`count.candidatos.carrito.${this.carritoid}`);
             }
         });
     }
@@ -27,5 +29,8 @@ export default angular
     .component(name, {
         templateUrl: `imports/ui/components/compras/${name}/${name}.html`,
         controllerAs: name,
-        controller: EncabezadoCompras
+        controller: EncabezadoCompras,
+        bindings: {
+            carritoid: '<'
+        }
     });

@@ -1,14 +1,16 @@
 /**
  * Created by jvltmtz on 22/07/16.
  */
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-
-import './vacantesPublicadas.html';
-import {Vacantes} from '../../../../../api/vacantes/collection';
-import { name as EliminarVacante } from '../../eliminarVacante/eliminarVacante';
-import { name as Postulados } from '../postulados/postulados';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import "./vacantesPublicadas.html";
+import {Vacantes} from "../../../../../api/vacantes/collection";
+import {name as EliminarVacante} from "../../eliminarVacante/eliminarVacante";
+import {name as NumPostulados} from "../../counts/numPostulados/numPostulados";
+import {name as NumSeleccionados} from "../../counts/numSeleccionados/numSeleccionados";
+import {name as Postulados} from "../postulados/postulados";
+import {name as Seleccinados} from "../seleccionados/seleccionados";
 
 
 class VacantesPublicadas {
@@ -45,10 +47,6 @@ class VacantesPublicadas {
             }
         });
     }
-
-    numSeleccionados(vacanteId){
-
-    }
 }
 
 const name = 'vacantesPublicadas';
@@ -59,7 +57,10 @@ export default angular
         angularMeteor,
         uiRouter,
         EliminarVacante,
-        Postulados
+        Postulados,
+        NumPostulados,
+        NumSeleccionados,
+        Seleccinados
     ])
     .component(name, {
         templateUrl: `imports/ui/components/vacantes/publicadas/${name}/${name}.html`,

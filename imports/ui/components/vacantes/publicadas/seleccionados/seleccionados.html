@@ -1,10 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<encabezado-compras carritoid="seleccionados.carritoCompras._id"></encabezado-compras>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Detalle de la Promocions y tiendas a cubrir.
+            </div>
+            <div class="panel-body">
+                <tabs-detalle-vacante vacante="seleccionados.vacante"></tabs-detalle-vacante>
+                <br>
+                <ol class="breadcrumb">
+                    <li>Número de candidatos seleccionados por tienda:</li>
+                </ol>
+                <div class="list-group">
+                    <a ui-sref="app.vacantes.seleccionados.tienda({tiendaId: tienda._id})" ui-sref-active="active"
+                       ng-repeat="tienda in seleccionados.tiendas" class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <num-seleccionados-tienda tiendaid="tienda._id"></num-seleccionados-tienda>
+                            </div>
+                            <div class="col-xs-10">
+                                <p>
+                                    <small>
+                                        <strong>{{ tienda.cadena().descripcion }}</strong> /
+                                        {{ tienda.delMpio }} /
+                                        {{ tienda.sucursal }}
+                                    </small>&nbsp;&nbsp;
+                                    <num-seleccionados-nuevos-tienda tiendaid="tienda._id"></num-seleccionados-nuevos-tienda>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-7">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Candidatos Seleccionados, para cubrir la vancante:
+            </div>
+            <div class="panel-body">
+                <ui-view></ui-view>
+            </div>
+        </div>
+    </div>
+</div>

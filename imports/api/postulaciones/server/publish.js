@@ -17,7 +17,17 @@ if (Meteor.isServer) {
 
 
     Meteor.publishComposite('postulaciones.postuladosOseleccionados', function (tiendaId, estado) {
-        const selector = {$and: [tiendaId, estado]};
+        let selector = {};
+        if(estado.estado === 1){
+            console.log('Entro al estado ', estado.estado);
+            selector = tiendaId;
+        }else{
+            console.log('Entro al estado ', estado.estado);
+            selector = {$and: [tiendaId, estado]};
+        }
+
+        console.log('Selector ', selector);
+
         if (this.userId) {
             return {
                 find: function () {
@@ -26,13 +36,17 @@ if (Meteor.isServer) {
                 children: [
                     {
                         find: function (postulacion) {
-                            return Candidatos.find({_id: postulacion.candidatoId}, {
-                                fields: {
-                                    nombre: 1,
-                                    apellidos: 1,
-                                    sexo: 1,
-                                }
-                            });
+                            let fields = {
+                                nombre: 1,
+                                apellidos: 1,
+                                sexo: 1,
+                            };
+                            if (postulacion.estado === 2) {
+                                fields.email = 1;
+                                fields.telefono = 1;
+                            }
+                            console.log(fields);
+                            return Candidatos.find({_id: postulacion.candidatoId}, fields);
                         },
                         children: [
                             {

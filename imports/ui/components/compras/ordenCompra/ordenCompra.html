@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<form id="ordenCompraFrmId" role="form" name="ordenCompraFrm" nonvalidate>
+    <!-- DESGLOSE, DATOS BANCARIOS Y BOTÓN 'COMPRAR AHORA' -->
+    <div class="col-xs-12 col-md-4">
+        <div class="panel panel-default">
+            <!-- TÍTULO -->
+            <div class="panel-heading">Orden de Compra</div>
+            <!-- DESCRIPCIÓN DEL PRODUCTO -->
+            <div class="panel-body">
+                <desglose-compra totalpersonal="ordenCompra.totalpersonal" numdemos="ordenCompra.numdemos" numpromotor="ordenCompra.numpromotor"
+                                 numsupervisor="ordenCompra.numsupervisor" total="ordenCompra.montototal">
+                </desglose-compra>
+                <!--DATOS BANCARIOS-->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center"><strong>Tarjeta Bancaria</strong></div>
+                        <br>
+                        <tarjeta datos="ordenCompra.tarjeta"></tarjeta>
+                    </div>
+                </div>
+                <div class="row" ng-show="ordenCompra.errorToken">
+                    <div class="col-xs-12" >
+                        <uib-alert type="danger">
+                            <span class="fa fa-exclamation-triangle"></span>
+                            <strong> {{ordenCompra.errorTokenMsj}} </strong>
+                        </uib-alert>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 pull-left">
+                        <checkbox-Guardar-Tarjeta guardar="ordenCompra.guardarTarjeta"> </checkbox-Guardar-Tarjeta>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--BOTON PAGAR AHORA-->
+                        <button class="btn btn-primary pull-right" ng-click="ordenCompra.generarToken()"
+                                ng-disabled="ordenCompraFrm.$invalid || ordenCompra.totalpersonal==0">
+                            Pagar ahora
+                        </button>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</form>

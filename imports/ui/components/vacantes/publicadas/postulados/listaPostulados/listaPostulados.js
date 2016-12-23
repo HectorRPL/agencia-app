@@ -7,69 +7,86 @@ import uiRouter from 'angular-ui-router';
 import {name as SeleccionarCandidato} from '../seleccionarCandidato/seleccionarCandidato';
 import './listaPostulados.html';
 import {Postulaciones} from '../../../../../../api/postulaciones/collection';
-import {Session} from 'meteor/session';
+import {agregarPostulacion, buscarPostulacion, eliminarPostulacion} from '../../../../../../api/compras/productosCarrito/methods';
+import {actualizarPostVistoAgencia, actualizarSelecVistoAgencia} from '../../../../../../api/postulaciones/methods';
 import {_} from "meteor/underscore";
 
 
 class ListaPostulados {
-    constructor($scope, $reactive, $uibModal, $stateParams) {
+    constructor($scope, $reactive, $stateParams) {
         'ngInject';
         $reactive(this).attach($scope);
         this.tiendaId = $stateParams.tiendaId;
+        this.carritoId = $stateParams.carritoId;
         this.subscribe('postulaciones.postuladosOseleccionados', ()=> [{tiendaId: this.tiendaId}, {estado: 1}]);
         this.titulo = 'vista de vacantes';
-        this.$uibModal = $uibModal;
-        this.seleccionados = Session.get('carritoCompras');
-
+        this.mostrarInfo = true;
         this.helpers({
             postulados (){
-                return Postulaciones.find({$and:[{tiendaId: this.tiendaId}, {estado: 1}]});
+                return Postulaciones.find({tiendaId: this.tiendaId});
             }
         });
 
     }
 
+    agregarCarrito(postulado, puestoId) {
+        agregarPostulacion.call({postulacionId: postulado._id, carritoId: this.carritoId, puestoId: puestoId}, this.$bindToContext((err, result)=>{
+            if(err){
 
-    contactar(postulacionId) {
-        this.$uibModal.open({
-            animation: true,
-            controllerAs: '$ctrl',
-            controller: ['$uibModalInstance', 'id', function ($uibModalInstance, id) {
-                this.id = id;
-                this.close = $uibModalInstance.close;
-                this.dismiss = $uibModalInstance.dismiss;
-            }],
-            template: '<seleccionar-candidato id="$ctrl.id" dismiss="$ctrl.close()"></seleccionar-candidato>',
-            size: '',
-            resolve: {
-                id: function () {
-                    return postulacionId;
-                }
+            }else{
+                postulado.seleccionado = true;
             }
-        });
+        }));
     }
 
-    agregar(postulado) {
-        let index = _.indexOf(this.seleccionados , postulado._id);
-        if (postulado.seleccionado == false && index === -1) {
-            this.seleccionados.push(postulado._id);
-            postulado.seleccionado = true;
-        } else if (postulado.seleccionado && index > -1) {
-            this.seleccionados.splice(index, 1);
-            postulado.seleccionado = false;
-        }
-        Session.set('carritoCompras', this.seleccionados);
+    eliminarCarrito(postulado) {
+        eliminarPostulacion.call({postulacionId: postulado._id, carritoId: this.carritoId}, this.$bindToContext((err, result)=>{
+            if(err){
+
+            }else{
+                postulado.seleccionado = false;
+            }
+        }));
+
     }
 
-    seleccionarParaCarrito(postulado) {
-        console.log('seleccionarParaCarrito ', postulado._id);
-        let index = _.indexOf(Session.get('carritoCompras'), postulado._id);
-        console.log('seleccionarParaCarrito ', index);
-        if (index > -1) {
-            postulado.seleccionado = true;
-        } else {
-            postulado.seleccionado = false;
+
+    existeEnCarroCompras(postulado) {
+        postulado.mostrarInfo = false;
+        buscarPostulacion.call({postulacionId: postulado._id},  this.$bindToContext((err, result)=>{
+            postulado.seleccionado = result;
+
+        }));
+    }
+
+
+    actualizarPostVistoAgencia(postulado) {
+
+        if(!postulado.postVistoAgencia){
+            actualizarPostVistoAgencia.call({postulacionId: postulado._id},
+                this.$bindToContext((err, result)=> {
+
+            }));
         }
+
+    }
+
+    actualizarSelecVistoAgencia(postulado){
+        if(!postulado.selecVistoAgencia){
+            actualizarSelecVistoAgencia.call({postulacionId: postulado._id},
+                this.$bindToContext((err, result)=> {
+
+                }));
+        }
+    }
+
+    verificarActualizacion(postulado){
+        if(postulado.estado === 1){
+            this.actualizarPostVistoAgencia(postulado);
+        }else{
+            this.actualizarSelecVistoAgencia(postulado)
+        }
+        postulado.mostrarInfo = !postulado.mostrarInfo;
     }
 
 
@@ -87,7 +104,10 @@ export default angular
     .component(name, {
         templateUrl: `imports/ui/components/vacantes/publicadas/postulados/${name}/${name}.html`,
         controllerAs: name,
-        controller: ListaPostulados
+        controller: ListaPostulados,
+        bindinds: {
+            carritoid: '<'
+        }
     })
     .config(config);
 
@@ -96,7 +116,7 @@ function config($stateProvider) {
 
     $stateProvider
         .state('app.vacantes.postulados.tienda', {
-            url: '/tienda/:tiendaId',
-            template: '<lista-postulados></lista-postulados>'
+            url: '/tienda/:tiendaId/:carritoId',
+            template: '<lista-postulados></lista-postulados>',
         });
 }

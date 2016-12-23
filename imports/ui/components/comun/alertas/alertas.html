@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<uib-alert type="{{alertas.tipo}}" ng-show="alertas.tipo">
+    <span ng-class="{'fa fa-check': alertas.tipo =='success', 'fa fa-exclamation-triangle': alertas.tipo=='danger',  'fa fa-exclamation-circle': alertas.tipo=='warning'}">
+    </span>
+    <strong> {{alertas.mensaje}} </strong>
+</uib-alert>

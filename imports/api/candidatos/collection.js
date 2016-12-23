@@ -23,7 +23,6 @@ Candidatos.attachSchema(Schema.candidato);
 
 Candidatos.helpers({
     direccion(){
-        const selector = {propietario: this._id};
-        return Direcciones.findOne(selector);
+        return Direcciones.findOne({propietario: this._id});
     }
 });

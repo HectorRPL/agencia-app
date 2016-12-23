@@ -1,0 +1,49 @@
+{
+  propietario: 'FWF4yGNsa2cokjJuz',
+  apiRespuesta: {
+    id: '584ed94bc835f0879701f497',
+    livemode: false,
+    created_at: 1481562443,
+    status: 'paid',
+    currency: 'MXN',
+    description: 'Contactos',
+    reference_id: null,
+    failure_code: null,
+    failure_message: null,
+    monthly_installments: null,
+    device_fingerprint: 'vgzb9x2uw11dzrowcqa5z8ndtee6sn55',
+    object: 'charge',
+    amount: 2000,
+    paid_at: 1481562446,
+    fee: 357,
+    customer_id: '',
+    subscription_id: '',
+    amount_refunded: null
+  },
+  apiIntentos: [],
+  apiMetodoPago: {
+    name: 'asdasd asda sew hjhfg',
+    exp_month: '11',
+    exp_year: '23',
+    auth_code: '679791',
+    object: 'card_payment',
+    type: 'credit',
+    normalized_device_fingerprint: null,
+    last4: '4242',
+    brand: 'visa',
+    issuer: '',
+    account_type: '',
+    country: 'US',
+    fraud_score: 19,
+    fraud_indicators: []
+  },
+  apiDetalles: {
+    name: 'Agencia 00',
+    phone: '0000000000',
+    email: 'logan@x-men.org',
+    line_items: [],
+    coupons: [],
+    object: 'details'
+  },
+  compraExito: true
+}

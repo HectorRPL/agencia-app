@@ -58,14 +58,6 @@ Schema.vacante = new SimpleSchema({
     numVacantes: {
         type: Number,
     },
-    numPostulados: {
-        type: Number,
-        defaultValue: 0,
-    },
-    numSeleccionados: {
-        type: Number,
-        defaultValue: 0,
-    },
     delMpio: {
         type: String,
         max: 30,
@@ -88,8 +80,5 @@ Tiendas.attachSchema(Schema.vacante);
 Tiendas.helpers({
     cadena(){
         return Cadenas.findOne({_id: this.cadenaId});
-    },
-    postulacionesNuevas(){
-        return Counts.get(`count.postuladosNuevos.${this._id}`);
     }
 });

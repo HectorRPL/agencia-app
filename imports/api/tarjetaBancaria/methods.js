@@ -7,8 +7,8 @@ import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
 
 import { TarjetaBancaria } from './collection.js';
 
-export const insert = new ValidatedMethod({
-    name: 'tarjetaBancaria.insert',
+export const inserartTarjeta = new ValidatedMethod({
+    name: 'tarjetaBancaria.inserartTarjeta',
     mixins: [LoggedInMixin],
     checkLoggedInError: {
         error: '403',
@@ -16,75 +16,23 @@ export const insert = new ValidatedMethod({
         reason: 'El usuario no loggeado',
     },
     validate: TarjetaBancaria
-    .simpleSchema()
-    .pick([
-        'nombreApellidos',
-        'tipoTarjeta',
-        'numeroTarjetaBloque1',
-        'numeroTarjetaBloque2',
-        'numeroTarjetaBloque3',
-        'numeroTarjetaBloque4',
-        'fechaExpiracionMes',
-        'fechaExpiracionAnio',
-        'codigoSeguridad'
-    ])
-    .validator({
-        clean: true,
-        filter: false
-    }),
-    run({
-        nombreApellidos,
-        tipoTarjeta,
-        numeroTarjetaBloque1,
-        numeroTarjetaBloque2,
-        numeroTarjetaBloque3,
-        numeroTarjetaBloque4,
-        fechaExpiracionMes,
-        fechaExpiracionAnio,
-        codigoSeguridad
-    }) {
-        const documentoBancario = {
-            propietario: this.userId,
-            nombreApellidos,
-            tipoTarjeta,
-            numeroTarjetaBloque1,
-            numeroTarjetaBloque2,
-            numeroTarjetaBloque3,
-            numeroTarjetaBloque4,
-            fechaExpiracionMes,
-            fechaExpiracionAnio,
-            codigoSeguridad
-        };
-        TarjetaBancaria.insert(documentoBancario);
-    }
-});
-
-export const update = new ValidatedMethod({
-    name: 'tarjetaBancaria.update',
-    mixins: [LoggedInMixin],
-    checkLoggedInError: {
-        error: '403',
-        message: 'Para modificar estos datos necesitas iniciar sesión',
-        reason: 'El usuario no loggeado',
-    },
-    validate: TarjetaBancaria
-    .simpleSchema()
-    .pick([
-        '_id',
-        'nombreApellidos',
-        'tipoTarjeta',
-        'numeroTarjetaBloque1',
-        'numeroTarjetaBloque2',
-        'numeroTarjetaBloque3',
-        'numeroTarjetaBloque4',
-        'fechaExpiracionMes',
-        'fechaExpiracionAnio',
-        'codigoSeguridad'
-    ])
-    .validator({
-        clean: true,
-        filter: false
-    }),
+        .simpleSchema()
+        .pick([
+            '_id',
+            'nombreApellidos',
+            'tipoTarjeta',
+            'numeroTarjetaBloque1',
+            'numeroTarjetaBloque2',
+            'numeroTarjetaBloque3',
+            'numeroTarjetaBloque4',
+            'fechaExpiracionMes',
+            'fechaExpiracionAnio',
+            'codigoSeguridad'
+        ])
+        .validator({
+            clean: true,
+            filter: false
+        }),
     run({
         _id,
         nombreApellidos,
@@ -110,51 +58,10 @@ export const update = new ValidatedMethod({
                 'codigoSeguridad': codigoSeguridad
             },
         });
-    }
+}
 });
 
-export const remove = new ValidatedMethod({
-  name: 'tarjetaBancaria.remove',
-  mixins: [LoggedInMixin],
-  checkLoggedInError: {
-      error: '403',
-      message: 'Para modificar estos datos necesitas iniciar sesión',
-      reason: 'El usuario no loggeado',
-  },
-  validate: TarjetaBancaria
-  .simpleSchema()
-  .pick([
-      '_id',
-      'nombreApellidos',
-      'tipoTarjeta',
-      'numeroTarjetaBloque1',
-      'numeroTarjetaBloque2',
-      'numeroTarjetaBloque3',
-      'numeroTarjetaBloque4',
-      'fechaExpiracionMes',
-      'fechaExpiracionAnio',
-      'codigoSeguridad'
-  ])
-  .validator({ clean: true, filter: false }),
-  run({
-      _id,
-      nombreApellidos,
-      tipoTarjeta,
-      numeroTarjetaBloque1,
-      numeroTarjetaBloque2,
-      numeroTarjetaBloque3,
-      numeroTarjetaBloque4,
-      fechaExpiracionMes,
-      fechaExpiracionAnio,
-      codigoSeguridad
-  }) {
-
-    TarjetaBancaria.remove(_id);
-  },
-});
-
-// Obtiene toda la lista de métodos para la collection tarjeta bancaria
-const TARJETAS_BANCARIA_METODOS = _.pluck([insert, update, remove], 'name');
+const TARJETAS_BANCARIA_METODOS = _.pluck([inserartTarjeta], 'name');
 if (Meteor.isServer) {
     // Solo se permite 5 operaciones por conexión por segundo
     DDPRateLimiter.addRule({

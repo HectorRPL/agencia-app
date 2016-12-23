@@ -1,4 +1,5 @@
 <br>
+<encabezado-compras carritoid="postulados.carritoCompras._id"></encabezado-compras>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-5">
         <div class="panel panel-default">
@@ -12,14 +13,11 @@
                     <li>Número de candidatos postulados por tienda:</li>
                 </ol>
                 <div class="list-group">
-                    <button ng-repeat="tienda in postulados.tiendas" class="list-group-item"
-                       ng-click="postulados.actualizarPostulaciones(tienda._id)">
+                    <a ui-sref="app.vacantes.postulados.tienda({tiendaId: tienda._id, carritoId: postulados.carritoCompras._id})"
+                       ui-sref-active="active" ng-repeat="tienda in postulados.tiendas" class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2">
-                                <span class="badge">
-                                    <i class="fa fa-user fa-lg" aria-hidden="true"></i>
-                                    {{tienda.numPostulados}}
-                                </span>
+                                <num-postulados-tienda tiendaid="tienda._id"></num-postulados-tienda>
                             </div>
                             <div class="col-xs-10">
                                 <p>
@@ -28,13 +26,11 @@
                                         {{ tienda.delMpio }} /
                                         {{ tienda.sucursal }}
                                     </small>&nbsp;&nbsp;
-                                    <small class="text-danger" ng-show="tienda.postulacionesNuevas() > 0">
-                                        <strong>Nueva Postulación</strong>
-                                    </small>
+                                    <num-postulados-nuevos-tienda tiendaid="tienda._id"></num-postulados-nuevos-tienda>
                                 </p>
                             </div>
                         </div>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

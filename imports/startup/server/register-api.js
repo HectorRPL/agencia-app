@@ -1,5 +1,5 @@
 import '../../api/paquetes/server/publish';
-import '../../api/usuarios';
+import '../../api/usuarios/usuarios';
 import '../../api/estados/server/publish';
 import '../../api/agencia/server/publish';
 import '../../api/cadenas/sever/publish';
@@ -7,8 +7,6 @@ import '../../api/tarjetaBancaria/index';
 import '../../api/tarjetaBancaria/methods';
 import '../../api/vacantes/server/publish';
 import '../../api/vacantes/methods';
-import '../../api/braintree/methods';
-import '../../api/braintree/index';
 import '../../api/codigosPostales/methods';
 import '../../api/escuelas/server/publish';
 import '../../api/experiencias/server/publish';
@@ -20,3 +18,11 @@ import '../../api/postulaciones/server/publish';
 import '../../api/tiendas/server/publish';
 import '../../api/tiendas/methods';
 import '../../api/diasSemanales/server/publish';
+import '../../api/compras/productosCarrito/methods';
+import '../../api/compras/productosCarrito/server/publish';
+import '../../api/compras/carritoCompras/server/publish';
+import '../../api/compras/bitacoraCompras/server/publish';
+import '../../api/compras/bitacoraCompras/methods';
+import '../../api/datosFinancieros/server/publish';
+import '../../api/conekta/methods';
+import '../../api/infoEmpresa/server/publish'

@@ -1,14 +1,10 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-import angularUiBootstrap from 'angular-ui-bootstrap';
-import './inicio.html';
-import {
-  name as Registro
-} from '../registro/registro';
-import {
-  name as Login
-} from '../login/login';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import angularUiBootstrap from "angular-ui-bootstrap";
+import "./inicio.html";
+import {name as Registro} from "../registro/registro";
+import {name as Login} from "../login/login";
 
 
 class Inicio {}

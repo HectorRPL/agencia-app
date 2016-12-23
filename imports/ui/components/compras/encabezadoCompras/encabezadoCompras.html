@@ -1,3 +1,4 @@
+
 <div class="row">
     <!--BOTÓN ATRÁS-->
     <div class="col-xs-12 col-sm-3 col-md-2">
@@ -8,14 +9,13 @@
     </div>
     <!--PEQUEÑA DESCRIPCIÓN DE LA COMPRA-->
     <div class="col-xs-12 col-sm-6 col-md-8">
-        <h4 class="text-right">{{verCandidatos.numCandidatosCarrito}}  contactos agregados a carrito.</h4>
+        <h4 class="text-right">{{encabezadoCompras.numCandidatosCarrito}}  contactos agregados a carrito.</h4>
     </div>
     <!--BOTÓN COMPRAR-->
     <div class="col-xs-12 col-sm-3 col-md-2">
         <a class="btn btn-primary pull-right btn-group-justified"
-        ui-sref="">
-            <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>&nbsp
-            Comprar
+           ui-sref="app.compras.carritoCompras({carritoId: encabezadoCompras.carritoid})">
+            Realizar Compra
         </a>
     </div>
 </div>

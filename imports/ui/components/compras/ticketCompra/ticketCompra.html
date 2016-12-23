@@ -1,72 +1,89 @@
-<p><strong>Descripción: </strong> {{ ordenCompra.numCandidatosCarrito }} {{ordenCompra.descripcion}}</p>
-<!-- IMPORTE Y PRECIO UNITARIO -->
-<div class="row">
-    <div class="col-xs-12-col-sm-8">
-        <table class="table text-center">
-            <tr>
-                <td><strong>Cantidad</strong></td>
-                <td><strong>Precio/u</strong></td>
-                <td><strong>Importe</strong></td>
-            </tr>
-            <tr>
-                <td>{{ ordenCompra.numCandidatosCarrito }}</td>
-                <td>{{ordenCompra.datosFinancieros.precioUnitario | currency }}</td>
-                <td>
-                    {{(ordenCompra.datosFinancieros.precioUnitario * ordenCompra.numCandidatosCarrito ) | currency }}
-                </td>
-            </tr>
-        </table>
-    </div>
-    <hr>
-    <!--EL DESGLOSE-->
-    <div class="row text-right">
-        <!-- SECCIÓN DEL DESGLOSE -->
-        <div class="col-sm-5 col-sm-offset-7 col-md-5 col-md-offset-6">
-            <div class="text-center"><strong >Desglose</strong></div><br>
-            <!-- SUBTOTAL -->
-            <div class="row">
-                <div class="col-xs-7 col-sm-6">
-                    <div>Subtotal:</div>
-                </div>
-                <strong class="col-xs-5 col-sm-6">
-                    {{ (ordenCompra.datosFinancieros.precioUnitario * ordenCompra.numCandidatosCarrito ) | currency }}
-                </strong>
-            </div>
-            <!-- DESCUENTO -->
-            <div class="row">
-                <div class="col-xs-7 col-sm-6" ng-show="ordenCompra.datosFinancieros.descuento>0">
-                    - {{ (ordenCompra.datosFinancieros.descuento) * 100 }} %desc.:
-                </div>
-                <strong class="col-xs-5 col-sm-6" ng-show="ordenCompra.datosFinancieros.descuento>0">
-                    - {{ ( (importe) * (ordenCompra.datosFinancieros.descuento) )  | currency }}
-                </strong>
-                <!-- NUEVO SUB-TOTAL -->
-                <div class="col-xs-7 col-sm-6" ng-hide="ordenCompra.descuento<=0">
-                    Nvo. SubTotal:
-                </div>
-                <strong class="col-xs-5 col-sm-6" ng-show="ordenCompra.datosFinancieros.descuento>0">
-                    {{  (importe) - ( (importe) * (ordenCompra.datosFinancieros.descuento) )  | currency }}
-                </strong>
-            </div>
-            <!-- IMPORTE IVA -->
-            <div class="row">
-                <div class="col-xs-7 col-sm-6">
-                    IVA({{ (ordenCompra.datosFinancieros.iva * 100)}}%):
-                </div>
-                <strong class="col-xs-5 col-sm-6">
-                    {{  ((ordenCompra.datosFinancieros.precioUnitario * ordenCompra.numCandidatosCarrito ) * ordenCompra.datosFinancieros.iva) | currency }}
-                </strong>
-            </div>
-            <!-- GRAN TOTAL -->
-            <div class="row">
-                <div class="col-xs-7 col-sm-6">
-                    TOTAL:
-                </div>
-                <strong class="col-xs-5 col-sm-6">
-                    {{(ordenCompra.datosFinancieros.precioUnitario * ordenCompra.numCandidatosCarrito ) * (1 + ordenCompra.iva) | currency}}
-                </strong>
+<style>
+    .font-curier-new{
+        font-family: Courier, monospace;
+    }
+    .ticket-tabla {
+        padding: 0px !important;
+        margin: 1px;
+        line-height: 0px;
+        vertical-align: top;
+        border-top-width: 0px !important;
+        border-top-style: none !important;
+        border-top: none;
+    }
+    .linea-divisoria-ticket{
+        border: 0;
+        height: 5px;
+        border-top: 1px dashed #000000;
+        border-bottom: 1px dashed #000000;
+    }
+    .tipo-fuente-uno{
+        font-weight: bolder ;
+    }
+    .panel-body-ticket{
+        color: #0e2946;
+        margin: 8%;
+        background-color: #fafafa !important;
+    }
+</style>
+<div class="panel panel-default panel-body-ticket">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12 font-curier-new text-center">
+                <small>{{ticketCompra.infoEmpresa.nombreComercial}}</small>
+                <br>
+                <small>{{ticketCompra.infoEmpresa.direccionComercial.calle}} #{{ticketCompra.infoEmpresa.direccionComercial.numExr}},
+                    Col. {{ticketCompra.infoEmpresa.direccionComercial.colonia}}, Del. {{ticketCompra.infoEmpresa.direccionComercial.delMpio}},
+                    {{ticketCompra.infoEmpresa.direccionComercial.estado}}, C.P. {{ticketCompra.infoEmpresa.direccionComercial.codigoPostal}}
+                </small>
+                <br>
+                <br>
+                <!-- Table -->
+                <table class="table">
+                    <tr>
+                        <th class="ticket-tabla tipo-fuente-uno text-center">CANT.</th>
+                        <th class="ticket-tabla tipo-fuente-uno text-center">ARTÍCULO</th>
+                        <th class="ticket-tabla tipo-fuente-uno text-center">PRECIO</th>
+                        <th class="ticket-tabla tipo-fuente-uno text-right">TOTAL</th>
+                    </tr>
+                    <tr class="text-center"
+                        ng-repeat="compra in ticketCompra.datosCompra.apiDetalles.line_items">
+                        <td class="ticket-tabla text-center">{{compra.quantity}}</td>
+                        <td class="ticket-tabla text-center">{{compra.name}}</td>
+                        <td class="ticket-tabla text-center">{{compra.unit_price}}</td>
+                        <td class="ticket-tabla text-right">{{(compra.quantity * compra.unit_price) | currency}}</td>
+                    </tr>
+
+                    <tr class="text-center">
+                        <td class="ticket-tabla text-center"></td>
+                        <td class="ticket-tabla text-left"></td>
+                        <td class="ticket-tabla text-center">TOTAL:</td>
+                        <td class="ticket-tabla text-right"><strong>{{ticketCompra.datosCompra.apiRespuesta.amount | currency}}</strong></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td class="ticket-tabla text-center"></td>
+                        <td class="ticket-tabla text-left"></td>
+                        <td class="ticket-tabla text-center">IVA({{(tickeCompra.datosFinancieros.iva * 100)}}%)</td>
+                        <td class="ticket-tabla text-right">{{(tickeCompra.subTotal * tickeCompra.datosFinancieros.iva)}}</td>
+                    </tr>
+                </table>
+                <hr class="linea-divisoria-ticket">
+                <p>GRACIAS POR SU PREFERENCIA</p>
+                <hr class="linea-divisoria-ticket">
+                <img class="img-responsive center-block" src="images/codigo-barras-ticket.png" style="max-width: 150px;">
+                <p><strong>{{ticketCompra.id}}</strong></p>
+                <p class="tipo-fuente-uno">{{ticketCompra.infoEmpresa.slogan}}</p>
+                <hr class="linea-divisoria-ticket">
+                <p>
+                    ATENCIÓN A CLIENTES <br>
+                    TEL. {{ticketCompra.infoEmpresa.telefono}}
+                </p>
+                <small>
+                    {{ticketCompra.infoEmpresa.mailClientes}}
+                    {{ticketCompra.infoEmpresa.paginaWeb}}
+                </small>
+                <hr class="linea-divisoria-ticket">
             </div>
         </div>
     </div>
-    <hr>
 </div>

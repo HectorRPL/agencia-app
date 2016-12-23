@@ -3,15 +3,15 @@
  */
 import {Mongo} from 'meteor/mongo';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-import postulacionesCounts from './postulacionesCounts';
 import {Candidatos}  from '../candidatos/collection'
 import {Perfiles}  from '../perfiles/collection'
 import {Direcciones}  from '../direcciones/collection'
+import {Vacantes}  from '../vacantes/collection'
+import {Tiendas}  from '../tiendas/collection'
 
 class PostulacionesCollection extends Mongo.Collection {
     update(selector, modifier) {
         const result = super.update(selector, modifier);
-        postulacionesCounts.afterUpdatePostulacion(selector, modifier);
         return result;
     }
 
@@ -94,6 +94,12 @@ Postulaciones.helpers({
     },
     direccionCandidato(){
         return Direcciones.findOne({propietario: this.candidatoId});
+    },
+    vacante(){
+        return Vacantes.findOne({_id: this.vacanteId});
+    },
+    tienda(){
+        return Tiendas.findOne({_id: this.tiendaId});
     }
 
 });

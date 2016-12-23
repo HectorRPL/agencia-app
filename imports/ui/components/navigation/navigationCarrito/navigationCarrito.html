@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<a ui-sref="app.compras.carritoCompras({carritoId: navigationCarrito.carritoid})">
+    <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
+    <span ng-show="navigationCarrito.numCandidatosCarrito > 0" class="badge progress-bar-danger">{{navigationCarrito.numCandidatosCarrito}}</span>
+</a>

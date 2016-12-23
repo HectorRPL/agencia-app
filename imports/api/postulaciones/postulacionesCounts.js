@@ -4,12 +4,12 @@
 import {_} from "meteor/underscore";
 import {Postulaciones} from "./collection.js";
 import {Tiendas} from "../tiendas/collection.js";
-import {check} from 'meteor/check';
+import {Vacantes} from "../vacantes/collection.js";
 
 const postulacionesCounts = {
-    _updatePostuladosTienda(tiendaId) {
+    _updateTiendaCubierta(tiendaId) {
         let tiendaCubierta = false;
-        const selectorPost = {$and: [{tiendaId: tiendaId}]};
+        const selectorPost = {tiendaId: tiendaId};
 
         const countPost = Postulaciones.find(selectorPost).count();
         const tienda = Tiendas.findOne({_id: tiendaId});
@@ -20,33 +20,31 @@ const postulacionesCounts = {
         Tiendas.update({_id: tiendaId},
             {
                 $set: {
-                    cubierta: tiendaCubierta,
-                    numPostulados: countPost,
+                    cubierta: tiendaCubierta
                 }
             });
     },
-    _updateSeleccionadosTienda(){
-        const selectorSelec = {$and: [{tiendaId: tiendaId}, {estado: 2}]};
-        const countSelec = Postulaciones.find(selectorSelec).count();
+    _updateVacanteCubierta(vacanteId){
+        let vacanteCubierta = false;
+        const selectorPost = {vacanteId: vacanteId};
 
-        Tiendas.update({_id: tiendaId},
+        const countPost = Postulaciones.find(selectorPost).count();
+        const tienda = Vacantes.findOne({_id: vacanteId});
+
+        if (tienda.numVacantes === countPost) {
+            vacanteCubierta = true;
+        }
+        Vacantes.update({_id: vacanteId},
             {
                 $set: {
-                    numSeleccionados: countSelec,
+                    cubierta: vacanteCubierta
                 }
             });
     },
     afterInsertPostulacion(postulacion) {
-        this._updatePostuladosTienda(postulacion.tiendaId);
-    },
-    afterUpdatePostulacion(selector, modifier) {
-        check(modifier, {$set: Object});
-        if (_.has(modifier.$set, 'estado')) {
-            Postulaciones.find(selector, {fields: {tiendaId: 1}}).forEach(postulacion => {
-                this._updateSeleccionadosTienda(postulacion.tiendaId);
-            });
-        }
-    },
+        this._updateTiendaCubierta(postulacion.tiendaId);
+        this._updateVacanteCubierta(postulacion.vacanteId);
+    }
 };
 
 export default postulacionesCounts;
