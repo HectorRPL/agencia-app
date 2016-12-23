@@ -3,7 +3,7 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {LoggedInMixin} from "meteor/tunifight:loggedin-mixin";
 import {ProvideMixin} from 'meteor/ziarno:provide-mixin';
 import {Meteor} from 'meteor/meteor';
-import braintree from 'braintree';
+//import braintree from 'braintree';
 
 
 /*if (Meteor.isServer) {

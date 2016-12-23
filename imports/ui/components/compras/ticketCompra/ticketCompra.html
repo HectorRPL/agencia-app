@@ -1,0 +1,72 @@
+<p><strong>Descripción: </strong> {{ ordenCompra.numCandidatosCarrito }} {{ordenCompra.descripcion}}</p>
+<!-- IMPORTE Y PRECIO UNITARIO -->
+<div class="row">
+    <div class="col-xs-12-col-sm-8">
+        <table class="table text-center">
+            <tr>
+                <td><strong>Cantidad</strong></td>
+                <td><strong>Precio/u</strong></td>
+                <td><strong>Importe</strong></td>
+            </tr>
+            <tr>
+                <td>{{ ordenCompra.numCandidatosCarrito }}</td>
+                <td>{{ordenCompra.datosFinancieros.precioUnitario | currency }}</td>
+                <td>
+                    {{(ordenCompra.datosFinancieros.precioUnitario * ordenCompra.numCandidatosCarrito ) | currency }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <!--EL DESGLOSE-->
+    <div class="row text-right">
+        <!-- SECCIÓN DEL DESGLOSE -->
+        <div class="col-sm-5 col-sm-offset-7 col-md-5 col-md-offset-6">
+            <div class="text-center"><strong >Desglose</strong></div><br>
+            <!-- SUBTOTAL -->
+            <div class="row">
+                <div class="col-xs-7 col-sm-6">
+                    <div>Subtotal:</div>
+                </div>
+                <strong class="col-xs-5 col-sm-6">
+                    {{ (ordenCompra.datosFinancieros.precioUnitario * ordenCompra.numCandidatosCarrito ) | currency }}
+                </strong>
+            </div>
+            <!-- DESCUENTO -->
+            <div class="row">
+                <div class="col-xs-7 col-sm-6" ng-show="ordenCompra.datosFinancieros.descuento>0">
+                    - {{ (ordenCompra.datosFinancieros.descuento) * 100 }} %desc.:
+                </div>
+                <strong class="col-xs-5 col-sm-6" ng-show="ordenCompra.datosFinancieros.descuento>0">
+                    - {{ ( (importe) * (ordenCompra.datosFinancieros.descuento) )  | currency }}
+                </strong>
+                <!-- NUEVO SUB-TOTAL -->
+                <div class="col-xs-7 col-sm-6" ng-hide="ordenCompra.descuento<=0">
+                    Nvo. SubTotal:
+                </div>
+                <strong class="col-xs-5 col-sm-6" ng-show="ordenCompra.datosFinancieros.descuento>0">
+                    {{  (importe) - ( (importe) * (ordenCompra.datosFinancieros.descuento) )  | currency }}
+                </strong>
+            </div>
+            <!-- IMPORTE IVA -->
+            <div class="row">
+                <div class="col-xs-7 col-sm-6">
+                    IVA({{ (ordenCompra.datosFinancieros.iva * 100)}}%):
+                </div>
+                <strong class="col-xs-5 col-sm-6">
+                    {{  ((ordenCompra.datosFinancieros.precioUnitario * ordenCompra.numCandidatosCarrito ) * ordenCompra.datosFinancieros.iva) | currency }}
+                </strong>
+            </div>
+            <!-- GRAN TOTAL -->
+            <div class="row">
+                <div class="col-xs-7 col-sm-6">
+                    TOTAL:
+                </div>
+                <strong class="col-xs-5 col-sm-6">
+                    {{(ordenCompra.datosFinancieros.precioUnitario * ordenCompra.numCandidatosCarrito ) * (1 + ordenCompra.iva) | currency}}
+                </strong>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>

@@ -3,6 +3,7 @@ import {Accounts} from "meteor/accounts-base";
 import {Roles} from "meteor/alanning:roles";
 import {Agencia} from "../api/agencia/collection";
 import {Creditos} from "../api/creditos/collection";
+import {CarritoCompras} from "../api/compras/carritoCompras/collection";
 import {Direcciones} from "../api/direcciones/collection";
 
 const agenciaRoles = {
@@ -52,6 +53,10 @@ if (Meteor.isServer) {
                         throw new Meteor.Error('No se puedo crear la agencia.', 'creditos-no-creados');
                     }
                 });
+                let carritoNuevo = {
+                    propietario: agencia._id,
+                };
+                CarritoCompras.insert(carritoNuevo);
                 user.roles = agenciaRoles;
                 user.username = agencia.nombre;
             }
