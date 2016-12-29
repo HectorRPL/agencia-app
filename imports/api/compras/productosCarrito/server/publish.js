@@ -5,10 +5,10 @@ import {Meteor} from 'meteor/meteor';
 import {ProductosCarrito} from '../collection';
 import {Postulaciones} from '../../../postulaciones/collection';
 import {Candidatos} from '../../../candidatos/collection';
-import {Puestos} from '../../../puestos/collection';
+import {Puestos} from '../../../catalogos/puestos/collection';
 import {Vacantes} from '../../../vacantes/collection';
 import {Tiendas} from '../../../tiendas/collection';
-import {Cadenas} from '../../../cadenas/collection';
+import {Cadenas} from '../../../catalogos/cadenas/collection';
 
 if (Meteor.isServer) {
     Meteor.publish('productosCarrito.count.candidatos', function (carritoId) {
@@ -83,8 +83,6 @@ if (Meteor.isServer) {
                 },
                 {
                     find: function (producto) {
-                        console.log('puestoId ', producto.puestoId);
-                        console.log('Puesto ', Puestos.findOne({_id: producto.puestoId}));
                         return Puestos.find({_id: producto.puestoId});
                     }
                 }

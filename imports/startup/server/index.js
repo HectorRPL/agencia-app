@@ -1,2 +1,4 @@
-import './security.js';
-import './register-api.js';
+import './security';
+import './register-api';
+import  './fixtures';
+import  './catalogos';

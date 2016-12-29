@@ -1,13 +1,8 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import angularMessages from 'angular-messages';
-
-import { Meteor } from 'meteor/meteor';
-import { name as Tarjeta } from '../tarjeta/tarjeta';
-import './editarTarjeta.html';
-import {
-    update
-} from '../../../../api/tarjetaBancaria/methods.js';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import angularMessages from "angular-messages";
+import "./editarTarjeta.html";
+import {update} from "../../../../api/tarjetaBancaria/methods.js";
 
 class EditarTarjeta {
   constructor($scope, $reactive){

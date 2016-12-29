@@ -1,8 +1,8 @@
 import {Mongo} from 'meteor/mongo';
-import {Puestos} from '../puestos/collection';
-import {Escuelas} from '../escuelas/collection';
-import {Experiencias} from '../experiencias/collection';
-import {Habilidades} from '../habilidades/collection';
+import {Puestos} from '../catalogos/puestos/collection';
+import {Escuelas} from '../catalogos/escuelas/collection';
+import {Experiencias} from '../catalogos/experiencias/collection';
+import {Habilidades} from '../catalogos/habilidades/collection';
 
 export const Perfiles = new Mongo.Collection('perfiles');
 

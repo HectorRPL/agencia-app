@@ -31,13 +31,15 @@ class Recuperar {
     recuperar() {
         this.respuesta.mostrar = 'false';
         Accounts.forgotPassword(this.credentials, this.$bindToContext((err)=> {
-            this.respuesta.mostrar = 'true';
             if (err) {
                 this.respuesta.tipo = 'danger';
                 this.respuesta.simbolo = 'fa fa-exclamation-triangle';
                 if (err.error == '403') {
                     this.respuesta.mensaje = `El usuario ${this.credentials.email} no se encuentra registrado.`
+                }else {
+                    this.respuesta.mensaje = 'El correo no pudó ser enviado, verifique su dirección o configuración de su correo.';
                 }
+                this.respuesta.mostrar = 'true';
             } else {
                 this.respuesta.tipo = 'success';
                 this.respuesta.mensaje = `Para recuperar su contraseña la instrucciones fueron enviadas ${this.credentials.email}`

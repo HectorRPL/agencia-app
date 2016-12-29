@@ -1,7 +1,7 @@
 import angular from "angular";
 import angularMeteor from "angular-meteor";
 import "./elegirCadena.html";
-import {Cadenas} from "../../../../../api/cadenas/collection";
+import {Cadenas} from "../../../../../api/catalogos/cadenas/collection";
 
 
 class ElegirCadenas {

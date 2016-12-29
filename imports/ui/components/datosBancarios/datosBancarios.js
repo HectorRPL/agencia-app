@@ -1,12 +1,12 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-import { Meteor } from 'meteor/meteor';
-import './datosBancarios.html';
-import { TarjetaBancaria } from '../../../api/tarjetaBancaria';
-import { name as EditarTarjeta } from './editarTarjeta/editarTarjeta';
-import { name as EliminarTarjeta } from './eliminarTarjeta/eliminarTarjeta';
-import { name as AgregarTarjeta } from './agregarTarjeta/agregarTarjeta';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import {Meteor} from "meteor/meteor";
+import "./datosBancarios.html";
+import {TarjetaBancaria} from "../../../api/tarjetaBancaria/collection";
+import {name as EditarTarjeta} from "./editarTarjeta/editarTarjeta";
+import {name as EliminarTarjeta} from "./eliminarTarjeta/eliminarTarjeta";
+import {name as AgregarTarjeta} from "./agregarTarjeta/agregarTarjeta";
 
 
 class DatosBancarios {
@@ -46,8 +46,8 @@ export default angular
 function config($stateProvider) {
   'ngInject';
   $stateProvider
-    .state('app.datosBancarios', {
-      url: '/datosbancarios',
+    .state('app.tarjetas', {
+      url: '/tarjetas',
       template: '<datos-bancarios></datos-bancarios>',
       resolve: {
         currentUser($q) {

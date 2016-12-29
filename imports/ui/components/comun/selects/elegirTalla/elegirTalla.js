@@ -1,6 +1,6 @@
 import angular from "angular";
 import angularMeteor from "angular-meteor";
-import {Tallas} from "../../../../../api/tallas/collection";
+import {Tallas} from "../../../../../api/catalogos/tallas/collection";
 import "./elegirTalla.html";
 
 class ElegirTalla {

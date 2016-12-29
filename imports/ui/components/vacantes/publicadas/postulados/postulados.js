@@ -40,7 +40,6 @@ class Postulados {
     }
 
     actualizarPostulaciones(tiendaId, carritoId) {
-        console.log('actualizarPostulaciones el front');
         actualizarPostVistoAgencia.call({tiendaId: tiendaId}, this.$bindToContext((error, result)=> {
             if (error) {
                 console.log(error);

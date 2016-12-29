@@ -1,8 +1,8 @@
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Roles} from "meteor/alanning:roles";
-import {Puestos} from "../puestos/collection";
-import {Estados} from "../estados/collection";
+import {Puestos} from "../catalogos/puestos/collection";
+import {Estados} from "../catalogos/estados/collection";
 import {Counts} from 'meteor/tmeasday:publish-counts';
 
 const permisos = ['addVacante'];

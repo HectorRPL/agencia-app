@@ -7,7 +7,7 @@ import {name as Alertas} from '../../comun/alertas/alertas';
 import {name as TicketCompra} from '../ticketCompra/ticketCompra';
 import './modalCompra.html';
 import {realizarCargo, guardarTarjeta} from '../../../../api/conekta/methods';
-import {insertarCompra} from '../../../../api/compras/bitacoraCompras/methods';
+import {insertarCompra, enviarTicket} from '../../../../api/compras/bitacoraCompras/methods';
 import {eliminarTodos} from '../../../../api/compras/productosCarrito/methods';
 import {actualizarSeleccionadas} from '../../../../api/postulaciones/methods';
 
@@ -22,7 +22,8 @@ class ModalCompra {
     }
 
     $onChanges() {
-        this.comprar();
+        //this.comprar();
+        this.enviarCorreo();
     }
 
     cancelar() {
@@ -30,7 +31,7 @@ class ModalCompra {
     }
 
     comprar() {
-        let  tmpInicio = new Date().getMilliseconds();
+        let tmpInicio = new Date().getMilliseconds();
         realizarCargo.call({
                 apiTokenId: this.datoscompra.tokenId,
                 monto: this.datoscompra.montoTotal,
@@ -57,14 +58,16 @@ class ModalCompra {
                     console.log('Exito en millis ', new Date().getMilliseconds() - tmpInicio);
                 }
                 this.agregarBitacoraCompra(res, compraExito);
-            console.log('FInal en millis ', new Date().getMilliseconds() - tmpInicio);
+                console.log('FInal en millis ', new Date().getMilliseconds() - tmpInicio);
             })
         );
     }
 
     agregarBitacoraCompra(res, compraExito) {
-        insertarCompra.call({apiRespuesta: res, compraExito: compraExito,
-            tokenPeticion: this.datoscompra.tokenId}, this.$bindToContext((err, result) => {
+        insertarCompra.call({
+            apiRespuesta: res, compraExito: compraExito,
+            tokenPeticion: this.datoscompra.tokenId
+        }, this.$bindToContext((err, result) => {
             this.transaccionId = result;
             if (err) {
                 console.log('Error al agregarBitacoraCompra', err);
@@ -107,6 +110,16 @@ class ModalCompra {
             this.compraTerminada = true;
             this.tipoMsjCompra = 'success';
             this.msjCompra = 'Gracias por comprar en Demostradoras con Experiencia.';
+        }));
+    }
+
+    enviarCorreo() {
+        enviarTicket.call({ticketId: 'kAEMkmbufNTonegsY'}, this.$bindToContext((err, result)=> {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(result);
+            }
         }));
     }
 

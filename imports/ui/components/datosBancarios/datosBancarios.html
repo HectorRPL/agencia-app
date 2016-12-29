@@ -5,7 +5,14 @@
   </div>
 </div>
 <div class="panel panel-default">
-  <div
+    <ul class="list-group">
+        <li class="list-group-item">
+            <i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;&nbsp;
+            {{datosBancarios.tarjeta.tipoTarjeta}}&nbsp;&nbsp;XXXX-XXXX-XXXX-{{datosBancarios.tarjeta.numTarjeta}}&nbsp;
+            Fecha Expiración: {{datosBancarios.tarjeta.mesExpiracion}}/{{datosBancarios.tarjeta.anioExpiracion}}
+        </li>
+    </ul>
+  <!-- div
   class="panel-heading">Mi Tarjeta Bancaria
     <eliminar-tarjeta
     ng-show="datosBancarios.tarjeta._id"
@@ -21,5 +28,5 @@
       ng-show="datosBancarios.tarjeta._id"
       tarjeta="datosBancarios.tarjeta">
     </editar-tarjeta>
-  </div>
+  </div -->
 </div>

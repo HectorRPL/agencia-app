@@ -1,10 +1,7 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-
-import './eliminarTarjeta.html';
-
-import { TarjetaBancaria } from '../../../../api/tarjetaBancaria/index.js';
-import { remove } from '../../../../api/tarjetaBancaria/methods.js';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import {remove} from "../../../../api/tarjetaBancaria/methods.js";
+import "./eliminarTarjeta.html";
 
 
 class EliminarTarjeta {

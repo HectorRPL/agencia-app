@@ -1,6 +1,6 @@
 import angular from "angular";
 import angularMeteor from "angular-meteor";
-import {Escuelas} from "../../../../../api/escuelas/collection.js";
+import {Escuelas} from "../../../../../api/catalogos/escuelas/collection.js";
 import "./elegirEscuela.html";
 
 class ElegirEscuela {

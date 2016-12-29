@@ -1,7 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import './elegirEstado.html';
-import {Estados} from '../../../../../api/estados/collection';
+import {Estados} from '../../../../../api/catalogos/estados/collection';
 
 
 class ElegirEstados {

@@ -6,12 +6,14 @@ import "./agregarTiendas.html";
 import {name as ElegirCadenas} from "../../../comun/selects/elegirCadena/elegirCadena";
 import {insertVacante} from "../../../../../api/vacantes/methods";
 import {insertTienda} from "../../../../../api/tiendas/methods";
-import {Cadenas} from "../../../../../api/cadenas/collection";
+import {Cadenas} from "../../../../../api/catalogos/cadenas/collection";
 import {Session} from "meteor/session";
 import {ValidationError} from "meteor/mdg:validation-error";
-import {Estados} from "../../../../../api/estados/collection";
-import {Puestos} from "../../../../../api/puestos/collection";
-import {Escuelas} from "../../../../../api/escuelas/collection";
+import {Estados} from "../../../../../api/catalogos/estados/collection";
+import {Puestos} from "../../../../../api/catalogos/puestos/collection";
+import {Escuelas} from "../../../../../api/catalogos/escuelas/collection";
+import {Habilidades} from "../../../../../api/catalogos/habilidades/collection";
+import {Experiencias} from "../../../../../api/catalogos/experiencias/collection";
 
 class AgregarTiendas {
     constructor($scope, $reactive) {
@@ -20,9 +22,13 @@ class AgregarTiendas {
         this.subscribe('estados');
         this.subscribe('puestos');
         this.subscribe('escuelas');
+        this.subscribe('habilidades');
+        this.subscribe('experiencias');
         this.numVacantes = 5;
         this.tienda = {};
-        this.vacante = Session.get('vacanteParaPub');
+        this.vacante = Session.get('datosVacante');
+        this.habVacante = Session.get('habilidadesVacante');
+        this.diasLaborar = Session.get('diasVacante');
         this.respuestaExito = {
             mostrar: false,
             mensaje: ''
@@ -42,6 +48,12 @@ class AgregarTiendas {
             },
             escuelaDesc(){
                 return Escuelas.findOne({_id: this.vacante.perfil.escolaridad});
+            },
+            habNecesarias(){
+                return Habilidades.find({_id: {$in: this.habVacante}});
+            },
+            expNecesaria(){
+                return Experiencias.findOne({_id: this.vacante.perfil.experiencia.descripcion});
             }
         });
     }
@@ -80,9 +92,12 @@ class AgregarTiendas {
 
     agregarVacante() {
         const vacante = angular.copy(this.vacante);
+        this.vacante.perfil.habilidades.listado = this.habVacante;
+        this.vacante.horarios.dias = this.diasLaborar;
         insertVacante.call(vacante, this.$bindToContext((error, result)=> {
             if (error) {
-                console.log(error);
+                this.msjAlerta = 'Error al agregar un vacante, porfavor intentelo mas tarde.';
+                this.tipoAlerta = 'danger';
             } else {
                 this.agregarTiendas(result);
             }
@@ -96,9 +111,9 @@ class AgregarTiendas {
         for (let i = 0; i < this.tiendas.length; i++) {
             let tempItem = angular.copy(this.tiendas[i]);
             tempItem.vacanteId = vacanteId;
+            tempItem.numVacantes = this.numVacantes;
             insertTienda.call(tempItem, this.$bindToContext((error) => {
                 if (error) {
-                    console.log(error);
                     this.tiendas[i].error = true;
                     numErrores++;
                 } else {
@@ -115,6 +130,7 @@ class AgregarTiendas {
                 this.respuestaError.mensaje = `Tiendas NO regsitradas ${numErrores}.`;
             }));
         }
+        this.limpiarSesion();
     }
 
     limpiar() {
@@ -122,6 +138,12 @@ class AgregarTiendas {
         this.totalVacantes = 0;
         this.respuestaExito.mostrar = false;
         this.respuestaError.mostrar = false;
+    }
+
+    limpiarSesion() {
+        Session.clear('datosVacante');
+        Session.clear('habilidadesVacante');
+        Session.clear('diasVacante');
     }
 
 }

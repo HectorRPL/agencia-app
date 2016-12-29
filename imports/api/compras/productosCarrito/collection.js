@@ -4,7 +4,7 @@
 import { Mongo } from 'meteor/mongo';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {Postulaciones} from '../../postulaciones/collection';
-import {Puestos} from '../../puestos/collection';
+import {Puestos} from '../../catalogos/puestos/collection';
 
 export const ProductosCarrito = new Mongo.Collection('productosCarrito');
 

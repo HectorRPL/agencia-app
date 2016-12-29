@@ -6,7 +6,7 @@ import angularMeteor from 'angular-meteor';
 import './ticketCompra.html';
 import {BitacoraCompras} from '../../../../api/compras/bitacoraCompras/collection';
 import {DatosFinancieros} from '../../../../api/datosFinancieros/collection';
-import {InfoEmpresa} from '../../../../api/infoEmpresa/collection';
+import {InfoEmpresa} from '../../../../api/catalogos/infoEmpresa/collection';
 
 class TicketCompra {
     constructor($scope, $reactive) {

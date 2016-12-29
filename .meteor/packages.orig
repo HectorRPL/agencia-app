@@ -41,6 +41,8 @@ reywood:publish-composite
 meteorhacks:aggregate
 tmeasday:publish-counts
 didericis:callpromise-mixin
+<<<<<<< HEAD
 email
+=======
 u2622:persistent-session
-meteorhacks:ssr
+>>>>>>> e0d5117b4ea3f899fa200e703b8f086826687fe0

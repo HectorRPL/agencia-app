@@ -145,8 +145,9 @@
                 <div class="col-xs-12 col-sm-12 col-md-8" ng-show="agregarVacante.vacante.perfil.habilidades.requerida">
                     <div class="form-group"
                          ng-class="{ 'has-error' : vacanteFrm.textHabilidades.$invalid && !vacanteFrm.textHabilidades.$pristine}">
-                        <checkbox-habilidades
-                                habilidades="agregarVacante.vacante.perfil.habilidades.listado"></checkbox-habilidades>
+                        <checkbox-habilidades habseleccionadas="agregarVacante.listadoHab"
+                                              otrahabilidada="agregarVacante.vacante.perfil.habilidades.otra">
+                        </checkbox-habilidades>
                         <div ng-messages="vacanteFrm.textHabilidades.$dirty && vacanteFrm.textHabilidades.$error"
                              role="alert">
                             <div ng-message="required" style="color:red;">Campo requerido</div>
@@ -165,7 +166,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-8">
                     <!-- DIAS A LABORAR -->
-                    <checkbox-dias dias="agregarVacante.vacante.horarios.dias"></checkbox-dias>
+                    <checkbox-dias diasseleccionados="agregarVacante.listadoDias"></checkbox-dias>
                 </div>
                 <!-- Horario -->
                 <div class="col-xs-12 col-sm-12 col-md-4">

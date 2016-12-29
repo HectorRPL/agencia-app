@@ -1,9 +1,9 @@
 import {Meteor} from "meteor/meteor";
 import {Vacantes} from "../collection";
 import {Agencia} from "../../agencia/collection";
-import {Cadenas} from "../../cadenas/collection";
-import {Estados} from "../../estados/collection";
-import {Puestos} from "../../puestos/collection";
+import {Cadenas} from "../../catalogos/cadenas/collection";
+import {Estados} from "../../catalogos/estados/collection";
+import {Puestos} from "../../catalogos/puestos/collection";
 import {Tiendas} from "../../tiendas/collection";
 import {Postulaciones} from "../../postulaciones/collection";
 

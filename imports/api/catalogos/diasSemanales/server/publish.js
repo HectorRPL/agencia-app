@@ -6,7 +6,6 @@ import {DiasSemanales} from "../collection";
 
 if (Meteor.isServer) {
     Meteor.publish('diasSemanales', () => {
-        const selector = {};
-        return DiasSemanales.find(selector);
+        return DiasSemanales.find();
     });
 }

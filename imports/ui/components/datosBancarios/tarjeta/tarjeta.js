@@ -78,10 +78,6 @@ export default angular
             require: '?ngModel',
             link: function (scope, element, attrs, ngModel) {
                 ngModel.$asyncValidators.fechaIncorrecta = function (modelValue, viewValue) {
-                    console.log({
-                        mesExpiracion: scope.tarjeta.datos.mesExpiracion,
-                        anioExpiracion: modelValue || viewValue
-                    });
                     return validarFechaExpiracion.callPromise({
                         mesExpiracion: scope.tarjeta.datos.mesExpiracion,
                         anioExpiracion: modelValue || viewValue

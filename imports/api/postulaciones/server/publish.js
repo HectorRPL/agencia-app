@@ -5,10 +5,10 @@ import {Meteor} from 'meteor/meteor';
 import {Postulaciones} from '../collection';
 import {Direcciones} from '../../direcciones/collection';
 import {Perfiles} from '../../perfiles/collection';
-import {Escuelas} from '../../escuelas/collection';
-import {Experiencias} from '../../experiencias/collection';
-import {Habilidades} from '../../habilidades/collection';
-import {Puestos} from '../../puestos/collection';
+import {Escuelas} from '../../catalogos/escuelas/collection';
+import {Experiencias} from '../../catalogos/experiencias/collection';
+import {Habilidades} from '../../catalogos/habilidades/collection';
+import {Puestos} from '../../catalogos/puestos/collection';
 import {Candidatos} from '../../candidatos/collection';
 import {Counts} from 'meteor/tmeasday:publish-counts';
 
@@ -19,14 +19,10 @@ if (Meteor.isServer) {
     Meteor.publishComposite('postulaciones.postuladosOseleccionados', function (tiendaId, estado) {
         let selector = {};
         if(estado.estado === 1){
-            console.log('Entro al estado ', estado.estado);
             selector = tiendaId;
         }else{
-            console.log('Entro al estado ', estado.estado);
             selector = {$and: [tiendaId, estado]};
         }
-
-        console.log('Selector ', selector);
 
         if (this.userId) {
             return {

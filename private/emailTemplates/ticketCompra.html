@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Ticket de Compra</title>
+    <link href="../../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="mailStyles.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
-$END$
+<div class="panel panel-default panel-body-ticket">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12 font-curier-new text-center">
+                <small>{{infoEmpresa.nombreComercial}}</small>
+                <br>
+                <small>{{infoEmpresa.direccionComercial.calle}} #{{infoEmpresa.direccionComercial.numExr}},
+                    Col. {{infoEmpresa.direccionComercial.colonia}}, Del. {{infoEmpresa.direccionComercial.delMpio}},
+                    {{infoEmpresa.direccionComercial.estado}}, C.P. {{infoEmpresa.direccionComercial.codigoPostal}}
+                </small>
+                <br>
+                <br>
+                <!-- Table -->
+                <table class="table">
+                    <tr>
+                        <th class="ticket-tabla tipo-fuente-uno text-center">CANT.</th>
+                        <th class="ticket-tabla tipo-fuente-uno text-center">ARTÍCULO</th>
+                        <th class="ticket-tabla tipo-fuente-uno text-center">PRECIO</th>
+                        <th class="ticket-tabla tipo-fuente-uno text-right">TOTAL</th>
+                    </tr>
+                    <!-- tr class="text-center"
+                        ng-repeat="compra in datosCompra.apiDetalles.line_items">
+                        <td class="ticket-tabla text-center">{{compra.quantity}}</td>
+                        <td class="ticket-tabla text-center">{{compra.name}}</td>
+                        <td class="ticket-tabla text-center">{{compra.unit_price}}</td>
+                        <td class="ticket-tabla text-right">{{(compra.quantity * compra.unit_price)}}</td>
+                    </tr -->
+
+                    <tr class="text-center">
+                        <td class="ticket-tabla text-center"></td>
+                        <td class="ticket-tabla text-left"></td>
+                        <td class="ticket-tabla text-center">TOTAL:</td>
+                        <td class="ticket-tabla text-right"><strong>{{datosCompra.apiRespuesta.amount }}</strong></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td class="ticket-tabla text-center"></td>
+                        <td class="ticket-tabla text-left"></td>
+                        <td class="ticket-tabla text-center">IVA({{datosFinancieros.iva}}%)</td>
+                        <td class="ticket-tabla text-right">{{datosFinancieros.iva}}</td>
+                    </tr>
+                </table>
+                <hr class="linea-divisoria-ticket">
+                <p>GRACIAS POR SU PREFERENCIA</p>
+                <hr class="linea-divisoria-ticket">
+                <img class="img-responsive center-block" src="images/codigo-barras-ticket.png" style="max-width: 150px;">
+                <p><strong>{{id}}</strong></p>
+                <p class="tipo-fuente-uno">{{infoEmpresa.slogan}}</p>
+                <hr class="linea-divisoria-ticket">
+                <p>
+                    ATENCIÓN A CLIENTES <br>
+                    TEL. {{infoEmpresa.telefono}}
+                </p>
+                <small>
+                    {{infoEmpresa.mailClientes}}
+                    {{infoEmpresa.paginaWeb}}
+                </small>
+                <hr class="linea-divisoria-ticket">
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

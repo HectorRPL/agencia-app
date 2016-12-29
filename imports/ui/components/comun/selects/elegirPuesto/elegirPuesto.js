@@ -1,6 +1,6 @@
 import angular from "angular";
 import angularMeteor from "angular-meteor";
-import {Puestos} from "../../../../../api/puestos/collection";
+import {Puestos} from "../../../../../api/catalogos/puestos/collection";
 import "./elegirPuesto.html";
 
 class ElegirPuesto {

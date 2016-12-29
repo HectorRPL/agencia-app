@@ -1,11 +1,24 @@
 <div class="row">
-    <div ng-repeat="day in checkboxDias.dias" class="col-xs-6 col-sm-3 col-md-3">
+    <div ng-repeat="dia in checkboxDias.diasSemana" class="col-xs-6 col-sm-3 col-md-3"
+         ng-init="checkboxDias.activar(dia, $index)">
         <div class="checkbox">
             <div class="btn-group btn-group-justified">
-                <label class="btn btn-default" uib-btn-checkbox name="{{day.nombre}}" id="{{day.id}}"
-                       ng-model="day.activo"
-                       ng-checked="checkboxDias.disabledCheks" ng-disabled="checkboxDias.disabledCheks && $index<7"
-                       ng-click="checkboxDias.validarDiario($index, day.activo)">{{day.nombre}}</label>
+                <label class="btn btn-default" uib-btn-checkbox name="{{dia.descripcion}}" id="{{dia._id}}"
+                       ng-model="dia.activo" ng-checked="checkboxDias.disabledCheks"
+                       ng-disabled="checkboxDias.disabledCheks"
+                       ng-click="checkboxDias.agregarOEliminar(dia)">{{dia.descripcion}}</label>
+            </div>
+        </div>
+    </div>
+    <!-- Diario -->
+    <div class="col-xs-12 col-sm-3">
+        <div class="checkbox">
+            <div class="btn-group btn-group-justified">
+                <label id="diarioId" class="btn btn-default" name="{{checkboxDias.diario.descripcion}}"
+                       id="{{checkboxDias.diario._id}}" uib-btn-checkbox ng-model="checkboxDias.diario.activo"
+                       ng-click="checkboxDias.validarDiario()">
+                    {{checkboxDias.diario.descripcion}}
+                </label>
             </div>
         </div>
     </div>

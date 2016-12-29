@@ -48,7 +48,6 @@ class Registro {
         Accounts.createUser(this.credentials,
             this.$bindToContext((err) => {
                 if (err) {
-                    console.log('err', err);
                     this.error = err;
                     if (this.error.error === 403) {
                         this.error.mensaje = `El CORREO ${this.credentials.email} y/o USUARIO ya se encuentra registrado`;

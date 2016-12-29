@@ -26,16 +26,16 @@
                         <strong>Escolaridad:</strong>
                         {{agregarTiendas.escuelaDesc.descripcion}} <br>
                         <strong>Habilidades:</strong>
-                        Facilidad de Palabra, Buena Presentación, Disp. de Trasladarse, Gusto por las Ventas <br>
+                        <span ng-repeat="habilidad in agregarTiendas.habNecesarias">{{habilidad.descripcion}},&nbsp;</span><br>
                         <strong>Exp. Descripcion:</strong>
-                        Alimentos y {{agregarTiendas.vacante.perfil.experiencia.otra}}
+                        <span></span>{{agregarTiendas.expNecesaria.descripcion}},&nbsp;&nbsp;{{agregarTiendas.vacante.perfil.experiencia.otra}}
                     </uib-tab>
                     <!-- TAB HORARIOS-->
                     <uib-tab index="2" heading="Horario">
                         <br>
                         <dl class="dl-horizontal">
                             <strong>Dias a laborar:</strong>
-                            <span ng-repeat="dia in agregarTiendas.vacante.horarios.dias"> {{ dia.id }} </span> <br>
+                            <span> {{ agregarTiendas.diasLaborar.toString() }} </span> <br>
                             <strong>Horario:</strong>
                             de {{agregarTiendas.vacante.horarios.hrsInicio | date : "shortTime" }} a
                             {{agregarTiendas.vacante.horarios.hrsFin | date : "shortTime" }} <br>
@@ -149,6 +149,9 @@
             </div>
             <!--PANEL BODY -->
         </div>
+        <div class="col-sm-12 col-sm-12 col-md-offset-3 col-md-offset-6">
+            <alertas tipo="agregarTiendas.tipoAlerta" mensaje="agregarTiendas.msjAlerta"></alertas>
+        </div>
         <!--PANEL PANEL-DEFAULT -->
     </div>
     <ng-form name="vacanteXtiendaFrm">
@@ -203,7 +206,7 @@
                                 <input class="form-control" id="numeroVacantesID" name="numeroVacantes" type="number"
                                        min="1" max="5"
                                        placeholder="No. vacantes por tienda" ng-model="agregarTiendas.numVacantes"
-                                       required>
+                                       required ng-change="agregarTiendas.calcularVacantes()">
                                 <div ng-messages="vacanteXtiendaFrm.numeroVacantes.$dirty && vacanteXtiendaFrm.numeroVacantes.$error"
                                      role="alert">
                                     <div ng-message="number, required" style="color:red;">Campo Númerico</div>
