@@ -22,7 +22,7 @@ class AgregarVacante {
     }
 
     siguiente() {
-        Session.set('vacanteParaPub', this.vacante);
+        Session.setPersistent('vacanteParaPub', this.vacante);
         this.$state.go('^.tiendas');
     }
 }

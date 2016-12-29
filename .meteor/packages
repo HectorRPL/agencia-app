@@ -42,3 +42,4 @@ meteorhacks:aggregate
 tmeasday:publish-counts
 didericis:callpromise-mixin
 email
+u2622:persistent-session

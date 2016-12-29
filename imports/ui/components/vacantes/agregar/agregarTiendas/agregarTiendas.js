@@ -9,9 +9,9 @@ import {insertTienda} from "../../../../../api/tiendas/methods";
 import {Cadenas} from "../../../../../api/cadenas/collection";
 import {Session} from "meteor/session";
 import {ValidationError} from "meteor/mdg:validation-error";
-import {Estados} from '../../../../../api/estados/collection';
-import {Puestos} from '../../../../../api/puestos/collection';
-import {Escuelas} from '../../../../../api/escuelas/collection';
+import {Estados} from "../../../../../api/estados/collection";
+import {Puestos} from "../../../../../api/puestos/collection";
+import {Escuelas} from "../../../../../api/escuelas/collection";
 
 class AgregarTiendas {
     constructor($scope, $reactive) {
@@ -31,7 +31,6 @@ class AgregarTiendas {
             mostrar: false,
             mensaje: ''
         };
-        this.$scope = $scope;
         this.tiendas = [];
         this.totalVacantes = 0;
         this.helpers({
@@ -89,10 +88,6 @@ class AgregarTiendas {
             }
         }));
 
-    }
-
-    probando() {
-        console.log('PROBANDO, LO QUE SEA, IMPRÍMETE');
     }
 
     agregarTiendas(vacanteId) {

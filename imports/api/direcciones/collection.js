@@ -42,7 +42,7 @@ Schema.candidato = new SimpleSchema({
     },
     delMpio: {
         type: String,
-        max: 30,
+        max: 100,
         min: 1
     },
     estado: {
@@ -58,7 +58,7 @@ Schema.candidato = new SimpleSchema({
     },
     colonia: {
         type: String,
-        max: 50,
+        max: 100,
         min: 1
     },
     codigoPostal: {

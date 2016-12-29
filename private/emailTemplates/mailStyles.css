@@ -1,0 +1,26 @@
+.font-curier-new{
+    font-family: Courier, monospace;
+}
+.ticket-tabla {
+    padding: 0px !important;
+    margin: 1px;
+    line-height: 0px;
+    vertical-align: top;
+    border-top-width: 0px !important;
+    border-top-style: none !important;
+    border-top: none;
+}
+.linea-divisoria-ticket{
+    border: 0;
+    height: 5px;
+    border-top: 1px dashed #000000;
+    border-bottom: 1px dashed #000000;
+}
+.tipo-fuente-uno{
+    font-weight: bolder ;
+}
+.panel-body-ticket{
+    color: #0e2946;
+    margin: 8%;
+    background-color: #fafafa !important;
+}
