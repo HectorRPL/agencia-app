@@ -1,9 +1,9 @@
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 
-export const Agencia = new Mongo.Collection('agencia');
+export const Agencias = new Mongo.Collection('agencias');
 
-Agencia.deny({
+Agencias.deny({
   insert() {
     return true;
   },
@@ -15,7 +15,7 @@ Agencia.deny({
   }
 });
 
-Agencia.schema = new SimpleSchema({
+Agencias.schema = new SimpleSchema({
   _id: {
     type: String,
     regEx: SimpleSchema.RegEx.Id
@@ -43,4 +43,4 @@ Agencia.schema = new SimpleSchema({
   }
 });
 
-Agencia.attachSchema(Agencia.schema);
+Agencias.attachSchema(Agencias.schema);

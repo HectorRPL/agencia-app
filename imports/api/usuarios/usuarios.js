@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Accounts} from "meteor/accounts-base";
 import {Roles} from "meteor/alanning:roles";
-import {Agencia} from "../agencia/collection";
+import {Agencias} from "../agencias/collection";
 import {Creditos} from "../creditos/collection";
 import {CarritoCompras} from "../compras/carritoCompras/collection";
 import {Direcciones} from "../direcciones/collection";
@@ -29,7 +29,7 @@ if (Meteor.isServer) {
                 agencia.telefono = options.profile.telefono;
                 agencia.propietario = user._id;
 
-                Agencia.insert(agencia, (error, response) => {
+                Agencias.insert(agencia, (error, response) => {
                     if (error) {
                         throw new Meteor.Error('No se puedo crear la agencia.', 'agencia-no-creada');
                     } else {

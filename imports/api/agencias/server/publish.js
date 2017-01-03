@@ -1,5 +1,5 @@
 import {Meteor} from "meteor/meteor";
-import {Agencia} from "../collection";
+import {Agencias} from "../collection";
 
 if (Meteor.isServer) {
     Meteor.publish('angencia', function () {
@@ -7,6 +7,6 @@ if (Meteor.isServer) {
         const selector = {
             propietario: this.userId
         };
-        return Agencia.findOne(selector);
+        return Agencias.findOne(selector);
     });
 }

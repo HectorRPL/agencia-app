@@ -1,10 +1,10 @@
 import {Meteor} from "meteor/meteor";
 import {TarjetaBancaria} from "../collection";
-import {Agencia} from "../../agencia/collection";
+import {Agencias} from "../../agencias/collection";
 
 if (Meteor.isServer) {
     Meteor.publish('tarjetaBancaria', function() {
-        const agencia = Agencia.findOne({propietario: this.userId});
+        const agencia = Agencias.findOne({propietario: this.userId});
         const selector = {
             propietario: agencia._id
         };

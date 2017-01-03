@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Vacantes} from "../collection";
-import {Agencia} from "../../agencia/collection";
+import {Agencias} from "../../agencias/collection";
 import {Cadenas} from "../../catalogos/cadenas/collection";
 import {Estados} from "../../catalogos/estados/collection";
 import {Puestos} from "../../catalogos/puestos/collection";
@@ -11,7 +11,7 @@ import {Postulaciones} from "../../postulaciones/collection";
 if (Meteor.isServer) {
     Meteor.publishComposite('vacantes.misPublicaciones', function () {
         if (this.userId) {
-            const agencia = Agencia.findOne({propietario: this.userId});
+            const agencia = Agencias.findOne({propietario: this.userId});
             const selector = {$and: [{propietario: agencia._id}, {eliminada: false}]};
             let options = {};
             options.sort = {fechaCreacion: -1};

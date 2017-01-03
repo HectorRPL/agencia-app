@@ -2,7 +2,7 @@ import {ValidatedMethod} from 'meteor/mdg:validated-method';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
 import {CallPromiseMixin} from "meteor/didericis:callpromise-mixin";
-import {Agencia} from '../agencia/collection';
+import {Agencias} from '../agencias/collection';
 import {TarjetaBancaria} from '../tarjetaBancaria/collection';
 import {DatosFinancieros} from '../datosFinancieros/collection';
 import {Meteor} from 'meteor/meteor';
@@ -35,7 +35,7 @@ export const realizarCargo = new ValidatedMethod({
     run({apiTokenId, monto, numDemos, numPromotor, numSupervisor}) {
         if (Meteor.isServer) {
             const datosFinancieros = DatosFinancieros.findOne({_id: '1'});
-            const agencia = Agencia.findOne({propietario: Meteor.userId});
+            const agencia = Agencias.findOne({propietario: Meteor.userId});
             let cargo = {
                 description: 'Contactos',
                 amount: 2000,
@@ -100,7 +100,7 @@ export const guardarTarjeta = new ValidatedMethod({
     run({apiTokenId}) {
         if (Meteor.isServer) {
             this.unblock();
-            const agencia = Agencia.findOne({propietario: Meteor.userId});
+            const agencia = Agencias.findOne({propietario: Meteor.userId});
             let crearCliente = Meteor.wrapAsync(conekta.Customer.create, conekta.Customer);
             const datosCliente = {
                 name: agencia.nombre,

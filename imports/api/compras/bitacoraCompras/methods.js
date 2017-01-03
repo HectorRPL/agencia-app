@@ -6,7 +6,7 @@ import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
 import {SSR} from 'meteor/meteorhacks:ssr';
 import {BitacoraCompras} from './collection';
-import {Agencia} from '../../agencia/collection';
+import {Agencias} from '../../agencias/collection';
 import {DatosFinancieros} from '../../datosFinancieros/collection';
 import {InfoEmpresa} from '../../catalogos/infoEmpresa/collection';
 
@@ -29,7 +29,7 @@ export const insertarCompra = new ValidatedMethod({
     run({apiRespuesta, compraExito, tokenPeticion}) {
         if (Meteor.isServer) {
             this.unblock();
-            const agencia = Agencia.findOne({propietario: this.userId});
+            const agencia = Agencias.findOne({propietario: this.userId});
             let apiMetodoPago = {};
             let apiDetalles = {};
 

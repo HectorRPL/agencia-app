@@ -4,11 +4,11 @@
 
 import {Meteor} from "meteor/meteor";
 import {CarritoCompras} from '../collection';
-import {Agencia} from '../../../agencia/collection';
+import {Agencias} from '../../../agencias/collection';
 
 if(Meteor.isServer){
     Meteor.publish('carritoCompras.obtenerDatos', function () {
-        const agencia = Agencia.findOne({propietario: this.userId});
+        const agencia = Agencias.findOne({propietario: this.userId});
         return CarritoCompras.find({propietario: agencia._id});
 
     });

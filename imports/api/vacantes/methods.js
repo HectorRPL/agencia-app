@@ -4,7 +4,7 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {LoggedInMixin} from "meteor/tunifight:loggedin-mixin";
 import {_} from "meteor/underscore";
 import {Vacantes} from "./collection.js";
-import {Agencia} from "../agencia/collection.js";
+import {Agencias} from "../agencias/collection.js";
 
 const CAMPOS_SIN_IDS = ['sueldo', 'numVacantes', 'estadoId', 'puestoId', 'marca', 'perfil', 'horarios'];
 
@@ -24,7 +24,7 @@ export const insertVacante = new ValidatedMethod({
     }),
     run({sueldo, estadoId, puestoId, marca, perfil, horarios}) {
         if (Meteor.isServer) {
-            const agencia = Agencia.findOne({propietario: this.userId});
+            const agencia = Agencias.findOne({propietario: this.userId});
             const vacante = {
                 propietario: agencia._id,
                 sueldo,

@@ -1,6 +1,6 @@
 
 import "../../api/usuarios/usuarios";
-import "../../api/agencia/server/publish";
+import "../../api/agencias/server/publish";
 import "../../api/tarjetaBancaria/server/publish";
 import "../../api/tarjetaBancaria/methods";
 import "../../api/vacantes/server/publish";
