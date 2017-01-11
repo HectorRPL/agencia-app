@@ -1,5 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Accounts} from "meteor/accounts-base";
+import {SSR} from 'meteor/meteorhacks:ssr';
 import {Roles} from "meteor/alanning:roles";
 import {Agencias} from "../agencias/collection";
 import {Creditos} from "../creditos/collection";
@@ -66,6 +67,20 @@ if (Meteor.isServer) {
 
     Accounts.emailTemplates.siteName = "Demostradoras con experiencia";
     Accounts.emailTemplates.from = "Demostradoras con experiencia <demostradoras01@gmail.com>";
+
+    // Verificación de email
+    Accounts.emailTemplates.verifyEmail.from  = function () {
+        return "Demostradoras con experiencia <demostradoras01@gmail.com>";
+    };
+    Accounts.emailTemplates.verifyEmail.html = function (user, url) {
+        SSR.compileTemplate( 'verificarEmail', Assets.getText( 'emailTemplates/verificacionEmail/verificacionEmail.html'));
+        var emailData = {
+            url: url
+        };
+        return SSR.render( 'verificarEmail', emailData );
+    };
+
+    // Resetear contraseña
     Accounts.emailTemplates.resetPassword.subject =  function (user) {
         return "Cómo restablecer su contraseña en Demostradoras con experiencia";
     };

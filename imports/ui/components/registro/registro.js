@@ -6,6 +6,7 @@ import "./registro.html";
 import {Accounts} from "meteor/accounts-base";
 import {Roles} from "meteor/alanning:roles";
 import {obtenerColonias} from "../../../api/codigosPostales/methods";
+import {verificarCorreo} from "../../../api/agencias/methods";
 
 const tipoUsuario = 'agencia:';
 
@@ -44,7 +45,6 @@ class Registro {
         this.credentials.password = tipoUsuario + this.credentials.password;
         this.credentials.profile.tipoUsuario = tipoUsuario;
         this.credentials.profile.direccion = this.direccion;
-        console.log('this.credentials.profile.direccion', this.credentials.profile.direccion);
         Accounts.createUser(this.credentials,
             this.$bindToContext((err) => {
                 if (err) {
@@ -55,6 +55,13 @@ class Registro {
                         this.error.mensaje = err.message;
                     }
                 } else {
+                    verificarCorreo.call({}, this.$bindToContext((err, result) => {
+                     if (err) {
+                         console.log('esto es el error por ejecutar verificarCorre.call:', err);
+                     } else {
+                         console.log('esto es el result por ejecutar verificarCorre.call:', result);
+                     }
+                    }));
                     this.$state.go('app');
                 }
             })
