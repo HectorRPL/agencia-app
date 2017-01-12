@@ -8,8 +8,8 @@ import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
 import {_} from 'meteor/underscore';
 
 // Enviará un correo con un link al usuario para verificacar de registro
-export const verificarCorreo = new ValidatedMethod({
-    name: 'agencias.verificarCorreo',
+export const enviarCorreoVerificacion = new ValidatedMethod({
+    name: 'agencias.enviarCorreoVerificacion',
     mixins: [LoggedInMixin],
     checkLoggedInError: {
         error: 'noLogeado',

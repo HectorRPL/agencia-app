@@ -6,7 +6,7 @@ import "./registro.html";
 import {Accounts} from "meteor/accounts-base";
 import {Roles} from "meteor/alanning:roles";
 import {obtenerColonias} from "../../../api/codigosPostales/methods";
-import {verificarCorreo} from "../../../api/agencias/methods";
+import {enviarCorreoVerificacion} from "../../../api/agencias/methods";
 
 const tipoUsuario = 'agencia:';
 
@@ -55,7 +55,7 @@ class Registro {
                         this.error.mensaje = err.message;
                     }
                 } else {
-                    verificarCorreo.call({}, this.$bindToContext((err, result) => {
+                    enviarCorreoVerificacion.call({}, this.$bindToContext((err, result) => {
                      if (err) {
                          console.log('esto es el error por ejecutar verificarCorre.call:', err);
                      } else {
