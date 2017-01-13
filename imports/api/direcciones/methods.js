@@ -1,7 +1,6 @@
 /**
  * Created by jvltmtz on 15/09/16.
  */
-import {Meteor} from 'meteor/meteor';
 import {ValidatedMethod} from 'meteor/mdg:validated-method';
 import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
 import {_} from 'meteor/underscore';
