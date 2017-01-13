@@ -68,11 +68,15 @@ if (Meteor.isServer) {
     Accounts.emailTemplates.siteName = "Demostradoras con experiencia";
     Accounts.emailTemplates.from = "Demostradoras con experiencia <demostradoras01@gmail.com>";
 
-    // Verificación de email
+    // Verificación de registro con link en el email
     Accounts.emailTemplates.verifyEmail.from  = function () {
         return "Demostradoras con experiencia <demostradoras01@gmail.com>";
     };
     Accounts.emailTemplates.verifyEmail.html = function (user, url) {
+        url = url.replace("#", "agencia", "gi");
+        console.log('Se enviará código al usuario', user);
+        console.log('Se enviará código a la URL', url);
+
         SSR.compileTemplate( 'verificarEmail', Assets.getText( 'emailTemplates/verificacionEmail/verificacionEmail.html'));
         var emailData = {
             url: url
