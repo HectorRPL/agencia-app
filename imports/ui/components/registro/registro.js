@@ -57,12 +57,12 @@ class Registro {
                 } else {
                     enviarCorreoVerificacion.call({}, this.$bindToContext((err, result) => {
                      if (err) {
-                         console.log('esto es el error por ejecutar verificarCorre.call:', err);
+                         console.log('esto es el error por ejecutar enviarCorreoVerificacion.call():', err);
                      } else {
-                         console.log('esto es el result por ejecutar verificarCorre.call:', result);
+                         console.log('esto es el result (supuestamente exitoso) por ejecutar enviarCorreoVerificacion.call():', result);
                      }
                     }));
-                    this.$state.go('app');
+                    this.$state.go('inicio.teenviamoscorreo');
                 }
             })
         );

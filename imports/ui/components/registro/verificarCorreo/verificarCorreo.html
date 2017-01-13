@@ -1,0 +1,29 @@
+<div class="col-md-offset-1 col-md-10 col-xs-12 panelRegistro">
+    <div class="row">
+        <!--TITULO-->
+        <div class="col-xs-12">
+            <h1 style="color: white">{{verificarCorreo.mensajeTitulo}}</h1>
+        </div>
+        <!-- ALERTA: LINK EXPIRADO -->
+        <div class="col-xs-12">
+            <alertas tipo="verificarCorreo.tipoAlerta" mensaje="verificarCorreo.msjAlerta"></alertas>
+        </div>
+        <!-- BOTONES -->
+        <div class="col-xs-12">
+            <button
+                    type="button"
+                    class="btn btn-default btn-lg btn-block"
+                    ng-hide="verificarCorreo.linkExpirado === true"
+                    ng-click="verificarCorreo.entrar()">
+                Entrar
+            </button>
+            <button
+                    type="button"
+                    class="btn btn-default btn-lg btn-block"
+                    ng-show="verificarCorreo.linkExpirado === true"
+                    ng-click="verificarCorreo.reenviarCorreoVerificacion()">
+                Reenviar código
+            </button>
+        </div>
+    </div>
+</div>

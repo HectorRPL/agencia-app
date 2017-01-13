@@ -5,6 +5,8 @@ import angularUiBootstrap from "angular-ui-bootstrap";
 import "./inicio.html";
 import {name as Registro} from "../registro/registro";
 import {name as Login} from "../login/login";
+import {name as verificarCorreo} from '../registro/verificarCorreo/verificarCorreo';
+import {name as teEnviamosCorreo} from '../registro/teEnviamosCorreo/teEnviamosCorreo';
 
 
 class Inicio {}
@@ -17,7 +19,9 @@ export default angular.module(name, [
     uiRouter,
     Registro,
     Login,
-    angularUiBootstrap
+    angularUiBootstrap,
+    verificarCorreo,
+    teEnviamosCorreo
   ]).component(name, {
     templateUrl: `imports/ui/components/${name}/${name}.html`,
     controllerAs: name,
