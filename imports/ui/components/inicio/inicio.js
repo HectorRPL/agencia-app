@@ -6,7 +6,7 @@ import "./inicio.html";
 import {name as Registro} from "../registro/registro";
 import {name as Login} from "../login/login";
 import {name as verificarCorreo} from '../registro/verificarCorreo/verificarCorreo';
-import {name as teEnviamosCorreo} from '../registro/teEnviamosCorreo/teEnviamosCorreo';
+import {name as registroPendienteVerificacion} from '../registro/registroPendienteVerificacion/registroPendienteVerificacion';
 
 
 class Inicio {}
@@ -21,7 +21,7 @@ export default angular.module(name, [
     Login,
     angularUiBootstrap,
     verificarCorreo,
-    teEnviamosCorreo
+    registroPendienteVerificacion
   ]).component(name, {
     templateUrl: `imports/ui/components/${name}/${name}.html`,
     controllerAs: name,
