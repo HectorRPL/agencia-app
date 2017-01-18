@@ -20,8 +20,12 @@ export const enviarCorreoVerificacion = new ValidatedMethod({
     run() {
         if (Meteor.isServer) {
             // Enviar correo de verificación
-            Accounts.sendVerificationEmail(this.userId);
-            // Esperar respuesta (aquí iría el callback para esperar respuesta)
+            try {
+                Accounts.sendVerificationEmail(this.userId);
+            } catch (error) {
+                console.log('El usuario ha intentado enviar nuevamente un correo para verificar su correo, vamos a imprimir el Meteor.Error(error), en teoría deberían de ser sólo dos posibles errores, el correo ya no existe, y el correo ya ha sido verificado', new Meteor.Error(error.message));
+                throw new Meteor.Error(error.message);
+            }
         }
     }
 });

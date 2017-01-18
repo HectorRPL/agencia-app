@@ -7,9 +7,21 @@ import {name as Registro} from "../registro/registro";
 import {name as Login} from "../login/login";
 import {name as verificarCorreo} from '../registro/verificarCorreo/verificarCorreo';
 import {name as registroPendienteVerificacion} from '../registro/registroPendienteVerificacion/registroPendienteVerificacion';
+import {Session} from 'meteor/session';
 
 
-class Inicio {}
+
+class Inicio {
+    constructor($scope, $reactive, $state) {
+
+        'ngInject';
+
+        this.$state = $state;
+
+        $reactive(this).attach($scope);
+
+    }
+}
 
 const name = 'inicio';
 // create a module
@@ -41,13 +53,20 @@ function config($stateProvider) {
 }
 
 function run($rootScope, $state) {
-  'ngInject';
+    'ngInject';
 
-  $rootScope.$on('$stateChangeError',
-    (event, toState, toParams, fromState, fromParams, error) => {
-      if (error === 'AUTH_REQUIRED') {
-        $state.go('inicio.login');
-      }
-    }
-  );
+    $rootScope.$on('$stateChangeError',
+        (event, toState, toParams, fromState, fromParams, error) => {
+            if (toState.name === 'inicio.verificarCorreo') {
+                const ULTIMO_ESTADO = {
+                    estado: toState.name,
+                    parametro: toParams
+                };
+                Session.setPersistent('ultimoEstado', ULTIMO_ESTADO);
+            }
+            if (error === 'AUTH_REQUIRED') {
+                $state.go('inicio.login');
+            }
+        }
+    );
 }
