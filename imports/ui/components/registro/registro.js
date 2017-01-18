@@ -62,7 +62,7 @@ class Registro {
                          console.log('esto es el result (supuestamente exitoso) por ejecutar enviarCorreoVerificacion.call():', result);
                      }
                     }));
-                    this.$state.go('inicio.teenviamoscorreo');
+                    this.$state.go('inicio.registroPendienteVerificacion');
                 }
             })
         );
