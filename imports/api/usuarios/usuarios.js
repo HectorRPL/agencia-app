@@ -6,6 +6,9 @@ import {Agencias} from "../agencias/collection";
 import {Creditos} from "../creditos/collection";
 import {CarritoCompras} from "../compras/carritoCompras/collection";
 import {Direcciones} from "../direcciones/collection";
+import {BitacoraLoginAgencia} from '../bitacoraLoginAgencia/collection';
+const LOGIN_METHOD = 'login';
+const CREATE_USER_METHOD = 'createUser';
 
 const agenciaRoles = {
     'agencia': ['addReclutador', 'addVacante']
@@ -65,6 +68,22 @@ if (Meteor.isServer) {
         return user;
     });
 
+    Accounts.onLogin((result) => {
+        let bitacoraLoginAgencia = {
+            propietario: result.user._id,
+            fechaLogin: new Date(),
+            conexion: result.connection,
+            estadoRegistro: 'inicio.registroPendienteVerificacion',
+            tipoLogin: result.type
+        };
+        if (CREATE_USER_METHOD === result.methodName) {
+            BitacoraLoginAgencia.insert(bitacoraLoginAgencia);
+        }
+        if (LOGIN_METHOD === result.methodName) {
+            BitacoraLoginAgencia.update({propietario: result.user._id}, {$set: {fechaLogin: new Date()}});
+        }
+    });
+
     Accounts.emailTemplates.siteName = "Demostradoras con experiencia";
     Accounts.emailTemplates.from = "Demostradoras con experiencia <demostradoras01@gmail.com>";
 
@@ -74,7 +93,6 @@ if (Meteor.isServer) {
     };
     Accounts.emailTemplates.verifyEmail.html = function (user, url) {
         url = url.replace("#", "agencia", "gi");
-        console.log('Se enviará código al usuario', user);
         console.log('Se enviará código a la URL', url);
 
         SSR.compileTemplate( 'verificarEmail', Assets.getText( 'emailTemplates/verificacionEmail/verificacionEmail.html'));
