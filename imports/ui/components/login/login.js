@@ -22,6 +22,7 @@ class Login {
         if (this.ultimoEstado === undefined || this.ultimoEstado === null) {
             this.ultimoEstado = 'El usuario no viene con URL';
         };
+        console.log('El usuario ha ingresado al login y viene con este estado this.ultimoEstado.estado => ', this.ultimoEstado);
 
         this.credentials = {
             email: '',
@@ -50,19 +51,23 @@ class Login {
                             } else if (this.ultimoEstado.estado === '**** AQUI VA LA EL ESTADO PARA ALERTAS*****' && result === 'app.vacantes.publicadas') {
                                 // ESTE ES LA PARTE DONDE VAMOS A DIRIGIR AL USUARIO
                                 // A SU ALERTA
-                                this.$state.go('estado', {alertaUrl: 'ALERTA como parámetro'});
+                                // this.$state.go('estado', {alertaUrl: 'ALERTA como parámetro'});
+                                console.log('Cómo el usuario tiene un estado + URL de alerta sera enviado a this.ultimoEstado.estado => ', this.ultimoEstado.estado);
                             } else if (this.ultimoEstado === 'El usuario no viene con URL') {
+                                console.log('El usuario no viene con URL token ni de alerta, esto es lo que trae this.ultimoEstado: => ', this.ultimoEstado)
                                 if (result === 'inicio.registroPendienteVerificacion') {
+                                    console.log('Se enviará un código de verificación porque el usuario tiene una bitácora el resulto tiene registroPendienteVerificacion:', result)
                                     enviarCorreoVerificacion.call({}, this.$bindToContext((err, respuesta) => {
                                         if (err) {
-                                            this.msjAlerta = 'NO ENTRARÁ PORQUE AL MOMENTO DE VERIFICAR EL CORREO HAY QUE CAMBIAR LA BITÁCORA', err;
+                                            this.msjAlerta = 'En estos momentos estamos mejorando el sistema, por favor inténtelo más tarde.', err;
                                             this.tipoAlerta = 'danger';
                                         } else {
-                                            console.log('esto es el result (supuestamente exitoso) por ejecutar enviarCorreoVerificacion.call():', respuesta);
+                                            console.log('Cómo el usuario no vine con alerta se envió exitósamente un correo de verificación de URL, ya que su bitácora dice', result);
                                             this.$state.go(result);
                                         }
                                     }));
                                 } else if (result === 'app.vacantes.publicadas') {
+                                    console.log('Este es un casó normal, por que el usuario No tiene Token, tampoco estado+URL-Alerta lo enviaremos a lo que dice su bitácora => ', result);
                                     this.$state.go('app.vacantes.publicadas');
                                 } else {
                                     this.msjAlerta = 'En estos momentos estamos mejorando el sistema, por favor inténtelo más tarde.';
