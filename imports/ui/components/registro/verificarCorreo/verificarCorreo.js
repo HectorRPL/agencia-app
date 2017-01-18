@@ -7,6 +7,7 @@ import uiRouter from "angular-ui-router";
 import {Accounts} from 'meteor/accounts-base';
 import {name as Alertas} from '../../comun/alertas/alertas';
 import {enviarCorreoVerificacion} from "../../../../api/agencias/methods";
+import {actualizarEstadoReg} from '../../../../api/bitacoraLoginAgencia/methods';
 import './verificarCorreo.html';
 
 class VerificarCorreo {
@@ -26,7 +27,6 @@ class VerificarCorreo {
 
         this.verificarLink();
     }
-
     verificarLink() {
         this.tipoAlerta = '';
         Accounts.verifyEmail(this.token,
@@ -38,10 +38,17 @@ class VerificarCorreo {
                     this.mensajeTitulo = 'Registro';
                     console.log('No se pudo verificar el usuario por el siguiente motivo', err);
                 } else {
-                    this.linkExpirado = false;
-                    this.msjAlerta = 'Exito al verificar el correo electrónico.';
-                    this.tipoAlerta = 'success';
-                    console.log('Mostrar al usuario la pantalla app.vacantes.publicadas');
+                    actualizarEstadoReg.call({estado: 'app.vacantes.publicadas'}, this.$bindToContext((err)=>{
+                        if (err) {
+                            this.msjAlerta = 'En estos momentos estamos mejorando el sistema, por favor inténtelo más tarde.';
+                            this.tipoAlerta = 'danger';
+                        } else {
+                            this.linkExpirado = false;
+                            this.msjAlerta = 'Exito al verificar el correo electrónico.';
+                            this.tipoAlerta = 'success';
+                        }
+                    }));
+
                 }
             })
         );
@@ -52,16 +59,29 @@ class VerificarCorreo {
         this.$state.go('app.vacantes.publicadas');
     }
 
+
     reenviarCorreoVerificacion() {
-        console.log('Se envia código de verificación nuevamente');
-        enviarCorreoVerificacion.call({}, this.$bindToContext((err, result) => {
-            if (err) {
-                console.log('Esto es el error por ejecutar enviarCorreoVerificacion.call:', err);
+        enviarCorreoVerificacion.call({}, this.$bindToContext((error, result) => {
+            if (error) {
+                if (error.message === '[That user has no unverified email addresses.]') {
+                    this.linkExpirado = false;
+                    this.tipoAlerta = 'success';
+                    this.msjAlerta = 'Este correo ya está verificado';
+                } else if (error.message === '[AQUÍ VAMOS A PONER EL CASO DONDE EL CORREO NO EXISTE]') {
+
+                    // ESTE IF AÚN ESTÁ SIN PRUEBAS, PORQUE EL MENSAJE DE ERROR QUE VIENE DEL SERVIDOR
+                    // DEBIDO A QUE EL CORREO NO EXISTE; NO HAY SIDO CACHADO.
+
+                    this.tipoAlerta = 'danger';
+                    this.msjAlerta = 'No se encontró el email, asegúrese que el usuario no haya editado su email.';
+                    console.log('Mensaje', error.message);
+                }
             } else {
-                console.log('Esto es el result por ejecutar enviarCorreoVerificacion.call:', result);
+                console.log('La operación fue exitosa y se envía al usuario al login:', result);
             }
         }));
     }
+
 }
 
 const name = 'verificarCorreo';
