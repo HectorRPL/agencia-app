@@ -14,7 +14,7 @@
     "angular-ui-router": "^0.3.1",
     "bcrypt": "^0.8.7",
     "bootstrap": "^3.3.6",
-    "conekta": "^2.0.0",
+    "conekta": "^2.1.0",
     "conekta.js": "^0.5.0",
     "meteor-node-stubs": "^0.2.3",
     "metismenu": "^2.5.2"
