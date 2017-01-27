@@ -16,9 +16,11 @@ import {Habilidades} from "../../../../../api/catalogos/habilidades/collection";
 import {Experiencias} from "../../../../../api/catalogos/experiencias/collection";
 
 class AgregarTiendas {
-    constructor($scope, $reactive) {
+    constructor($scope, $reactive, $state) {
         'ngInject';
         $reactive(this).attach($scope);
+        this.$state = $state;
+        this.mostrarBotones = true;
         this.subscribe('estados');
         this.subscribe('puestos');
         this.subscribe('escuelas');
@@ -29,33 +31,37 @@ class AgregarTiendas {
         this.vacante = Session.get('datosVacante');
         this.habVacante = Session.get('habilidadesVacante');
         this.diasLaborar = Session.get('diasVacante');
-        this.respuestaExito = {
-            mostrar: false,
-            mensaje: ''
+        if (this.vacante === undefined || this.vacante === null) {
+            this.$state.go('app.vacantes.publicadas');
+        } else {
+            this.respuestaExito = {
+                mostrar: false,
+                mensaje: ''
+            };
+            this.respuestaError = {
+                mostrar: false,
+                mensaje: ''
+            };
+            this.tiendas = [];
+            this.totalVacantes = 0;
+            this.helpers({
+                estadoDesc(){
+                    return Estados.findOne({_id: this.vacante.estadoId});
+                },
+                puestoDesc(){
+                    return Puestos.findOne({_id: this.vacante.puestoId});
+                },
+                escuelaDesc(){
+                    return Escuelas.findOne({_id: this.vacante.perfil.escolaridad});
+                },
+                habNecesarias(){
+                    return Habilidades.find({_id: {$in: this.habVacante}});
+                },
+                expNecesaria(){
+                    return Experiencias.findOne({_id: this.vacante.perfil.experiencia.descripcion});
+                }
+            });
         };
-        this.respuestaError = {
-            mostrar: false,
-            mensaje: ''
-        };
-        this.tiendas = [];
-        this.totalVacantes = 0;
-        this.helpers({
-            estadoDesc(){
-                return Estados.findOne({_id: this.vacante.estadoId});
-            },
-            puestoDesc(){
-                return Puestos.findOne({_id: this.vacante.puestoId});
-            },
-            escuelaDesc(){
-                return Escuelas.findOne({_id: this.vacante.perfil.escolaridad});
-            },
-            habNecesarias(){
-                return Habilidades.find({_id: {$in: this.habVacante}});
-            },
-            expNecesaria(){
-                return Experiencias.findOne({_id: this.vacante.perfil.experiencia.descripcion});
-            }
-        });
     }
 
     reset() {
@@ -141,6 +147,7 @@ class AgregarTiendas {
     }
 
     limpiarSesion() {
+        this.mostrarBotones = false;
         Session.clear('datosVacante');
         Session.clear('habilidadesVacante');
         Session.clear('diasVacante');

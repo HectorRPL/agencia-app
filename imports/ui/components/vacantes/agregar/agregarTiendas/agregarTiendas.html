@@ -139,6 +139,7 @@
                         </div>
                         <div class="col-xs-6 col-sm-offset-5 col-sm-3">
                             <button type="button" class="btn btn-primary"
+                                    ng-show="agregarTiendas.mostrarBotones"
                                     ng-click="agregarTiendas.agregarResumen()" ng-disabled="tiendaFrm.$invalid ||
                                         agregarTiendas.respuestaExito.mostrar || agregarTiendas.respuestaError.mostrar">
                                 <span class="fa fa-plus" aria-hidden="true"></span>&nbsp;Tienda
@@ -244,12 +245,14 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-3">
-                            <a class="btn btn-primary" ng-click="agregarTiendas.limpiar()">
+                            <a class="btn btn-primary" ng-click="agregarTiendas.limpiar()"
+                               ng-show="agregarTiendas.mostrarBotones">
                                 Limpiar
                             </a>
                         </div>
                         <div class="col-xs-6 col-sm-offset-6 col-sm-3">
                             <button class="btn btn-primary" type="button"
+                                    ng-show="agregarTiendas.mostrarBotones"
                                     ng-click="agregarTiendas.agregarVacante()" ng-disabled="vacanteXtiendaFrm.$invalid ||
                                     agregarTiendas.respuestaExito.mostrar || agregarTiendas.respuestaError.mostrar">
                                 Publicar
