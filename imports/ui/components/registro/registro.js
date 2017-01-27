@@ -6,7 +6,6 @@ import "./registro.html";
 import {Accounts} from "meteor/accounts-base";
 import {Roles} from "meteor/alanning:roles";
 import {obtenerColonias} from "../../../api/codigosPostales/methods";
-import {enviarCorreoVerificacion} from "../../../api/agencias/methods";
 
 const tipoUsuario = 'agencia:';
 
