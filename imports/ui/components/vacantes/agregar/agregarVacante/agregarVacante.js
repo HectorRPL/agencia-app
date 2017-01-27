@@ -17,25 +17,33 @@ class AgregarVacante {
         'ngInject';
         $reactive(this).attach($scope);
         this.$state = $state;
-        this.vacante = {
-            perfil: {
-                habilidades: {
-                    otra: '',
-                    listado: [],
-                    requerida: false
-                },
-                experiencia: {
-                    requerida: false,
-                    otra: '',
-                    listado: []
+
+        if (Session.get('datosVacante') === null || Session.get('datosVacante') === undefined ) {
+            console.log('Session.get-datosVacante viene vacio, por lo tanto vamos a crear las habilidades');
+            this.vacante = {
+                perfil: {
+                    habilidades: {
+                        otra: '',
+                        listado: [],
+                        requerida: false
+                    },
+                    experiencia: {
+                        requerida: false,
+                        otra: '',
+                        listado: []
+                    }
                 }
-            }
+            };
+            console.log(this.vacante);
+        } else {
+            this.listadoHab = [];
+            this.listadoDias = [];
+
+
+            this.vacante = Session.get('datosVacante');
+
         };
-        this.listadoHab = [];
-        this.listadoDias = [];
 
-
-        this.vacante = Session.get('datosVacante');
     }
 
     siguiente() {
