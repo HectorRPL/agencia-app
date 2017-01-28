@@ -81,5 +81,14 @@ function config($stateProvider) {
         .state('app.vacantes.postulados', {
             url: '/postulados/:vacanteId',
             template: '<postulados></postulados>',
+            resolve: {
+                currentUser($q) {
+                    if (Meteor.user() === null) {
+                        return $q.reject('AUTH_REQUIRED');
+                    } else {
+                        return $q.resolve();
+                    }
+                }
+            }
         });
 }

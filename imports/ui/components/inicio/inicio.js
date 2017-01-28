@@ -9,8 +9,6 @@ import {name as verificarCorreo} from '../registro/verificarCorreo/verificarCorr
 import {name as registroPendienteVerificacion} from '../registro/registroPendienteVerificacion/registroPendienteVerificacion';
 import {Session} from 'meteor/session';
 
-
-
 class Inicio {
     constructor($scope, $reactive, $state) {
 
@@ -34,22 +32,22 @@ export default angular.module(name, [
     angularUiBootstrap,
     verificarCorreo,
     registroPendienteVerificacion
-  ]).component(name, {
+]).component(name, {
     templateUrl: `imports/ui/components/${name}/${name}.html`,
     controllerAs: name,
     controller: Inicio
-  })
-  .config(config)
-  .run(run);
+})
+    .config(config)
+    .run(run);
 
 function config($stateProvider) {
-  'ngInject';
-  $stateProvider
-    .state('inicio', {
-      url: '/agencia',
-      template: '<inicio></inicio>',
-      abstract: true
-    });
+    'ngInject';
+    $stateProvider
+        .state('inicio', {
+            url: '/agencia',
+            template: '<inicio></inicio>',
+            abstract: true
+        });
 }
 
 function run($rootScope, $state) {
@@ -57,14 +55,14 @@ function run($rootScope, $state) {
 
     $rootScope.$on('$stateChangeError',
         (event, toState, toParams, fromState, fromParams, error) => {
-            if (toState.name === 'inicio.verificarCorreo') {
-                const ULTIMO_ESTADO = {
-                    estado: toState.name,
-                    parametro: toParams
-                };
-                Session.setPersistent('ultimoEstado', ULTIMO_ESTADO);
-            }
             if (error === 'AUTH_REQUIRED') {
+                if (toState.name) {
+                    const ULTIMO_ESTADO = {
+                        estado: toState.name,
+                        parametros: toParams
+                    };
+                    Session.setPersistent('ultimoEstado', ULTIMO_ESTADO);
+                }
                 $state.go('inicio.login');
             }
         }
