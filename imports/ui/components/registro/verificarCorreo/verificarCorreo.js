@@ -7,7 +7,7 @@ import uiRouter from "angular-ui-router";
 import {Accounts} from 'meteor/accounts-base';
 import {name as Alertas} from '../../comun/alertas/alertas';
 import {enviarCorreoVerificacion} from "../../../../api/agencias/methods";
-import {actualizarEstadoReg} from '../../../../api/bitacoraLoginAgencia/methods';
+import {actualizarEstadoReg} from '../../../../api/bitacoraLoginAgencias/methods';
 import {verificarCuenta} from '../../../../api/agencias/methods';
 import './verificarCorreo.html';
 

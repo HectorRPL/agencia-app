@@ -2,9 +2,9 @@
  * Created by Héctor on 16/01/2017.
  */
 import {Mongo} from 'meteor/mongo';
-export const BitacoraLoginAgencia = new Mongo.Collection('bitacoraLoginAgencia');
+export const BitacoraLoginAgencias = new Mongo.Collection('bitacoraLoginAgencias');
 
-BitacoraLoginAgencia.deny({
+BitacoraLoginAgencias.deny({
     insert() {return true;},
     update() {return true;},
     remove() {return true;}
@@ -12,7 +12,7 @@ BitacoraLoginAgencia.deny({
 
 const Schema = {};
 
-Schema.bitacoraLoginAgencia = new SimpleSchema({
+Schema.bitacoraLoginAgencias = new SimpleSchema({
     _id: {
         type: String,
         regEx: SimpleSchema.RegEx.Id
@@ -45,4 +45,4 @@ Schema.bitacoraLoginAgencia = new SimpleSchema({
     }
 });
 
-BitacoraLoginAgencia.attachSchema(Schema.bitacoraLoginAgencia);
+BitacoraLoginAgencias.attachSchema(Schema.bitacoraLoginAgencias);

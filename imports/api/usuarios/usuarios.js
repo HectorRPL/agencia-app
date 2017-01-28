@@ -6,7 +6,7 @@ import {Agencias} from "../agencias/collection";
 import {Creditos} from "../creditos/collection";
 import {CarritoCompras} from "../compras/carritoCompras/collection";
 import {Direcciones} from "../direcciones/collection";
-import {BitacoraLoginAgencia} from '../bitacoraLoginAgencia/collection';
+import {BitacoraLoginAgencias} from '../bitacoraLoginAgencias/collection';
 const LOGIN_METHOD = 'login';
 const CREATE_USER_METHOD = 'createUser';
 
@@ -71,7 +71,7 @@ if (Meteor.isServer) {
     });
 
     Accounts.onLogin((result) => {
-        let bitacoraLoginAgencia = {
+        let bitacoraLoginAgencias = {
             propietario: result.user._id,
             fechaLogin: new Date(),
             conexion: result.connection,
@@ -79,10 +79,10 @@ if (Meteor.isServer) {
             tipoLogin: result.type
         };
         if (CREATE_USER_METHOD === result.methodName) {
-            BitacoraLoginAgencia.insert(bitacoraLoginAgencia);
+            BitacoraLoginAgencias.insert(bitacoraLoginAgencias);
         }
         if (LOGIN_METHOD === result.methodName) {
-            BitacoraLoginAgencia.update({propietario: result.user._id}, {$set: {fechaLogin: new Date()}});
+            BitacoraLoginAgencias.update({propietario: result.user._id}, {$set: {fechaLogin: new Date()}});
         }
     });
 

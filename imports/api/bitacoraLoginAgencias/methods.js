@@ -5,10 +5,10 @@ import {Meteor} from "meteor/meteor";
 import {ValidatedMethod} from "meteor/mdg:validated-method";
 import {LoggedInMixin} from "meteor/tunifight:loggedin-mixin";
 import {_} from "meteor/underscore";
-import {BitacoraLoginAgencia} from "./collection";
+import {BitacoraLoginAgencias} from "./collection";
 
 export const obtenerEstadoReg = new ValidatedMethod({
-    name: 'bitacoraLoginAgencia.obtenerEstadoReg',
+    name: 'bitacoraLoginAgencias.obtenerEstadoReg',
     mixins: [LoggedInMixin],
     checkLoggedInError: {
         error: 'noLogeado',
@@ -18,14 +18,14 @@ export const obtenerEstadoReg = new ValidatedMethod({
     validate: null,
     run() {
         if (Meteor.isServer) {
-            const bitLogin = BitacoraLoginAgencia.findOne({propietario: this.userId});
+            const bitLogin = BitacoraLoginAgencias.findOne({propietario: this.userId});
             return bitLogin.estadoRegistro;
         }
     }
 });
 
 export const actualizarEstadoReg = new ValidatedMethod({
-    name: 'bitacoraLoginAgencia.actualizarEstadoReg',
+    name: 'bitacoraLoginAgencias.actualizarEstadoReg',
     mixins: [LoggedInMixin],
     checkLoggedInError: {
         error: 'noLogeado',
@@ -37,7 +37,7 @@ export const actualizarEstadoReg = new ValidatedMethod({
     }).validator(),
     run({estado}) {
         if (Meteor.isServer) {
-            return BitacoraLoginAgencia.update(
+            return BitacoraLoginAgencias.update(
                 {propietario: this.userId},
                 {$set: {
                     estadoRegistro: estado

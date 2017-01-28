@@ -4,7 +4,7 @@ import uiRouter from 'angular-ui-router';
 import angularMessages from 'angular-messages';
 import {Meteor} from 'meteor/meteor';
 import {Session} from 'meteor/session';
-import {obtenerEstadoReg} from '../../../api/bitacoraLoginAgencia/methods';
+import {obtenerEstadoReg} from '../../../api/bitacoraLoginAgencias/methods';
 import './login.html';
 import {name as Registro} from '../registro/registro';
 import {name as Recuperar} from './recuperar/recuperar';
