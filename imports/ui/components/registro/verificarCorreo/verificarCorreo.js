@@ -8,6 +8,7 @@ import {Accounts} from 'meteor/accounts-base';
 import {name as Alertas} from '../../comun/alertas/alertas';
 import {enviarCorreoVerificacion} from "../../../../api/agencias/methods";
 import {actualizarEstadoReg} from '../../../../api/bitacoraLoginAgencia/methods';
+import {verificarCuenta} from '../../../../api/agencias/methods';
 import './verificarCorreo.html';
 
 class VerificarCorreo {
@@ -47,6 +48,14 @@ class VerificarCorreo {
                             this.linkExpirado = false;
                             this.msjAlerta = 'Exito al verificar el correo electrónico.';
                             this.tipoAlerta = 'success';
+                            verificarCuenta.call({}, this.$bindToContext((err, result) => {
+                                if (err) {
+                                    this.msjAlerta = 'Se ha verificado la cuenta correctamente pero hubo un evento inesperado, por favor contacte a soporte técnico', err;
+                                    this.tipoAlerta = 'danger';
+                                } else {
+                                    console.log('Entró a verificarCuenta.call sin error', result);
+                                };
+                            }));
                         }
                     }));
 

@@ -32,6 +32,8 @@ if (Meteor.isServer) {
                 agencia.nombre = options.profile.nombre;
                 agencia.telefono = options.profile.telefono;
                 agencia.propietario = user._id;
+                agencia.correoElectronico = 'CorreoNoVerificado',
+                agencia.emailVerificado = false
 
                 Agencias.insert(agencia, (error, response) => {
                     if (error) {
