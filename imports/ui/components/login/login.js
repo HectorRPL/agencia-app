@@ -34,7 +34,7 @@ class Login {
                     this.msjAlerta = 'Combinación de usuario y contraseña incorrectos.';
                     this.tipoAlerta = 'danger';
                 } else {
-                    obtenerEstadoReg.call({}, this.$bindToContext((err, result)=> {
+                    obtenerEstadoReg.call({}, (err, result) => {
                         if (err) {
                             this.msjAlerta = 'En estos momentos estamos mejorando el sistema, por favor inténtelo más tarde.';
                             this.tipoAlerta = 'danger';
@@ -47,7 +47,7 @@ class Login {
                                 this.ultimoEstado = '';
                             };
                         }
-                    }));
+                    });
                 }
             })
         );
