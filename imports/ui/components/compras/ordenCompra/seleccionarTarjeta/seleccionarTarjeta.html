@@ -1,0 +1,10 @@
+<div class="checkbox btn-block" ng-repeat="tarjeta in seleccionarTarjeta.tarjetas">
+    <div class="btn-group btn-block">
+        <label id="{{experiencia._id}}" name="{{experiencia.descripcion}}"
+               class="btn btn-default btn-block btn-md" uib-btn-radio ng-model="tarjeta._id"
+               ng-click="seleccionarTarjeta.seleccionar(tarjeta)">
+            {{tarjeta.tipoTarjeta}}&nbsp;&nbsp;XXXX-XXXX-XXXX-{{tarjeta.numTarjeta}}&nbsp;
+            Fecha Expiración: {{tarjeta.mesExpiracion}}/{{tarjeta.anioExpiracion}}
+        </label>
+    </div>
+</div>
