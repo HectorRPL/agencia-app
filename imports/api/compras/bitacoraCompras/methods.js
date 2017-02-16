@@ -6,9 +6,8 @@ import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
 import {SSR} from 'meteor/meteorhacks:ssr';
 import {BitacoraCompras} from './collection';
-import {Agencias} from '../../agencias/collection';
-import {DatosFinancieros} from '../../datosFinancieros/collection';
 import {InfoEmpresa} from '../../catalogos/infoEmpresa/collection';
+import {DatosFinancieros} from '../../datosFinancieros/collection';
 
 export const insertarCompra = new ValidatedMethod({
     name: 'bitacoraCompras.insertarCompra',
@@ -18,22 +17,12 @@ export const insertarCompra = new ValidatedMethod({
         message: 'Para inserta una compra necesitas iniciar sesión',
         reason: 'El usuario no loggeado',
     },
-    validate: new SimpleSchema({
-        apiRespuesta: {type: Object, blackbox: true},
-        compraExito: {type: Boolean},
-        tokenPeticion: {type: String}
-    }).validator({
-        clean: true,
-        filter: false
-    }),
-    run({apiRespuesta, compraExito, tokenPeticion}) {
+    validate: null,
+    run({apiRespuesta, exito, datosPeticion, agenciaId}) {
         if (Meteor.isServer) {
-            this.unblock();
-            const agencia = Agencias.findOne({propietario: this.userId});
             let apiMetodoPago = {};
             let apiDetalles = {};
-
-            if (compraExito) {
+            if (exito) {
                 apiMetodoPago = apiRespuesta.payment_method;
                 apiDetalles = apiRespuesta.details;
                 delete apiRespuesta.payment_method;
@@ -41,12 +30,12 @@ export const insertarCompra = new ValidatedMethod({
             }
 
             const bitacora = {
-                propietario: agencia._id,
+                propietario: agenciaId,
                 apiRespuesta: apiRespuesta,
                 apiMetodoPago: apiMetodoPago,
                 apiDetalles: apiDetalles,
-                compraExito: compraExito,
-                tokenPeticion: tokenPeticion
+                compraExito: exito,
+                datosPeticion: datosPeticion
             };
 
             return BitacoraCompras.insert(bitacora);
@@ -65,24 +54,26 @@ export const enviarTicket = new ValidatedMethod({
     },
     validate: new SimpleSchema({
         ticketId: {type: String}
-    }).validator({
-        clean: true,
-        filter: false
-    }),
+    }).validator(),
     run({ticketId}) {
         if (Meteor.isServer) {
             const infoEmpresa = InfoEmpresa.findOne({_id: '1'});
             const datosCompra = BitacoraCompras.findOne({_id: ticketId});
-            const datosFinancieros = DatosFinancieros.findOne({_id: '1'});
+            const datosFin = DatosFinancieros.findOne({_id: '1'}, {fields: {iva: 1}});
 
             let ticketCompra = {
+                id: ticketId,
+                iva: datosFin.iva * 100,
                 infoEmpresa: infoEmpresa,
-                datosCompra: datosCompra,
-                datosFinancieros: datosFinancieros
+                preciosPeticion: datosCompra.datosPeticion.precios,
+                articuloDemos: datosCompra.apiDetalles.line_items[0],
+                articuloPromo: datosCompra.apiDetalles.line_items[1],
+                articuloSup: datosCompra.apiDetalles.line_items[2]
             };
             SSR.compileTemplate('ticketEmailTemplate', Assets.getText('emailTemplates/ticketCompra.html'));
+            console.log('Enviar correo del ticketId ', ticketId);
             Email.send({
-                to: 'demostradoras01@gmail.com',
+                to: 'j.vlt.mtz@gmail.com',
                 from: 'demostradoras01@gmail.com',
                 subject: 'Ticket Compra',
                 html: SSR.render('ticketEmailTemplate', ticketCompra)
