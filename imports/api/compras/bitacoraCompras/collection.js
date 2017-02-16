@@ -1,26 +1,10 @@
 /**
  * Created by jvltmtz on 3/11/16.
  */
-import { Mongo } from 'meteor/mongo';
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-import operacionesCompra from './operacionesCompra';
+import {Mongo} from "meteor/mongo";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
 
-class BitacoraComprasCollection extends Mongo.Collection {
-    insert(doc, callback) {
-        const result = super.insert(doc, callback);
-        if(doc.compraExito){
-            operacionesCompra.afterInsertBitacoraCompras(doc);
-        }
-        return result;
-    }
-
-}
-
-
-export const BitacoraCompras = new BitacoraComprasCollection('bitacoraCompras');
-
-
-
+export const BitacoraCompras = new Mongo.Collection('bitacoraCompras');
 
 BitacoraCompras.deny({
     insert() {
@@ -53,26 +37,27 @@ Schema.bitacoraCompras = new SimpleSchema({
         defaultValue: new Date(),
         denyUpdate: true,
     },
-    compraExito:{
+    compraExito: {
         type: Boolean,
         defaultValue: true
     },
-    apiRespuesta : {
+    apiRespuesta: {
         type: Object,
         blackbox: true,
     },
-    apiMetodoPago : {
-        type: Object,
-        blackbox: true,
-        optional: true
-    },
-    apiDetalles : {
+    apiMetodoPago: {
         type: Object,
         blackbox: true,
         optional: true
     },
-    tokenPeticion : {
-        type: String
+    apiDetalles: {
+        type: Object,
+        blackbox: true,
+        optional: true
+    },
+    datosPeticion: {
+        type: Object,
+        blackbox: true
     }
 });
 
