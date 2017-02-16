@@ -1,44 +1,55 @@
 import angular from "angular";
 import angularMeteor from "angular-meteor";
-import {remove} from "../../../../api/tarjetaBancaria/methods.js";
+import {name as Alertas} from '../../comun/alertas/alertas';
+import {borrarTarjeta} from "../../../../api/conekta/methods";
 import "./eliminarTarjeta.html";
 
 
 class EliminarTarjeta {
-  constructor($scope, $reactive, $state) {
-    'ngInject';
+    constructor($scope, $reactive) {
+        'ngInject';
+        $reactive(this).attach($scope);
+        this.msj = 'Esta seguro de elimnar la tarjeta bancaria.';
+        this.tipoMsj = 'warning';
+    }
 
-    $reactive(this).attach($scope);
-    this.tarjeta = {};
-    this.$state = $state;
-    this.respuesta = {mostrar: false, mensaje: '', tipo: ''};
-  }
+    cancelar() {
+        this.modalInstance.dismiss('cerrado');
+    }
 
-  eliminar() {
-    remove.call(this.tarjeta, this.$bindToContext((err) => {
-      this.respuesta.mostrar = true;
-      if (err) {
-        this.respuesta.mensaje = 'No se pudieron realizar los cambios bancarios.';
-        this.respuesta.tipo = 'danger';
-      } else {
-        this.$state.reload();
-        this.respuesta.mensaje = 'Éxito al realizar los cambios bancarios.';
-        this.respuesta.tipo = 'success';
-      }
-    }));
-  }
+    eliminar() {
+        const tarjeta = {
+            id: this.resolve.tarjeta._id,
+            apiClienteId: this.resolve.tarjeta.apiClienteId
+        };
+        borrarTarjeta.call(tarjeta, this.$bindToContext((err) => {
+            if (err) {
+                console.log(err);
+                this.msj = 'Error al eliminar la tarjeta bancaria, intente mas tarde.';
+                this.tipoMsj = 'danger';
+            } else {
+                this.msj = 'Se a eliminado la tarjeta en forma correcta.';
+                this.tipoMsj = 'success';
+            }
+        }));
+    }
+
 }
 
 const name = 'eliminarTarjeta';
 
 // Módulo
 export default angular
-.module(name, [
-  angularMeteor
-])
-.component(name, {
-  templateUrl: `imports/ui/components/datosBancarios/${name}/${name}.html`,
-  controllerAs: name,
-  bindings: { tarjeta: '<' },
-  controller: EliminarTarjeta
-});
+    .module(name, [
+        angularMeteor,
+        Alertas
+    ])
+    .component(name, {
+        templateUrl: `imports/ui/components/datosBancarios/${name}/${name}.html`,
+        controllerAs: name,
+        bindings: {
+            resolve: '<',
+            modalInstance: '<'
+        },
+        controller: EliminarTarjeta
+    });
