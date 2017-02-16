@@ -3,25 +3,14 @@ import angularMeteor from "angular-meteor";
 import uiRouter from "angular-ui-router";
 import {Meteor} from "meteor/meteor";
 import "./datosBancarios.html";
-import {TarjetaBancaria} from "../../../api/tarjetaBancaria/collection";
-import {name as EditarTarjeta} from "./editarTarjeta/editarTarjeta";
-import {name as EliminarTarjeta} from "./eliminarTarjeta/eliminarTarjeta";
-import {name as AgregarTarjeta} from "./agregarTarjeta/agregarTarjeta";
+import {name as ListaTarjetas} from "./listaTarjetas/listaTarjetas";
 
 
 class DatosBancarios {
-  constructor($scope, $reactive) {
+  constructor($scope) {
     'ngInject';
-    $reactive(this).attach($scope);
-    this.subscribe('tarjetaBancaria');
-
     this.titulo = 'Datos Bancarios';
 
-    this.helpers({
-      tarjeta() {
-        return TarjetaBancaria.findOne();
-      }
-    });
   }
 }
 
@@ -32,9 +21,7 @@ export default angular
 .module(name, [
   angularMeteor,
   uiRouter,
-  EditarTarjeta,
-  EliminarTarjeta,
-  AgregarTarjeta,
+  ListaTarjetas
 ])
 .component(name, {
   templateUrl: `imports/ui/components/${name}/${name}.html`,
@@ -49,6 +36,7 @@ function config($stateProvider) {
     .state('app.tarjetas', {
       url: '/tarjetas',
       template: '<datos-bancarios></datos-bancarios>',
+      abstract: true,
       resolve: {
         currentUser($q) {
           if (Meteor.user() === null) {

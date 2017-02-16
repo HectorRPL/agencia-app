@@ -1,32 +1,20 @@
 <!-- TÍTULO de la página, esto es fijo en todas las pantallas que llevan metismenu -->
 <div class="row">
-  <div class="col-lg-12">
     <h4 class="page-header">{{datosBancarios.titulo}}</h4>
-  </div>
+    <div ui-view=""></div>
+    <!-- div class="col-xs-12">
+
+        <button class="btn btn-default" class="close" ng-show="datosBancarios.tarjetas">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <i class="fa fa-credit-card" aria-hidden="true"></i>
+        </button>
+    </div -->
 </div>
-<div class="panel panel-default">
-    <ul class="list-group">
-        <li class="list-group-item">
-            <i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;&nbsp;
-            {{datosBancarios.tarjeta.tipoTarjeta}}&nbsp;&nbsp;XXXX-XXXX-XXXX-{{datosBancarios.tarjeta.numTarjeta}}&nbsp;
-            Fecha Expiración: {{datosBancarios.tarjeta.mesExpiracion}}/{{datosBancarios.tarjeta.anioExpiracion}}
-        </li>
-    </ul>
-  <!-- div
-  class="panel-heading">Mi Tarjeta Bancaria
-    <eliminar-tarjeta
-    ng-show="datosBancarios.tarjeta._id"
-    tarjeta="datosBancarios.tarjeta">
-    </eliminar-tarjeta>
-  </div>
-  <div class="panel-body">
-    <agregar-tarjeta
-      ng-hide="datosBancarios.tarjeta._id"
-      >
-    </agregar-tarjeta>
-    <editar-tarjeta
-      ng-show="datosBancarios.tarjeta._id"
-      tarjeta="datosBancarios.tarjeta">
-    </editar-tarjeta>
-  </div -->
-</div>
+
+<!-- div class="panel-body">
+<div class="panel-heading">Mi Tarjeta Bancaria</div>
+  <agregar-tarjeta
+    ng-hide="datosBancarios.tarjeta._id">
+  </agregar-tarjeta>
+</div -->
+
