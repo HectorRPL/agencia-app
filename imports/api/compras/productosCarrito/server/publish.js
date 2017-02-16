@@ -18,20 +18,20 @@ if (Meteor.isServer) {
     });
 
     Meteor.publish('productosCarrito.numDemostradoras', function (carritoId) {
-        const selector = {$and: [carritoId, {puestoId: 1}]};
+        const selector = {$and: [carritoId, {puestoId: '1'}]};
         Counts.publish(this, `count.productos.carrito.demostradoras.${carritoId.carritoId}`,
             ProductosCarrito.find(selector));
 
     });
 
     Meteor.publish('productosCarrito.numPromotores', function (carritoId) {
-        const selector = {$and: [carritoId, {puestoId: 2}]};
+        const selector = {$and: [carritoId, {puestoId: '2'}]};
         Counts.publish(this, `count.productos.carrito.promotores.${carritoId.carritoId}`,
             ProductosCarrito.find(selector));
     });
 
     Meteor.publish('productosCarrito.numSupervisores', function (carritoId) {
-        const selector = {$and: [carritoId, {puestoId: 3}]};
+        const selector = {$and: [carritoId, {puestoId: '3'}]};
         Counts.publish(this, `count.productos.carrito.supervisores.${carritoId.carritoId}`,
             ProductosCarrito.find(selector));
 

@@ -38,7 +38,7 @@ Schema.productosCarrito = new SimpleSchema({
         denyUpdate: true,
     },
     puestoId:{
-        type: Number,
+        type: String,
         denyUpdate: true
     }
 });
