@@ -3,7 +3,6 @@
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Ticket de Compra</title>
-    <link href="../../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="mailStyles.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -21,6 +20,7 @@
                 <br>
                 <br>
                 <!-- Table -->
+                <hr class="linea-divisoria-ticket">
                 <table class="table">
                     <tr>
                         <th class="ticket-tabla tipo-fuente-uno text-center">CANT.</th>
@@ -28,28 +28,41 @@
                         <th class="ticket-tabla tipo-fuente-uno text-center">PRECIO</th>
                         <th class="ticket-tabla tipo-fuente-uno text-right">TOTAL</th>
                     </tr>
-                    <!-- tr class="text-center"
-                        ng-repeat="compra in datosCompra.apiDetalles.line_items">
-                        <td class="ticket-tabla text-center">{{compra.quantity}}</td>
-                        <td class="ticket-tabla text-center">{{compra.name}}</td>
-                        <td class="ticket-tabla text-center">{{compra.unit_price}}</td>
-                        <td class="ticket-tabla text-right">{{(compra.quantity * compra.unit_price)}}</td>
-                    </tr -->
+                    <!--DEMOSTRADOR(A) -->
+                    <tr class="text-center">
+                        <td class="ticket-tabla text-center">{{articuloDemos.quantity}}</td>
+                        <td class="ticket-tabla text-center">{{articuloDemos.name}}</td>
+                        <td class="ticket-tabla text-center">{{articuloDemos.unit_price}}</td>
+                        <td class="ticket-tabla text-right">{{preciosPeticion.subtotalDem}}</td>
+                    </tr>
+                    <!-- PROMOTOR(A) -->
+                    <tr class="text-center">
+                        <td class="ticket-tabla text-center">{{articuloPromo.quantity}}</td>
+                        <td class="ticket-tabla text-center">{{articuloPromo.name}}</td>
+                        <td class="ticket-tabla text-center">{{articuloPromo.unit_price}}</td>
+                        <td class="ticket-tabla text-right">{{preciosPeticion.subtotalPro}}</td>
+                    </tr>
+                    <!--SUPERVISOR(A) -->
+                    <tr class="text-center">
+                        <td class="ticket-tabla text-center">{{articuloSup.quantity}}</td>
+                        <td class="ticket-tabla text-center">{{articuloSup.name}}</td>
+                        <td class="ticket-tabla text-center">{{articuloSup.unit_price}}</td>
+                        <td class="ticket-tabla text-right">{{preciosPeticion.subtotalSup}}</td>
+                    </tr>
 
                     <tr class="text-center">
                         <td class="ticket-tabla text-center"></td>
                         <td class="ticket-tabla text-left"></td>
                         <td class="ticket-tabla text-center">TOTAL:</td>
-                        <td class="ticket-tabla text-right"><strong>{{datosCompra.apiRespuesta.amount }}</strong></td>
+                        <td class="ticket-tabla text-right"><strong>{{preciosPeticion.total}}</strong></td>
                     </tr>
                     <tr class="text-center">
                         <td class="ticket-tabla text-center"></td>
                         <td class="ticket-tabla text-left"></td>
-                        <td class="ticket-tabla text-center">IVA({{datosFinancieros.iva}}%)</td>
-                        <td class="ticket-tabla text-right">{{datosFinancieros.iva}}</td>
+                        <td class="ticket-tabla text-center">IVA({{iva}}%)</td>
+                        <td class="ticket-tabla text-right">{{preciosPeticion.importeiva}}</td>
                     </tr>
                 </table>
-                <hr class="linea-divisoria-ticket">
                 <p>GRACIAS POR SU PREFERENCIA</p>
                 <hr class="linea-divisoria-ticket">
                 <img class="img-responsive center-block" src="images/codigo-barras-ticket.png" style="max-width: 150px;">
