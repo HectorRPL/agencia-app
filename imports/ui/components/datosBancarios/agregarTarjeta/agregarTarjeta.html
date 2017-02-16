@@ -1,32 +1,22 @@
-<form
-id="tarjetaFrmId"
-class="property-submit-form"
-role="form"
-name="tarjetaFrm"
-nonvalidate>
-
-<tarjeta tarjeta="agregarTarjeta.tarjeta"></tarjeta>
-<div class="row">
-  <div class="col-sm-8">
-    <!-- ALERTA:  -->
+<form id="tarjetaFrmId" class="property-submit-form"
+      role="form" name="tarjetaFrm" nonvalidate>
+    <tarjeta datos="agregarTarjeta.datos"></tarjeta>
     <div class="row">
-      <div class="col-xs-12" ng-show="agregarTarjeta.respuesta.mostrar">
-        <uib-alert type="{{ agregarTarjeta.respuesta.tipo }}">
-          <span class="fa fa-exclamation-triangle"></span>
-          <strong> {{ agregarTarjeta.respuesta.mensaje }} </strong>
-        </uib-alert>
-      </div>
+        <div class="col-sm-2">
+            <button class="btn btn-warning btn-block" type="button"
+                    ng-click="agregarTarjeta.regresar()">
+                Regresar
+            </button>
+        </div>
+        <div class="col-sm-7">
+            <!-- ALERTA:  -->
+            <alertas tipo="agregarTarjeta.tipoMsj" mensaje="agregarTarjeta.msj"></alertas>
+        </div>
+        <div class="col-sm-3 pull-right">
+            <button class="btn btn-primary btn-block" type="button"
+                    ng-click="agregarTarjeta.generarToken()" ng-disabled="tarjetaFrm.$invalid">
+                Guardar
+            </button>
+        </div>
     </div>
-  </div>
-  <div class="col-sm-4">    
-    <button
-    class="btn btn-primary btn-block pull-right"
-    type="button"
-    ng-click="agregarTarjeta.guardar()"
-    ng-disabled="tarjetaFrm.$invalid">
-    Guardar Tarjeta
-  </button>
-  </div>
-</div>
-
 </form>
