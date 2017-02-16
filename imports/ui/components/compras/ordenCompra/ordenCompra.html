@@ -6,38 +6,56 @@
             <div class="panel-heading">Orden de Compra</div>
             <!-- DESCRIPCIÓN DEL PRODUCTO -->
             <div class="panel-body">
-                <desglose-compra totalpersonal="ordenCompra.totalpersonal" numdemos="ordenCompra.numdemos" numpromotor="ordenCompra.numpromotor"
-                                 numsupervisor="ordenCompra.numsupervisor" total="ordenCompra.montototal">
+                <desglose-compra totalpersonal="ordenCompra.totalpersonal" numdemos="ordenCompra.numdemos"
+                                 numpromotor="ordenCompra.numpromotor" numsupervisor="ordenCompra.numsupervisor"
+                                 precios="ordenCompra.precios">
                 </desglose-compra>
                 <!--DATOS BANCARIOS-->
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="text-center"><strong>Tarjeta Bancaria</strong></div>
-                        <br>
-                        <tarjeta datos="ordenCompra.tarjeta"></tarjeta>
+                <div ng-show="ordenCompra.numTarjetas === 0">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="text-center"><strong>Tarjeta Bancaria</strong></div>
+                            <br>
+                            <tarjeta datos="ordenCompra.tarjeta"></tarjeta>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <uib-alert type="danger">
+                                <span class="fa fa-exclamation-triangle"></span>
+                                <strong> {{ordenCompra.errorTokenMsj}} </strong>
+                            </uib-alert>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 pull-left">
+                            <checkbox-guardar-tarjeta guardar="ordenCompra.guardarTarjeta"></checkbox-guardar-tarjeta>
+                        </div>
+                        <div class="col-sm-6">
+                            <!--BOTON PAGAR AHORA-->
+                            <button class="btn btn-primary pull-right" ng-click="ordenCompra.generarToken()"
+                                    ng-disabled="ordenCompraFrm.$invalid || ordenCompra.totalpersonal==0">
+                                Pagar ahora
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="row" ng-show="ordenCompra.errorToken">
-                    <div class="col-xs-12" >
-                        <uib-alert type="danger">
-                            <span class="fa fa-exclamation-triangle"></span>
-                            <strong> {{ordenCompra.errorTokenMsj}} </strong>
-                        </uib-alert>
+                <div ng-hide="ordenCompra.numTarjetas === 0">
+                    <div class="text-center"><strong>Seleccionar Tarjeta</strong></div>
+                    <div class="row">
+                        <div  class="col-xs-12">
+                            <seleccionar-tarjeta apitokenid="ordenCompra.apiTokenId"></seleccionar-tarjeta>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="btn btn-primary pull-right" ng-click="ordenCompra.realizarCompra()"
+                                    ng-disabled="ordenCompraFrm.$invalid || ordenCompra.totalpersonal==0">
+                                Pagar ahora
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6 pull-left">
-                        <checkbox-Guardar-Tarjeta guardar="ordenCompra.guardarTarjeta"> </checkbox-Guardar-Tarjeta>
-                    </div>
-                    <div class="col-sm-6">
-                        <!--BOTON PAGAR AHORA-->
-                        <button class="btn btn-primary pull-right" ng-click="ordenCompra.generarToken()"
-                                ng-disabled="ordenCompraFrm.$invalid || ordenCompra.totalpersonal==0">
-                            Pagar ahora
-                        </button>
-                    </div>
-                </div>
-                <br>
             </div>
         </div>
     </div>

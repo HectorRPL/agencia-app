@@ -15,7 +15,7 @@
                 <td>Demostrador(a)</td>
                 <td>{{desgloseCompra.datosFinancieros.precioDemos | currency}}</td>
                 <td>
-                    {{desgloseCompra.subtotalDem = (desgloseCompra.datosFinancieros.precioDemos * desgloseCompra.numdemos) | currency }}
+                    {{desgloseCompra.precios.subtotalDem = (desgloseCompra.datosFinancieros.precioDemos * desgloseCompra.numdemos) | currency }}
                 </td>
             </tr>
             <tr>
@@ -23,7 +23,7 @@
                 <td>Promotor(a)</td>
                 <td>{{desgloseCompra.datosFinancieros.precioPromotor | currency}}</td>
                 <td>
-                    {{desgloseCompra.subtotalPro = (desgloseCompra.datosFinancieros.precioPromotor * desgloseCompra.numpromotor) | currency }}
+                    {{desgloseCompra.precios.subtotalPro = (desgloseCompra.datosFinancieros.precioPromotor * desgloseCompra.numpromotor) | currency }}
                 </td>
             </tr>
             <tr>
@@ -31,7 +31,7 @@
                 <td>Supervisor(a)</td>
                 <td>{{desgloseCompra.datosFinancieros.precioSupervisor | currency}}</td>
                 <td>
-                    {{desgloseCompra.subtotalSup = (desgloseCompra.datosFinancieros.precioSupervisor * desgloseCompra.numsupervisor) | currency }}
+                    {{desgloseCompra.precios.subtotalSup = (desgloseCompra.datosFinancieros.precioSupervisor * desgloseCompra.numsupervisor) | currency }}
                 </td>
             </tr>
             <!-- SUBTOTAL -->
@@ -41,7 +41,7 @@
                 <td>Subtotal:</td>
                 <td>
                     <strong>
-                        {{ desgloseCompra.subtotal = (desgloseCompra.subtotalDem + desgloseCompra.subtotalPro + desgloseCompra.subtotalSup)| currency }}
+                        {{ desgloseCompra.precios.subtotal = (desgloseCompra.precios.subtotalDem + desgloseCompra.precios.subtotalPro + desgloseCompra.precios.subtotalSup)| currency }}
                     </strong>
                 </td>
             </tr>
@@ -51,7 +51,7 @@
                 <td></td>
                 <td> - {{ (desgloseCompra.datosFinancieros.descuento) * 100 }} %desc.:</td>
                 <td>
-                    - {{ desgloseCompra.importeDescuento = ( desgloseCompra.subtotal * desgloseCompra.datosFinancieros.descuento )  | currency }}
+                    - {{ desgloseCompra.precios.importeDescuento = ( desgloseCompra.precios.subtotal * desgloseCompra.datosFinancieros.descuento )  | currency }}
                 </td>
             </tr>
             <!--IMPORTE - DESCUENTO -->
@@ -61,7 +61,7 @@
                 <td> Nvo. SubTotal:</td>
                 <td>
                     <strong>
-                        {{ desgloseCompra.subtotal = (desgloseCompra.subtotal -  desgloseCompra.importeDescuento)  | currency }}
+                        {{ desgloseCompra.precios.subtotal = (desgloseCompra.precios.subtotal -  desgloseCompra.precios.importeDescuento)  | currency }}
                     </strong>
                 </td>
             </tr>
@@ -72,7 +72,7 @@
                 <td>IVA({{ (desgloseCompra.datosFinancieros.iva * 100)}}%):</td>
                 <td>
                     <strong>
-                        {{(desgloseCompra.subtotal * desgloseCompra.datosFinancieros.iva) | currency }}
+                        {{desgloseCompra.precios.importeiva = (desgloseCompra.precios.subtotal * desgloseCompra.datosFinancieros.iva) | currency }}
                     </strong>
                 </td>
             </tr>
@@ -83,7 +83,7 @@
                 <td>TOTAL:</td>
                 <td>
                     <strong>
-                        {{desgloseCompra.total=(desgloseCompra.subtotal * (1 + desgloseCompra.datosFinancieros.iva)) | currency}}
+                        {{desgloseCompra.precios.total=(desgloseCompra.precios.subtotal * (1 + desgloseCompra.datosFinancieros.iva)) | currency}}
                     </strong>
                 </td>
             </tr>

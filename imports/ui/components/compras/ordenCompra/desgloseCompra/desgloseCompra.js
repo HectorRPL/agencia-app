@@ -10,8 +10,6 @@ class DesgloseCompra {
     constructor($scope, $reactive) {
         'ngInject';
         $reactive(this).attach($scope);
-
-
         this.subscribe('datosFinancieros');
         this.descripcion = 'candidatos para cubrir vacantes con un perfil laboral tipo demostración, promotoría y/o supervisión.';
 
@@ -21,8 +19,6 @@ class DesgloseCompra {
             }
         });
     }
-
-
 }
 
 const name = 'desgloseCompra';
@@ -41,6 +37,7 @@ export default angular
             numdemos: '<',
             numpromotor: '<',
             numsupervisor: '<',
-            total: '='
+            precios: '='
+
         }
     });

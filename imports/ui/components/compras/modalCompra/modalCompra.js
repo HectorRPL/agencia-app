@@ -3,13 +3,12 @@
  */
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import {Meteor} from 'meteor/meteor';
 import {name as Alertas} from '../../comun/alertas/alertas';
 import {name as TicketCompra} from '../ticketCompra/ticketCompra';
 import './modalCompra.html';
-import {realizarCargo, guardarTarjeta} from '../../../../api/conekta/methods';
-import {insertarCompra, enviarTicket} from '../../../../api/compras/bitacoraCompras/methods';
-import {eliminarTodos} from '../../../../api/compras/productosCarrito/methods';
-import {actualizarSeleccionadas} from '../../../../api/postulaciones/methods';
+import {realizarCargo, guardarTarjetaCompra} from '../../../../api/conekta/methods';
+import {enviarTicket} from '../../../../api/compras/bitacoraCompras/methods';
 
 class ModalCompra {
 
@@ -22,106 +21,50 @@ class ModalCompra {
     }
 
     $onChanges() {
-        //this.comprar();
-        this.enviarCorreo();
+        this.comprar();
     }
 
     cancelar() {
-        this.close(true);
+        this.modalInstance.dismiss('cerrado');
     }
 
     comprar() {
-        let tmpInicio = new Date().getMilliseconds();
-        realizarCargo.call({
-                apiTokenId: this.datoscompra.tokenId,
-                monto: this.datoscompra.montoTotal,
-                numDemos: this.datoscompra.numDemos,
-                numPromotor: this.datoscompra.numPromotor,
-                numSupervisor: this.datoscompra.numSupervisor
-            }, this.$bindToContext((err, result)=> {
-                let res = err || result;
-                let compraExito = true;
+        const datosCompra = angular.copy(this.resolve.datosCompra);
+        delete datosCompra.guardarTarjeta;
+        realizarCargo.call(datosCompra, this.$bindToContext((err, result)=> {
                 if (err) {
                     this.compraTerminada = true;
-                    compraExito = false;
-                    res = {
-                        codigoHttp: err.error,
-                        mensajeError: err.reason,
-                        codigoError: err.details
-                    };
                     this.tipoMsjCompra = 'danger';
                     this.msjCompra = err.reason;
-                    console.log('Error en millis ', new Date().getMilliseconds() - tmpInicio);
                 } else {
-                    this.agregarTarjeta();
-                    this.actualizarPostulaciones();
-                    console.log('Exito en millis ', new Date().getMilliseconds() - tmpInicio);
+                    const ticketId =  result;
+                    Meteor.defer(()=>{
+                        enviarTicket.call({ticketId: ticketId});
+                    });
+                    if (this.resolve.datosCompra.guardarTarjeta) {
+                        this.agregarTarjeta(datosCompra.apiTokenId);
+                    }
+                    this.tipoMsjCompra = 'success';
+                    this.msjCompra = 'Gracias ';
+                    this.compraTerminada = true;
+
                 }
-                this.agregarBitacoraCompra(res, compraExito);
-                console.log('FInal en millis ', new Date().getMilliseconds() - tmpInicio);
             })
         );
     }
 
-    agregarBitacoraCompra(res, compraExito) {
-        insertarCompra.call({
-            apiRespuesta: res, compraExito: compraExito,
-            tokenPeticion: this.datoscompra.tokenId
-        }, this.$bindToContext((err, result) => {
-            this.transaccionId = result;
+    agregarTarjeta(apiTokenId) {
+        guardarTarjetaCompra.call({apiTokenId:apiTokenId}, this.$bindToContext((err, result) => {
             if (err) {
-                console.log('Error al agregarBitacoraCompra', err);
-            }
-        }));
-    }
-
-    agregarTarjeta() {
-        if (this.datoscompra.guardarTarjeta) {
-            guardarTarjeta.call({apiTokenId: this.datoscompra.tokenId}, this.$bindToContext((err, result) => {
-                if (err) {
-                    this.tipoMsjTarjeta = 'danger';
-                    this.msjTarjeta = 'Error al guardar la tarjeta. Porfavor intentelo mas tarde.';
-                } else {
-                    this.tipoMsjTarjeta = 'success';
-                    this.msjTarjeta = 'Tarjeta guardada en forma correcta. Podras utilizarla en futuras compras.';
-                }
-            }));
-        }
-    }
-
-    actualizarPostulaciones() {
-        actualizarSeleccionadas.call({carritoId: this.datoscompra.carritoId}, this.$bindToContext((err, result)=> {
-            if (err) {
-                console.log('eror al metodo actualizarPostulaciones', err);
+                this.tipoMsjTarjeta = 'warning';
+                this.msjTarjeta = 'No se pudó guardar la tarjeta. Porfavor intentelo mas tarde.';
             } else {
-                this.eliminarProductos();
-                console.log('result al metodo actualizarPostulaciones ', result);
+                this.tipoMsjTarjeta = 'success';
+                this.msjTarjeta = 'Tarjeta guardada en forma correcta. Podras utilizarla en futuras compras.';
             }
         }));
     }
 
-    eliminarProductos() {
-        eliminarTodos.call({carritoId: this.datoscompra.carritoId}, this.$bindToContext((err, result)=> {
-            if (err) {
-                console.log('Error al eliminarProductos ');
-            } else {
-                console.log('SE eliminarProductos del carrito');
-            }
-            this.compraTerminada = true;
-            this.tipoMsjCompra = 'success';
-            this.msjCompra = 'Gracias por comprar en Demostradoras con Experiencia.';
-        }));
-    }
-
-    enviarCorreo() {
-        enviarTicket.call({ticketId: 'kAEMkmbufNTonegsY'}, this.$bindToContext((err, result)=> {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(result);
-            }
-        }));
-    }
 
 }
 
@@ -139,8 +82,7 @@ export default angular
         controllerAs: name,
         controller: ModalCompra,
         bindings: {
-            datoscompra: '<',
-            close: '&',
-            dismiss: '&'
+            resolve: '<',
+            modalInstance: '<'
         }
     });
