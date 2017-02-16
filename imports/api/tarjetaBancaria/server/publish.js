@@ -9,11 +9,10 @@ if (Meteor.isServer) {
             propietario: agencia._id
         };
 
+        Counts.publish(this, 'numTarjetas', TarjetaBancaria.find(selector), {noReady:true});
+
         return TarjetaBancaria.find(selector, {
             fields: {
-                apiTokenId: 0,
-                apiTarjetaId: 0,
-                apiClienteId: 0,
                 propietario: 0,
                 nombre: 0
             }
