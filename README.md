@@ -1,5 +1,8 @@
 Acceder a una misma base de datos, colocar la siguiente linea en la consola.
 
+  COMANDO PARA LEVANTAR LOS PROYECTOS (AGENCIA Y DEMOS)
+  meteor npm satart
+
   Linux:
   export MONGO_URL=mongodb://localhost:27017/demos-dev1
 
