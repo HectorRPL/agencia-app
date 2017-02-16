@@ -22,8 +22,9 @@ const operacionesCompra = {
         try{
            execute();
         } catch (error){
-
+            console.log('Error al actualizar las postulaciones a 2 ', idsPost);
         }
+        //Aqui va enviar ticket.
 
     },
     afterInsertBitacoraCompras(bitacora) {
