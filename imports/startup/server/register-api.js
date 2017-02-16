@@ -17,5 +17,6 @@ import "../../api/compras/bitacoraCompras/server/publish";
 import "../../api/compras/bitacoraCompras/methods";
 import "../../api/datosFinancieros/server/publish";
 import "../../api/conekta/methods";
+import "../../api/conekta/utils";
 import "../../api/agencias/methods";
 import "../../api/bitacoraLoginAgencias/methods";
