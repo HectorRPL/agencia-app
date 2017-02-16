@@ -4,19 +4,26 @@ import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
 import {CallPromiseMixin} from "meteor/didericis:callpromise-mixin";
 import {Agencias} from '../agencias/collection';
 import {TarjetaBancaria} from '../tarjetaBancaria/collection';
-import {DatosFinancieros} from '../datosFinancieros/collection';
+import {insertarCompra} from '../compras/bitacoraCompras/methods';
+import {inserartTarjeta, eliminarTarjeta} from '../tarjetaBancaria/methods';
 import {Meteor} from 'meteor/meteor';
-import conekta from 'conekta/lib/conekta';
 
-const MXN = 'MXN';
-if (Meteor.isServer) {
-    Meteor.startup(() => {
-        conekta.api_key = 'key_nw7R3yrHUGFztkVCUc2DSw';
-        conekta.api_version = '1.0.0';
-        conekta.locale = 'es';
-    });
-}
+var preciosSchema = new SimpleSchema({
+    total: {type: Number, decimal: true},
+    subtotal: {type: Number, decimal: true},
+    importeiva: {type: Number, decimal: true},
+    importeDescuento: {type: Number, decimal: true},
+    subtotalDem: {type: Number, decimal: true},
+    subtotalPro: {type: Number, decimal: true},
+    subtotalSup: {type: Number, decimal: true}
+});
+var numProductosSchema = new SimpleSchema({
+    numDemos: {type: Number},
+    numPromotor: {type: Number},
+    numSupervisor: {type: Number},
+    totalPersonal: {type: Number},
 
+});
 export const realizarCargo = new ValidatedMethod({
     name: 'conekta.realizarCargo',
     mixins: [LoggedInMixin],
@@ -27,114 +34,117 @@ export const realizarCargo = new ValidatedMethod({
     },
     validate: new SimpleSchema({
         apiTokenId: {type: String},
-        monto: {type: Number, decimal: true},
-        numDemos: {type: Number},
-        numPromotor: {type: Number},
-        numSupervisor: {type: Number}
+        carritoId: {type: String},
+        numProductos: {type: numProductosSchema},
+        precios: {type: preciosSchema},
     }).validator(),
-    run({apiTokenId, monto, numDemos, numPromotor, numSupervisor}) {
+    run({apiTokenId, carritoId, numProductos, precios}) {
         if (Meteor.isServer) {
-            const datosFinancieros = DatosFinancieros.findOne({_id: '1'});
-            const agencia = Agencias.findOne({propietario: Meteor.userId});
-            let cargo = {
-                description: 'Contactos',
-                amount: 2000,
-                currency: MXN,
-                reference_id: '',
-                card: apiTokenId,
-                details: {
-                    name: agencia.nombre,
-                    phone: agencia.telefono,
-                    email: 'logan@x-men.org',
-                    customer: {
-                        logged_in: true
-                    },
-                    line_items: [
-                        {
-                            name: 'Demostrador(a)',
-                            description: 'Imported From Mex.',
-                            unit_price: datosFinancieros.precioDemos,
-                            quantity: numDemos,
-                            sku: '1',
-                            category: 'contacto'
-                        }, {
-                            name: 'Promotor(a)',
-                            description: 'Imported From Mex.',
-                            unit_price: datosFinancieros.precioPromotor,
-                            quantity: numPromotor,
-                            sku: '2',
-                            category: 'contacto'
-                        }, {
-                            name: 'Supervisor(a)',
-                            description: 'Imported From Mex.',
-                            unit_price: datosFinancieros.precioSupervisor,
-                            quantity: numSupervisor,
-                            sku: '3',
-                            category: 'contacto'
-                        }
-                    ]
-                },
+            const agencia = Agencias.findOne({propietario: this.userId});
+            const datosPeticion = {
+                apiTokenId: apiTokenId,
+                carritoId: carritoId,
+                numProductos: numProductos,
+                precios: precios
             };
+            let resultCompra = {};
             try {
-                let crearCargo = Meteor.wrapAsync(conekta.Charge.create, conekta.Charge);
-                let result = crearCargo(cargo);
-                return result.toObject();
+                resultCompra = ConektaUtils.comprar(datosPeticion, agencia);
             } catch (error) {
-                throw new Meteor.Error(error.http_code, error.message_to_purchaser, error.code);
+                insertarCompra.call({
+                    apiRespuesta: error, exito: false,
+                    datosPeticion: datosPeticion, agenciaId: agencia._id
+                });
+                throw new Meteor.Error(403, error.message_to_purchaser, error.code);
             }
+            return insertarCompra.call({
+                apiRespuesta: resultCompra, exito: true,
+                datosPeticion: datosPeticion, agenciaId: agencia._id
+            });
         }
     }
 });
 
-export const guardarTarjeta = new ValidatedMethod({
-    name: 'conekta.guardarTarjeta',
+export const guardarTarjetaCompra = new ValidatedMethod({
+    name: 'conekta.guardarTarjetaCompra',
     mixins: [LoggedInMixin],
     checkLoggedInError: {
         error: '403',
         message: 'Para guardar una tarjeta bancaria necesitas iniciar sesión',
         reason: 'Usuario no loggeado',
     },
-   validate: new SimpleSchema({
+    validate: new SimpleSchema({
         apiTokenId: {type: String}
     }).validator(),
     run({apiTokenId}) {
+        this.unblock();
         if (Meteor.isServer) {
-            this.unblock();
-            const agencia = Agencias.findOne({propietario: Meteor.userId});
-            let crearCliente = Meteor.wrapAsync(conekta.Customer.create, conekta.Customer);
-            const datosCliente = {
-                name: agencia.nombre,
-                email: 'james.howlett@forces.gov',
-                phone: agencia.telefono,
-                cards: [apiTokenId]
-            };
-            let tarjetas = [];
+            let result = {};
+            const agencia = Agencias.findOne({propietario: this.userId});
             try {
-                const result = crearCliente(datosCliente);
-                const apiCliente = result.toObject();
-                tarjetas = apiCliente.cards;
-            } catch (error) {
-                throw new Meteor.Error(error.http_code, error.message_to_purchaser, error.code);
+                result = ConektaUtils.crearClienteTarjeta(apiTokenId, agencia);
+            } catch (e) {
+                throw e
             }
-            for (var i = 0; i < tarjetas.length; i++) {
-                let tarjetaConekta = tarjetas[i];
-                let tarjetaTemp = {
-                    nombre: tarjetaConekta.name,
-                    tipoTarjeta: tarjetaConekta.brand,
-                    numTarjeta: tarjetaConekta.last4,
-                    mesExpiracion: tarjetaConekta.exp_month,
-                    anioExpiracion: tarjetaConekta.exp_year,
-                    apiTarjetaId: tarjetaConekta.id,
-                    apiTokenId: apiTokenId,
-                    apiClienteId: tarjetaConekta.customer_id,
-                    propietario: agencia._id,
-                };
-                return TarjetaBancaria.insert(tarjetaTemp);
-            }
+            result.propietario = agencia._id;
+            return TarjetaBancaria.insert(result);
         }
 
     }
 });
+
+export const agregarTarjeta = new ValidatedMethod({
+    name: 'conekta.agregarTarjeta',
+    mixins: [LoggedInMixin],
+    checkLoggedInError: {
+        error: '403',
+        message: 'Para modificar estos datos necesitas iniciar sesión',
+        reason: 'El usuario no loggeado',
+    },
+    validate: new SimpleSchema({
+        apiTokenId: {type: String},
+        apiClienteId: {type: String},
+    }).validator(),
+    run({apiTokenId, apiClienteId}) {
+        if (Meteor.isServer) {
+            const agencia = Agencias.findOne({propietario: this.userId});
+            let result = {};
+            try{
+                result = ConektaUtils.agregarTarjeta(apiTokenId, apiClienteId);
+            }catch (e){
+                throw  e;
+            }
+            result.propietario = agencia._id;
+            return TarjetaBancaria.insert(result);
+        }
+    }
+});
+
+export const borrarTarjeta = new ValidatedMethod({
+    name: 'conekta.borrarTarjeta',
+    mixins: [LoggedInMixin],
+    checkLoggedInError: {
+        error: '403',
+        message: 'Para modificar estos datos necesitas iniciar sesión',
+        reason: 'El usuario no loggeado',
+    },
+    validate: new SimpleSchema({
+        id: {type: String},
+        apiClienteId: {type: String},
+    }).validator(),
+    run({id, apiClienteId}) {
+        if (Meteor.isServer) {
+            try {
+                ConektaUtils.eliminarTarjeta(apiClienteId);
+            } catch (e) {
+                throw  e
+            }
+            return eliminarTarjeta.call({id: id});
+        }
+    }
+});
+
+
 
 export const validarFechaExpiracion = new ValidatedMethod({
     name: 'conekta.validarFechaExpiracion',
