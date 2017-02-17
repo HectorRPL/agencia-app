@@ -3,7 +3,6 @@ import {Accounts} from "meteor/accounts-base";
 import {SSR} from 'meteor/meteorhacks:ssr';
 import {Roles} from "meteor/alanning:roles";
 import {Agencias} from "../agencias/collection";
-import {Creditos} from "../creditos/collection";
 import {CarritoCompras} from "../compras/carritoCompras/collection";
 import {Direcciones} from "../direcciones/collection";
 import {BitacoraLoginAgencias} from '../bitacoraLoginAgencias/collection';
@@ -49,16 +48,7 @@ if (Meteor.isServer) {
                         throw new Meteor.Error('No se puedo crear la agencia.', 'direccion-no-creada');
                     }
                 });
-                // Aquí se insertan los Creditos
-                let creditos = {};
-                creditos.disponible = 0;
-                creditos.usados = 0;
-                creditos.propietario = agencia._id;
-                Creditos.insert(creditos, (error) => {
-                    if (error) {
-                        throw new Meteor.Error('No se puedo crear la agencia.', 'creditos-no-creados');
-                    }
-                });
+
                 let carritoNuevo = {
                     propietario: agencia._id,
                 };
