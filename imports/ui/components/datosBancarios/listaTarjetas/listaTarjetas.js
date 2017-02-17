@@ -5,23 +5,23 @@ import angular from "angular";
 import angularMeteor from "angular-meteor";
 import uiRouter from "angular-ui-router";
 import ngAnimate from "angular-animate";
-import {TarjetaBancaria} from "../../../../api/tarjetaBancaria/collection";
+import {TarjetasBancarias} from "../../../../api/tarjetasBancarias/collection";
 import {name as EliminarTarjeta} from "../eliminarTarjeta/eliminarTarjeta";
 import {name as AgregarTarjeta} from "../agregarTarjeta/agregarTarjeta";
-import {eliminarTarjeta} from "../../../../api/tarjetaBancaria/methods";
+import {eliminarTarjeta} from "../../../../api/tarjetasBancarias/methods";
 import "./listaTarjetas.html";
 
 class ListaTarjetas {
     constructor($scope, $reactive, $state, $uibModal) {
         'ngInject';
         $reactive(this).attach($scope);
-        this.subscribe('tarjetaBancaria');
+        this.subscribe('tarjetasBancarias');
         this.$uibModal = $uibModal;
         this.$state = $state;
 
         this.helpers({
             tarjetas() {
-                return TarjetaBancaria.find();
+                return TarjetasBancarias.find();
             }
         });
     }

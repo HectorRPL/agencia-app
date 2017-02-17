@@ -1,8 +1,8 @@
 
 import "../../api/usuarios/usuarios";
 import "../../api/agencias/server/publish";
-import "../../api/tarjetaBancaria/server/publish";
-import "../../api/tarjetaBancaria/methods";
+import "../../api/tarjetasBancarias/server/publish";
+import "../../api/tarjetasBancarias/methods";
 import "../../api/vacantes/server/publish";
 import "../../api/vacantes/methods";
 import "../../api/codigosPostales/methods";

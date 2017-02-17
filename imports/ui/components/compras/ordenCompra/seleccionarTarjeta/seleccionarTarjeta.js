@@ -3,7 +3,7 @@
  */
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import {TarjetaBancaria} from "../../../../../api/tarjetaBancaria/collection";
+import {TarjetasBancarias} from "../../../../../api/tarjetasBancarias/collection";
 import './seleccionarTarjeta.html';
 
 
@@ -11,11 +11,11 @@ class SeleccionarTarjeta {
     constructor($scope, $reactive) {
         'ngInject';
         $reactive(this).attach($scope);
-        this.subscribe('tarjetaBancaria');
+        this.subscribe('tarjetasBancarias');
 
         this.helpers({
             tarjetas(){
-                return TarjetaBancaria.find();
+                return TarjetasBancarias.find();
             }
         });
     }

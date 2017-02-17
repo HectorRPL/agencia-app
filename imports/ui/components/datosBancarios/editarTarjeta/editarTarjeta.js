@@ -2,7 +2,7 @@ import angular from "angular";
 import angularMeteor from "angular-meteor";
 import angularMessages from "angular-messages";
 import "./editarTarjeta.html";
-import {update} from "../../../../api/tarjetaBancaria/methods.js";
+import {update} from "../../../../api/tarjetasBancarias/methods.js";
 
 class EditarTarjeta {
   constructor($scope, $reactive){

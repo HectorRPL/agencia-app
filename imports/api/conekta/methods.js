@@ -3,9 +3,9 @@ import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
 import {CallPromiseMixin} from "meteor/didericis:callpromise-mixin";
 import {Agencias} from '../agencias/collection';
-import {TarjetaBancaria} from '../tarjetaBancaria/collection';
+import {TarjetasBancarias} from '../tarjetasBancarias/collection';
 import {insertarCompra} from '../compras/bitacoraCompras/methods';
-import {inserartTarjeta, eliminarTarjeta} from '../tarjetaBancaria/methods';
+import {inserartTarjeta, eliminarTarjeta} from '../tarjetasBancarias/methods';
 import {Meteor} from 'meteor/meteor';
 
 var preciosSchema = new SimpleSchema({
@@ -87,7 +87,7 @@ export const guardarTarjetaCompra = new ValidatedMethod({
                 throw e
             }
             result.propietario = agencia._id;
-            return TarjetaBancaria.insert(result);
+            return TarjetasBancarias.insert(result);
         }
 
     }
@@ -115,7 +115,7 @@ export const agregarTarjeta = new ValidatedMethod({
                 throw  e;
             }
             result.propietario = agencia._id;
-            return TarjetaBancaria.insert(result);
+            return TarjetasBancarias.insert(result);
         }
     }
 });
