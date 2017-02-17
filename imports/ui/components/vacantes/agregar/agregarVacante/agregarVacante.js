@@ -58,7 +58,8 @@ class AgregarVacante {
 const name = 'agregarVacante';
 // create a module
 
-export default angular.module(name, [
+export default angular
+    .module(name, [
     angularMeteor,
     uiRouter,
     angularMessages,
@@ -69,7 +70,8 @@ export default angular.module(name, [
     ElegirEscuela,
     ElegirPuesto,
     ElegirEstados
-]).component(name, {
+])
+    .component(name, {
     templateUrl: `imports/ui/components/vacantes/agregar/${name}/${name}.html`,
     controllerAs: name,
     controller: AgregarVacante

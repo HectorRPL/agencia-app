@@ -24,7 +24,8 @@ class Inicio {
 const name = 'inicio';
 // create a module
 
-export default angular.module(name, [
+export default angular
+    .module(name, [
     angularMeteor,
     uiRouter,
     Registro,
@@ -32,7 +33,8 @@ export default angular.module(name, [
     angularUiBootstrap,
     verificarCorreo,
     registroPendienteVerificacion
-]).component(name, {
+])
+    .component(name, {
     templateUrl: `imports/ui/components/${name}/${name}.html`,
     controllerAs: name,
     controller: Inicio

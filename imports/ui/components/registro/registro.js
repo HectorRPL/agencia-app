@@ -65,15 +65,18 @@ const name = 'registro';
 
 
 // create a module
-export default angular.module(name, [
+export default angular
+    .module(name, [
     angularMeteor,
     uiRouter,
     angularMessages
-]).component(name, {
+])
+    .component(name, {
     templateUrl: `imports/ui/components/${name}/${name}.html`,
     controllerAs: name,
     controller: Registro
-}).directive('codigoPostal', ['$q', function ($q) {
+})
+    .directive('codigoPostal', ['$q', function ($q) {
     return {
         restrict: 'EA',
         require: '?ngModel',
@@ -99,7 +102,8 @@ export default angular.module(name, [
             };
         }
     };
-}]).config(config);
+}])
+    .config(config);
 
 function config($stateProvider) {
     'ngInject';

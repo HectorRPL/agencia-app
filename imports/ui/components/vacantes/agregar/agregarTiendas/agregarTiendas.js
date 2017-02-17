@@ -158,17 +158,18 @@ class AgregarTiendas {
 const name = 'agregarTiendas';
 // create a module
 
-export default angular.module(name, [
+export default angular
+    .module(name, [
     angularMeteor,
     uiRouter,
     angularMessages,
     ElegirCadenas
-]).component(name, {
+])
+    .component(name, {
     templateUrl: `imports/ui/components/vacantes/agregar/${name}/${name}.html`,
     controllerAs: name,
     controller: AgregarTiendas
 })
-
     .config(config);
 
 function config($stateProvider) {

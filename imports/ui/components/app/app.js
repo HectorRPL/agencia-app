@@ -14,18 +14,21 @@ class app {
 const name = 'app';
 // create a module
 
-export default angular.module(name, [
-    angularMeteor,
-    Navigation,
-    Compras,
-    DatosBancarios,
-    Vacantes,
-    MiCuenta
-]).component(name, {
-    templateUrl: `imports/ui/components/${name}/${name}.html`,
-    controllerAs: name,
-    controller: app
-}).config(config);
+export default angular
+    .module(name, [
+        angularMeteor,
+        Navigation,
+        Compras,
+        DatosBancarios,
+        Vacantes,
+        MiCuenta
+    ])
+    .component(name, {
+        templateUrl: `imports/ui/components/${name}/${name}.html`,
+        controllerAs: name,
+        controller: app
+    })
+    .config(config);
 
 function config($stateProvider) {
     'ngInject';

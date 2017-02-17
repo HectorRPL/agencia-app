@@ -97,13 +97,15 @@ class CheckboxDias {
 const name = 'checkboxDias';
 // create a module
 
-export default angular.module(name, [
-    angularMeteor
-]).component(name, {
-    templateUrl: `imports/ui/components/comun/checkBox/${name}/${name}.html`,
-    controllerAs: name,
-    bindings: {
-        diasseleccionados: '='
-    },
-    controller: CheckboxDias
-});
+export default angular
+    .module(name, [
+        angularMeteor
+    ])
+    .component(name, {
+        templateUrl: `imports/ui/components/comun/checkBox/${name}/${name}.html`,
+        controllerAs: name,
+        bindings: {
+            diasseleccionados: '='
+        },
+        controller: CheckboxDias
+    });

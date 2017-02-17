@@ -57,18 +57,21 @@ class Login {
 const name = 'login';
 
 // create a module
-export default angular.module(name, [
+export default angular
+    .module(name, [
     angularMeteor,
     angularMessages,
     uiRouter,
     Registro,
     Recuperar,
     Alertas
-]).component(name, {
+])
+    .component(name, {
     templateUrl: `imports/ui/components/login/${name}.html`,
     controllerAs: name,
     controller: Login
-}).config(config);
+})
+    .config(config);
 
 function config($stateProvider) {
     'ngInject';

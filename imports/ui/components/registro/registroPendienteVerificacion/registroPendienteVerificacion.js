@@ -31,14 +31,17 @@ class RegistroPendienteVerificacion {
 const name = 'registroPendienteVerificacion';
 
 // Crear módulo
-export default angular.module(name, [
+export default angular
+    .module(name, [
     angularMeteor,
     uiRouter
-]).component(name, {
+])
+    .component(name, {
     templateUrl: `imports/ui/components/registro/${name}/${name}.html`,
     controllerAs: name,
     controller: RegistroPendienteVerificacion
-}).config(config);
+})
+    .config(config);
 
 function config($stateProvider) {
     'ngInject';

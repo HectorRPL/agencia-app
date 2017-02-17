@@ -7,9 +7,11 @@ class CodigosPostales {}
 const name = 'ngcp';
 
 // Módulo
-export default angular.module(name, [
+export default angular
+    .module(name, [
     angularMeteor,
-]).directive(name, ['$q', function ($q) {
+])
+    .directive(name, ['$q', function ($q) {
     return {
         restrict: 'EA',
         require: '?ngModel',
