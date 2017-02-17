@@ -5,6 +5,7 @@ import {ValidatedMethod} from 'meteor/mdg:validated-method';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
 import {SSR} from 'meteor/meteorhacks:ssr';
+import {DDPRateLimiter}   from 'meteor/ddp-rate-limiter';
 import {BitacoraCompras} from './collection';
 import {InfoEmpresa} from '../../catalogos/infoEmpresa/collection';
 import {DatosFinancieros} from '../../datosFinancieros/collection';
@@ -43,7 +44,6 @@ export const insertarCompra = new ValidatedMethod({
     }
 });
 
-
 export const enviarTicket = new ValidatedMethod({
     name: 'bitacoraCompras.enviarTicket',
     mixins: [LoggedInMixin],
@@ -81,3 +81,15 @@ export const enviarTicket = new ValidatedMethod({
         }
     }
 });
+
+const BITACORA_COMPRAS_METHODS= _.pluck([insertarCompra, enviarTicket], 'name');
+if (Meteor.isServer) {
+    DDPRateLimiter.addRule({
+        name(name) {
+            return _.contains(BITACORA_COMPRAS_METHODS, name);
+        },
+        connectionId() {
+            return true;
+        },
+    }, 5, 1000);
+}

@@ -38,7 +38,7 @@ export const eliminarTarjeta = new ValidatedMethod({
     }
 });
 
-const TARJETAS_BANCARIA_METODOS = _.pluck([inserartTarjeta], 'name');
+const TARJETAS_BANCARIA_METODOS = _.pluck([inserartTarjeta, eliminarTarjeta], 'name');
 if (Meteor.isServer) {
     // Solo se permite 5 operaciones por conexión por segundo
     DDPRateLimiter.addRule({

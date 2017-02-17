@@ -2,6 +2,7 @@ import {ValidatedMethod} from 'meteor/mdg:validated-method';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
 import {CallPromiseMixin} from "meteor/didericis:callpromise-mixin";
+import {DDPRateLimiter}   from 'meteor/ddp-rate-limiter';
 import {Agencias} from '../agencias/collection';
 import {TarjetasBancarias} from '../tarjetasBancarias/collection';
 import {insertarCompra} from '../compras/bitacoraCompras/methods';
@@ -17,6 +18,7 @@ var preciosSchema = new SimpleSchema({
     subtotalPro: {type: Number, decimal: true},
     subtotalSup: {type: Number, decimal: true}
 });
+
 var numProductosSchema = new SimpleSchema({
     numDemos: {type: Number},
     numPromotor: {type: Number},
@@ -24,6 +26,7 @@ var numProductosSchema = new SimpleSchema({
     totalPersonal: {type: Number},
 
 });
+
 export const realizarCargo = new ValidatedMethod({
     name: 'conekta.realizarCargo',
     mixins: [LoggedInMixin],
@@ -144,8 +147,6 @@ export const borrarTarjeta = new ValidatedMethod({
     }
 });
 
-
-
 export const validarFechaExpiracion = new ValidatedMethod({
     name: 'conekta.validarFechaExpiracion',
     mixins: [CallPromiseMixin],
@@ -175,7 +176,17 @@ export const validarFechaExpiracion = new ValidatedMethod({
     }
 });
 
-
+const TARJETA_METHODS = _.pluck([realizarCargo, guardarTarjetaCompra, agregarTarjeta, borrarTarjeta, validarFechaExpiracion], 'name');
+if (Meteor.isServer) {
+    DDPRateLimiter.addRule({
+        name(name) {
+            return _.contains(TARJETA_METHODS, name);
+        },
+        connectionId() {
+            return true;
+        },
+    }, 5, 1000);
+}
 
 
 

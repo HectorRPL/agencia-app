@@ -3,6 +3,7 @@ import {ValidatedMethod} from "meteor/mdg:validated-method";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {LoggedInMixin} from "meteor/tunifight:loggedin-mixin";
 import {_} from "meteor/underscore";
+import {DDPRateLimiter} from 'meteor/ddp-rate-limiter';
 import {Vacantes} from "./collection.js";
 import {Agencias} from "../agencias/collection.js";
 
@@ -62,3 +63,17 @@ export const desactivar = new ValidatedMethod({
         });
     }
 });
+
+const VACANTES_METHODS = _.pluck([insertVacante, desactivar], 'name');
+if (Meteor.isServer) {
+    // Solo se permite 5 operaciones por conexión por segundo
+    DDPRateLimiter.addRule({
+        name(name) {
+            return _.contains(VACANTES_METHODS, name);
+        },
+        // Limite de conexión por Id
+        connectionId() {
+            return true;
+        },
+    }, 5, 1000);
+}

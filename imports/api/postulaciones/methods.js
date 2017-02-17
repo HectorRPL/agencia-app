@@ -9,7 +9,6 @@ import {_} from 'meteor/underscore';
 import {Postulaciones} from './collection.js';
 import {ProductosCarrito} from '../compras/productosCarrito/collection';
 
-
 export const actualizarSeleccionadas = new ValidatedMethod({
     name: 'postulaciones.actualizarSeleccionadas',
     mixins: [LoggedInMixin],
@@ -76,8 +75,7 @@ export const actualizarSelecVistoAgencia = new ValidatedMethod({
     }
 });
 
-
-const POSTULACIONES_METODOS = _.pluck([actualizarSeleccionadas], 'name');
+const POSTULACIONES_METODOS = _.pluck([actualizarSeleccionadas, actualizarPostVistoAgencia, actualizarSelecVistoAgencia], 'name');
 if (Meteor.isServer) {
     DDPRateLimiter.addRule({
         name(name) {

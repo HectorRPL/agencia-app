@@ -4,12 +4,13 @@
 import {ValidatedMethod} from 'meteor/mdg:validated-method';
 import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
 import {_} from 'meteor/underscore';
+import {DDPRateLimiter}   from 'meteor/ddp-rate-limiter';
 import {Direcciones} from './collection.js';
+
 const ID = ['id'];
+
 const CAMPOS_DIRECCION = ['calle', 'delMpio', 'estado', 'estadoId', 'colonia', 'codigoPostal', 'numExt', 'numInt'];
 
-
-// ACTUALIZAR DIRECCIÓN
 export const actualizar = new ValidatedMethod({
     name: 'direccion.actualizar',
     mixins: [LoggedInMixin],
@@ -40,3 +41,17 @@ export const actualizar = new ValidatedMethod({
         });
     }
 });
+
+const DIRECCION_METHODS = _.pluck([actualizar], 'name');
+if (Meteor.isServer) {
+    // Solo se permite 5 operaciones por conexión por segundo
+    DDPRateLimiter.addRule({
+        name(name) {
+            return _.contains(DIRECCION_METHODS, name);
+        },
+        // Limite de conexión por Id
+        connectionId() {
+            return true;
+        },
+    }, 5, 1000);
+}

@@ -5,6 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {Accounts} from 'meteor/accounts-base';
 import {ValidatedMethod} from 'meteor/mdg:validated-method';
 import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
+import {DDPRateLimiter} from "meteor/ddp-rate-limiter";
 import {_} from 'meteor/underscore';
 import {Agencias} from "./collection";
 
@@ -61,3 +62,15 @@ export const verificarCuenta = new ValidatedMethod({
         }
     }
 });
+
+const AGENCIAS_METHODS = _.pluck([enviarCorreoVerificacion, verificarCuenta], 'name');
+if (Meteor.isServer) {
+    DDPRateLimiter.addRule({
+        name(name) {
+            return _.contains(AGENCIAS_METHODS, name);
+        },
+        connectionId() {
+            return true;
+        },
+    }, 5, 1000);
+}

@@ -46,3 +46,15 @@ export const actualizarEstadoReg = new ValidatedMethod({
         }
     }
 });
+
+const BITACORA_LOGIN_AGENCIAS_METHODS = _.pluck([obtenerEstadoReg, actualizarEstadoReg], 'name');
+if (Meteor.isServer) {
+    DDPRateLimiter.addRule({
+        name(name) {
+            return _.contains(BITACORA_LOGIN_AGENCIAS_METHODS, name);
+        },
+        connectionId() {
+            return true;
+        },
+    }, 5, 1000);
+}

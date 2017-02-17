@@ -3,6 +3,7 @@
  */
 import {ValidatedMethod} from 'meteor/mdg:validated-method';
 import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
+import {DDPRateLimiter}   from 'meteor/ddp-rate-limiter';
 import {ProductosCarrito} from './collection.js';
 import {_} from 'meteor/underscore';
 
@@ -85,7 +86,6 @@ export const eliminarProductoId = new ValidatedMethod({
     }
 });
 
-
 export const eliminarTodos = new ValidatedMethod({
     name: 'productosCarrito.eliminarTodos',
     mixins: [LoggedInMixin],
@@ -103,7 +103,6 @@ export const eliminarTodos = new ValidatedMethod({
         }
     }
 });
-
 
 const POSTULACIONES_METODOS = _.pluck([buscarPostulacion, agregarPostulacion, eliminarPostulacion,
     eliminarProductoId, eliminarTodos], 'name');
