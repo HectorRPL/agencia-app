@@ -36,15 +36,6 @@ function config($stateProvider) {
     .state('app.tarjetas', {
       url: '/tarjetas',
       template: '<datos-bancarios></datos-bancarios>',
-      abstract: true,
-      resolve: {
-        currentUser($q) {
-          if (Meteor.user() === null) {
-            return $q.reject('AUTH_REQUIRED');
-          } else {
-            return $q.resolve();
-          }
-        }
-      }
+      abstract: true
     });
 }

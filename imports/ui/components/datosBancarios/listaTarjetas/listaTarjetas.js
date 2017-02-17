@@ -77,15 +77,6 @@ function config($stateProvider) {
     $stateProvider
         .state('app.tarjetas.lista', {
             url: '/lista',
-            template: '<lista-tarjetas></lista-tarjetas>',
-            resolve: {
-                currentUser($q) {
-                    if (Meteor.userId() === null) {
-                        return $q.reject('AUTH_REQUIRED');
-                    } else {
-                        return $q.resolve();
-                    }
-                }
-            }
+            template: '<lista-tarjetas></lista-tarjetas>'
         });
 }

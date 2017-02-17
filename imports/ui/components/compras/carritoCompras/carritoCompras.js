@@ -69,15 +69,6 @@ function config($stateProvider) {
     $stateProvider
         .state('app.compras.carritoCompras', {
             url: '/carrito/:carritoId',
-            template: '<carrito-compras></carrito-compras>',
-            resolve: {
-                currentUser($q) {
-                    if (Meteor.user() === null) {
-                        return $q.reject('AUTH_REQUIRED');
-                    } else {
-                        return $q.resolve();
-                    }
-                }
-            }
+            template: '<carrito-compras></carrito-compras>'
         });
 }
