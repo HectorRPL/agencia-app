@@ -1,14 +1,14 @@
 /**
  * Created by jvltmtz on 4/11/16.
  */
-import {Meteor} from 'meteor/meteor';
-import {ProductosCarrito} from '../collection';
-import {Postulaciones} from '../../../postulaciones/collection';
-import {Candidatos} from '../../../candidatos/collection';
-import {Puestos} from '../../../catalogos/puestos/collection';
-import {Vacantes} from '../../../vacantes/collection';
-import {Tiendas} from '../../../tiendas/collection';
-import {Cadenas} from '../../../catalogos/cadenas/collection';
+import {Meteor} from "meteor/meteor";
+import {ProductosCarrito} from "../collection";
+import {Postulaciones} from "../../../postulaciones/collection";
+import {Candidatos} from "../../../candidatos/collection";
+import {Puestos} from "../../../catalogos/puestos/collection";
+import {Vacantes} from "../../../vacantes/collection";
+import {Tiendas} from "../../../tiendas/collection";
+import {Cadenas} from "../../../catalogos/cadenas/collection";
 
 if (Meteor.isServer) {
     Meteor.publish('productosCarrito.count.candidatos', function (carritoId) {
@@ -71,7 +71,7 @@ if (Meteor.isServer) {
                             find: function (postulacion) {
                                 return Tiendas.find({_id: postulacion.tiendaId});
                             },
-                            children:[
+                            children: [
                                 {
                                     find: function (tienda) {
                                         return Cadenas.find({_id: tienda.cadenaId});

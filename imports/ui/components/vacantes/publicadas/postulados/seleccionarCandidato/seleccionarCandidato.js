@@ -1,7 +1,7 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import './seleccionarCandidato.html';
-import { contactar } from '../../../../../../api/postulaciones/methods.js';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import "./seleccionarCandidato.html";
+import {contactar} from "../../../../../../api/postulaciones/methods.js";
 
 class SeleccionarCandidato {
     constructor($scope, $reactive) {
@@ -44,15 +44,15 @@ const name = 'seleccionarCandidato';
 
 export default angular
     .module(name, [
-    angularMeteor,
-])
+        angularMeteor,
+    ])
     .component(name, {
-    templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
-    controllerAs: name,
-    controller: SeleccionarCandidato,
-    bindings: {
-        id: '<',
-        close: '&',
-        dismiss: '&'
-    }
-});
+        templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
+        controllerAs: name,
+        controller: SeleccionarCandidato,
+        bindings: {
+            id: '<',
+            close: '&',
+            dismiss: '&'
+        }
+    });

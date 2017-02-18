@@ -1,13 +1,19 @@
 /**
  * Created by Héctor on 16/01/2017.
  */
-import {Mongo} from 'meteor/mongo';
+import {Mongo} from "meteor/mongo";
 export const BitacoraLoginAgencias = new Mongo.Collection('bitacoraLoginAgencias');
 
 BitacoraLoginAgencias.deny({
-    insert() {return true;},
-    update() {return true;},
-    remove() {return true;}
+    insert() {
+        return true;
+    },
+    update() {
+        return true;
+    },
+    remove() {
+        return true;
+    }
 });
 
 const Schema = {};
@@ -29,19 +35,19 @@ Schema.bitacoraLoginAgencias = new SimpleSchema({
     fechaLogin: {
         type: Date
     },
-    fechaLogout:{
+    fechaLogout: {
         type: Date,
         optional: true
     },
-    conexion:{
+    conexion: {
         type: Object,
         blackbox: true
     },
-    estadoRegistro:{
+    estadoRegistro: {
         type: String
     },
-    tipoLogin:{
-        type:String
+    tipoLogin: {
+        type: String
     }
 });
 

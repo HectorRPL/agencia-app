@@ -19,9 +19,9 @@ const operacionesCompra = {
         let postulacionesBulk = Postulaciones.rawCollection().initializeUnorderedBulkOp();
         postulacionesBulk.find({_id: {$in: idsPost}}).update({$set: {estado: 2, fechaSeleccion: new Date()}});
         const execute = Meteor.wrapAsync(postulacionesBulk.execute, postulacionesBulk);
-        try{
-           execute();
-        } catch (error){
+        try {
+            execute();
+        } catch (error) {
             console.log('Error al actualizar las postulaciones a 2 ', idsPost);
         }
         //Aqui va enviar ticket.

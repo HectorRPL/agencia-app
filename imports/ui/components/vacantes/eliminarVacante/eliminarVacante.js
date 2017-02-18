@@ -1,7 +1,7 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import './eliminarVacante.html';
-import { desactivar } from '../../../../api/vacantes/methods.js';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import "./eliminarVacante.html";
+import {desactivar} from "../../../../api/vacantes/methods.js";
 
 class EliminarVacante {
     constructor($scope, $reactive) {
@@ -44,15 +44,15 @@ const name = 'eliminarVacante';
 
 export default angular
     .module(name, [
-    angularMeteor,
-])
+        angularMeteor,
+    ])
     .component(name, {
-    templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
-    controllerAs: name,
-    controller: EliminarVacante,
-    bindings: {
-        id: '<',
-        close: '&',
-        dismiss: '&'
-    }
-});
+        templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
+        controllerAs: name,
+        controller: EliminarVacante,
+        bindings: {
+            id: '<',
+            close: '&',
+            dismiss: '&'
+        }
+    });

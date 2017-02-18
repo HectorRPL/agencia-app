@@ -11,8 +11,7 @@ import {name as ListaSeleccionados} from "./listaSeleccionados/listaSeleccionado
 import {name as EncabezadoCompras} from "../../../compras/encabezadoCompras/encabezadoCompras";
 import {name as NumSeleccionadosTienda} from "../../counts/numSeleccionadosTienda/numSeleccionadosTienda";
 import {name as NumSeleccionadosNuevosTienda} from "../../counts/numSeleccionadosNuevosTienda/numSeleccionadosNuevosTienda";
-import {actualizarSelecVistoAgencia} from '../../../../../api/postulaciones/methods';
-import {CarritoCompras} from '../../../../../api/compras/carritoCompras/collection';
+import {actualizarSelecVistoAgencia} from "../../../../../api/postulaciones/methods";
 import "./seleccionados.html";
 
 class Seleccionados {

@@ -1,11 +1,11 @@
 /**
  * Created by jvltmtz on 25/11/16.
  */
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-import {Counts} from 'meteor/tmeasday:publish-counts';
-import './numSeleccionadosTienda.html';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import {Counts} from "meteor/tmeasday:publish-counts";
+import "./numSeleccionadosTienda.html";
 
 class NumSeleccionadosTienda {
 

@@ -1,12 +1,12 @@
 /**
  * Created by jvltmtz on 3/11/16.
  */
-import {Meteor} from 'meteor/meteor';
-import {ValidatedMethod} from 'meteor/mdg:validated-method';
-import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
-import {DDPRateLimiter}   from 'meteor/ddp-rate-limiter';
+import {Meteor} from "meteor/meteor";
+import {ValidatedMethod} from "meteor/mdg:validated-method";
+import {LoggedInMixin} from "meteor/tunifight:loggedin-mixin";
+import {DDPRateLimiter} from "meteor/ddp-rate-limiter";
 import {CarritoCompras} from "./collection.js";
-import {_} from 'meteor/underscore';
+import {_} from "meteor/underscore";
 
 export const crear = new ValidatedMethod({
     name: 'carritoCompras.crear',
@@ -17,7 +17,7 @@ export const crear = new ValidatedMethod({
         reason: 'Usuario no logeado' //Optional
     },
     run(){
-        if(Meteor.isServer){
+        if (Meteor.isServer) {
             const selector = {propietario: agencia._id};
             const producto = CarritoCompras.insert(selector);
         }

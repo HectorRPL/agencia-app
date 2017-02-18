@@ -1,8 +1,7 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import './checkboxDias.html';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import "./checkboxDias.html";
 import {DiasSemanales} from '../../../../../api/catalogos/diasSemanales/collection'
-
 
 class CheckboxDias {
     constructor($scope, $reactive) {
@@ -77,7 +76,7 @@ class CheckboxDias {
     }
 
     activar(dia) {
-        if(this.buscarDia('Di') >  -1){
+        if (this.buscarDia('Di') > -1) {
             this.disabledCheks = true;
             this.diario.activo = true;
         }

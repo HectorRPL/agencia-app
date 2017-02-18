@@ -33,11 +33,11 @@ class VacantesPublicadas {
         this.$uibModal.open({
             animation: true,
             controllerAs: '$ctrl',
-            controller: [ '$uibModalInstance', 'id', function ($uibModalInstance, id) {
+            controller: ['$uibModalInstance', 'id', function ($uibModalInstance, id) {
                 this.id = id;
                 this.close = $uibModalInstance.close;
                 this.dismiss = $uibModalInstance.dismiss;
-            } ],
+            }],
             template: '<eliminar-vacante id="$ctrl.id" dismiss="$ctrl.close()"></eliminar-vacante>',
             size: '',
             resolve: {

@@ -39,10 +39,11 @@ export const actualizarEstadoReg = new ValidatedMethod({
         if (Meteor.isServer) {
             return BitacoraLoginAgencias.update(
                 {propietario: this.userId},
-                {$set: {
-                    estadoRegistro: estado
-                }
-            });
+                {
+                    $set: {
+                        estadoRegistro: estado
+                    }
+                });
         }
     }
 });

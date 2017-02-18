@@ -7,7 +7,6 @@ import {Puestos} from "../../catalogos/puestos/collection";
 import {Tiendas} from "../../tiendas/collection";
 import {Postulaciones} from "../../postulaciones/collection";
 
-
 if (Meteor.isServer) {
     Meteor.publishComposite('vacantes.misPublicaciones', function () {
         if (this.userId) {

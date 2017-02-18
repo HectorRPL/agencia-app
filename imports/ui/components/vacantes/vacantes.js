@@ -1,12 +1,10 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-
-import { name as AgregarVacante} from './agregar/agregarVacante/agregarVacante';
-import { name as VacantesPublicadas } from './publicadas/vacantesPublicadas/vacantesPublicadas';
-import { name as DetalleVacante } from './tabsDetalleVacante/tabsDetalleVacante';
-
-import './vacantes.html';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import {name as AgregarVacante} from "./agregar/agregarVacante/agregarVacante";
+import {name as VacantesPublicadas} from "./publicadas/vacantesPublicadas/vacantesPublicadas";
+import {name as DetalleVacante} from "./tabsDetalleVacante/tabsDetalleVacante";
+import "./vacantes.html";
 
 class Vacantes {
     constructor() {
@@ -39,6 +37,6 @@ function config($stateProvider) {
         .state('app.vacantes', {
             url: '/vacantes',
             template: '<vacantes></vacantes>',
-            abstract:true
+            abstract: true
         });
 }

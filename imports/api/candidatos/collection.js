@@ -1,6 +1,6 @@
-import {Mongo} from 'meteor/mongo';
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-import {Direcciones} from '../direcciones/collection';
+import {Mongo} from "meteor/mongo";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {Direcciones} from "../direcciones/collection";
 
 export const Candidatos = new Mongo.Collection('candidatos');
 

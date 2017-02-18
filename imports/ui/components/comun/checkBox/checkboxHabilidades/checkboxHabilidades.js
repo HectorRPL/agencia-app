@@ -34,9 +34,9 @@ class CheckboxHabilidades {
         }
     }
 
-    activar(habilidad){
+    activar(habilidad) {
         var index = this.habseleccionadas.indexOf(habilidad._id);
-        if(index > -1){
+        if (index > -1) {
             habilidad.activo = true;
         }
     }

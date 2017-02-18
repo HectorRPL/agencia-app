@@ -1,14 +1,18 @@
 /**
  * Created by jvltmtz on 8/09/16.
  */
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-import {name as SeleccionarCandidato} from '../seleccionarCandidato/seleccionarCandidato';
-import './listaPostulados.html';
-import {Postulaciones} from '../../../../../../api/postulaciones/collection';
-import {agregarPostulacion, buscarPostulacion, eliminarPostulacion} from '../../../../../../api/compras/productosCarrito/methods';
-import {actualizarPostVistoAgencia, actualizarSelecVistoAgencia} from '../../../../../../api/postulaciones/methods';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import {name as SeleccionarCandidato} from "../seleccionarCandidato/seleccionarCandidato";
+import "./listaPostulados.html";
+import {Postulaciones} from "../../../../../../api/postulaciones/collection";
+import {
+    agregarPostulacion,
+    buscarPostulacion,
+    eliminarPostulacion
+} from "../../../../../../api/compras/productosCarrito/methods";
+import {actualizarPostVistoAgencia, actualizarSelecVistoAgencia} from "../../../../../../api/postulaciones/methods";
 import {_} from "meteor/underscore";
 
 
@@ -30,20 +34,27 @@ class ListaPostulados {
     }
 
     agregarCarrito(postulado, puestoId) {
-        agregarPostulacion.call({postulacionId: postulado._id, carritoId: this.carritoId, puestoId: puestoId}, this.$bindToContext((err, result)=>{
-            if(err){
+        agregarPostulacion.call({
+            postulacionId: postulado._id,
+            carritoId: this.carritoId,
+            puestoId: puestoId
+        }, this.$bindToContext((err, result)=> {
+            if (err) {
 
-            }else{
+            } else {
                 postulado.seleccionado = true;
             }
         }));
     }
 
     eliminarCarrito(postulado) {
-        eliminarPostulacion.call({postulacionId: postulado._id, carritoId: this.carritoId}, this.$bindToContext((err, result)=>{
-            if(err){
+        eliminarPostulacion.call({
+            postulacionId: postulado._id,
+            carritoId: this.carritoId
+        }, this.$bindToContext((err, result)=> {
+            if (err) {
 
-            }else{
+            } else {
                 postulado.seleccionado = false;
             }
         }));
@@ -53,7 +64,7 @@ class ListaPostulados {
 
     existeEnCarroCompras(postulado) {
         postulado.mostrarInfo = false;
-        buscarPostulacion.call({postulacionId: postulado._id},  this.$bindToContext((err, result)=>{
+        buscarPostulacion.call({postulacionId: postulado._id}, this.$bindToContext((err, result)=> {
             postulado.seleccionado = result;
 
         }));
@@ -62,17 +73,17 @@ class ListaPostulados {
 
     actualizarPostVistoAgencia(postulado) {
 
-        if(!postulado.postVistoAgencia){
+        if (!postulado.postVistoAgencia) {
             actualizarPostVistoAgencia.call({postulacionId: postulado._id},
                 this.$bindToContext((err, result)=> {
 
-            }));
+                }));
         }
 
     }
 
-    actualizarSelecVistoAgencia(postulado){
-        if(!postulado.selecVistoAgencia){
+    actualizarSelecVistoAgencia(postulado) {
+        if (!postulado.selecVistoAgencia) {
             actualizarSelecVistoAgencia.call({postulacionId: postulado._id},
                 this.$bindToContext((err, result)=> {
 
@@ -80,10 +91,10 @@ class ListaPostulados {
         }
     }
 
-    verificarActualizacion(postulado){
-        if(postulado.estado === 1){
+    verificarActualizacion(postulado) {
+        if (postulado.estado === 1) {
             this.actualizarPostVistoAgencia(postulado);
-        }else{
+        } else {
             this.actualizarSelecVistoAgencia(postulado)
         }
         postulado.mostrarInfo = !postulado.mostrarInfo;

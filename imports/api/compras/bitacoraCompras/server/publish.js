@@ -3,7 +3,7 @@
  */
 
 import {Meteor} from "meteor/meteor";
-import {BitacoraCompras} from '../collection';
+import {BitacoraCompras} from "../collection";
 
 if (Meteor.isServer) {
     Meteor.publish('bitacoraCompras.respuestaApi', function (id) {

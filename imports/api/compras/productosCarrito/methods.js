@@ -1,11 +1,11 @@
 /**
  * Created by jvltmtz on 3/11/16.
  */
-import {ValidatedMethod} from 'meteor/mdg:validated-method';
-import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
-import {DDPRateLimiter}   from 'meteor/ddp-rate-limiter';
-import {ProductosCarrito} from './collection.js';
-import {_} from 'meteor/underscore';
+import {ValidatedMethod} from "meteor/mdg:validated-method";
+import {LoggedInMixin} from "meteor/tunifight:loggedin-mixin";
+import {DDPRateLimiter} from "meteor/ddp-rate-limiter";
+import {ProductosCarrito} from "./collection.js";
+import {_} from "meteor/underscore";
 
 export const buscarPostulacion = new ValidatedMethod({
     name: 'productosCarrito.buscarPostulacion',

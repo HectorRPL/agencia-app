@@ -21,13 +21,15 @@ class ElegirCadenas {
 const name = 'elegirCadena';
 // create a module
 
-export default angular.module(name, [
-    angularMeteor
-]).component(name, {
-    templateUrl: `imports/ui/components/comun/selects/${name}/${name}.html`,
-    controllerAs: name,
-    bindings: {
-        cadenaid: '='
-    },
-    controller: ElegirCadenas
-});
+export default angular
+    .module(name, [
+        angularMeteor
+    ])
+    .component(name, {
+        templateUrl: `imports/ui/components/comun/selects/${name}/${name}.html`,
+        controllerAs: name,
+        bindings: {
+            cadenaid: '='
+        },
+        controller: ElegirCadenas
+    });

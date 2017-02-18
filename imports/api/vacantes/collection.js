@@ -3,7 +3,7 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Roles} from "meteor/alanning:roles";
 import {Puestos} from "../catalogos/puestos/collection";
 import {Estados} from "../catalogos/estados/collection";
-import {Counts} from 'meteor/tmeasday:publish-counts';
+import {Counts} from "meteor/tmeasday:publish-counts";
 
 const permisos = ['addVacante'];
 const diasEnMilis = 86400000;

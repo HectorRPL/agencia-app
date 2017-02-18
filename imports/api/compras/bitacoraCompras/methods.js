@@ -1,14 +1,14 @@
 /**
  * Created by jvltmtz on 8/12/16.
  */
-import {ValidatedMethod} from 'meteor/mdg:validated-method';
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
-import {SSR} from 'meteor/meteorhacks:ssr';
-import {DDPRateLimiter}   from 'meteor/ddp-rate-limiter';
-import {BitacoraCompras} from './collection';
-import {InfoEmpresa} from '../../catalogos/infoEmpresa/collection';
-import {DatosFinancieros} from '../../datosFinancieros/collection';
+import {ValidatedMethod} from "meteor/mdg:validated-method";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {LoggedInMixin} from "meteor/tunifight:loggedin-mixin";
+import {SSR} from "meteor/meteorhacks:ssr";
+import {DDPRateLimiter} from "meteor/ddp-rate-limiter";
+import {BitacoraCompras} from "./collection";
+import {InfoEmpresa} from "../../catalogos/infoEmpresa/collection";
+import {DatosFinancieros} from "../../datosFinancieros/collection";
 
 export const insertarCompra = new ValidatedMethod({
     name: 'bitacoraCompras.insertarCompra',
@@ -82,7 +82,7 @@ export const enviarTicket = new ValidatedMethod({
     }
 });
 
-const BITACORA_COMPRAS_METHODS= _.pluck([insertarCompra, enviarTicket], 'name');
+const BITACORA_COMPRAS_METHODS = _.pluck([insertarCompra, enviarTicket], 'name');
 if (Meteor.isServer) {
     DDPRateLimiter.addRule({
         name(name) {

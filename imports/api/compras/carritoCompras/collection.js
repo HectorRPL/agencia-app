@@ -1,8 +1,8 @@
 /**
  * Created by jvltmtz on 3/11/16.
  */
-import { Mongo } from 'meteor/mongo';
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+import {Mongo} from "meteor/mongo";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
 
 export const CarritoCompras = new Mongo.Collection('carritoCompras');
 

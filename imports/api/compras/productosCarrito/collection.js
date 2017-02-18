@@ -1,10 +1,10 @@
 /**
  * Created by jvltmtz on 3/11/16.
  */
-import { Mongo } from 'meteor/mongo';
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-import {Postulaciones} from '../../postulaciones/collection';
-import {Puestos} from '../../catalogos/puestos/collection';
+import {Mongo} from "meteor/mongo";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {Postulaciones} from "../../postulaciones/collection";
+import {Puestos} from "../../catalogos/puestos/collection";
 
 export const ProductosCarrito = new Mongo.Collection('productosCarrito');
 
@@ -37,7 +37,7 @@ Schema.productosCarrito = new SimpleSchema({
         regEx: SimpleSchema.RegEx.Id,
         denyUpdate: true,
     },
-    puestoId:{
+    puestoId: {
         type: String,
         denyUpdate: true
     }

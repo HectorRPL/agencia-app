@@ -2,11 +2,11 @@
  * Created by Héctor on 04/01/2017.
  */
 import {Meteor} from "meteor/meteor";
-import {Accounts} from 'meteor/accounts-base';
-import {ValidatedMethod} from 'meteor/mdg:validated-method';
-import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
+import {Accounts} from "meteor/accounts-base";
+import {ValidatedMethod} from "meteor/mdg:validated-method";
+import {LoggedInMixin} from "meteor/tunifight:loggedin-mixin";
 import {DDPRateLimiter} from "meteor/ddp-rate-limiter";
-import {_} from 'meteor/underscore';
+import {_} from "meteor/underscore";
 import {Agencias} from "./collection";
 
 // Enviará un correo con un link al usuario para verificacar de registro

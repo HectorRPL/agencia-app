@@ -1,7 +1,7 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import './elegirEstado.html';
-import {Estados} from '../../../../../api/catalogos/estados/collection';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import "./elegirEstado.html";
+import {Estados} from "../../../../../api/catalogos/estados/collection";
 
 
 class ElegirEstados {
@@ -20,14 +20,16 @@ class ElegirEstados {
 const name = 'elegirEstado';
 // create a module
 
-export default angular.module(name, [
-    angularMeteor
-]).component(name, {
-    templateUrl: `imports/ui/components/comun/selects/${name}/${name}.html`,
-    controllerAs: name,
-    bindings: {
-        estadoid: '='
-    },
-    controller: ElegirEstados
+export default angular
+    .module(name, [
+        angularMeteor
+    ])
+    .component(name, {
+        templateUrl: `imports/ui/components/comun/selects/${name}/${name}.html`,
+        controllerAs: name,
+        bindings: {
+            estadoid: '='
+        },
+        controller: ElegirEstados
 
-});
+    });

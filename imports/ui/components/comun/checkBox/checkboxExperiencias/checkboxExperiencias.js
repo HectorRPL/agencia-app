@@ -31,13 +31,13 @@ class CheckboxExperiencias {
 
     agregarOEliminar(experiencia) {
 
-      var index = this.listado.indexOf(experiencia._id);
+        var index = this.listado.indexOf(experiencia._id);
 
         if (experiencia.activo === true && index === -1) {
             this.listado.push(experiencia._id);
         } else if (experiencia.activo === false && index > -1) {
-          this.listado.splice(index, 1);
-        } 
+            this.listado.splice(index, 1);
+        }
     }
 
     agregarOtraHab() {
@@ -46,14 +46,14 @@ class CheckboxExperiencias {
     }
 
     habilitarCheck(experiencia) {
-      if (Array.isArray(this.listado) && this.listado.length > 0) {
-        let resultado = this.listado.indexOf(experiencia._id);
-        if (resultado > -1 ) {
-          experiencia.activo = true;
-        } else {
-          experiencia.activo = false;
+        if (Array.isArray(this.listado) && this.listado.length > 0) {
+            let resultado = this.listado.indexOf(experiencia._id);
+            if (resultado > -1) {
+                experiencia.activo = true;
+            } else {
+                experiencia.activo = false;
+            }
         }
-      }
     }
 }
 

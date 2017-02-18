@@ -11,8 +11,8 @@ import {name as ListaPostulados} from "./listaPostulados/listaPostulados";
 import {name as EncabezadoCompras} from "../../../compras/encabezadoCompras/encabezadoCompras";
 import {name as NumPostuladosTienda} from "../../counts/numPostuladosTienda/numPostuladosTienda";
 import {name as NumPostuladosNuevosTienda} from "../../counts/numPostuladosNuevosTienda/numPostuladosNuevosTienda";
-import {actualizarPostVistoAgencia} from '../../../../../api/postulaciones/methods.js';
-import {CarritoCompras} from '../../../../../api/compras/carritoCompras/collection';
+import {actualizarPostVistoAgencia} from "../../../../../api/postulaciones/methods.js";
+import {CarritoCompras} from "../../../../../api/compras/carritoCompras/collection";
 import "./postulados.html";
 
 class Postulados {

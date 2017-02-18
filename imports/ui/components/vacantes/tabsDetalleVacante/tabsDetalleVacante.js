@@ -1,6 +1,6 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import './tabsDetalleVacante.html';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import "./tabsDetalleVacante.html";
 
 class TabsDetalleVacante {
     constructor() {
@@ -13,13 +13,13 @@ const name = 'tabsDetalleVacante';
 
 export default angular
     .module(name, [
-    angularMeteor,
-])
+        angularMeteor,
+    ])
     .component(name, {
-    templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
-    controllerAs: name,
-    controller: TabsDetalleVacante,
-    bindings:{
-        vacante: '<'
-    }
-});
+        templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,
+        controllerAs: name,
+        controller: TabsDetalleVacante,
+        bindings: {
+            vacante: '<'
+        }
+    });

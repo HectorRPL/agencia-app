@@ -3,7 +3,7 @@ import {ValidatedMethod} from "meteor/mdg:validated-method";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {LoggedInMixin} from "meteor/tunifight:loggedin-mixin";
 import {_} from "meteor/underscore";
-import {DDPRateLimiter} from 'meteor/ddp-rate-limiter';
+import {DDPRateLimiter} from "meteor/ddp-rate-limiter";
 import {Vacantes} from "./collection.js";
 import {Agencias} from "../agencias/collection.js";
 

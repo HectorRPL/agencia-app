@@ -6,7 +6,7 @@ import {InfoEmpresa} from "../collection";
 
 if (Meteor.isServer) {
     Meteor.publish('infoEmpresa', () => {
-        const  selector = {_id: '1'};
+        const selector = {_id: '1'};
         return InfoEmpresa.find(selector);
     });
 }
