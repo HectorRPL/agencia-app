@@ -25,7 +25,6 @@ export const enviarCorreoVerificacion = new ValidatedMethod({
             try {
                 Accounts.sendVerificationEmail(this.userId);
             } catch (error) {
-                console.log('El usuario ha intentado enviar nuevamente un correo para verificar su correo, vamos a imprimir el Meteor.Error(error), en teoría deberían de ser sólo dos posibles errores, el correo ya no existe, y el correo ya ha sido verificado', new Meteor.Error(error.message));
                 throw new Meteor.Error(error.message);
             }
         }
@@ -48,7 +47,6 @@ export const verificarCuenta = new ValidatedMethod({
 
             let user = Meteor.user();
             let email = user && user.emails && user.emails[0].address
-            console.log('Esto ya debería ser el email en modo string', email);
 
             return Agencias.update(
                 {propietario: this.userId},

@@ -85,7 +85,6 @@ if (Meteor.isServer) {
     };
     Accounts.emailTemplates.verifyEmail.html = function (user, url) {
         url = url.replace("#", "agencia", "gi");
-        console.log('Se enviará código a la URL', url);
 
         SSR.compileTemplate( 'verificarEmail', Assets.getText( 'emailTemplates/verificacionEmail/verificacionEmail.html'));
         var emailData = {

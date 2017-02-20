@@ -41,7 +41,6 @@ if (Meteor.isServer) {
                                 fields.email = 1;
                                 fields.telefono = 1;
                             }
-                            console.log(fields);
                             return Candidatos.find({_id: postulacion.candidatoId}, fields);
                         },
                         children: [

@@ -71,7 +71,6 @@ export const enviarTicket = new ValidatedMethod({
                 articuloSup: datosCompra.apiDetalles.line_items[2]
             };
             SSR.compileTemplate('ticketEmailTemplate', Assets.getText('emailTemplates/ticketCompra.html'));
-            console.log('Enviar correo del ticketId ', ticketId);
             Email.send({
                 to: 'j.vlt.mtz@gmail.com',
                 from: 'demostradoras01@gmail.com',

@@ -18,7 +18,6 @@ class AgregarTarjeta {
         $reactive(this).attach($scope);
         Conekta.setPublicKey('key_INzsPzyiYTSRUfxQwdav5wg');
         this.apiClienteId = $stateParams.clienteId;
-        console.log($stateParams.clienteId);
         this.titulo = 'Datos Bancarios';
         this.apiTokenId = '';
         this.datos = {};
@@ -26,9 +25,7 @@ class AgregarTarjeta {
 
     generarToken() {
         this.tipoMsj = '';
-        console.log('generarToken ' );
         Conekta.Token.create(this.crearTarjetaConekta(), this.$bindToContext((token)=> {
-            console.log(token);
             this.apiTokenId = token.id;
             if ('4000000000000002' === this.datos.numeroTarjeta) {
                 this.apiTokenId = 'tok_test_card_declined'
@@ -60,13 +57,10 @@ class AgregarTarjeta {
                 cvc: this.datos.codigoSeguridad
             }
         };
-        console.log(this.datos);
         return tarjetaAToken;
     }
 
     guardar() {
-        console.log(' this.apiTokenId ', this.apiTokenId);
-        console.log(' this.apiClienteId ', this.apiClienteId);
         const tarjeta = {
             apiTokenId: this.apiTokenId,
             apiClienteId: this.apiClienteId

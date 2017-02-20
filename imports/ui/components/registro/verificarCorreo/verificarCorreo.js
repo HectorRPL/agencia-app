@@ -32,7 +32,6 @@ class VerificarCorreo {
         this.tipoAlerta = '';
         Accounts.verifyEmail(this.token,
             this.$bindToContext((err) => {
-                console.log('Se intentará verificar este token:', this.token);
                 if (err) {
                     this.linkExpirado = true;
                     this.msjAlerta = 'Lo sentimos, el link de verificación de correo ha expirado.';
@@ -65,7 +64,6 @@ class VerificarCorreo {
     }
 
     entrar() {
-        console.log('El usuario pasa a la pantalla app.vacantes.publicadas');
         this.$state.go('app.vacantes.publicadas');
     }
 

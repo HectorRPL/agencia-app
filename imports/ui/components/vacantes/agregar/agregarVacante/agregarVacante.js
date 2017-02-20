@@ -19,7 +19,6 @@ class AgregarVacante {
         this.$state = $state;
 
         if (Session.get('datosVacante') === null || Session.get('datosVacante') === undefined ) {
-            console.log('Session.get-datosVacante viene vacio, por lo tanto vamos a crear las habilidades');
             this.vacante = {
                 perfil: {
                     habilidades: {
@@ -34,7 +33,6 @@ class AgregarVacante {
                     }
                 }
             };
-            console.log(this.vacante);
         } else {
             this.listadoHab = [];
             this.listadoDias = [];

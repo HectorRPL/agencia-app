@@ -16,7 +16,6 @@ class RegistroPendienteVerificacion {
         this.msjAlerta = '';
         this.tipoAlerta = '';
         enviarCorreoVerificacion.call({}, this.$bindToContext((err, result) => {
-            console.log('Entró a la función enviarCorreoVerificacion');
             if (err) {
                 this.msjAlerta = 'Mensaje del sistema: ' + err + 'Intenta refresecar el navegador presionando la tecla F5, si el problema persiste contáctanos';
                 this.tipoAlerta = 'danger';
