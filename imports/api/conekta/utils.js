@@ -11,9 +11,9 @@ const MONEDA = 'MXN';
 if (Meteor.isServer) {
     Meteor.startup(() => {
         const conektaConfig = Meteor.settings.private.conektaConfig;
-        conekta.api_key = conektaConfig.apiKey;
-        conekta.api_version = conektaConfig.apiVersion;
-        conekta.locale = conektaConfig.apiIdioma;
+        conekta.api_key = conektaConfig.key;
+        conekta.api_version = conektaConfig.version;
+        conekta.locale = conektaConfig.idioma;
     });
 }
 
