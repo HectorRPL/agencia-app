@@ -84,8 +84,9 @@ class OrdenCompra {
         var modalInstance = this.$uibModal.open({
             animation: true,
             component: 'ModalCompra',
-            backdrop: false,
+            backdrop: 'static',
             size: 'md',
+            keyboard: false,
             resolve: {
                 datosCompra: function () {
                     return datos;
