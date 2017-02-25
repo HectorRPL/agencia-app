@@ -35,7 +35,7 @@ class ModalCompra {
                 if (err) {
                     this.compraTerminada = true;
                     this.tipoMsjCompra = 'danger';
-                    this.msjCompra = err.reason;
+                    this.msjCompra = err.message;
                 } else {
                     const ticketId =  result;
                     Meteor.defer(()=>{
