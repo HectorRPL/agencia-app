@@ -20,7 +20,7 @@ class AgregarTiendas {
         'ngInject';
         $reactive(this).attach($scope);
         this.$state = $state;
-        this.mostrarBotones = true;
+        this.mostrarElemento = true;
         this.subscribe('estados');
         this.subscribe('puestos');
         this.subscribe('escuelas');
@@ -151,7 +151,7 @@ class AgregarTiendas {
     }
 
     limpiarSesion() {
-        this.mostrarBotones = false;
+        this.mostrarElemento = false;
         Session.clear('datosVacante');
         Session.clear('habilidadesVacante');
         Session.clear('diasVacante');
