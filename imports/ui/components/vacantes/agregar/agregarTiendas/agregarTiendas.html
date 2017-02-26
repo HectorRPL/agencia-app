@@ -47,7 +47,7 @@
                 </uib-tabset>
                 <hr>
                 <ng-form name="tiendaFrm">
-                    <div class="row">
+                    <div class="row" ng-show="agregarTiendas.mostrarBotones">
                         <!-- ESTADO -->
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                             <div class="form-group"
@@ -80,7 +80,8 @@
                                     </span>
                                     <input class="form-control" id="delMpioID" name="delMpio"
                                            type="text"
-                                           placeholder="Del. ó Mpo."
+                                           ng-focus="A()"
+                                           placeholder="Delegación / Municipio"
                                            ng-model="agregarTiendas.tienda.delMpio"
                                            maxlength="20" ng-pattern="/^[a-zA-Z-ÑñáéíóúÁÉÍÓÚ\s\d]+$/"
                                            minlength="1">
@@ -140,7 +141,7 @@
                         <div class="col-xs-6 col-sm-offset-5 col-sm-3">
                             <button type="button" class="btn btn-primary"
                                     ng-show="agregarTiendas.mostrarBotones"
-                                    ng-click="agregarTiendas.agregarResumen()" ng-disabled="tiendaFrm.$invalid ||
+                                    ng-click="agregarTiendas.agregarResumen(tiendaFrm)" ng-disabled="tiendaFrm.$invalid ||
                                         agregarTiendas.respuestaExito.mostrar || agregarTiendas.respuestaError.mostrar">
                                 <span class="fa fa-plus" aria-hidden="true"></span>&nbsp;Tienda
                             </button>

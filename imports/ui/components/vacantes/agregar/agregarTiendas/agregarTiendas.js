@@ -72,7 +72,7 @@ class AgregarTiendas {
         }
     }
 
-    agregarResumen() {
+    agregarResumen(tiendaFrm) {
         const tienda = {
             cadenaId: this.tienda.cadenaId,
             delMpio: this.tienda.delMpio,
@@ -81,6 +81,10 @@ class AgregarTiendas {
         };
         this.tiendas.push(tienda);
         this.calcularVacantes();
+        this.tienda.delMpio = '';
+        this.tienda.cadenaId = '';
+        this.tienda.sucursal = '';
+        tiendaFrm.$setPristine();
     }
 
     eliminarTienda(index) {
