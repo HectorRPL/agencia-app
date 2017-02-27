@@ -1,14 +1,14 @@
 /**
  * Created by jvltmtz on 13/12/16.
  */
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import {Meteor} from 'meteor/meteor';
-import {name as Alertas} from '../../comun/alertas/alertas';
-import {name as TicketCompra} from '../ticketCompra/ticketCompra';
-import './modalCompra.html';
-import {realizarCargo, guardarTarjetaCompra} from '../../../../api/conekta/methods';
-import {enviarTicket} from '../../../../api/compras/bitacoraCompras/methods';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import {Meteor} from "meteor/meteor";
+import {name as Alertas} from "../../comun/alertas/alertas";
+import {name as TicketCompra} from "../ticketCompra/ticketCompra";
+import "./modalCompra.html";
+import {realizarCargo, guardarTarjetaCompra} from "../../../../api/conekta/methods";
+import {enviarTicket} from "../../../../api/compras/bitacoraCompras/methods";
 
 class ModalCompra {
 
@@ -17,7 +17,7 @@ class ModalCompra {
         $reactive(this).attach($scope);
         this.descripcion = '';
         this.compraTerminada = false;
-        this.transaccionId = '';
+        this.ticketId = '';
     }
 
     $onChanges() {
@@ -37,9 +37,9 @@ class ModalCompra {
                     this.tipoMsjCompra = 'danger';
                     this.msjCompra = err.message;
                 } else {
-                    const ticketId =  result;
+                    this.ticketId = result;
                     Meteor.defer(()=>{
-                        enviarTicket.call({ticketId: ticketId});
+                        enviarTicket.call({ticketId: this.ticketId});
                     });
                     if (this.resolve.datosCompra.guardarTarjeta) {
                         this.agregarTarjeta(datosCompra.apiTokenId);
