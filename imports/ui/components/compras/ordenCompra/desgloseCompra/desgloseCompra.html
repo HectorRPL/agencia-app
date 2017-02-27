@@ -13,7 +13,7 @@
             <tr>
                 <td>{{desgloseCompra.numdemos}}</td>
                 <td>Demostrador(a)</td>
-                <td>{{desgloseCompra.datosFinancieros.precioDemos | currency}}</td>
+                <td>{{desgloseCompra.precios.unidadDem = (desgloseCompra.datosFinancieros.precioDemos) | currency}}</td>
                 <td>
                     {{desgloseCompra.precios.subtotalDem = (desgloseCompra.datosFinancieros.precioDemos * desgloseCompra.numdemos) | currency }}
                 </td>
@@ -21,7 +21,7 @@
             <tr>
                 <td>{{desgloseCompra.numpromotor}}</td>
                 <td>Promotor(a)</td>
-                <td>{{desgloseCompra.datosFinancieros.precioPromotor | currency}}</td>
+                <td>{{desgloseCompra.precios.unidadPro = (desgloseCompra.datosFinancieros.precioPromotor) | currency}}</td>
                 <td>
                     {{desgloseCompra.precios.subtotalPro = (desgloseCompra.datosFinancieros.precioPromotor * desgloseCompra.numpromotor) | currency }}
                 </td>
@@ -29,7 +29,7 @@
             <tr>
                 <td>{{desgloseCompra.numsupervisor}}</td>
                 <td>Supervisor(a)</td>
-                <td>{{desgloseCompra.datosFinancieros.precioSupervisor | currency}}</td>
+                <td>{{desgloseCompra.precios.unidadSup = (desgloseCompra.datosFinancieros.precioSupervisor) | currency}}</td>
                 <td>
                     {{desgloseCompra.precios.subtotalSup = (desgloseCompra.datosFinancieros.precioSupervisor * desgloseCompra.numsupervisor) | currency }}
                 </td>
@@ -69,7 +69,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>IVA({{ (desgloseCompra.datosFinancieros.iva * 100)}}%):</td>
+                <td>IVA({{ desgloseCompra.precios.iva = (desgloseCompra.datosFinancieros.iva * 100)}}%):</td>
                 <td>
                     <strong>
                         {{desgloseCompra.precios.importeiva = (desgloseCompra.precios.subtotal * desgloseCompra.datosFinancieros.iva) | currency }}
