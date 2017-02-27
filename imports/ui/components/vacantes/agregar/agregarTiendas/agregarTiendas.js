@@ -20,7 +20,7 @@ class AgregarTiendas {
         'ngInject';
         $reactive(this).attach($scope);
         this.$state = $state;
-        this.mostrarBotones = true;
+        this.mostrarElemento = true;
         this.subscribe('estados');
         this.subscribe('puestos');
         this.subscribe('escuelas');
@@ -72,7 +72,7 @@ class AgregarTiendas {
         }
     }
 
-    agregarResumen() {
+    agregarResumen(tiendaFrm) {
         const tienda = {
             cadenaId: this.tienda.cadenaId,
             delMpio: this.tienda.delMpio,
@@ -81,6 +81,10 @@ class AgregarTiendas {
         };
         this.tiendas.push(tienda);
         this.calcularVacantes();
+        this.tienda.delMpio = '';
+        this.tienda.cadenaId = '';
+        this.tienda.sucursal = '';
+        tiendaFrm.$setPristine();
     }
 
     eliminarTienda(index) {
@@ -147,7 +151,7 @@ class AgregarTiendas {
     }
 
     limpiarSesion() {
-        this.mostrarBotones = false;
+        this.mostrarElemento = false;
         Session.clear('datosVacante');
         Session.clear('habilidadesVacante');
         Session.clear('diasVacante');
