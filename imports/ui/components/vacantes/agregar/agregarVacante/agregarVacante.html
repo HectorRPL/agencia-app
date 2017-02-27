@@ -145,7 +145,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-8" ng-show="agregarVacante.vacante.perfil.habilidades.requerida">
                     <div class="form-group"
                          ng-class="{ 'has-error' : vacanteFrm.textHabilidades.$invalid && !vacanteFrm.textHabilidades.$pristine}">
-                        <checkbox-habilidades habseleccionadas="agregarVacante.listadoHab"
+                        <checkbox-habilidades habseleccionadas="agregarVacante.vacante.perfil.habilidades.listado"
                                               otrahabilidada="agregarVacante.vacante.perfil.habilidades.otra">
                         </checkbox-habilidades>
                         <div ng-messages="vacanteFrm.textHabilidades.$dirty && vacanteFrm.textHabilidades.$error"

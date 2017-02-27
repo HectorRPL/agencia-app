@@ -30,6 +30,7 @@ class AgregarTiendas {
         this.tienda = {};
         this.vacante = Session.get('datosVacante');
         this.habVacante = Session.get('habilidadesVacante');
+        this.habVacanteText = Session.get('habilidadesVacanteText');
         this.diasLaborar = Session.get('diasVacante');
         if (this.vacante === undefined || this.vacante === null) {
             this.$state.go('app.vacantes.publicadas');
@@ -103,6 +104,7 @@ class AgregarTiendas {
     agregarVacante() {
         const vacante = angular.copy(this.vacante);
         this.vacante.perfil.habilidades.listado = this.habVacante;
+        this.vacante.perfil.habilidades.otra = this.habVacanteText;
         this.vacante.horarios.dias = this.diasLaborar;
         insertVacante.call(vacante, this.$bindToContext((error, result)=> {
             if (error) {
@@ -155,6 +157,7 @@ class AgregarTiendas {
         Session.clear('datosVacante');
         Session.clear('habilidadesVacante');
         Session.clear('diasVacante');
+        Session.clear('habilidadesVacanteText');
     }
 
 }
