@@ -1,15 +1,16 @@
 /**
  * Created by jvltmtz on 5/11/16.
  */
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import {name as Tarjeta} from '../../datosBancarios/tarjeta/tarjeta';
-import {name as DesgloseCompra} from './desgloseCompra/desgloseCompra';
-import {name as SeleccionarTarjeta} from './seleccionarTarjeta/seleccionarTarjeta';
-import {name as CheckboxGuardarTarjeta} from '../../comun/checkBox/checkboxGuardarTarjeta/checkboxGuardarTarjeta';
-import {name as ModalCompra} from '../modalCompra/modalCompra';
-import 'conekta.js/dist/conekta';
-import './ordenCompra.html';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import {name as Tarjeta} from "../../datosBancarios/tarjeta/tarjeta";
+import {name as DesgloseCompra} from "./desgloseCompra/desgloseCompra";
+import {name as SeleccionarTarjeta} from "./seleccionarTarjeta/seleccionarTarjeta";
+import {name as CheckboxGuardarTarjeta} from "../../comun/checkBox/checkboxGuardarTarjeta/checkboxGuardarTarjeta";
+import {name as Alertas} from "../../comun/alertas/alertas";
+import {name as ModalCompra} from "../modalCompra/modalCompra";
+import "conekta.js/dist/conekta";
+import "./ordenCompra.html";
 
 class OrdenCompra {
     constructor($scope, $reactive, $uibModal) {
@@ -46,8 +47,8 @@ class OrdenCompra {
             }
             this.realizarCompra();
         }, (error)=> {
-            this.errorToken = true;
-            this.errorTokenMsj = error.message_to_purchaser;
+            this.tipoMsj = 'danger';
+            this.msj = error.message_to_purchaser;
         }));
     }
 
@@ -116,7 +117,8 @@ export default angular
         DesgloseCompra,
         CheckboxGuardarTarjeta,
         ModalCompra,
-        SeleccionarTarjeta
+        SeleccionarTarjeta,
+        Alertas
     ])
     .component(name, {
         templateUrl: `imports/ui/components/compras/${name}/${name}.html`,
