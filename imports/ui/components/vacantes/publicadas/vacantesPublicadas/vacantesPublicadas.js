@@ -30,16 +30,13 @@ class VacantesPublicadas {
 
     eliminar(vacanteId) {
         const id = vacanteId;
-        this.$uibModal.open({
+
+        var modalInstance = this.$uibModal.open({
             animation: true,
-            controllerAs: '$ctrl',
-            controller: ['$uibModalInstance', 'id', function ($uibModalInstance, id) {
-                this.id = id;
-                this.close = $uibModalInstance.close;
-                this.dismiss = $uibModalInstance.dismiss;
-            }],
-            template: '<eliminar-vacante id="$ctrl.id" dismiss="$ctrl.close()"></eliminar-vacante>',
-            size: '',
+            component: 'EliminarVacante',
+            backdrop: 'static',
+            size: 'md',
+            keyboard: false,
             resolve: {
                 id: function () {
                     return id;
