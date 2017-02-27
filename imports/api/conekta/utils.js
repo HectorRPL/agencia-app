@@ -1,10 +1,10 @@
 /**
  * Created by jvltmtz on 1/02/17.
  */
-import {Meteor} from 'meteor/meteor';
-import conekta from 'conekta/lib/conekta';
-import {Postulaciones} from '../postulaciones/collection';
-import {ProductosCarrito} from '../compras/productosCarrito/collection';
+import {Meteor} from "meteor/meteor";
+import conekta from "conekta/lib/conekta";
+import {Postulaciones} from "../postulaciones/collection";
+import {ProductosCarrito} from "../compras/productosCarrito/collection";
 import {_} from "meteor/underscore";
 const MONEDA = 'MXN';
 
@@ -34,14 +34,6 @@ ConektaUtils = {
     },
 
     crearObjectoCompra(datosPeticion, agencia){
-        const precioUnitDemos = datosPeticion.numProductos.numDemos > 0 ?
-            (datosPeticion.precios.subtotalDem / datosPeticion.numProductos.numDemos) : 0;
-
-        const precioUnitPromotor = datosPeticion.numProductos.numPromotor > 0 ?
-            (datosPeticion.precios.subtotalPro / datosPeticion.numProductos.numPromotor) : 0;
-
-        const precioUnitSupervisor = datosPeticion.numProductos.numSupervisor > 0 ?
-            (datosPeticion.precios.subtotalSup / datosPeticion.numProductos.numSupervisor) : 0;
 
         const cargo = {
             description: 'Contactos',
@@ -60,21 +52,21 @@ ConektaUtils = {
                     {
                         name: 'Demostrador(a)',
                         description: 'Contacto Perfil Demostrador(a).',
-                        unit_price: precioUnitDemos,
+                        unit_price: datosPeticion.precios.unidadDem,
                         quantity: datosPeticion.numProductos.numDemos,
                         sku: '1',
                         category: 'contacto'
                     }, {
                         name: 'Promotor(a)',
                         description: 'Contacto Perfil Promotor(a).',
-                        unit_price: precioUnitPromotor,
+                        unit_price: datosPeticion.precios.unidadPro,
                         quantity: datosPeticion.numProductos.numPromotor,
                         sku: '2',
                         category: 'contacto'
                     }, {
                         name: 'Supervisor(a)',
                         description: 'Contacto Perfil Supervisor(a).',
-                        unit_price: precioUnitSupervisor,
+                        unit_price: datosPeticion.precios.unidadSup,
                         quantity: datosPeticion.numProductos.numSupervisor,
                         sku: '3',
                         category: 'contacto'

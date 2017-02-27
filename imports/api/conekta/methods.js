@@ -1,13 +1,13 @@
-import {ValidatedMethod} from 'meteor/mdg:validated-method';
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-import {LoggedInMixin} from 'meteor/tunifight:loggedin-mixin';
+import {ValidatedMethod} from "meteor/mdg:validated-method";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {LoggedInMixin} from "meteor/tunifight:loggedin-mixin";
 import {CallPromiseMixin} from "meteor/didericis:callpromise-mixin";
-import {DDPRateLimiter}   from 'meteor/ddp-rate-limiter';
-import {Agencias} from '../agencias/collection';
-import {TarjetasBancarias} from '../tarjetasBancarias/collection';
-import {insertarCompra} from '../compras/bitacoraCompras/methods';
-import {inserartTarjeta, eliminarTarjeta} from '../tarjetasBancarias/methods';
-import {Meteor} from 'meteor/meteor';
+import {DDPRateLimiter} from "meteor/ddp-rate-limiter";
+import {Agencias} from "../agencias/collection";
+import {TarjetasBancarias} from "../tarjetasBancarias/collection";
+import {insertarCompra} from "../compras/bitacoraCompras/methods";
+import {eliminarTarjeta} from "../tarjetasBancarias/methods";
+import {Meteor} from "meteor/meteor";
 
 var preciosSchema = new SimpleSchema({
     total: {type: Number, decimal: true},
@@ -16,15 +16,18 @@ var preciosSchema = new SimpleSchema({
     importeDescuento: {type: Number, decimal: true},
     subtotalDem: {type: Number, decimal: true},
     subtotalPro: {type: Number, decimal: true},
-    subtotalSup: {type: Number, decimal: true}
+    subtotalSup: {type: Number, decimal: true},
+    unidadDem: {type: Number, decimal: true},
+    unidadPro: {type: Number, decimal: true},
+    unidadSup: {type: Number, decimal: true},
+    iva: {type: Number}
 });
 
 var numProductosSchema = new SimpleSchema({
     numDemos: {type: Number},
     numPromotor: {type: Number},
     numSupervisor: {type: Number},
-    totalPersonal: {type: Number},
-
+    totalPersonal: {type: Number}
 });
 
 export const realizarCargo = new ValidatedMethod({
