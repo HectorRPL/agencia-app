@@ -46,8 +46,7 @@
                         <th class="ticket-tabla tipo-fuente-uno text-center">PRECIO</th>
                         <th class="ticket-tabla tipo-fuente-uno text-right">TOTAL</th>
                     </tr>
-                    <tr class="text-center"
-                        ng-repeat="compra in ticketCompra.datosCompra.apiDetalles.line_items">
+                    <tr class="text-center" ng-repeat="compra in ticketCompra.compra.apiDetalles.line_items">
                         <td class="ticket-tabla text-center">{{compra.quantity}}</td>
                         <td class="ticket-tabla text-center">{{compra.name}}</td>
                         <td class="ticket-tabla text-center">{{compra.unit_price}}</td>
@@ -58,20 +57,22 @@
                         <td class="ticket-tabla text-center"></td>
                         <td class="ticket-tabla text-left"></td>
                         <td class="ticket-tabla text-center">TOTAL:</td>
-                        <td class="ticket-tabla text-right"><strong>{{ticketCompra.datosCompra.apiRespuesta.amount | currency}}</strong></td>
+                        <td class="ticket-tabla text-right">
+                            <strong>{{ticketCompra.compra.datosPeticion.precios.total | currency}}</strong></td>
                     </tr>
                     <tr class="text-center">
                         <td class="ticket-tabla text-center"></td>
                         <td class="ticket-tabla text-left"></td>
-                        <td class="ticket-tabla text-center">IVA({{(tickeCompra.datosFinancieros.iva * 100)}}%)</td>
-                        <td class="ticket-tabla text-right">{{(tickeCompra.subTotal * tickeCompra.datosFinancieros.iva)}}</td>
+                        <td class="ticket-tabla text-center">IVA({{ticketCompra.compra.datosPeticion.precios.iva}}%)
+                        </td>
+                        <td class="ticket-tabla text-right">{{ticketCompra.compra.datosPeticion.precios.importeiva}}</td>
                     </tr>
                 </table>
                 <hr class="linea-divisoria-ticket">
                 <p>GRACIAS POR SU PREFERENCIA</p>
                 <hr class="linea-divisoria-ticket">
                 <img class="img-responsive center-block" src="images/codigo-barras-ticket.png" style="max-width: 150px;">
-                <p><strong>{{ticketCompra.id}}</strong></p>
+                <p><strong>{{ticketCompra.compra._id}}</strong></p>
                 <p class="tipo-fuente-uno">{{ticketCompra.infoEmpresa.slogan}}</p>
                 <hr class="linea-divisoria-ticket">
                 <p>
