@@ -3,7 +3,6 @@
  */
 import angular from "angular";
 import angularMeteor from "angular-meteor";
-import {Meteor} from "meteor/meteor";
 import {name as Alertas} from "../../comun/alertas/alertas";
 import {name as TicketCompra} from "../ticketCompra/ticketCompra";
 import "./modalCompra.html";
@@ -38,9 +37,7 @@ class ModalCompra {
                     this.msjCompra = err.message;
                 } else {
                     this.ticketId = result;
-                    Meteor.defer(()=>{
-                        enviarTicket.call({ticketId: this.ticketId});
-                    });
+                    this.enviarTicketCorreo();
                     if (this.resolve.datosCompra.guardarTarjeta) {
                         this.agregarTarjeta(datosCompra.apiTokenId);
                     }
@@ -65,7 +62,13 @@ class ModalCompra {
         }));
     }
 
-
+    enviarTicketCorreo() {
+        enviarTicket.call({ticketId: this.ticketId}, this.$bindToContext((err, result)=> {
+            if (err) {
+                console.log(err);
+            }
+        }));
+    }
 }
 
 const name = 'modalCompra';

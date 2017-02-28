@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-sm-6">
                             <!--BOTON PAGAR AHORA-->
-                            <button class="btn btn-primary pull-right" ng-click="ordenCompra.generarToken()"
+                            <button class="btn btn-primary pull-right" ng-click="ordenCompra.comprarPrimeraVez()"
                                     ng-disabled="ordenCompraFrm.$invalid || ordenCompra.totalpersonal==0">
                                 Pagar ahora
                             </button>
@@ -46,8 +46,8 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <button class="btn btn-primary pull-right" ng-click="ordenCompra.realizarCompra()"
-                                    ng-disabled="ordenCompraFrm.$invalid || ordenCompra.totalpersonal==0">
+                            <button class="btn btn-primary pull-right" ng-click="ordenCompra.comprarTarjetaSelec()"
+                                    ng-disabled="ordenCompra.totalpersonal==0 || !ordenCompra.apiTokenId">
                                 Pagar ahora
                             </button>
                         </div>

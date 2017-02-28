@@ -56,6 +56,7 @@ export const enviarTicket = new ValidatedMethod({
         ticketId: {type: String}
     }).validator(),
     run({ticketId}) {
+        this.unblock();
         if (Meteor.isServer) {
             const infoEmpresa = InfoEmpresa.findOne({_id: '1'});
             const datosCompra = BitacoraCompras.findOne({_id: ticketId});

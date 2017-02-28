@@ -31,7 +31,7 @@ class OrdenCompra {
     }
 
 
-    generarToken() {
+    comprarPrimeraVez() {
         this.$bindToContext(Conekta.Token.create(this.crearTarjetaConekta(), (token)=> {
             this.apiTokenId = token.id;
             if ('4000000000000002' === this.tarjeta.numeroTarjeta) {
@@ -64,6 +64,11 @@ class OrdenCompra {
             }
         };
         return tarjetaAToken;
+    }
+
+    comprarTarjetaSelec() {
+        this.guardarTarjeta = false;
+        this.realizarCompra();
     }
 
     realizarCompra() {

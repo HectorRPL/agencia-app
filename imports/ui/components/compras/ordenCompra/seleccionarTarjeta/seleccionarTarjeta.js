@@ -1,10 +1,10 @@
 /**
  * Created by jvltmtz on 9/02/17.
  */
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
 import {TarjetasBancarias} from "../../../../../api/tarjetasBancarias/collection";
-import './seleccionarTarjeta.html';
+import "./seleccionarTarjeta.html";
 
 
 class SeleccionarTarjeta {
@@ -21,7 +21,7 @@ class SeleccionarTarjeta {
     }
 
     seleccionar(tarjeta){
-        tarjeta.seleccionada = !tarjeta.seleccionada;
+        this.apitokenid = tarjeta.apiTokenId;
     }
 
 
@@ -40,6 +40,6 @@ export default angular
         controllerAs: name,
         controller: SeleccionarTarjeta,
         bindings: {
-            apitokenid: '<',
+            apitokenid: '=',
         }
     });
