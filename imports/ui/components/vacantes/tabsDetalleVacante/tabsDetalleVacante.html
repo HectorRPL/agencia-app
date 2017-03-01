@@ -19,18 +19,18 @@
         <strong>Talla:</strong>
         {{tabsDetalleVacante.vacante.perfil.talla}} <br>
         <strong>Escolaridad:</strong>
-        {{tabsDetalleVacante.vacante.perfil.escolaridad}} <br>
+        {{tabsDetalleVacante.vacante.escolaridadVcnt().descripcion}} <br>
         <strong>Habilidades:</strong>
-        Facilidad de Palabra, Buena Presentación, Disp. de Trasladarse, Gusto por las Ventas <br>
-        <strong>Exp. Descripcion:</strong>
-        Alimentos y {{tabsDetalleVacante.vacante.perfil.experiencia.otra}}
+        {{tabsDetalleVacante.vacante.hibilidadesVcnt()}} <br>
+        <strong>Experiencia en:</strong>
+        {{tabsDetalleVacante.vacante.experienciasVcnt()}}
     </uib-tab>
     <!-- TAB HORARIOS-->
     <uib-tab index="2" heading="Horario">
         <br>
         <dl class="dl-horizontal">
             <strong>Dias a laborar:</strong>
-            <span ng-repeat="dia in tabsDetalleVacante.vacante.horarios.dias"> {{ dia.id }} </span> <br>
+            <span> {{tabsDetalleVacante.vacante.horarios.dias.toString()}} </span> <br>
             <strong>Horario:</strong>
             de {{tabsDetalleVacante.vacante.horarios.hrsInicio | date : "shortTime" }} a
             {{tabsDetalleVacante.vacante.horarios.hrsFin | date : "shortTime" }} <br>

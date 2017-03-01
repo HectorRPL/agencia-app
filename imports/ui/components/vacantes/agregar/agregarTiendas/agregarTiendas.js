@@ -102,11 +102,10 @@ class AgregarTiendas {
     }
 
     agregarVacante() {
-        const vacante = angular.copy(this.vacante);
         this.vacante.perfil.habilidades.listado = this.habVacante;
         this.vacante.perfil.habilidades.otra = this.habVacanteText;
         this.vacante.horarios.dias = this.diasLaborar;
-        insertVacante.call(vacante, this.$bindToContext((error, result)=> {
+        insertVacante.call(this.vacante, this.$bindToContext((error, result)=> {
             if (error) {
                 this.msjAlerta = 'Error al agregar un vacante, porfavor intentelo mas tarde.';
                 this.tipoAlerta = 'danger';
@@ -114,6 +113,7 @@ class AgregarTiendas {
                 this.agregarTiendas(result);
             }
         }));
+        console.log('Antes de agregar la vacante ', this.vacante);
 
     }
 
