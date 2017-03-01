@@ -175,10 +175,12 @@
                             <label for="horario">Horario</label>
                         </div>
                         <div class="col-xs-12 col-sm-5 col-md-5">
-                            <uib-timepicker ng-model="agregarVacante.vacante.horarios.hrsInicio"></uib-timepicker>
+                            <div uib-timepicker ng-model="agregarVacante.vacante.horarios.hrsInicio"
+                                 minute-step="15"></div>
                         </div>
                         <div class="col-xs-12 col-sm-5 col-md-5">
-                            <uib-timepicker ng-model="agregarVacante.vacante.horarios.hrsFin"></uib-timepicker>
+                            <div uib-timepicker ng-model="agregarVacante.vacante.horarios.hrsFin"
+                                 minute-step="15"></div>
                         </div>
                     </div>
                 </div>
