@@ -1,15 +1,10 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-import angularMessages from 'angular-messages';
-import {
-    obtenerColonias
-} from '../../../../api/codigosPostales/methods.js';
-import {
-    name as DCodigoPostal
-} from '../../directive/codigo-postal/codigo-postal.directive';
-
-import './actualizarDireccion.html';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import angularMessages from "angular-messages";
+import {obtenerColonias} from "../../../../api/codigosPostales/methods.js";
+import {name as DCodigoPostal} from "../../directive/codigo-postal/codigo-postal.directive";
+import "./actualizarDireccion.html";
 
 class ActualizarDireccion {
   constructor($scope, $reactive) {

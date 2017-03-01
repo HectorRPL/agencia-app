@@ -1,26 +1,14 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-import uiBootstrap from 'angular-ui-bootstrap';
-import ngAnimate from 'angular-animate';
-
-import './miCuenta.html';
-
-import {
-    name as Foto
-} from './foto/foto';
-import {
-    name as Perfil
-} from './perfil/perfil';
-import {
-    name as DatosPersonales
-} from './datosPersonales/datosPersonales';
-import {
-    name as ActualizarDireccion
-} from './actualizarDireccion/actualizarDireccion';
-import {
-    name as ConstraseniaCorreo
-} from './constraseniaCorreo/constraseniaCorreo';
+import angular from "angular";
+import angularMeteor from "angular-meteor";
+import uiRouter from "angular-ui-router";
+import uiBootstrap from "angular-ui-bootstrap";
+import ngAnimate from "angular-animate";
+import "./miCuenta.html";
+import {name as Foto} from "./foto/foto";
+import {name as Perfil} from "./perfil/perfil";
+import {name as DatosPersonales} from "./datosPersonales/datosPersonales";
+import {name as ActualizarDireccion} from "./actualizarDireccion/actualizarDireccion";
+import {name as ConstraseniaCorreo} from "./constraseniaCorreo/constraseniaCorreo";
 class MiCuenta {
   constructor($scope, $reactive) {
     'ngInject';
@@ -29,7 +17,6 @@ class MiCuenta {
     $scope.oneAtATime   = true;
 
     this.titulo = 'Mi Cuenta';
-    this.subtitulo1 = 'Sobra';
     this.subtitulo2 = 'Datos Fiscales';
     this.subtitulo3 = 'Dirección';
     this.subtitulo4 = 'Correo | Usuario | Contraseña';  }
