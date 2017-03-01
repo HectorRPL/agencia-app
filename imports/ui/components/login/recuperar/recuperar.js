@@ -4,6 +4,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
+import {name as Alertas} from "../../comun/alertas/alertas";
 import {Accounts} from 'meteor/accounts-base';
 import './recuperar.html';
 
@@ -17,32 +18,20 @@ class Recuperar {
         this.credentials = {
             email: ''
         };
-
-        this.respuesta = {
-            mostrar: false,
-            mensaje: '',
-            simbolo: 'fa fa-check',
-            tipo: 'success'
-        };
-
-
     }
 
     recuperar() {
-        this.respuesta.mostrar = 'false';
         Accounts.forgotPassword(this.credentials, this.$bindToContext((err)=> {
             if (err) {
-                this.respuesta.tipo = 'danger';
-                this.respuesta.simbolo = 'fa fa-exclamation-triangle';
+                this.tipoMsj = 'danger';
                 if (err.error == '403') {
-                    this.respuesta.mensaje = `El usuario ${this.credentials.email} no se encuentra registrado.`
-                }else {
-                    this.respuesta.mensaje = 'El correo no pudó ser enviado, verifique su dirección o configuración de su correo.';
+                    this.msj = `El usuario ${this.credentials.email} no se encuentra registrado.`
+                } else {
+                    this.msj = 'El correo no pudó ser enviado, verifique su dirección o configuración de su correo.';
                 }
-                this.respuesta.mostrar = 'true';
             } else {
-                this.respuesta.tipo = 'success';
-                this.respuesta.mensaje = `Para recuperar su contraseña la instrucciones fueron enviadas ${this.credentials.email}`
+                this.tipoMsj = 'success';
+                this.msj = `Para recuperar su contraseña la instrucciones fueron enviadas ${this.credentials.email}`
             }
         }));
     }
@@ -53,14 +42,15 @@ const name = 'recuperar';
 // create a module
 export default angular
     .module(name, [
-    angularMeteor,
-    uiRouter
-])
+        angularMeteor,
+        uiRouter,
+        Alertas
+    ])
     .component(name, {
-    templateUrl: `imports/ui/components/login/${name}/${name}.html`,
-    controllerAs: name,
-    controller: Recuperar
-})
+        templateUrl: `imports/ui/components/login/${name}/${name}.html`,
+        controllerAs: name,
+        controller: Recuperar
+    })
     .config(config);
 
 function config($stateProvider) {

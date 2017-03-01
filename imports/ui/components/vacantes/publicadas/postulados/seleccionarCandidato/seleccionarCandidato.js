@@ -1,19 +1,13 @@
 import angular from "angular";
 import angularMeteor from "angular-meteor";
+import {name as Alertas} from "../../../../comun/alertas/alertas"
 import "./seleccionarCandidato.html";
 import {contactar} from "../../../../../../api/postulaciones/methods.js";
 
 class SeleccionarCandidato {
     constructor($scope, $reactive) {
         'ngInject';
-
         $reactive(this).attach($scope);
-        this.respuesta = {
-            mensaje: 'Al momento de seleccionar un vacante, se le descontará 30 creditos.',
-            tipo: 'warning',
-            icono: 'fa fa-exclamation-triangle',
-            disable: false
-        };
 
     }
 
@@ -21,13 +15,11 @@ class SeleccionarCandidato {
         contactar.call({postulacionId: this.id}, this.$bindToContext((err)=> {
             this.respuesta.disable = true;
             if (err) {
-                this.respuesta.mensaje = err.reason;
-                this.respuesta.tipo = 'danger';
-                this.respuesta.icono = 'fa fa-times';
+                this.msj = err.reason;
+                this.tipoMsj = 'danger';
             } else {
-                this.respuesta.mensaje = 'A seleccionado a un candidato, ver datos de contacto..';
-                this.respuesta.tipo = 'success';
-                this.respuesta.icono = 'fa fa-check';
+                this.msj = 'A seleccionado a un candidato, ver datos de contacto.';
+                this.tipoMsj = 'success';
             }
         }));
     }
@@ -45,6 +37,7 @@ const name = 'seleccionarCandidato';
 export default angular
     .module(name, [
         angularMeteor,
+        Alertas
     ])
     .component(name, {
         templateUrl: `imports/ui/components/vacantes/${name}/${name}.html`,

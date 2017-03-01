@@ -1,32 +1,29 @@
 <form
-id="tarjetaFrmId"
-class="property-submit-form"
-role="form"
-name="tarjetaFrm"
-nonvalidate>
+        id="tarjetaFrmId"
+        class="property-submit-form"
+        role="form"
+        name="tarjetaFrm"
+        nonvalidate>
 
-<tarjeta tarjeta="editarTarjeta.tarjeta"></tarjeta>
-<div class="row">
-  <div class="col-sm-8">
-    <!-- ALERTA:  -->
+    <tarjeta tarjeta="editarTarjeta.tarjeta"></tarjeta>
     <div class="row">
-      <div class="col-xs-12" ng-show="editarTarjeta.respuesta.mostrar">
-        <uib-alert type="{{ editarTarjeta.respuesta.tipo }}">
-          <span class="fa fa-exclamation-triangle"></span>
-          <strong> {{ editarTarjeta.respuesta.mensaje }} </strong>
-        </uib-alert>
-      </div>
+        <div class="col-sm-8">
+            <!-- ALERTA:  -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <alertas tipo="editarTarjeta.tipoMsj" mensaje="editarTarjeta.msj"></alertas>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <button
+                    class="btn btn-default btn-block pull-right"
+                    type="button"
+                    ng-click="editarTarjeta.guardarCambios()"
+                    ng-disabled="tarjetaFrm.$invalid">
+                Guardar Cambios
+            </button>
+        </div>
     </div>
-  </div>
-  <div class="col-sm-4">    
-    <button
-    class="btn btn-default btn-block pull-right"
-    type="button"
-    ng-click="editarTarjeta.guardarCambios()"
-    ng-disabled="tarjetaFrm.$invalid">
-    Guardar Cambios
-  </button>
-  </div>
-</div>
 
 </form>

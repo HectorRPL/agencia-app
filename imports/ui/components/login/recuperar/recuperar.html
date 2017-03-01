@@ -25,11 +25,8 @@
             <br>
             <!-- ALERTA: COMBINACIÓN INCORRECTA -->
             <div class="row">
-                <div class="col-xs-12" ng-show="recuperar.respuesta.mostrar">
-                    <uib-alert type="{{recuperar.respuesta.tipo}}">
-                        <span class="{{recuperar.respuesta.simbolo}}"></span>
-                        <strong>{{recuperar.respuesta.mensaje}}</strong>
-                    </uib-alert>
+                <div class="col-xs-12">
+                    <alertas tipo="recuperar.tipoMsj" mensaje="recuperar.msj"></alertas>
                 </div>
             </div>
         </form>

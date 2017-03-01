@@ -289,10 +289,7 @@
         <!-- ALERTA: COMBINACIÓN INCORRECTA -->
         <div class="row">
             <div class="col-xs-12" ng-show="registro.error">
-                <uib-alert type="danger">
-                    <span class="fa fa-exclamation-triangle"></span>
-                    <strong>{{registro.error.mensaje}}</strong>
-                </uib-alert>
+                <alertas tipo="registro.tipoMsj" mensaje="registro.msj"></alertas>
             </div>
         </div>
         <br>

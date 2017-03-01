@@ -4,8 +4,6 @@ import uiRouter from "angular-ui-router";
 import uiBootstrap from "angular-ui-bootstrap";
 import ngAnimate from "angular-animate";
 import "./miCuenta.html";
-import {name as Foto} from "./foto/foto";
-import {name as Perfil} from "./perfil/perfil";
 import {name as DatosPersonales} from "./datosPersonales/datosPersonales";
 import {name as ActualizarDireccion} from "./actualizarDireccion/actualizarDireccion";
 import {name as ConstraseniaCorreo} from "./constraseniaCorreo/constraseniaCorreo";
@@ -30,8 +28,6 @@ export default angular
   uiRouter,
   uiBootstrap,
   ngAnimate,
-  Foto,
-  Perfil,
   DatosPersonales,
   ActualizarDireccion,
   ConstraseniaCorreo
