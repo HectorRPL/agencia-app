@@ -6,6 +6,9 @@ import {Estados} from "../../catalogos/estados/collection";
 import {Puestos} from "../../catalogos/puestos/collection";
 import {Tiendas} from "../../tiendas/collection";
 import {Postulaciones} from "../../postulaciones/collection";
+import {Experiencias} from "../../catalogos/experiencias/collection";
+import {Habilidades} from "../../catalogos/habilidades/collection";
+import {Escuelas} from "../../catalogos/escuelas/collection";
 
 if (Meteor.isServer) {
     Meteor.publishComposite('vacantes.misPublicaciones', function () {
@@ -61,6 +64,23 @@ if (Meteor.isServer) {
                         return Puestos.find({_id: vacante.puestoId});
                     }
                 },
+                {
+                    find: function (vacante) {
+                        const habilidades = vacante.perfil.habilidades.listado;
+                        return Habilidades.find({_id: {$in: habilidades}});
+                    }
+                },
+                {
+                    find: function (vacante) {
+                        const experiencias = vacante.perfil.experiencia.listado;
+                        return Experiencias.find({_id: {$in: experiencias}});
+                    }
+                },
+                {
+                    find: function (vacante) {
+                        return Escuelas.find({_id: vacante.perfil.escolaridad});
+                    }
+                }
             ]
         }
     });
