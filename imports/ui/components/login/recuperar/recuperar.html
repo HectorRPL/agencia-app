@@ -5,10 +5,10 @@
         <form role="form" class="property-submit-form" id="recuperarFormId" name="recuperarForm" nonvalidate>
             <!-- CORREO-->
             <div class="form-group"
-                 ng-class="{ 'has-error' : recuperarForm.usuario.$invalid && !recuperarForm.usuario.$pristine }">
+                 ng-class="{ 'has-error' : recuperarForm.usuario.$invalid && !recuperarForm.usuario.$pristine }"
+                 ng-hide="recuperar.tipoMsj === 'success'">
                 <div class="input-group input-group-lg">
-          <span class="input-group-addon span-demos">@
-          </span>
+                    <span class="input-group-addon span-demos">@</span>
                     <input id="candidatoEmailID" class="form-control" name="usuario" type="email" placeholder=""
                            aria-describedby="basic-addon1" required ng-model="recuperar.credentials.email">
                 </div>
@@ -18,8 +18,11 @@
                 </div>
             </div>
             <!-- BOTON RECUPERAR-->
-            <button class="btn btn-default btn-lg btn-block" type="submit" ng-click="recuperar.recuperar()"
-                    ng-disabled="recuperarForm.$invalid">
+            <button class="btn btn-default btn-lg btn-block"
+                    type="submit"
+                    ng-hide="recuperar.tipoMsj === 'success'"
+                    ng-disabled="recuperarForm.$invalid"
+                    ng-click="recuperar.recuperar()">
                 Recuperar Contraseña
             </button>
             <br>
