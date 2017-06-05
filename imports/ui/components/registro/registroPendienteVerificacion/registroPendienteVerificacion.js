@@ -17,10 +17,10 @@ class RegistroPendienteVerificacion {
         this.tipoAlerta = '';
         enviarCorreoVerificacion.call({}, this.$bindToContext((err, result) => {
             if (err) {
-                this.msjAlerta = 'Mensaje del sistema: ' + err + 'Intenta refresecar el navegador presionando la tecla F5, si el problema persiste contáctanos';
+                this.msjAlerta = 'Error al enviar el correo electronico,';
                 this.tipoAlerta = 'danger';
             } else {
-                this.msjAlerta = 'El correo se ha enviado correctamente';
+                this.msjAlerta = 'El correo se ha enviado correctamente, porfavor revise su bandeja de entrada';
                 this.tipoAlerta = 'success';
             }
         }));

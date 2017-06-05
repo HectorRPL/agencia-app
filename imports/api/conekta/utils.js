@@ -35,6 +35,8 @@ ConektaUtils = {
 
     crearObjectoCompra(datosPeticion, agencia){
 
+        const user = Meteor.users.findOne({_id: agencia.propietario});
+        console.log(user);
         const cargo = {
             description: 'Contactos',
             amount: 2000,
@@ -44,7 +46,7 @@ ConektaUtils = {
             details: {
                 name: agencia.nombre,
                 phone: agencia.telefono,
-                email: agencia.correoElectronico,
+                email: user.emails[0].address,
                 customer: {
                     logged_in: true
                 },
@@ -100,11 +102,12 @@ ConektaUtils = {
         ProductosCarrito.remove({carritoId: carritoId})
     },
 
-    crearClienteTarjeta(apiTokenId, agencia){
+    crearClienteTarjeta(apiTokenId, agencia, user){
+
         let crearCliente = Meteor.wrapAsync(conekta.Customer.create, conekta.Customer);
         const datosCliente = {
             name: agencia.nombre,
-            email: agencia.correoElectronico,
+            email: user.emails[0].address,
             phone: agencia.telefono,
             cards: [apiTokenId]
         };
@@ -122,8 +125,8 @@ ConektaUtils = {
     eliminarTarjeta(apiClienteId){
         const cliente = this.buscarCliente(apiClienteId);
         const tarjeta = this.buscarTarjeta(cliente.cards);
-        let eliminarTarjeta =  Meteor.wrapAsync(tarjeta.delete, tarjeta);
-        try{
+        let eliminarTarjeta = Meteor.wrapAsync(tarjeta.delete, tarjeta);
+        try {
             let result = eliminarTarjeta();
             return result.toObject();
         } catch (error) {
@@ -153,7 +156,7 @@ ConektaUtils = {
     },
 
     buscarTarjeta(tarjetas, tarjetaId){
-        const result = _.find(tarjetas, (tarjeta)=>{
+        const result = _.find(tarjetas, (tarjeta)=> {
             return tarjeta.id === tarjetaId;
         });
         return result;

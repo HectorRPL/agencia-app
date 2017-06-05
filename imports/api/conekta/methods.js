@@ -87,8 +87,9 @@ export const guardarTarjetaCompra = new ValidatedMethod({
         if (Meteor.isServer) {
             let result = {};
             const agencia = Agencias.findOne({propietario: this.userId});
+            const user = Meteor.users.findOne({_id: agencia.propietario});
             try {
-                result = ConektaUtils.crearClienteTarjeta(apiTokenId, agencia);
+                result = ConektaUtils.crearClienteTarjeta(apiTokenId, agencia, user);
             } catch (e) {
                 throw e
             }

@@ -1,4 +1,5 @@
 import {Mongo} from "meteor/mongo";
+import {Meteor} from "meteor/meteor";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Direcciones} from "../direcciones/collection";
 
@@ -24,5 +25,9 @@ Candidatos.attachSchema(Schema.candidato);
 Candidatos.helpers({
     direccion(){
         return Direcciones.findOne({propietario: this._id});
+    },
+    datosContacto(){
+        console.log('asdadasd', Meteor.users.findOne({_id: this.propietario}));
+        return Meteor.users.findOne({_id: this.propietario});
     }
 });

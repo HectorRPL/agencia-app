@@ -1,17 +1,10 @@
 /**
  * Created by jvltmtz on 8/09/16.
  */
-import angular from "angular";
-import angularMeteor from "angular-meteor";
-import uiRouter from "angular-ui-router";
 import {name as SeleccionarCandidato} from "../seleccionarCandidato/seleccionarCandidato";
 import "./listaPostulados.html";
 import {Postulaciones} from "../../../../../../api/postulaciones/collection";
-import {
-    agregarPostulacion,
-    buscarPostulacion,
-    eliminarPostulacion
-} from "../../../../../../api/compras/productosCarrito/methods";
+import {agregarPostulacion, buscarPostulacion, eliminarPostulacion} from "../../../../../../api/compras/productosCarrito/methods";
 import {actualizarPostVistoAgencia, actualizarSelecVistoAgencia} from "../../../../../../api/postulaciones/methods";
 import {_} from "meteor/underscore";
 
@@ -25,6 +18,7 @@ class ListaPostulados {
         this.subscribe('postulaciones.postuladosOseleccionados', ()=> [{tiendaId: this.tiendaId}, {estado: 1}]);
         this.titulo = 'vista de vacantes';
         this.mostrarInfo = true;
+        this.unAcordion = true;
         this.helpers({
             postulados (){
                 return Postulaciones.find({tiendaId: this.tiendaId});
@@ -108,8 +102,6 @@ const name = 'listaPostulados';
 // Módulo
 export default angular
     .module(name, [
-        angularMeteor,
-        uiRouter,
         SeleccionarCandidato
     ])
     .component(name, {

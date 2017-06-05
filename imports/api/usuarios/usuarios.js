@@ -14,16 +14,6 @@ const agenciaRoles = {
 };
 
 if (Meteor.isServer) {
-    /*Meteor.publish('users', function () {
-
-        return Meteor.users.find({}, {
-            fields: {
-                emails: 1,
-                username: 1
-            }
-        });
-    });*/
-
     Accounts.onCreateUser((options, user) => {
         if (options.profile) {
             if ('agencia:' === options.profile.tipoUsuario) {
@@ -31,8 +21,6 @@ if (Meteor.isServer) {
                 agencia.nombre = options.profile.nombre;
                 agencia.telefono = options.profile.telefono;
                 agencia.propietario = user._id;
-                agencia.correoElectronico = 'CorreoNoVerificado',
-                agencia.emailVerificado = false
 
                 Agencias.insert(agencia, (error, response) => {
                     if (error) {
@@ -76,12 +64,25 @@ if (Meteor.isServer) {
         }
     });
 
+    /**
+     * @sumary Configuracion globlal de los emails a enviar
+     * @function {String} siteName Nombre del sitio.
+     * @function {Function} from Direccion default email de donde se envia el correo.
+     * @function {Function} subject Asunto del correo.
+     */
     Accounts.emailTemplates.siteName = "Demostradoras con experiencia";
-    Accounts.emailTemplates.from = "Demostradoras con experiencia <demostradoras01@gmail.com>";
+    Accounts.emailTemplates.from = "Demostradoras con experiencia ";
 
-    // Verificación de registro con link en el email
+
+
+    /**
+     * @sumary Configuracion del email para verificar correo.
+     * @function {Function} from donde se envia correo.
+     * @function {Function} html Template del mail a enviar.
+     * @function {Function} subject Asunto del correo.
+     */
     Accounts.emailTemplates.verifyEmail.from  = function () {
-        return "Demostradoras con experiencia <demostradoras01@gmail.com>";
+        return "Demostradoras con experiencia <postmaster@sandboxb82e8f80c2074fe2aa151f5c42a4aa20.mailgun.org>";
     };
     Accounts.emailTemplates.verifyEmail.html = function (user, url) {
         url = url.replace("#", "agencia", "gi");
@@ -93,9 +94,27 @@ if (Meteor.isServer) {
         return SSR.render( 'verificarEmail', emailData );
     };
 
-    // Resetear contraseña
+
+    /**
+     * @sumary Configuracion del email para recuperar contraseña.
+     * @function {Function} from donde se envia correo.
+     * @function {Function} html Template del mail a enviar.
+     * @function {Function} subject Asunto del correo.
+     */
+    Accounts.emailTemplates.resetPassword.from  = function () {
+        return "Demostradoras con experiencia <postmaster@sandboxb82e8f80c2074fe2aa151f5c42a4aa20.mailgun.org>";
+    };
+    Accounts.emailTemplates.resetPassword.html = function (user, url) {
+        url = url.replace("#", "demos");
+
+        SSR.compileTemplate( 'recuperarEmail', Assets.getText( 'emailTemplates/recuperarPassword/recuperarEmail.html'));
+        var emailData = {
+            url: url
+        };
+        return SSR.render( 'recuperarEmail', emailData );
+    };
     Accounts.emailTemplates.resetPassword.subject =  function (user) {
-        return "Cómo restablecer su contraseña en Demostradoras con experiencia";
+        return "Recuperar su contraseña en Demostradoras con experiencia";
     };
 
 }

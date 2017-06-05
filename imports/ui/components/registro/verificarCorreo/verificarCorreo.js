@@ -37,7 +37,6 @@ class VerificarCorreo {
                     this.msjAlerta = 'Lo sentimos, el link de verificación de correo ha expirado.';
                     this.tipoAlerta = 'danger';
                     this.mensajeTitulo = 'Registro';
-                    console.log('No se pudo verificar el usuario por el siguiente motivo', err);
                 } else {
                     actualizarEstadoReg.call({estado: 'app.vacantes.publicadas'}, this.$bindToContext((err)=>{
                         if (err) {
@@ -47,14 +46,6 @@ class VerificarCorreo {
                             this.linkExpirado = false;
                             this.msjAlerta = 'Exito al verificar el correo electrónico.';
                             this.tipoAlerta = 'success';
-                            verificarCuenta.call({}, this.$bindToContext((err, result) => {
-                                if (err) {
-                                    this.msjAlerta = 'Se ha verificado la cuenta correctamente pero hubo un evento inesperado, por favor contacte a soporte técnico', err;
-                                    this.tipoAlerta = 'danger';
-                                } else {
-                                    console.log('Entró a verificarCuenta.call sin error', result);
-                                };
-                            }));
                         }
                     }));
 

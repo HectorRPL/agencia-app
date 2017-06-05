@@ -19,3 +19,4 @@ import "../../api/conekta/methods";
 import "../../api/conekta/utils";
 import "../../api/agencias/methods";
 import "../../api/bitacoraLoginAgencias/methods";
+import "../../api/candidatos/server/publish";

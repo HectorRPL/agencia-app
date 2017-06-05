@@ -129,4 +129,49 @@ if (Meteor.isServer) {
             }));
     });
 
+
+    Meteor.publish('misVacantes.numPostuladosNuevos', function () {
+        if (this.userId) {
+            const arrIds = [];
+            const options = {
+                limit: 50,
+                fields: {_id: 1}
+            };
+            const agencia = Agencias.findOne({propietario: this.userId});
+            const vacantes = Vacantes.find({propietario: agencia._id}, options);
+            vacantes.forEach((vacante)=> {
+                arrIds.push(vacante._id);
+            });
+            Counts.publish(this, `count.mis.postulados.nuevos.${this.userId}`,
+                Postulaciones.find({
+                    $and: [{vacanteId: {$in: arrIds}}, {estado: 1}, {postVistoAgencia: false}]
+                }));
+        } else {
+            this.ready();
+        }
+    });
+
+
+    Meteor.publish('misVacantes.numSeleccionadosNuevos', function () {
+        if (this.userId) {
+            const arrIds = [];
+            const options = {
+                limit: 50,
+                fields: {_id: 1}
+            };
+            const agencia = Agencias.findOne({propietario: this.userId});
+            const vacantes = Vacantes.find({propietario: agencia._id}, options);
+            vacantes.forEach((vacante)=> {
+                arrIds.push(vacante._id);
+            });
+            Counts.publish(this, `count.mis.seleccionados.nuevos.${this.userId}`,
+                Postulaciones.find({
+                    $and: [{vacanteId: {$in: arrIds}}, {estado: 2}, {selecVistoAgencia: false}]
+                }));
+        } else {
+            this.ready();
+        }
+
+    });
+
 }

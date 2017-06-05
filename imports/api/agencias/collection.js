@@ -40,12 +40,6 @@ Agencias.schema = new SimpleSchema({
         regEx: /^[0-9]{10}$/,
         min: 10,
         max: 10
-    },
-    correoElectronico: {
-        type: String,
-    },
-    emailVerificado: {
-        type: Boolean
     }
 });
 

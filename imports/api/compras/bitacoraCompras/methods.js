@@ -73,8 +73,8 @@ export const enviarTicket = new ValidatedMethod({
             };
             SSR.compileTemplate('ticketEmailTemplate', Assets.getText('emailTemplates/ticketCompra.html'));
             Email.send({
-                to: 'j.vlt.mtz@gmail.com',
-                from: 'demostradoras01@gmail.com',
+                to: datosCompra.apiDetalles.email,
+                from: infoEmpresa.mailClientes,
                 subject: 'Ticket Compra',
                 html: SSR.render('ticketEmailTemplate', ticketCompra)
             });

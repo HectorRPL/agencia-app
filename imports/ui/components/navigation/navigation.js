@@ -2,6 +2,7 @@ import angular from "angular";
 import angularMeteor from "angular-meteor";
 import {CarritoCompras} from "../../.././api/compras/carritoCompras/collection";
 import {name as NavigationCarrito} from "./navigationCarrito/navigationCarrito";
+import {name as NavigationVacantesPublicadas} from "./navigationVacantesPublicadas/navigationVacantesPublicadas";
 import {name as Logout} from "../login/logout/logout";
 import "./navigation.html";
 
@@ -25,6 +26,7 @@ export default angular
     .module(name, [
         angularMeteor,
         NavigationCarrito,
+        NavigationVacantesPublicadas,
         Logout
     ])
     .component(name, {

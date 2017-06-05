@@ -25,6 +25,7 @@ export const enviarCorreoVerificacion = new ValidatedMethod({
             try {
                 Accounts.sendVerificationEmail(this.userId);
             } catch (error) {
+                console.log(error);
                 throw new Meteor.Error(error.message);
             }
         }
@@ -46,7 +47,7 @@ export const verificarCuenta = new ValidatedMethod({
         if (Meteor.isServer) {
 
             let user = Meteor.user();
-            let email = user && user.emails && user.emails[0].address
+            let email = user && user.emails && user.emails[0].address;
 
             return Agencias.update(
                 {propietario: this.userId},

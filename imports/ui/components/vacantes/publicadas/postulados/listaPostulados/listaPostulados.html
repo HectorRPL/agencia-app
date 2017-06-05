@@ -1,48 +1,47 @@
-<!-- List group -->
-<ul class="list-group">
-    <li class="list-group-item" ng-repeat="postulado in listaPostulados.postulados"
-        ng-init="listaPostulados.existeEnCarroCompras(postulado)"
-        ng-class="{ 'panel-success' : postulado.seleccionado}">
-        <i class="fa fa-check fa-2x" style="color:green;" aria-hidden="true" ng-show="postulado.seleccionado"></i>
-        <strong>{{postulado.candidato().nombre}} {{postulado.candidato().apellidos}}</strong>&nbsp;&nbsp;{{postulado.candidato().sexo}}
-        , 25 años
-        <button type="button" class="btn btn-link" ng-click="listaPostulados.verificarActualizacion(postulado)">
-            <span class="fa fa fa-search-plus fa-lg" aria-hidden="true"></span>
-        </button>
-        <span class="badge progress-bar-danger" ng-hide="postulado.postVistoAgencia">nueva</span>
-        <span class="badge progress-bar-success" ng-show="postulado.estado===2">comprada</span>
-        <div class="row" ng-show="postulado.mostrarInfo">
-            <div class="col-xs-8">
+<!-- uib-accordion -->
+<uib-accordion close-others="listaPostulados.unAcordion">
+    <div uib-accordion-group ng-repeat="postulado in listaPostulados.postulados"
+         ng-init="listaPostulados.existeEnCarroCompras(postulado)"
+         ng-click="listaPostulados.actualizarPostVistoAgencia(postulado)">
+        <uib-accordion-heading >
+            {{postulado.candidato().nombre}}&nbsp;{{postulado.candidato().apellidos}}&nbsp;{{postulado.candidato().sexo}}, 25 años
+            <span class="badge progress-bar-danger pull-right" ng-hide="postulado.postVistoAgencia">nueva</span>
+            <span class="badge progress-bar-success pull-right" ng-if="postulado.estado===2">comprada</span>
+            <span class="badge progress-bar-warning pull-right" ng-if="postulado.seleccionado">agregada</span>
+        </uib-accordion-heading>
+        <div class="row">
+            <div class="col-xs-12">
                 <strong>Direccion:</strong> {{postulado.candidato().direccion().estado}}
                 | {{postulado.candidato().direccion().delMpio}}<br>
                 <strong>Perfil:</strong> {{postulado.perfilLaboral().puesto().descripcion}}
                 | {{postulado.perfilLaboral().escolaridad().descripcion}}
                 | Talla: {{postulado.perfilLaboral().talla}} |
                 Estatura: {{postulado.perfilLaboral().estatura}}<br>
-                <strong>Experiencia:&nbsp;</strong>
-                <small>{{postulado.perfilLaboral().experienciasEn()}}</small>
-                <br>
-                <strong>Habilidades:&nbsp;</strong>
-                <small>{{postulado.perfilLaboral().hibilidadesEn()}}</small>
-            </div>
-            <div class="col-xs-4">
-                <div ng-show="postulado.estado === 1">
-                    <button class="btn btn-primary" ng-hide="postulado.seleccionado"
-                            ng-click="listaPostulados.agregarCarrito(postulado, postulado.perfilLaboral().puesto()._id)">
-                        <span class="fa fa-shopping-cart fa-2x" aria-hidden="true"></span>
-                    </button>
-                    <button class="btn btn-danger" ng-show="postulado.seleccionado"
-                            ng-click="listaPostulados.eliminarCarrito(postulado, listaPostulados.carritoId)">
-                        <span class="fa fa-trash-o fa-2x" aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="row" ng-show="postulado.estado === 2">
-                    <div class="col-xs-12 text-left bg-info">
-                        <strong>Celular:</strong>{{postulado.candidato().celular}}</br>
-                        <strong>E-Mail:</strong>{{postulado.candidato().email}}</br>
-                    </div>
+                <strong>Experiencia:&nbsp;</strong> <small>{{postulado.perfilLaboral().experienciasEn()}}</small><br>
+                <strong>Habilidades:&nbsp;</strong> <small>{{postulado.perfilLaboral().hibilidadesEn()}}</small>
+                <div class="text-left bg-info" ng-if="postulado.estado === 2">
+                    <strong>Celular:</strong>{{postulado.candidato().datosContacto().phone.number}}</br>
+                    <strong>Mail:</strong>{{postulado.candidato().datosContacto().emails[0].address}}</br>
                 </div>
             </div>
         </div>
-    </li>
-</ul>
+        <br>
+        <div class="row" ng-if="postulado.estado === 1">
+            <div class="col-xs-offset-8 col-xs-4">
+                <button class="btn btn-danger pull-right" ng-show="postulado.seleccionado"
+                        ng-click="listaPostulados.eliminarCarrito(postulado, listaPostulados.carritoId)">
+                    <span class="fa fa-trash-o" aria-hidden="true"></span>&nbsp;&nbsp;Contacto
+                </button>
+            </div>
+            <div class="col-xs-offset-8 col-xs-4">
+                <button class="btn btn-primary pull-right" ng-hide="postulado.seleccionado"
+                        ng-click="listaPostulados.agregarCarrito(postulado, postulado.perfilLaboral().puesto()._id)">
+                    <span class="fa fa-shopping-cart" aria-hidden="true"></span>&nbsp;&nbsp;Contacto
+                </button>
+            </div>
+        </div>
+    </div>
+</uib-accordion>
+
+
+

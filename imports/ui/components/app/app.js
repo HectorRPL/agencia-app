@@ -4,6 +4,7 @@ import './app.html';
 
 import {name as Navigation} from '../navigation/navigation';
 import {name as Vacantes} from '../vacantes/vacantes';
+import {name as Reclutadores} from '../reclutadores/reclutadores';
 import {name as Compras} from '../compras/compras';
 import {name as DatosBancarios} from '../datosBancarios/datosBancarios';
 import {name as MiCuenta} from '../miCuenta/miCuenta';
@@ -21,7 +22,8 @@ export default angular
         Compras,
         DatosBancarios,
         Vacantes,
-        MiCuenta
+        MiCuenta,
+        Reclutadores
     ])
     .component(name, {
         templateUrl: `imports/ui/components/${name}/${name}.html`,

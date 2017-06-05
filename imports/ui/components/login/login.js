@@ -36,7 +36,7 @@ class Login {
                 } else {
                     obtenerEstadoReg.call({}, (err, result) => {
                         if (err) {
-                            this.msjAlerta = 'En estos momentos estamos mejorando el sistema, por favor inténtelo más tarde.';
+                            this.msjAlerta = 'Error, por favor inténtelo más tarde.';
                             this.tipoAlerta = 'danger';
                         } else {
                             if (this.ultimoEstado === undefined || this.ultimoEstado === null) {
