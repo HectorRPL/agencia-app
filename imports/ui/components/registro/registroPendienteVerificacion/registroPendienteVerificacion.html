@@ -1,18 +1,24 @@
-<div class="col-md-offset-1 col-md-10 col-xs-12 panelRegistro">
-    <div class="row" style="color: white">
-        <!--TITULO-->
-        <div class="col-xs-12">
-            <h1>{{registroPendienteVerificacion.mensajeTitulo}}</h1>
-        </div>
-        <div class="col-xs-12">
-            {{registroPendienteVerificacion.mensajePrincipal}}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-12">
+                <titulo titulo="registro.titulo"></titulo>
+            </div>
+            <div class="col-xs-12">
+                <h1>{{registroPendienteVerificacion.mensajeTitulo}}</h1>
+            </div>
         </div>
     </div>
-    <!-- ALERTA: CORREO ENVIADO EXITOSAMENTE | ERROR AL ENVIAR CORREO -->
-    <br>
-    <div class="row">
-        <div class="col-xs-12">
-            <alertas tipo="registroPendienteVerificacion.tipoAlerta" mensaje="registroPendienteVerificacion.msjAlerta"></alertas>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">
+                {{registroPendienteVerificacion.mensajePrincipal}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <alertas tipo="registroPendienteVerificacion.tipoAlerta" mensaje="registroPendienteVerificacion.msjAlerta"></alertas>
+            </div>
         </div>
     </div>
 </div>

@@ -16,7 +16,7 @@ class OrdenCompra {
     constructor($scope, $reactive, $uibModal) {
         'ngInject';
         $reactive(this).attach($scope);
-        this.titulo = 'Detalles de Compra';
+        this.titulo = 'Orden de Compra';
         this.apiTokenId = '';
         this.precios = {};
         this.$uibModal = $uibModal;

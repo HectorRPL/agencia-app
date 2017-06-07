@@ -1,17 +1,17 @@
 <!--BOTÓN ATRÁS-->
 <div class="col-xs-12 col-sm-3 col-md-2">
-    <button type="button" class="btn btn-danger btn-group-justified">
+    <button type="button" class="btn btn-default btn-group-justified" ui-sref="app.vacantes.publicadas">
         <i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i>
         Atrás
     </button>
 </div>
 <!--PEQUEÑA DESCRIPCIÓN DE LA COMPRA-->
 <div class="col-xs-12 col-sm-6 col-md-8">
-    <h4 class="text-right">{{encabezadoCompras.numCandidatosCarrito}}  contactos agregados a carrito.</h4>
+    <h4 class="text-right">{{encabezadoCompras.numCandidatosCarrito}}  contactos agregados a carrito</h4>
 </div>
 <!--BOTÓN COMPRAR-->
 <div class="col-xs-12 col-sm-3 col-md-2">
-    <a class="btn btn-primary pull-right btn-group-justified"
+    <a class="btn btn-default pull-right btn-group-justified"
        ui-sref="app.compras.carritoCompras({carritoId: encabezadoCompras.carritoid})">
         Realizar Compra
     </a>

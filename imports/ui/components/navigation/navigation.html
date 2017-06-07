@@ -8,16 +8,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">LOGO</a>
+            <a class="navbar-brand"  ui-sref="app.vacantes.publicadas">
+                <img src="/images/demos_carrito_300x300.png" width="40" style="position: relative; bottom: 10px">
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a><navigation-vacantes-publicadas></navigation-vacantes-publicadas></a></li>
-                <li><a ui-sref="app.vacantes.agregar"> <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i> Agregar Vacantes</a></li>
+                <li><a><navigation-vacantes-publicadas></navigation-vacantes-publicadas> |</a></li>
+                <li><a ui-sref="app.vacantes.agregar"> Agregar Vacantes |</a></li>
                 <li><a><navigation-carrito carritoid="navigation.carritoCompras._id"></navigation-carrito></a></li>
-                <li><a ui-sref="app.reclutadores.listado"><i class="fa fa-users fa-lg" aria-hidden="true"></i> Reclutadores</a></li>
+                <!--<li><a ui-sref="app.reclutadores.listado"><i class="fa fa-users fa-lg" aria-hidden="true"></i> Reclutadores</a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

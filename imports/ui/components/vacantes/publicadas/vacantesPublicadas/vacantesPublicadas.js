@@ -18,7 +18,7 @@ class VacantesPublicadas {
         'ngInject';
         $reactive(this).attach($scope);
         this.subscribe('vacantes.misPublicaciones');
-        this.titulo = 'vista de vacantes';
+        this.titulo = 'Vacantes Publicadas';
         this.$uibModal = $uibModal;
 
         this.helpers({

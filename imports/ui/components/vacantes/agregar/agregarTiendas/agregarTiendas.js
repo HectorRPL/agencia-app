@@ -20,6 +20,8 @@ class AgregarTiendas {
         'ngInject';
         $reactive(this).attach($scope);
         this.$state = $state;
+        this.titulo = 'Añadir Tiendas';
+        this.tituloDos = 'Resumen';
         this.mostrarElemento = true;
         this.subscribe('estados');
         this.subscribe('puestos');

@@ -16,6 +16,9 @@ class Registro {
         'ngInject';
 
         this.$state = $state;
+
+        this.titulo = 'Registro';
+
         this.colonias = [];
         this.direccion = {
             codigoPostal: '',

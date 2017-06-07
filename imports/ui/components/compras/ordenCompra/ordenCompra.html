@@ -1,56 +1,58 @@
 <form id="ordenCompraFrmId" role="form" name="ordenCompraFrm" nonvalidate>
     <!-- DESGLOSE, DATOS BANCARIOS Y BOTÓN 'COMPRAR AHORA' -->
-    <div class="col-xs-12 col-md-4">
-        <div class="panel panel-default">
-            <!-- TÍTULO -->
-            <div class="panel-heading">Orden de Compra</div>
-            <!-- DESCRIPCIÓN DEL PRODUCTO -->
-            <div class="panel-body">
-                <desglose-compra totalpersonal="ordenCompra.totalpersonal" numdemos="ordenCompra.numdemos"
-                                 numpromotor="ordenCompra.numpromotor" numsupervisor="ordenCompra.numsupervisor"
-                                 precios="ordenCompra.precios">
-                </desglose-compra>
-                <!--DATOS BANCARIOS-->
-                <div ng-show="ordenCompra.numTarjetas === 0">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="text-center"><strong>Tarjeta Bancaria</strong></div>
-                            <br>
-                            <tarjeta datos="ordenCompra.tarjeta"></tarjeta>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <alertas tipo="ordenCompra.tipoMsj" mensaje="ordenCompra.msj"></alertas>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 pull-left">
-                            <checkbox-guardar-tarjeta guardar="ordenCompra.guardarTarjeta"></checkbox-guardar-tarjeta>
-                        </div>
-                        <div class="col-sm-6">
-                            <!--BOTON PAGAR AHORA-->
-                            <button class="btn btn-primary pull-right" ng-click="ordenCompra.comprarPrimeraVez()"
-                                    ng-disabled="ordenCompraFrm.$invalid || ordenCompra.totalpersonal==0">
-                                Pagar ahora
-                            </button>
-                        </div>
+    <div class="panel panel-default">
+        <!-- TÍTULO -->
+        <titulo titulo="ordenCompra.titulo"></titulo>
+        <!-- DESCRIPCIÓN DEL PRODUCTO -->
+        <div class="panel-body">
+            <desglose-compra totalpersonal="ordenCompra.totalpersonal"
+                             numdemos="ordenCompra.numdemos"
+                             numpromotor="ordenCompra.numpromotor"
+                             numsupervisor="ordenCompra.numsupervisor"
+                             precios="ordenCompra.precios">
+            </desglose-compra>
+        </div>
+        <div class="panel-footer">
+            <!--DATOS BANCARIOS-->
+            <div ng-show="ordenCompra.numTarjetas === 0">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center"><strong>Tarjeta Bancaria</strong></div>
+                        <br>
+                        <tarjeta datos="ordenCompra.tarjeta"></tarjeta>
                     </div>
                 </div>
-                <div ng-hide="ordenCompra.numTarjetas === 0">
-                    <div class="text-center"><strong>Seleccionar Tarjeta</strong></div>
-                    <div class="row">
-                        <div  class="col-xs-12">
-                            <seleccionar-tarjeta apitokenid="ordenCompra.apiTokenId"></seleccionar-tarjeta>
-                        </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <alertas tipo="ordenCompra.tipoMsj" mensaje="ordenCompra.msj"></alertas>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <button class="btn btn-primary pull-right" ng-click="ordenCompra.comprarTarjetaSelec()"
-                                    ng-disabled="ordenCompra.totalpersonal==0 || !ordenCompra.apiTokenId">
-                                Pagar ahora
-                            </button>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 pull-left">
+                        <checkbox-guardar-tarjeta guardar="ordenCompra.guardarTarjeta"></checkbox-guardar-tarjeta>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--BOTON PAGAR AHORA-->
+                        <button class="btn btn-default pull-right" ng-click="ordenCompra.comprarPrimeraVez()"
+                                ng-disabled="ordenCompraFrm.$invalid || ordenCompra.totalpersonal==0">
+                            Pagar ahora
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div ng-hide="ordenCompra.numTarjetas === 0">
+                <div class="text-center"><strong>Seleccionar Tarjeta</strong></div>
+                <div class="row">
+                    <div  class="col-xs-12">
+                        <seleccionar-tarjeta apitokenid="ordenCompra.apiTokenId"></seleccionar-tarjeta>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-default pull-right" ng-click="ordenCompra.comprarTarjetaSelec()"
+                                ng-disabled="ordenCompra.totalpersonal==0 || !ordenCompra.apiTokenId">
+                            Pagar ahora
+                        </button>
                     </div>
                 </div>
             </div>

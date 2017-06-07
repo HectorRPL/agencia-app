@@ -1,37 +1,44 @@
-<div class="col-md-offset-3 col-md-6 col-xs-12 panelRegistro">
-    <div class="btn-group btn-group-justified" role="group" aria-label="...">
-        <br>
-        <!-- CORREO / CONTRASEÑA -->
-        <form role="form" class="property-submit-form" id="recuperarFormId" name="recuperarForm" nonvalidate>
-            <!-- CORREO-->
-            <div class="form-group"
-                 ng-class="{ 'has-error' : recuperarForm.usuario.$invalid && !recuperarForm.usuario.$pristine }"
-                 ng-hide="recuperar.tipoMsj === 'success'">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon span-demos">@</span>
-                    <input id="candidatoEmailID" class="form-control" name="usuario" type="email" placeholder=""
-                           aria-describedby="basic-addon1" required ng-model="recuperar.credentials.email">
-                </div>
-                <div ng-messages="recuperarForm.usuario.$dirty && recuperarForm.usuario.$error" role="alert">
-                    <div ng-message="required" style="color:red">Campo requerido</div>
-                    <div ng-message="email" style="color:red">El formato de email es incorrecto.</div>
+<form role="form" class="property-submit-form" id="recuperarFormId" name="recuperarForm" nonvalidate autocomplete="off">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- CORREO-->
+                    <div class="form-group" ng-class="{ 'has-error' : recuperarForm.usuario.$invalid && !recuperarForm.usuario.$pristine }" ng-hide="recuperar.tipoMsj === 'success'">
+                        <input id="candidatoEmailId"
+                               class="form-control"
+                               name="usuario"
+                               type="email"
+                               placeholder="Correo electrónico"
+                               aria-describedby="basic-addon1"
+                               required ng-model="recuperar.credentials.email">
+                        <div ng-messages="recuperarForm.usuario.$dirty && recuperarForm.usuario.$error" role="alert">
+                            <div class="ng-mensajes" ng-message="required">Campo requerido</div>
+                            <div class="ng-mensajes" ng-message="email">El formato de email es incorrecto.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- BOTON RECUPERAR-->
-            <button class="btn btn-default btn-lg btn-block"
-                    type="submit"
-                    ng-hide="recuperar.tipoMsj === 'success'"
-                    ng-disabled="recuperarForm.$invalid"
-                    ng-click="recuperar.recuperar()">
-                Recuperar Contraseña
-            </button>
-            <br>
             <!-- ALERTA: COMBINACIÓN INCORRECTA -->
             <div class="row">
                 <div class="col-xs-12">
                     <alertas tipo="recuperar.tipoMsj" mensaje="recuperar.msj"></alertas>
                 </div>
             </div>
-        </form>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- BOTON RECUPERAR-->
+                    <button class="btn btn-default btn-block"
+                            type="submit"
+                            ng-hide="recuperar.tipoMsj === 'success'"
+                            ng-disabled="recuperarForm.$invalid"
+                            ng-click="recuperar.recuperar()">
+                        Recuperar Contraseña
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</form>

@@ -20,6 +20,10 @@ class Postulados {
         'ngInject';
         $reactive(this).attach($scope);
         this.$state = $state;
+
+        this.titulo = 'Detalles de la Promoción';
+        this.tituloDos = 'Candidatos Postulados';
+
         this.vacanteId = $stateParams.vacanteId;
         this.subscribe('vacantes.detalle', ()=> [{_id: this.vacanteId}]);
         this.subscribe('vacantes.tiendas', ()=> [{vacanteId: this.vacanteId}]);

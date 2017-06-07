@@ -1,67 +1,60 @@
-<div class="col-md-offset-3 col-md-6 col-xs-12 panelRegistro">
-    <br>
-    <div class="btn-group btn-group-justified" role="group" aria-label="...">
-        <!-- CORREO / CONTRASEÑA -->
-        <form role="form" class="property-submit-form" id="loginFormId" name="loginForm" nonvalidate>
-            <!-- CORREO-->
-            <div class="form-group"
-                 ng-class="{ 'has-error' : loginForm.usuario.$invalid && !loginForm.usuario.$pristine }">
-                <div class="input-group input-group-lg">
-          <span class="input-group-addon span-demos">@
-          </span>
-                    <input id="candidatoEmailID" class="form-control" name="usuario" type="email" placeholder=""
-                           aria-describedby="basic-addon1" required ng-model="login.credentials.email">
-                </div>
-                <div ng-messages="loginForm.usuario.$dirty && loginForm.usuario.$error" role="alert">
-                    <div ng-message="required" style="color:red">Campo requerido</div>
-                    <div ng-message="email" style="color:red">El formato de email es incorrecto.</div>
-                </div>
-            </div>
-            <!-- CONTASEÑA -->
-            <div class="form-group"
-                 ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
-                <div class="input-group
-            input-group-lg">
-          <span class="input-group-addon span-demos">
-            <i class="fa fa-key" aria-hidden="true"></i>
-          </span>
-                    <input id="candidatoPasswordID" class="form-control" name="password" type="password" placeholder=""
-                           aria-describedby="basic-addon1" required ng-model="login.credentials.password">
-                </div>
-                <div ng-messages="loginForm.password.$dirty && loginForm.password.$error" role="alert">
-                    <div ng-message="required" style="color:red">Campo requerido</div>
-                </div>
-            </div>
-            <!-- BOTON INGRESAR-->
-            <button class="btn btn-default btn-lg btn-block" type="submit" ng-click="login.login()"
-                    ng-disabled="loginForm.$invalid">
-                Ingresar
-            </button>
-            <br>
-            <!-- ALERTA: COMBINACIÓN INCORRECTA -->
+<form role="form" class="property-submit-form" id="loginFormId" name="loginForm" nonvalidate autocomplete="off">
+    <div class="panel panel-default">
+        <titulo titulo="login.titulo"></titulo>
+        <div class="panel-body">
             <div class="row">
+                <!--CORREO-->
+                <div class="col-xs-12">
+                    <div class="form-group" ng-class="{ 'has-error' : loginForm.usuario.$invalid && !loginForm.usuario.$pristine }">
+                        <input id="candidatoEmailId"
+                               class="form-control"
+                               name="usuario"
+                               type="email"
+                               placeholder="Correo electrónico"
+                               aria-describedby="basic-addon1"
+                               required ng-model="login.credentials.email">
+                        <div ng-messages="loginForm.usuario.$dirty && loginForm.usuario.$error" role="alert">
+                            <div class="ng-mensajes" ng-message="required">Campo requerido</div>
+                            <div class="ng-mensajes" ng-message="email">El formato de email es incorrecto.</div>
+                        </div>
+                    </div>
+                </div>
+                <!--CONTRASEÑA-->
+                <div class="col-xs-12">
+                    <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
+                        <input id="candidatoPasswordId"
+                               class="form-control"
+                               name="password"
+                               type="password"
+                               placeholder="Constraseña"
+                               aria-describedby="basic-addon1"
+                               required ng-model="login.credentials.password">
+                        <div ng-messages="loginForm.password.$dirty && loginForm.password.$error" role="alert">
+                            <div class="ng-mensajes" ng-message="required">Campo requerido</div>
+                        </div>
+                        <a class="pull-right" ui-sref="inicio.recuperar"><small><small>¿Has olvidado tu contraseña?</small></small></a>
+                    </div>
+                </div>
+                <!--BOTÓN INGFRESAR Y LINKS -->
+                <div class="col-xs-12">
+                    <button class="btn btn-default center-block" type="submit" ng-click="login.login()" ng-disabled="loginForm.$invalid">
+                        Ingresar
+                    </button>
+                </div>
+                <!--ALERTA-->
                 <div class="col-xs-12">
                     <alertas tipo="login.tipoAlerta" mensaje="login.msjAlerta"></alertas>
                 </div>
             </div>
-            <!-- LINKS: RECORDARME | RECUPERAR | REGISTRAR-->
-            <div class="form-group row">
-                <!-- RECUPERAR -->
-                <div class="col-xs-4">
-                    <div class="form-group pull-left">
-                        <a class="letras01" ui-sref="inicio.recuperar">Recuperar</a>
-                    </div>
-                </div>
-                <div class="col-xs-4">
-
-                </div>
-                <!-- REGISTRAR -->
-                <div class="col-xs-4">
-                    <div class="form-group pull-right">
-                        <a class="letras01" ui-sref="inicio.registro">Registro</a>
-                    </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <!--BOTÓN INGFRESAR Y LINKS -->
+                <div class="col-xs-12">
+                    <span class="pull-left"><small><small>¿No tienes cuenta?</small></small></span>
+                    <a class="btn btn-default pull-right" ui-sref="inicio.registro">REGÍSTRATE</a>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>

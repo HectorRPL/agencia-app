@@ -1,21 +1,52 @@
 navigation {
 
-  // Se añade el estilo correpondiente al componente <navigation-carrito>
-  li > a > navigation-carrito > a {
-    color: #777777; // #777777 (es el gris oficial de bootstrap)
-  }
-  li > a > navigation-carrito > a:hover {
-    text-decoration: none;
-    color: #333333; // #333333 (Casi seguro que es color oficial de bootstrap)
+  nav.navbar {
+    background-color: @color-sextario;
+    border-bottom-width: 2px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: @color-secundario;
+    color: @color-secundario;
   }
 
-  li > a > navigation-carrito > a:link {
-    text-decoration: none;
-    color: #333333; // #333333 (Casi seguro que es color oficial de bootstrap)
+  .navbar-default .navbar-nav > .open > a,
+  .navbar-default .navbar-nav > .open > a:hover,
+  .navbar-default .navbar-nav > .open > a:focus {
+    background-color: transparent;
   }
-  li > a > navigation-carrito > a:active {
+
+  .dropdown-menu {
+    border-radius: 0px;
+    border-width: 2px;
+    border-color: @color-secundario;
+    background-color: @color-secundario-transparencia;
+    a {
+      color: @color-sextario !important;
+    }
+    a:hover {
+      background-color: @color-secundario !important;
+      text-decoration: none;
+      color: @color-sextario !important;
+    }
+  }
+
+  a {
+    color: @color-secundario !important;
+  }
+
+  a:hover {
+    color: @color-terciario !important;
     text-decoration: none;
-    color: #333333; // #333333 (Casi seguro que es color oficial de bootstrap)
+  }
+
+  a:link {
+    text-decoration: none;
+    color: #333333 !important;
+  }
+  a:active {
+    text-decoration: none;
+    color: #333333 !important;
   }
 
   logout > a {

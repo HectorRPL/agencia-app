@@ -1,5 +1,5 @@
 <div class="row">
-    <div ng-repeat="dia in checkboxDias.diasSemana" class="col-xs-6 col-sm-3 col-md-3"
+    <div class="col-sm-3" ng-repeat="dia in checkboxDias.diasSemana"
          ng-init="checkboxDias.activar(dia, $index)">
         <div class="checkbox">
             <div class="btn-group btn-group-justified">
@@ -11,7 +11,7 @@
         </div>
     </div>
     <!-- Diario -->
-    <div class="col-xs-12 col-sm-3">
+    <div class="col-sm-3">
         <div class="checkbox">
             <div class="btn-group btn-group-justified">
                 <label id="diarioId" class="btn btn-default" name="{{checkboxDias.diario.descripcion}}"

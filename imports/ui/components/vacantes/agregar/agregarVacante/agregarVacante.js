@@ -18,6 +18,9 @@ class AgregarVacante {
         $reactive(this).attach($scope);
         this.$state = $state;
 
+        this.titulo = 'Perfil';
+        this.tituloDos = 'Dias, Horario, Duración';
+
         if (Session.get('datosVacante') === null || Session.get('datosVacante') === undefined) {
             this.vacante = {
                 perfil: {

@@ -1,36 +1,35 @@
 <div class="row">
     <!-- CHECK BOX HABILIDADES SI (EN ESTE ROW SE CONTROLA EL NÚMERO DE CHECKBOX POR FILA) -->
-    <div class="col-xs-12 col-sm-4" ng-repeat="habilidad in checkboxHabilidades.datosHabilidades"
+    <div class="col-sm-6 col-md-4"
+         ng-repeat="habilidad in checkboxHabilidades.datosHabilidades"
          ng-init="checkboxHabilidades.activar(habilidad)">
-        <div class="checkbox btn-block">
-            <div class="btn-group btn-block">
-                <label id="{{habilidad._id}}" name="{{habilidad.descripcion}}" class="btn btn-default btn-block btn-sm"
-                       uib-btn-checkbox ng-checked="checkboxHabilidades.disabledCheks"
-                       ng-click="checkboxHabilidades.agregarOEliminar(habilidad)"
-                       ng-model="habilidad.activo">{{habilidad.descripcion}} </label>
-            </div>
+        <div class="form-group">
+            <button id="{{habilidad._id}}" name="{{habilidad.descripcion}}" class="btn btn-default btn-block"
+                   uib-btn-checkbox ng-checked="checkboxHabilidades.disabledCheks"
+                   ng-click="checkboxHabilidades.agregarOEliminar(habilidad)"
+                   ng-model="habilidad.activo">{{habilidad.descripcion}} </button>
         </div>
     </div>
     <!-- OTRA -->
-    <div class="col-xs-12 col-sm-4">
-        <div class="checkbox btn-block">
-            <div class="btn-group btn-block">
-                <label id="otraHabilidadIdCheckID" class="btn btn-default btn-block btn-sm"
-                name="otraHabilidadIdCheck" uib-btn-checkbox ng-model="checkboxHabilidades.otra.activo">
-                    {{checkboxHabilidades.otra.habilidad}}
-                </label>
-            </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+            <button id="otraHabilidadIdCheckID" class="btn btn-default btn-block"
+            name="otraHabilidadIdCheck" uib-btn-checkbox ng-model="checkboxHabilidades.otra.activo">
+                {{checkboxHabilidades.otra.habilidad}}
+            </button>
         </div>
     </div>
     <!-- OTRA HABILIDAD EN INPUT TEXT -->
-    <div class="col-xs-12" ng-show="checkboxHabilidades.otra.activo">
-        <div class="input-group">
-            <span id="basic-addon1" class="input-group-addon">
-          Tx
-        </span>
-            <textarea id="otraHabilidadID" class="form-control" name="otraHabilidad"
-                      placeholder="Escribe otra habilidad" rows="2" ng-pattern="" maxlength="15"
-                      ng-model="checkboxHabilidades.otrahabilidada">      </textarea>
+    <div class="col-sm-6 col-md-4" ng-show="checkboxHabilidades.otra.activo">
+        <div class="form-group">
+            <input id="otraHabilidadID"
+                   class="form-control"
+                   placeholder="Escribe otra habilidad"
+                   rows="2"
+                   ng-pattern=""
+                   maxlength="15"
+                   name="otraHabilidad"
+                   ng-model="checkboxHabilidades.otrahabilidada">
         </div>
     </div>
 </div>
