@@ -23,7 +23,9 @@ class VacantesPublicadas {
 
         this.helpers({
             vacantes (){
-                return Vacantes.find();
+                return Vacantes.find({}, {
+                    sort: {fechaCreacion: -1}
+                });
             }
         });
     }
