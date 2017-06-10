@@ -1,0 +1,14 @@
+<input id="codigoPostalID"
+       class="form-control texto-en-mayusculas"
+       name="codigoPostal"
+       type="text"
+       placeholder="Código Postal"
+       aria-describedby="sizing-addon1"
+       maxlength="5"
+       minlength="5"
+       ng-maxlength="5"
+       ng-minlength="5"
+       ng-pattern="/^[0-9]{5}$/"
+       required
+       cp-invalido
+       ng-model="codigosPostales.direccion.codigoPostal">

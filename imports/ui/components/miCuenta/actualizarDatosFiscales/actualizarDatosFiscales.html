@@ -1,0 +1,46 @@
+<form name="actualizarDatosFiscalesFrm" autocomplete="off">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>Datos Fiscales</h4>
+            <forma-datos-fiscales class="text-left"
+                                  datos="actualizarDatosFiscales.datosFiscales">
+            </forma-datos-fiscales>
+        </div>
+    </div>
+    <hr>
+<!--
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>Dirección Fiscal</h4>
+            <forma-direccion
+                    class="text-left"
+                    direccion="actualizarDatosFiscales.direccion">
+            </forma-direccion>
+        </div>
+    </div>
+-->
+    <div class="row">
+        <!-- ALERTA: CAMBIOS EXITOSO -->
+        <div class="col-xs-12">
+            <alertas tipo="actualizarDatosFiscales.tipoMsj" mensaje="actualizarDatosFiscales.msj"></alertas>
+        </div>
+        <!-- BOTON GUARDAR CAMBIOS-->
+        <div class="col-xs-12">
+            <pre>{{ actualizarDatosFiscales.datosFiscales._id | json }}</pre>
+            <!-- GUARDAR -->
+            <button class="btn btn-default"
+                    ng-click="actualizarDatosFiscales.guardarDatosFiscales()"
+                    ng-show="actualizarDatosFiscales.datosFiscales.propietario === undefined"
+                    ng-disabled="actualizarDatosFiscalesFrm.$invalid">
+                Guardar
+            </button>
+            <!-- ACTUALIZAR -->
+            <button class="btn btn-default"
+                    ng-click="actualizarDatosFiscales.actualizarDatosFiscales()"
+                    ng-show="actualizarDatosFiscales.datosFiscales.propietario != undefined"
+                    ng-disabled="actualizarDatosFiscalesFrm.$invalid">
+                Actualizar
+            </button>
+        </div>
+    </div>
+</form>
