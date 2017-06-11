@@ -22,10 +22,7 @@ Schema.datosFiscales = new SimpleSchema({
     },
     _id: {
         type: String,
-        regEx: SimpleSchema.RegEx.Id,
-        // autoValue: function () {
-        //     return this.value.toUpperCase()
-        // }
+        regEx: SimpleSchema.RegEx.Id
     },
     propietario: {
         type: String,
@@ -116,77 +113,77 @@ Schema.datosFiscales = new SimpleSchema({
         // }
     },
 
-    // calle: {
-    //     type: String,
-    //     max: 40,
-    //     min: 1,
-    //     regEx: /^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/,
-    //     // autoValue: function () {
-    //     //     return this.value.toUpperCase()
-    //     // }
-    // },
-    // delMpio: {
-    //     type: String,
-    //     max: 100,
-    //     min: 1,
-    //     // autoValue: function () {
-    //     //     return this.value.toUpperCase()
-    //     // }
-    // },
-    // estado: {
-    //     type: String,
-    //     max: 20,
-    //     min: 1,
-    //     // autoValue: function () {
-    //     //     return this.value.toUpperCase()
-    //     // }
-    // },
-    // estadoId: {
-    //     type: String,
-    //     max: 3,
-    //     min: 1,
-    //     regEx: /^[a-zA-Z-/.&ñáéíóú-\s\d]+$/,
-    //     // autoValue: function () {
-    //     //     return this.value.toUpperCase()
-    //     // }
-    // },
-    // colonia: {
-    //     type: String,
-    //     max: 100,
-    //     min: 1,
-    //     // autoValue: function () {
-    //     //     return this.value.toUpperCase()
-    //     // }
-    // },
-    // numExt: {
-    //     type: String,
-    //     max: 20,
-    //     min: 1,
-    //     regEx: /^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/,
-    //     autoValue: function () {
-    //         if(this.value){
-    //             return this.value.toUpperCase()
-    //         }
-    //     }
-    // },
-    // numInt: {
-    //     type: String,
-    //     max: 20,
-    //     min: 1,
-    //     regEx: /^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/,
-    //     optional: true,
-    //     autoValue: function () {
-    //         if (this.value) {
-    //             return this.value.toUpperCase()
-    //         }
-    //     }
-    // },
-    // codigoPostal: {
-    //     type: String,
-    //     max: 5,
-    //     min: 5,
-    //     regEx: /^[0-9]{5}$/
-    // },
+    calle: {
+        type: String,
+        max: 40,
+        min: 1,
+        regEx: /^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/,
+        // autoValue: function () {
+        //     return this.value.toUpperCase()
+        // }
+    },
+    delMpio: {
+        type: String,
+        max: 100,
+        min: 1,
+        // autoValue: function () {
+        //     return this.value.toUpperCase()
+        // }
+    },
+    estado: {
+        type: String,
+        max: 20,
+        min: 1,
+        // autoValue: function () {
+        //     return this.value.toUpperCase()
+        // }
+    },
+    estadoId: {
+        type: String,
+        max: 3,
+        min: 1,
+        regEx: /^[a-zA-Z-/.&ñáéíóú-\s\d]+$/,
+        // autoValue: function () {
+        //     return this.value.toUpperCase()
+        // }
+    },
+    colonia: {
+        type: String,
+        max: 100,
+        min: 1,
+        // autoValue: function () {
+        //     return this.value.toUpperCase()
+        // }
+    },
+    numExt: {
+        type: String,
+        max: 20,
+        min: 1,
+        regEx: /^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/,
+        autoValue: function () {
+            if(this.value){
+                return this.value.toUpperCase()
+            }
+        }
+    },
+    numInt: {
+        type: String,
+        max: 20,
+        min: 1,
+        regEx: /^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/,
+        optional: true,
+        // autoValue: function () {
+        //     if (this.value) {
+        //         return this.value.toUpperCase()
+        //     }
+        // }
+    },
+    codigoPostal: {
+        type: String,
+        max: 5,
+        min: 5,
+        regEx: /^[0-9]{5}$/
+    },
 
 });
 

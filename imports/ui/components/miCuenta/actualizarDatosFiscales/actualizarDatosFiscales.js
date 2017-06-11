@@ -17,6 +17,8 @@ class ActualizarDatosFiscales {
 
         this.cargando = false;
 
+        this.direccion = {};
+
         this.subscribe('datosFiscales.agencia');
         this.helpers({
             datosFiscales(){
@@ -27,10 +29,7 @@ class ActualizarDatosFiscales {
 
     guardarDatosFiscales() {
         this.cargando = true;
-        // let datosFiscalesFinal = angular.copy(this.datosFiscales);
-        // delete datosFiscalesFinal.colonias;
-        // datosFiscalesFinal.propietarioId = this.propietarioId;
-
+        delete this.datosFiscales.colonias;
         insertarDatosFiscales.call(this.datosFiscales, this.$bindToContext((err) => {
             if (err) {
                 this.msj = err + 'Error, llamar a soporte técnico: 55-6102-4884 | 55-2628-5121';
@@ -46,6 +45,7 @@ class ActualizarDatosFiscales {
 
     actualizarDatosFiscales() {
         this.cargando = true;
+        delete this.datosFiscales.colonias;
         delete this.datosFiscales._id;
         delete this.datosFiscales.fechaCreacion;
         // let datosFiscalesFinal = angular.copy(this.datosFiscales);

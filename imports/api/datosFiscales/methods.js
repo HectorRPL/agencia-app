@@ -18,14 +18,14 @@ const CAMPOS_DATOS_FISCALES = [
     'apellidoPaterno',
     'apellidoMaterno',
     'email',
-    // 'calle',
-    // 'delMpio',
-    // 'estado',
-    // 'estadoId',
-    // 'colonia',
-    // 'numExt',
-    // 'numInt',
-    // 'codigoPostal',
+    'calle',
+    'delMpio',
+    'estado',
+    'estadoId',
+    'colonia',
+    'numExt',
+    'numInt',
+    'codigoPostal',
 ];
 
 export const insertarDatosFiscales = new ValidatedMethod({
@@ -43,14 +43,14 @@ export const insertarDatosFiscales = new ValidatedMethod({
             apellidoPaterno,
             apellidoMaterno,
             email,
-            // calle,
-            // delMpio,
-            // estado,
-            // estadoId,
-            // colonia,
-            // numExt,
-            // numInt,
-            // codigoPostal,
+            calle,
+            delMpio,
+            estado,
+            estadoId,
+            colonia,
+            numExt,
+            numInt,
+            codigoPostal,
         }
     ) {
        if (Meteor.isServer) {
@@ -64,14 +64,14 @@ export const insertarDatosFiscales = new ValidatedMethod({
                apellidoPaterno,
                apellidoMaterno,
                email,
-               // calle,
-               // delMpio,
-               // estado,
-               // estadoId,
-               // colonia,
-               // numExt,
-               // numInt,
-               // codigoPostal,
+               calle,
+               delMpio,
+               estado,
+               estadoId,
+               colonia,
+               numExt,
+               numInt,
+               codigoPostal,
            });
        }
     }
@@ -93,24 +93,61 @@ export const actualizarDatosFiscales = new ValidatedMethod({
             apellidoPaterno,
             apellidoMaterno,
             email,
-            // calle,
-            // delMpio,
-            // estado,
-            // estadoId,
-            // colonia,
-            // numExt,
-            // numInt,
-            // codigoPostal,
+            calle,
+            delMpio,
+            estado,
+            estadoId,
+            colonia,
+            numExt,
+            numInt,
+            codigoPostal,
         }
     ) {
         if (Meteor.isServer) {
 
             // PERSONA FÍSICA
             if (personaFisica === true) {
-                return DatosFiscales.update( {propietario: propietario}, {$unset: {razonSocial: ''}, $set: {personaFisica, rfc, email, nombre, apellidoPaterno, apellidoMaterno}});
-            // PERSONA MORAL
+                return DatosFiscales.update({propietario: propietario}, {
+                    $unset: {razonSocial: ''},
+                    $set: {
+                        personaFisica,
+                        rfc,
+                        email,
+                        nombre,
+                        apellidoPaterno,
+                        apellidoMaterno,
+                        calle,
+                        delMpio,
+                        estado,
+                        estadoId,
+                        colonia,
+                        numExt,
+                        numInt,
+                        codigoPostal
+                    }
+                });
+                // PERSONA MORAL
             } else {
-                return DatosFiscales.update( {propietario: propietario}, {$unset: {nombre: '', apellidoPaterno: '', apellidoMaterno: ''}, $set: {personaFisica, rfc, email, razonSocial }});
+                return DatosFiscales.update({propietario: propietario}, {
+                    $unset: {
+                        nombre: '',
+                        apellidoPaterno: '',
+                        apellidoMaterno: ''
+                    }, $set: {
+                        personaFisica,
+                        rfc,
+                        email,
+                        razonSocial,
+                        calle,
+                        delMpio,
+                        estado,
+                        estadoId,
+                        colonia,
+                        numExt,
+                        numInt,
+                        codigoPostal
+                    }
+                });
             }
 
             /* // RESERVADO PARA AGREGAR LA DIRECCIÓN
