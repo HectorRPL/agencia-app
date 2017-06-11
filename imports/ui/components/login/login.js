@@ -18,6 +18,7 @@ class Login {
         $reactive(this).attach($scope);
 
         this.titulo = 'Ingresar';
+        this.cargando = false;
 
         this.ultimoEstado = Session.get('ultimoEstado');
 
@@ -30,17 +31,20 @@ class Login {
     }
 
     login() {
+        this.cargando = true;
         this.tipoAlerta = '';
         Meteor.loginWithPassword(this.credentials.email.toLowerCase(), 'agencia:' + this.credentials.password,
             this.$bindToContext((err) => {
                 if (err) {
                     this.msjAlerta = 'Combinación de usuario y contraseña incorrectos.';
                     this.tipoAlerta = 'danger';
+                    this.cargando = false;
                 } else {
                     obtenerEstadoReg.call({}, (err, result) => {
                         if (err) {
                             this.msjAlerta = 'Error, por favor inténtelo más tarde.';
                             this.tipoAlerta = 'danger';
+                            this.cargando = false;
                         } else {
                             if (this.ultimoEstado === undefined || this.ultimoEstado === null) {
                                 this.$state.go(result);

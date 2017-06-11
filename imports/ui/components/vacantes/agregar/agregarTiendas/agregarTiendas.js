@@ -20,6 +20,7 @@ class AgregarTiendas {
         'ngInject';
         $reactive(this).attach($scope);
         this.$state = $state;
+        this.cargando = false;
         this.titulo = 'Añadir Tiendas';
         this.tituloDos = 'Resumen';
         this.mostrarElemento = true;
@@ -104,6 +105,7 @@ class AgregarTiendas {
     }
 
     agregarVacante() {
+        this.cargando = true;
         this.vacante.perfil.habilidades.listado = this.habVacante;
         this.vacante.perfil.habilidades.otra = this.habVacanteText;
         this.vacante.horarios.dias = this.diasLaborar;
@@ -111,6 +113,7 @@ class AgregarTiendas {
             if (error) {
                 this.msjAlerta = 'Error al agregar un vacante, porfavor intentelo mas tarde.';
                 this.tipoAlerta = 'danger';
+                this.cargando = false;
             } else {
                 this.agregarTiendas(result);
             }

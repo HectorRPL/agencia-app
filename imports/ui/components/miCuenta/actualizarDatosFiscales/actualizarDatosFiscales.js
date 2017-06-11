@@ -15,6 +15,8 @@ class ActualizarDatosFiscales {
         this.$state = $state;
         $reactive(this).attach($scope);
 
+        this.cargando = false;
+
         this.subscribe('datosFiscales.agencia');
         this.helpers({
             datosFiscales(){
@@ -24,6 +26,7 @@ class ActualizarDatosFiscales {
     }
 
     guardarDatosFiscales() {
+        this.cargando = true;
         // let datosFiscalesFinal = angular.copy(this.datosFiscales);
         // delete datosFiscalesFinal.colonias;
         // datosFiscalesFinal.propietarioId = this.propietarioId;
@@ -32,14 +35,17 @@ class ActualizarDatosFiscales {
             if (err) {
                 this.msj = err + 'Error, llamar a soporte técnico: 55-6102-4884 | 55-2628-5121';
                 this.tipoMsj = 'danger';
+                this.cargando = false;
             } else {
                 this.msj = 'Los datos fiscales se guardaron exitosamente.';
                 this.tipoMsj = 'success';
+                this.cargando = false;
             }
         }));
     }
 
     actualizarDatosFiscales() {
+        this.cargando = true;
         delete this.datosFiscales._id;
         delete this.datosFiscales.fechaCreacion;
         // let datosFiscalesFinal = angular.copy(this.datosFiscales);
@@ -55,9 +61,11 @@ class ActualizarDatosFiscales {
                 if (err) {
                     this.msj = err + 'Error, llamar a soporte técnico: 55-6102-4884 | 55-2628-5121';
                     this.tipoMsj = 'danger';
+                    this.cargando = false;
                 } else {
                     this.msj = 'Los datos fiscales se actualizaron exitosamente.';
                     this.tipoMsj = 'success';
+                    this.cargando = false;
                 }
             }));
 
@@ -73,9 +81,11 @@ class ActualizarDatosFiscales {
                 if (err) {
                     this.msj = err + 'Error, llamar a soporte técnico: 55-6102-4884 | 55-2628-5121';
                     this.tipoMsj = 'danger';
+                    this.cargando = false;
                 } else {
                     this.msj = 'Los datos fiscales se actualizaron exitosamente.';
                     this.tipoMsj = 'success';
+                    this.cargando = false;
                 }
             }));
         }

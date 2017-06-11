@@ -90,6 +90,7 @@ export default angular
                     return obtenerColonias.callPromise({
                         cp: codigoPostal
                     }).then(function (result) {
+                        console.log('llega a la lina 93');
                         scope.registro.colonias = result;
                         if (result.length === 0) {
                             scope.registro.direccion.estado = '';

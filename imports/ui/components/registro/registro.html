@@ -231,9 +231,12 @@
                 <!-- BOTÓN ENVIAR -->
                 <button type="button"
                         class="btn btn-default pull-right"
-                        ng-click="registro.crearUsuario()"
-                        ng-disabled="registroAgenciaFrm.$invalid">
-                    REGISTRAR
+                        ng-class="{'disabled': registro.cargando === true}"
+                        ng-disabled="registroAgenciaFrm.$invalid || registro.cargando === true"
+                        ng-click="registro.crearUsuario()">
+                    <span ng-class="{'glyphicon glyphicon-refresh animacion-cargando' : registro.cargando}"></span>
+                    <span ng-show="registro.cargando">procesando...</span>
+                    <span ng-hide="registro.cargando">REGISTRAR</span>
                 </button>
             </div>
         </div>

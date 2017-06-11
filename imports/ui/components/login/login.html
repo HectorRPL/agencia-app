@@ -37,8 +37,14 @@
                 </div>
                 <!--BOTÓN INGFRESAR Y LINKS -->
                 <div class="col-xs-12">
-                    <button class="btn btn-default center-block" type="submit" ng-click="login.login()" ng-disabled="loginForm.$invalid">
-                        Ingresar
+                    <button class="btn btn-default center-block"
+                            type="submit"
+                            ng-class="{'disabled': login.cargando === true}"
+                            ng-disabled="loginForm.$invalid || login.cargando === true"
+                            ng-click="login.login()">
+                        <span ng-class="{'glyphicon glyphicon-refresh animacion-cargando' : login.cargando}"></span>
+                        <span ng-show="login.cargando">PROCESANDO...</span>
+                        <span ng-hide="login.cargando">INGRESAR</span>
                     </button>
                 </div>
                 <!--ALERTA-->

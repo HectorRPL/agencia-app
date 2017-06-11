@@ -36,8 +36,6 @@ export default angular
                         cp: codigoPostal
                     }).then(function (result) {
                         scope.codigosPostales.direccion.colonias = result;
-                        console.log('llega a la lina 39');
-
                         if (result.length === 0) {
 
                             scope.codigosPostales.direccion.estado = '';
@@ -49,7 +47,7 @@ export default angular
                             scope.codigosPostales.direccion.estadoId = result[0].codigoEstado;
                             scope.codigosPostales.direccion.delMpio = result[0].delegacionMunicipio;
                         }
-                    }).catch(function (err) { // cacha el error (¿dos veces?)
+                    }).catch(function (err) {
                         return $q.reject('No encontrado');
                     });
                 };

@@ -29,18 +29,26 @@
             <pre>{{ actualizarDatosFiscales.datosFiscales._id | json }}</pre>
             <!-- GUARDAR -->
             <button class="btn btn-default"
-                    ng-click="actualizarDatosFiscales.guardarDatosFiscales()"
+                    ng-class="{'disabled': actualizarDatosFiscales.cargando === true}"
                     ng-show="actualizarDatosFiscales.datosFiscales.propietario === undefined"
-                    ng-disabled="actualizarDatosFiscalesFrm.$invalid">
-                Guardar
+                    ng-disabled="actualizarDatosFiscalesFrm.$invalid || actualizarDatosFiscales.cargando === true"
+                    ng-click="actualizarDatosFiscales.guardarDatosFiscales()">
+                <span ng-class="{'glyphicon glyphicon-refresh animacion-cargando' : actualizarDatosFiscales.cargando}"></span>
+                <span ng-show="actualizarDatosFiscales.cargando">PROCESANDO...</span>
+                <span ng-hide="actualizarDatosFiscales.cargando">Guardar</span>
+
             </button>
             <!-- ACTUALIZAR -->
             <button class="btn btn-default"
-                    ng-click="actualizarDatosFiscales.actualizarDatosFiscales()"
+                    ng-class="{'disabled': actualizarDatosFiscales.cargando === true}"
                     ng-show="actualizarDatosFiscales.datosFiscales.propietario != undefined"
-                    ng-disabled="actualizarDatosFiscalesFrm.$invalid">
-                Actualizar
+                    ng-disabled="actualizarDatosFiscalesFrm.$invalid || actualizarDatosFiscales.cargando === true"
+                    ng-click="actualizarDatosFiscales.actualizarDatosFiscales()">
+                <span ng-class="{'glyphicon glyphicon-refresh animacion-cargando' : actualizarDatosFiscales.cargando}"></span>
+                <span ng-show="actualizarDatosFiscales.cargando">PROCESANDO...</span>
+                <span ng-hide="actualizarDatosFiscales.cargando">Actualizar</span>
             </button>
+            <pre>{{ actualizarDatosFiscales.direccion | json }}</pre>
         </div>
     </div>
 </form>

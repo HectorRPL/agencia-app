@@ -230,11 +230,15 @@
                         </a>
                     </div>
                     <div class="col-xs-6 col-sm-offset-6 col-sm-3">
-                        <button class="btn btn-default" type="button"
+                        <button class="btn btn-default"
+                                type="button"
+                                ng-class="{'disabled': agregarTiendas.cargando === true}"
                                 ng-show="agregarTiendas.mostrarElemento"
-                                ng-click="agregarTiendas.agregarVacante()" ng-disabled="vacanteXtiendaFrm.$invalid ||
-                                agregarTiendas.respuestaExito.mostrar || agregarTiendas.respuestaError.mostrar">
-                            Publicar
+                                ng-disabled="vacanteXtiendaFrm.$invalid || agregarTiendas.respuestaExito.mostrar || agregarTiendas.respuestaError.mostrar || agregarTiendas.cargando === true"
+                                ng-click="agregarTiendas.agregarVacante()">
+                            <span ng-class="{'glyphicon glyphicon-refresh animacion-cargando' : agregarTiendas.cargando}"></span>
+                            <span ng-show="agregarTiendas.cargando">PROCESANDO...</span>
+                            <span ng-hide="agregarTiendas.cargando">Publicar</span>
                         </button>
                     </div>
                 </div>
