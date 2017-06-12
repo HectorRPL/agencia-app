@@ -3,19 +3,14 @@
  */
 import {Meteor} from "meteor/meteor";
 import {Direcciones} from "../collection";
-import {Candidatos} from "../../candidatos/collection";
+import {Agencias} from "../../agencias/collection";
 
 if (Meteor.isServer) {
-    Meteor.publish('direcciones.candidato', function () {
-        const candidato = Candidatos.findOne({propietario: this.userId});
+    Meteor.publish('direcciones.agencia', function () {
+        const agencia = Agencias.findOne({propietario: this.userId});
         const selector = {
-            propietario: candidato._id
+            propietario: agencia._id
         };
-        return Direcciones.find(selector, {
-            fields: {
-                propietario: 0
-            }
-        });
+        return Direcciones.find(selector);
     });
-
 }

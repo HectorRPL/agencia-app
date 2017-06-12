@@ -4,7 +4,6 @@
 import {DatosFiscales} from "../../../../api/datosFiscales/collection";
 import {insertarDatosFiscales} from "../../../../api/datosFiscales/methods";
 import {actualizarDatosFiscales} from "../../../../api/datosFiscales/methods";
-import {eliminarDatosFiscales} from "../../../../api/datosFiscales/methods";
 import {name as FormaDireccion} from "../../comun/direccion/formaDireccion/formaDireccion";
 import {name as FormaDatosFiscales} from "../../comun/datosFiscales/formaDatosFiscales/formaDatosFiscales";
 import "./actualizarDatosFiscales.html";
@@ -55,7 +54,6 @@ class ActualizarDatosFiscales {
         // PERSONA FÍSICA
         if (this.datosFiscales.personaFisica === true) {
             delete this.datosFiscales.razonSocial;
-            console.log('Esto es lo que enviaremos cuando sea una persona Física', this.datosFiscales);
 
             actualizarDatosFiscales.call(this.datosFiscales, this.$bindToContext((err) => {
                 if (err) {
@@ -75,7 +73,6 @@ class ActualizarDatosFiscales {
             delete this.datosFiscales.nombre;
             delete this.datosFiscales.apellidoPaterno;
             delete this.datosFiscales.apellidoMaterno;
-            console.log('Esto es lo que enviaremos cuando sea una persona moral', this.datosFiscales);
 
             actualizarDatosFiscales.call(this.datosFiscales, this.$bindToContext((err) => {
                 if (err) {

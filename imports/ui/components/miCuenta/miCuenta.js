@@ -4,23 +4,34 @@ import uiRouter from "angular-ui-router";
 import uiBootstrap from "angular-ui-bootstrap";
 import ngAnimate from "angular-animate";
 import {DatosFiscales} from "../../../api/datosFiscales/collection";
+import {Direcciones} from "../../../api/direcciones/collection";
 import "./miCuenta.html";
 import {name as ActualizarDatosFiscales} from "./actualizarDatosFiscales/actualizarDatosFiscales";
 import {name as DatosPersonales} from "./datosPersonales/datosPersonales";
-import {name as ActualizarDireccion} from "./actualizarDireccion/actualizarDireccion";
+import {name as ActualizarDireccion} from "../direccion/actualizarDireccion/actualizarDireccion";
 import {name as ConstraseniaCorreo} from "./constraseniaCorreo/constraseniaCorreo";
+
 class MiCuenta {
   constructor($scope, $reactive) {
     'ngInject';
     $reactive(this).attach($scope);
 
+    this.direccion = {};
+
     // this.subscribe('datosFiscales.agencia');
     // this.helpers({
     //   datosFiscales(){
-    //     console.log('TRAETE ALGO WE', DatosFiscales.findOne());
     //     return DatosFiscales.findOne();
     //   }
     // });
+
+
+    this.subscribe('direcciones.agencia');
+    this.helpers({
+      direccion(){
+        return Direcciones.findOne();
+      }
+    });
 
     $scope.oneAtATime   = true;
 

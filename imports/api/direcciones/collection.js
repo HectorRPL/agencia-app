@@ -38,7 +38,7 @@ Schema.candidato = new SimpleSchema({
         max: 30,
         min: 1,
         regEx: /^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/,
-        optional: true
+        // optional: true
     },
     delMpio: {
         type: String,
@@ -72,7 +72,7 @@ Schema.candidato = new SimpleSchema({
         max: 10,
         min: 1,
         regEx: /^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/,
-        optional: true
+        // optional: true
     },
     numInt: {
         type: String,

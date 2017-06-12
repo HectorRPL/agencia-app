@@ -22,3 +22,5 @@ import "../../api/bitacoraLoginAgencias/methods";
 import "../../api/candidatos/server/publish";
 import "../../api/datosFiscales/methods";
 import "../../api/datosFiscales/server/publish";
+import "../../api/direcciones/methods";
+import "../../api/direcciones/server/publish";
