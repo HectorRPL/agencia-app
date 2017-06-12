@@ -7,8 +7,12 @@ import {Agencias} from "../../agencias/collection"
 
 if (Meteor.isServer) {
     Meteor.publish('datosFiscales.agencia', function () {
-        const agencia = Agencias.findOne({propietario: this.userId});
-        const selector = {propietario: agencia._id};
-        return DatosFiscales.find(selector);
+        if (this.userId) {
+            const agencia = Agencias.findOne({propietario: this.userId});
+            const selector = {propietario: agencia._id};
+            return DatosFiscales.find(selector);
+        } else {
+            this.ready;
+        }
     });
 }

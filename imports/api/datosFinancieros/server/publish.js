@@ -6,7 +6,11 @@ import {DatosFinancieros} from "../collection";
 
 if (Meteor.isServer) {
     Meteor.publish('datosFinancieros', () => {
-        const  selector = {_id: '1'};
-        return DatosFinancieros.find(selector);
+        if (this.userId) {
+            const  selector = {_id: '1'};
+            return DatosFinancieros.find(selector);
+        } else {
+            this.ready;
+        }
     });
 }

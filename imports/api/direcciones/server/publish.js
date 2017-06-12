@@ -7,10 +7,14 @@ import {Agencias} from "../../agencias/collection";
 
 if (Meteor.isServer) {
     Meteor.publish('direcciones.agencia', function () {
-        const agencia = Agencias.findOne({propietario: this.userId});
-        const selector = {
-            propietario: agencia._id
-        };
-        return Direcciones.find(selector);
+        if (this.userId) {
+            const agencia = Agencias.findOne({propietario: this.userId});
+            const selector = {
+                propietario: agencia._id
+            };
+            return Direcciones.find(selector);
+        } else {
+            this.ready;
+        }
     });
 }
