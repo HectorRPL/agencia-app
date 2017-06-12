@@ -20,16 +20,7 @@ class Registro {
         this.titulo = 'Registro';
 
         this.colonias = [];
-        this.direccion = {
-            codigoPostal: '',
-            estado: '',
-            delMpio: '',
-            colonia: '',
-            calle: '',
-            numExt: '',
-            numInt: '',
-            estadoId: ''
-        };
+        this.direccion = {};
 
         $reactive(this).attach($scope);
 
@@ -46,6 +37,9 @@ class Registro {
         this.credentials.password = tipoUsuario + this.credentials.password;
         this.credentials.profile.tipoUsuario = tipoUsuario;
         this.credentials.profile.direccion = this.direccion;
+        console.log(this.credentials);
+
+
         Accounts.createUser(this.credentials,
             this.$bindToContext((err) => {
                 if (err) {
@@ -61,6 +55,7 @@ class Registro {
                 }
             })
         );
+
     }
 }
 
@@ -80,34 +75,6 @@ export default angular
         controllerAs: name,
         controller: Registro
     })
-    .directive('codigoPostal', ['$q', function ($q) {
-        return {
-            restrict: 'EA',
-            require: '?ngModel',
-            link: function (scope, element, attrs, ngModel) {
-                ngModel.$asyncValidators.codigopostal = function (modelValue, viewValue) {
-                    let codigoPostal = modelValue || viewValue;
-                    return obtenerColonias.callPromise({
-                        cp: codigoPostal
-                    }).then(function (result) {
-                        console.log('llega a la lina 93');
-                        scope.registro.colonias = result;
-                        if (result.length === 0) {
-                            scope.registro.direccion.estado = '';
-                            scope.registro.direccion.delMpio = '';
-                            return $q.reject('No encontrado');
-                        } else {
-                            scope.registro.direccion.estado = result[0].estado;
-                            scope.registro.direccion.estadoId = result[0].codigoEstado;
-                            scope.registro.direccion.delMpio = result[0].delegacionMunicipio;
-                        }
-                    }).catch(function (err) {
-                        return $q.reject('No encontrado');
-                    });
-                };
-            }
-        };
-    }])
     .config(config);
 
 function config($stateProvider) {
