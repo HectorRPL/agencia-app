@@ -9,6 +9,12 @@ import {DDPRateLimiter} from "meteor/ddp-rate-limiter";
 import {_} from "meteor/underscore";
 import {Agencias} from "./collection";
 
+const CAMPOS_DATOS_AGENCIA = [
+    'propietario',
+    'nombre',
+    'telefono'
+];
+
 // Enviará un correo con un link al usuario para verificacar de registro
 export const enviarCorreoVerificacion = new ValidatedMethod({
     name: 'agencias.enviarCorreoVerificacion',
@@ -62,7 +68,33 @@ export const verificarCuenta = new ValidatedMethod({
     }
 });
 
-const AGENCIAS_METHODS = _.pluck([enviarCorreoVerificacion, verificarCuenta], 'name');
+export const actualizarDatosContacto = new ValidatedMethod({
+    name: 'agencias.actualizarDatosContacto',
+    validate: Agencias.simpleSchema().pick(CAMPOS_DATOS_AGENCIA).validator({
+        clean: true,
+        filter: false
+    }),
+    run(
+        {
+            propietario,
+            nombre,
+            telefono,
+        }
+    ) {
+        if (Meteor.isServer) {
+            return Agencias.update({
+                propietario: propietario
+            }, {
+                $set: {
+                    nombre,
+                    telefono,
+                }
+            });
+        }
+    }
+});
+
+const AGENCIAS_METHODS = _.pluck([enviarCorreoVerificacion, verificarCuenta, actualizarDatosContacto], 'name');
 if (Meteor.isServer) {
     DDPRateLimiter.addRule({
         name(name) {

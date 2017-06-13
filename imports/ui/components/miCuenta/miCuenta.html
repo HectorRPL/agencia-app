@@ -15,7 +15,12 @@
             <div uib-accordion-group
                  class="panel-default"
                  heading="{{miCuenta.subtitulo2}}">
-                <datos-personales></datos-personales>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="text-justify"> <small><strong>Teléfono de contacto:&nbsp;</strong>Con el siguiente teléfono los canidatos podrán ponerse en contacto con la agencia.</small></p>
+                    </div>
+                </div>
+                <actualizar-agencia datos="miCuenta.datosAgencia"></actualizar-agencia>
             </div>
             <div uib-accordion-group
                  class="panel-default"

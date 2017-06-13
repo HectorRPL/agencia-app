@@ -3,11 +3,11 @@ import angularMeteor from "angular-meteor";
 import uiRouter from "angular-ui-router";
 import uiBootstrap from "angular-ui-bootstrap";
 import ngAnimate from "angular-animate";
-import {DatosFiscales} from "../../../api/datosFiscales/collection";
+import {Agencias} from "../../../api/agencias/collection";
 import {Direcciones} from "../../../api/direcciones/collection";
 import "./miCuenta.html";
 import {name as ActualizarDatosFiscales} from "./actualizarDatosFiscales/actualizarDatosFiscales";
-import {name as DatosPersonales} from "./datosPersonales/datosPersonales";
+import {name as ActualizarAgencia} from "../agencia/actualizarAgencia/actualizarAgencia";
 import {name as ActualizarDireccion} from "../direccion/actualizarDireccion/actualizarDireccion";
 import {name as CambiarContrasenia} from "./cambiarContrasenia/cambiarContrasenia";
 
@@ -18,18 +18,14 @@ class MiCuenta {
 
     this.direccion = {};
 
-    // this.subscribe('datosFiscales.agencia');
-    // this.helpers({
-    //   datosFiscales(){
-    //     return DatosFiscales.findOne();
-    //   }
-    // });
-
-
     this.subscribe('direcciones.agencia');
+    this.subscribe('agencias');
     this.helpers({
       direccion(){
         return Direcciones.findOne();
+      },
+      datosAgencia(){
+        return Agencias.findOne();
       }
     });
 
@@ -52,7 +48,7 @@ export default angular
   uiBootstrap,
   ngAnimate,
   ActualizarDatosFiscales,
-  DatosPersonales,
+  ActualizarAgencia,
   ActualizarDireccion,
   CambiarContrasenia
 ])
