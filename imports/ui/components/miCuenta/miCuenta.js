@@ -9,7 +9,7 @@ import "./miCuenta.html";
 import {name as ActualizarDatosFiscales} from "./actualizarDatosFiscales/actualizarDatosFiscales";
 import {name as DatosPersonales} from "./datosPersonales/datosPersonales";
 import {name as ActualizarDireccion} from "../direccion/actualizarDireccion/actualizarDireccion";
-import {name as ConstraseniaCorreo} from "./constraseniaCorreo/constraseniaCorreo";
+import {name as CambiarContrasenia} from "./cambiarContrasenia/cambiarContrasenia";
 
 class MiCuenta {
   constructor($scope, $reactive) {
@@ -39,7 +39,8 @@ class MiCuenta {
     this.subtitulo1 = 'Facturación';
     this.subtitulo2 = 'Datos de Contacto';
     this.subtitulo3 = 'Dirección de Agencia';
-    this.subtitulo4 = 'Usuario';  }
+    this.subtitulo4 = 'Cambiar Contraseña';
+  }
 }
 const name = 'miCuenta';
 
@@ -53,7 +54,7 @@ export default angular
   ActualizarDatosFiscales,
   DatosPersonales,
   ActualizarDireccion,
-  ConstraseniaCorreo
+  CambiarContrasenia
 ])
 .component(name, {
   templateUrl: `imports/ui/components/${name}/${name}.html`,
