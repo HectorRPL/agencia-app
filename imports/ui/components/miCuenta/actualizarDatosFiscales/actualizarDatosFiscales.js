@@ -47,12 +47,9 @@ class ActualizarDatosFiscales {
         delete this.datosFiscales.colonias;
         delete this.datosFiscales._id;
         delete this.datosFiscales.fechaCreacion;
-        // let datosFiscalesFinal = angular.copy(this.datosFiscales);
-        // delete datosFiscalesFinal.colonias;
-        // datosFiscalesFinal.propietarioId = this.propietarioId;
 
         // PERSONA FÍSICA
-        if (this.datosFiscales.personaFisica === true) {
+        if (this.datosFiscales.tipoPersona === 'PF') {
             delete this.datosFiscales.razonSocial;
 
             actualizarDatosFiscales.call(this.datosFiscales, this.$bindToContext((err) => {

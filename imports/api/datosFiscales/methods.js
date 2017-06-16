@@ -11,7 +11,7 @@ import {Agencias} from "../agencias/collection.js";
 
 const CAMPO_PROPIETARIO = ['propietario'];
 const CAMPOS_DATOS_FISCALES = [
-    'personaFisica',
+    'tipoPersona',
     'rfc',
     'razonSocial',
     'nombre',
@@ -36,7 +36,7 @@ export const insertarDatosFiscales = new ValidatedMethod({
     }),
     run(
         {
-            personaFisica,
+            tipoPersona,
             rfc,
             razonSocial,
             nombre,
@@ -57,7 +57,7 @@ export const insertarDatosFiscales = new ValidatedMethod({
            const agencia = Agencias.findOne({propietario: this.userId});
            return DatosFiscales.insert({
                propietario: agencia._id,
-               personaFisica,
+               tipoPersona,
                rfc,
                razonSocial,
                nombre,
@@ -86,7 +86,7 @@ export const actualizarDatosFiscales = new ValidatedMethod({
     run(
         {
             propietario,
-            personaFisica,
+            tipoPersona,
             rfc,
             razonSocial,
             nombre,
@@ -106,11 +106,11 @@ export const actualizarDatosFiscales = new ValidatedMethod({
         if (Meteor.isServer) {
 
             // PERSONA FÍSICA
-            if (personaFisica === true) {
+            if (tipoPersona === 'PF') {
                 return DatosFiscales.update({propietario: propietario}, {
                     $unset: {razonSocial: ''},
                     $set: {
-                        personaFisica,
+                        tipoPersona,
                         rfc,
                         email,
                         nombre,
@@ -134,7 +134,7 @@ export const actualizarDatosFiscales = new ValidatedMethod({
                         apellidoPaterno: '',
                         apellidoMaterno: ''
                     }, $set: {
-                        personaFisica,
+                        tipoPersona,
                         rfc,
                         email,
                         razonSocial,
@@ -148,24 +148,7 @@ export const actualizarDatosFiscales = new ValidatedMethod({
                         codigoPostal
                     }
                 });
-            }
-
-            /* // RESERVADO PARA AGREGAR LA DIRECCIÓN
-            return DatosFiscales.update({
-                propietario: agencia._id
-            }, {
-                $set: {
-                    calle,
-                    delMpio,
-                    estado,
-                    estadoId,
-                    colonia,
-                    numExt,
-                    numInt,
-                    codigoPostal,
-                }
-            })
-             */;
+            };
         }
     }
 });

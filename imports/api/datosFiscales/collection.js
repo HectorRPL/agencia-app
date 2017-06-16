@@ -28,8 +28,8 @@ Schema.datosFiscales = new SimpleSchema({
         type: String,
         regEx: SimpleSchema.RegEx.Id
     },
-    personaFisica: {
-        type: Boolean
+    tipoPersona: {
+        type: String
     },
     rfc: {
         type: String,
