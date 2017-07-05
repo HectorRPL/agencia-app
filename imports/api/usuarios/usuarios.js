@@ -105,13 +105,13 @@ if (Meteor.isServer) {
         return "Demostradoras con experiencia <postmaster@sandboxb82e8f80c2074fe2aa151f5c42a4aa20.mailgun.org>";
     };
     Accounts.emailTemplates.resetPassword.html = function (user, url) {
-        url = url.replace("#", "demos");
+        url = url.replace("#", "agencia");
 
-        SSR.compileTemplate( 'recuperarEmail', Assets.getText( 'emailTemplates/recuperarPassword/recuperarEmail.html'));
+        SSR.compileTemplate( 'recuperarPassword', Assets.getText( 'emailTemplates/recuperarPassword/recuperarPassword.html'));
         var emailData = {
             url: url
         };
-        return SSR.render( 'recuperarEmail', emailData );
+        return SSR.render( 'recuperarPassword', emailData );
     };
     Accounts.emailTemplates.resetPassword.subject =  function (user) {
         return "Recuperar su contraseña en Demostradoras con experiencia";

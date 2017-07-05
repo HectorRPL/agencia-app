@@ -36,7 +36,6 @@ ConektaUtils = {
     crearObjectoCompra(datosPeticion, agencia){
 
         const user = Meteor.users.findOne({_id: agencia.propietario});
-        console.log(user);
         const cargo = {
             description: 'Contactos',
             amount: 2000,

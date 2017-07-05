@@ -1,9 +1,6 @@
 /**
  * Created by jvltmtz on 9/11/16.
  */
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
 import {name as Alertas} from "../../comun/alertas/alertas";
 import {Accounts} from 'meteor/accounts-base';
 import './recuperar.html';
@@ -42,14 +39,25 @@ const name = 'recuperar';
 // create a module
 export default angular
     .module(name, [
-        angularMeteor,
-        uiRouter,
         Alertas
     ])
     .component(name, {
         templateUrl: `imports/ui/components/login/${name}/${name}.html`,
         controllerAs: name,
         controller: Recuperar
+    })
+    .directive('confInvalida', function () {
+        return {
+            restrict: 'EA',
+            require: '?ngModel',
+            link: function (scope, element, attrs, ngModel) {
+                ngModel.$validators.confInvalida = function (modelValue, viewValue) {
+                    let confNewPass = modelValue || viewValue;
+                    let newPass = scope.reiniciarContrasenia.newPassword;
+                    return confNewPass === newPass;
+                };
+            }
+        };
     })
     .config(config);
 

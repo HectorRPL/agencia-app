@@ -9,6 +9,7 @@ import './login.html';
 import {name as Registro} from '../registro/registro';
 import {name as Recuperar} from './recuperar/recuperar';
 import {name as Alertas} from '../comun/alertas/alertas';
+import {name as ReiniciarContrasenia} from './recuperar/reiniciarContrasenia/reiniciarContrasenia';
 
 class Login {
     constructor($scope, $reactive, $state) {
@@ -45,7 +46,8 @@ class Login {
                                 this.$state.go(this.ultimoEstado.estado, this.ultimoEstado.parametros);
                                 Session.clear('ultimoEstado');
                                 this.ultimoEstado = '';
-                            };
+                            }
+                            ;
                         }
                     });
                 }
@@ -59,18 +61,19 @@ const name = 'login';
 // create a module
 export default angular
     .module(name, [
-    angularMeteor,
-    angularMessages,
-    uiRouter,
-    Registro,
-    Recuperar,
-    Alertas
-])
+        angularMeteor,
+        angularMessages,
+        uiRouter,
+        Registro,
+        Recuperar,
+        Alertas,
+        ReiniciarContrasenia
+    ])
     .component(name, {
-    templateUrl: `imports/ui/components/login/${name}.html`,
-    controllerAs: name,
-    controller: Login
-})
+        templateUrl: `imports/ui/components/login/${name}.html`,
+        controllerAs: name,
+        controller: Login
+    })
     .config(config);
 
 function config($stateProvider) {
