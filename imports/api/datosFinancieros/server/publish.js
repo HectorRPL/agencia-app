@@ -5,8 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {DatosFinancieros} from "../collection";
 
 if (Meteor.isServer) {
-    Meteor.publish('datosFinancieros', () => {
-        const  selector = {_id: '1'};
-        return DatosFinancieros.find(selector);
+    Meteor.publish('datosFinancieros', (filter) => {
+        return DatosFinancieros.find(filter);
     });
 }

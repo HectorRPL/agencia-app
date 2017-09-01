@@ -1,0 +1,181 @@
+<ng-form name="datosFiscalesForm">
+    <!-- BOTONES = PERSONA FISICA / PERSONA MORAL -->
+    <div class="col-sm-3">
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+                <button id="fisicaId"
+                        class="btn btn-default"
+                        name="fisica"
+                        type="button"
+                        uib-btn-radio="'PF'"
+                        ng-model="formaDatosFiscales.datos.tipoPersona">Física
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button id="moralId"
+                        class="btn btn-default"
+                        name="moral"
+                        type="button"
+                        uib-btn-radio="'PM'"
+                        ng-model="formaDatosFiscales.datos.tipoPersona">Moral
+                </button>
+            </div>
+        </div>
+    </div>
+        <!-- PERSONA FISICA -->
+        <span ng-if="formaDatosFiscales.datos.tipoPersona === 'PF'">
+            <!--RFC PERSONA FÍSCA-->
+            <div class="col-sm-3">
+                <div class="form-group" ng-class="{ 'has-error' : datosFiscalesForm.rfcPersonaFisica.$invalid && !datosFiscalesForm.rfcPersonaFisica.$pristine}">
+                    <!--PERSONA FISICA-->
+                    <input class="form-control texto-en-mayusculas"
+                           name="rfcPersonaFisica"
+                           type="text"
+                           placeholder="RFC"
+                           aria-describedby="sizing-addon1"
+                           ng-pattern="/^([A-ZÑ&]{4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/"
+                           required
+                           ng-model="formaDatosFiscales.datos.rfc">
+                    <div role="alert" ng-messages="datosFiscalesForm.rfcPersonaFisica.$dirty && datosFiscalesForm.rfcPersonaFisica.$error">
+                        <div class="ng-mensajes" ng-message="required">requerido</div>
+                        <div class="ng-mensajes" ng-message="pattern">inválido</div>
+                    </div>
+                </div>
+            </div>
+            <!--NOMBRE-->
+            <div class="col-sm-3">
+                <div class="form-group" ng-class="{ 'has-error' : datosFiscalesForm.nombre.$invalid && !datosFiscalesForm.nombre.$pristine}">
+                    <input id="nombreId"
+                           class="form-control texto-en-mayusculas"
+                           name="nombre"
+                           type="text"
+                           placeholder="Nombre"
+                           aria-describedby="sizing-addon1"
+                           minlength="2"
+                           maxlength="51"
+                           ng-minlength="2"
+                           ng-maxlength="50"
+                           ng-pattern="/^[a-zA-ZñÑ.\s]+$/"
+                           required
+                           ng-model="formaDatosFiscales.datos.nombre">
+                    <div role="alert" ng-messages="datosFiscalesForm.nombre.$dirty && datosFiscalesForm.nombre.$error">
+                        <div class="ng-mensajes" ng-message="required">requerido</div>
+                        <div class="ng-mensajes" ng-message="minlength, maxlength">min 2, max 50 letras</div>
+                        <div class="ng-mensajes" ng-message="pattern">caracter no válido</div>
+                    </div>
+                </div>
+            </div>
+            <!--APELLIDO PATERNO-->
+            <div class="col-sm-3">
+                <div class="form-group" ng-class="{ 'has-error' : datosFiscalesForm.apellidoPaterno.$invalid && !datosFiscalesForm.apellidoPaterno.$pristine}">
+                    <input id="apellidoPaternoId"
+                           class="form-control texto-en-mayusculas"
+                           name="apellidoPaterno"
+                           type="text"
+                           placeholder="Apellido Paterno"
+                           aria-describedby="sizing-addon1"
+                           minlength="2"
+                           maxlength="51"
+                           ng-minlength="2"
+                           ng-maxlength="50"
+                           ng-pattern="/^[a-zA-ZñÑ.\s]+$/"
+                           required
+                           ng-model="formaDatosFiscales.datos.apellidoPaterno">
+                    <div role="alert" ng-messages="datosFiscalesForm.apellidoPaterno.$dirty && datosFiscalesForm.apellidoPaterno.$error">
+                        <div class="ng-mensajes" ng-message="required">requerido</div>
+                        <div class="ng-mensajes" ng-message="minlength, maxlength">min 2, max 50 letras</div>
+                        <div class="ng-mensajes" ng-message="pattern">caracter no válido</div>
+                    </div>
+                </div>
+            </div>
+            <!--APELLIDO MATERNO-->
+            <div class="col-sm-3">
+                <div class="form-group" ng-class="{ 'has-error' : datosFiscalesForm.apellidoMaterno.$invalid && !datosFiscalesForm.apellidoMaterno.$pristine}">
+                    <input id="apellidoMaternoId"
+                           class="form-control texto-en-mayusculas"
+                           name="apellidoMaterno"
+                           type="text"
+                           placeholder="Apellido Materno"
+                           aria-describedby="sizing-addon1"
+                           minlength="2"
+                           maxlength="51"
+                           ng-minlength="2"
+                           ng-maxlength="50"
+                           ng-pattern="/^[a-zA-ZñÑ.\s]+$/"
+                           required
+                           ng-model="formaDatosFiscales.datos.apellidoMaterno">
+                    <div role="alert" ng-messages="datosFiscalesForm.apellidoMaterno.$dirty && datosFiscalesForm.apellidoMaterno.$error">
+                        <div class="ng-mensajes" ng-message="required">requerido</div>
+                        <div class="ng-mensajes" ng-message="minlength, maxlength">min 2, max 50 letras</div>
+                        <div class="ng-mensajes" ng-message="pattern">caracter no válido</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+        <!-- PERSONA MORAL -->
+        <span ng-if="formaDatosFiscales.datos.tipoPersona === 'PM'">
+            <!--RFC PERSONA MORAL-->
+            <div class="col-sm-3">
+                <div class="form-group" ng-class="{ 'has-error' : datosFiscalesForm.rfcPersonaMoral.$invalid && !datosFiscalesForm.rfcPersonaMoral.$pristine}">
+                    <!--PERSONA MORAL -->
+                    <input class="form-control texto-en-mayusculas"
+                           name="rfcPersonaMoral"
+                           type="text"
+                           placeholder="RFC"
+                           aria-describedby="sizing-addon1"
+                           ng-pattern="/^([A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/"
+                           required
+                           ng-model="formaDatosFiscales.datos.rfc">
+                    <div role="alert" ng-messages="datosFiscalesForm.rfcPersonaMoral.$dirty && datosFiscalesForm.rfcPersonaMoral.$error">
+                        <div class="ng-mensajes" ng-message="required">requerido</div>
+                        <div class="ng-mensajes" ng-message="pattern">inválido</div>
+                    </div>
+                </div>
+            </div>
+            <!--RAZÓN SOCIAL-->
+            <div class="col-sm-3">
+                <div class="form-group" ng-class="{ 'has-error' : datosFiscalesForm.razonSocial.$invalid && !datosFiscalesForm.razonSocial.$pristine}">
+                    <input id="razonSocialId"
+                           class="form-control texto-en-mayusculas"
+                           name="razonSocial"
+                           type="text"
+                           placeholder="Razón Social"
+                           aria-describedby="sizing-addon1"
+                           minlength="2"
+                           maxlength="51"
+                           ng-minlength="2"
+                           ng-maxlength="50"
+                           ng-pattern="/^[a-zA-ZñÑ.\s]+$/"
+                           required
+                           ng-model="formaDatosFiscales.datos.razonSocial">
+                    <div role="alert" ng-messages="datosFiscalesForm.razonSocial.$dirty && datosFiscalesForm.razonSocial.$error">
+                        <div class="ng-mensajes" ng-message="required">requerido</div>
+                        <div class="ng-mensajes" ng-message="minlength, maxlength">min 2, max 50 letras</div>
+                        <div class="ng-mensajes" ng-message="pattern">caracter no válido</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+        <!-- EMAIL FISCAL -->
+        <div class="col-sm-3" ng-if="formaDatosFiscales.datos.tipoPersona != undefined">
+            <div class="form-group" ng-class="{ 'has-error' : datosFiscalesForm.emailFiscal.$invalid && !datosFiscalesForm.emailFiscal.$pristine}">
+                <input id="emailFiscalId"
+                       class="form-control texto-en-mayusculas"
+                       name="emailFiscal"
+                       placeholder="Email Fiscal"
+                       type="email"
+                       aria-describedby="sizing-addon1"
+                       minlength="5"
+                       maxlength="51"
+                       ng-minlength="5"
+                       ng-maxlength="50"
+                       required
+                       ng-model="formaDatosFiscales.datos.email">
+                <div role="alert" ng-messages="datosFiscalesForm.emailFiscal.$dirty && datosFiscalesForm.emailFiscal.$error">
+                    <div class="ng-mensajes" ng-message="required">requerido</div>
+                    <div class="ng-mensajes" ng-message="email">correo incorrecto</div>
+                    <div class="ng-mensajes" ng-message="minlength, maxlength"> min 5, max 50 letras</div>
+                </div>
+            </div>
+        </div>
+</ng-form>

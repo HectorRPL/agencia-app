@@ -11,7 +11,7 @@ class ReiniciarContrasenia {
         'ngInject';
         $reactive(this).attach($scope);
         this.cargando = false;
-        this.titulo = 'Reiniciar Contraseña';
+        this.titulo = 'Recuperar Contraseña';
         this.$state = $state;
         this.token = $stateParams.token;
     }
@@ -23,7 +23,7 @@ class ReiniciarContrasenia {
                 this.msj = 'El Token expiró, vuelva a generar otro. Si el problema persiste póngase en contacto con soporte técnico.';
             } else {
                 this.tipoMsj = 'success';
-                this.msj = 'Se ha reestablecido la contraseña en forma correcta <a href="' + '/agencia/login' + '">Entrar</a>';
+                this.msj = 'Se ha reestablecido la contraseña en forma correcta';
             }
         }));
     }

@@ -8,8 +8,11 @@ import {Agencias} from "../../../agencias/collection";
 
 if (Meteor.isServer) {
     Meteor.publish('carritoCompras.obtenerDatos', function () {
-        const agencia = Agencias.findOne({propietario: this.userId});
-        return CarritoCompras.find({propietario: agencia._id});
-
+        if (this.userId) {
+            const agencia = Agencias.findOne({propietario: this.userId});
+            return CarritoCompras.find({propietario: agencia._id});
+        } else {
+            this.ready();
+        }
     });
 }

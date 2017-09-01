@@ -1,0 +1,95 @@
+<form id="actualizarAgenciaFrmId"
+      class="property-submit-form"
+      name="actualizarAgenciaFrm"
+      role="form"
+      nonvalidate
+      autocomplete="off">
+    <!--NOMBRE DE LA EMPRESA-->
+    <!--<div class="col-sm-6">-->
+        <!--<div class="form-group" ng-class="{ 'has-error' : actualizarAgenciaFrm.nombre.$invalid && !actualizarAgenciaFrm.nombre.$pristine}">-->
+            <!--<input id="nombreId"-->
+                   <!--class="form-control"-->
+                   <!--name="nombre"-->
+                   <!--type="text"-->
+                   <!--placeholder="Nombre de empresa"-->
+                   <!--aria-describedby="sizing-addon1"-->
+                   <!--minlength="2"-->
+                   <!--maxlength="51"-->
+                   <!--ng-minlength="2"-->
+                   <!--ng-maxlength="50"-->
+                   <!--ng-pattern="/^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/"-->
+                   <!--required-->
+                   <!--ng-model="actualizarAgencia.datos.nombre">-->
+            <!--<div role="alert" ng-messages="actualizarAgenciaFrm.nombre.$dirty && actualizarAgenciaFrm.nombre.$error">-->
+                <!--<div class="ng-mensajes" ng-message="required"> Campo requerido</div>-->
+                <!--<div class="ng-mensajes" ng-message="minlength"> Longitud mínima 2 caracteres</div>-->
+                <!--<div class="ng-mensajes" ng-message="maxlength"> Longitud máxima 50 caracteres</div>-->
+                <!--<div class="ng-mensajes" ng-message="pattern"> Sólo caracteres alfabéticos</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!-- EMAIL CORREO ELECTRÓNICO -->
+    <!--<div class="col-sm-6">-->
+        <!--<div class="form-group" ng-class="{ 'has-error' : actualizarAgenciaFrm.email.$invalid && !actualizarAgenciaFrm.email.$pristine}">-->
+            <!--<input id="agenciaEmailId"-->
+                   <!--class="form-control"-->
+                   <!--name="email"-->
+                   <!--type="email"-->
+                   <!--placeholder="Correo Electrónico"-->
+                   <!--aria-describedby="sizing-addon1"-->
+                   <!--minlength="5"-->
+                   <!--maxlength="51"-->
+                   <!--ng-minlength="5"-->
+                   <!--ng-maxlength="50"-->
+                   <!--required-->
+                   <!--ng-model="actualizarAgencia.datos.correoElectronico">-->
+            <!--<div role="alert" ng-messages="actualizarAgenciaFrm.email.$dirty && actualizarAgenciaFrm.email.$error">-->
+                <!--<div class="ng-mensajes" ng-message="required"> Campo requerido</div>-->
+                <!--<div class="ng-mensajes" ng-message="email"> Formato de correo incorrecto</div>-->
+                <!--<div class="ng-mensajes" ng-message="minlength"> Longitud mínima 2 caracteres</div>-->
+                <!--<div class="ng-mensajes" ng-message="maxlength"> Longitud máxima 50 caracteres</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!-- TELÉFONO -->
+    <div class="col-sm-6">
+        <div class="form-group" ng-class="{ 'has-error' : actualizarAgenciaFrm.telefono.$invalid && !actualizarAgenciaFrm.telefono.$pristine}">
+            <input id="telefonoId"
+                   class="form-control"
+                   type="text"
+                   name="telefono"
+                   placeholder="Teléfono"
+                   aria-describedby="sizing-addon1"
+                   maxlength="10"
+                   ng-maxlength="10"
+                   ng-pattern="/^[0-9]{10}$/"
+                   required
+                   ng-model="actualizarAgencia.datos.telefono">
+            <div role="alert" ng-messages="actualizarAgenciaFrm.telefono.$dirty && actualizarAgenciaFrm.telefono.$error">
+                <div class="ng-mensajes" ng-message="required"> Campo requerido</div>
+                <div class="ng-mensajes" ng-message="maxlength"> 10 dígitos necesarios</div>
+                <div class="ng-mensajes" ng-message="pattern"> Teléfono a 10 dígitos</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br>
+        <div class="col-sm-12">
+            <alertas tipo="actualizarAgencia.tipoMsj"
+                     mensaje="actualizarAgencia.msj">
+            </alertas>
+        </div>
+        <!-- BOTON GUARDAR CAMBIOS-->
+        <div class="col-xs-12">
+            <!-- ACTUALIZAR -->
+            <button class="btn btn-default"
+                    ng-class="{'disabled': actualizarAgencia.cargando === true}"
+                    ng-disabled="actualizarAgenciaFrm.$invalid || actualizarAgencia.cargando === true"
+                    ng-click="actualizarAgencia.actualizar()">
+                <span ng-class="{'glyphicon glyphicon-refresh animacion-cargando' : actualizarAgencia.cargando}"></span>
+                <span ng-show="actualizarAgencia.cargando">PROCESANDO...</span>
+                <span ng-hide="actualizarAgencia.cargando">Actualizar</span>
+            </button>
+        </div>
+    </div>
+</form>

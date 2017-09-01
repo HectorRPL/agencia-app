@@ -3,9 +3,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-5">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                Detalle de la Promocions y tiendas a cubrir.
-            </div>
+            <titulo titulo="postulados.titulo"></titulo>
             <div class="panel-body">
                 <tabs-detalle-vacante vacante="postulados.vacante"></tabs-detalle-vacante>
                 <ol class="breadcrumb">
@@ -13,7 +11,9 @@
                 </ol>
                 <div class="list-group">
                     <a ui-sref="app.vacantes.postulados.tienda({tiendaId: tienda._id, carritoId: postulados.carritoCompras._id})"
-                       ui-sref-active="active" ng-repeat="tienda in postulados.tiendas" class="list-group-item">
+                       ui-sref-active="active"
+                       ng-repeat="tienda in postulados.tiendas"
+                       class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2">
                                 <num-postulados-tienda tiendaid="tienda._id"></num-postulados-tienda>
@@ -36,9 +36,7 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-7">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                Personas postuladas, seleeccione la mejor opcion:
-            </div>
+            <titulo titulo="postulados.tituloDos"></titulo>
             <div class="panel-body">
                 <ui-view></ui-view>
             </div>

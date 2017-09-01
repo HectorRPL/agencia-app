@@ -11,8 +11,8 @@ class RegistroPendienteVerificacion {
     constructor($reactive, $scope) {
         'ngInject';
         $reactive(this).attach($scope);
-        this.mensajeTitulo = 'Sólo un paso más';
-        this.mensajePrincipal = 'Antes de comenzar a publicar vacantes es importante que verifiquemos tu cuenta de correo electrónico. Te enviamos un e-mail de confirmación de registro, si no lo encuentras es es posible que se ecuentre en tu bandeja de correo no deseado. Es importante abrir tu correo en este mismo navegador';
+        this.titulo = 'Sólo un paso más';
+        this.mensajePrincipal = 'Antes de comenzar a publicar vacantes es importante que verifiquemos tu cuenta de correo electrónico. Te enviamos un e-mail de confirmación de registro, si no lo encuentras es es posible que se ecuentre en tu bandeja de correo no deseado. Se recomienda abrir su correo en este mismo navegador';
         this.msjAlerta = '';
         this.tipoAlerta = '';
         enviarCorreoVerificacion.call({}, this.$bindToContext((err, result) => {

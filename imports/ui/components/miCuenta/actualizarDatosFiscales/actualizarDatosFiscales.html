@@ -1,0 +1,45 @@
+<form name="actualizarDatosFiscalesFrm" autocomplete="off">
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <h4>Datos Fiscales</h4>
+            <forma-datos-fiscales datos="actualizarDatosFiscales.datosFiscales"></forma-datos-fiscales>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <h4>Dirección Fiscal</h4>
+            <forma-direccion direccion="actualizarDatosFiscales.datosFiscales"></forma-direccion>
+        </div>
+    </div>
+    <div class="row">
+        <!-- ALERTA: CAMBIOS EXITOSO -->
+        <div class="col-xs-12">
+            <alertas tipo="actualizarDatosFiscales.tipoMsj" mensaje="actualizarDatosFiscales.msj"></alertas>
+        </div>
+        <!-- BOTON GUARDAR CAMBIOS-->
+        <div class="col-xs-12">
+            <!-- GUARDAR -->
+            <button class="btn btn-default"
+                    ng-class="{'disabled': actualizarDatosFiscales.cargando === true}"
+                    ng-show="actualizarDatosFiscales.datosFiscales.propietario === undefined"
+                    ng-disabled="actualizarDatosFiscalesFrm.$invalid || actualizarDatosFiscales.cargando === true"
+                    ng-click="actualizarDatosFiscales.guardarDatosFiscales()">
+                <span ng-class="{'glyphicon glyphicon-refresh animacion-cargando' : actualizarDatosFiscales.cargando}"></span>
+                <span ng-show="actualizarDatosFiscales.cargando">PROCESANDO...</span>
+                <span ng-hide="actualizarDatosFiscales.cargando">Guardar</span>
+
+            </button>
+            <!-- ACTUALIZAR -->
+            <button class="btn btn-default"
+                    ng-class="{'disabled': actualizarDatosFiscales.cargando === true}"
+                    ng-show="actualizarDatosFiscales.datosFiscales.propietario != undefined"
+                    ng-disabled="actualizarDatosFiscalesFrm.$invalid || actualizarDatosFiscales.cargando === true"
+                    ng-click="actualizarDatosFiscales.actualizarDatosFiscales()">
+                <span ng-class="{'glyphicon glyphicon-refresh animacion-cargando' : actualizarDatosFiscales.cargando}"></span>
+                <span ng-show="actualizarDatosFiscales.cargando">PROCESANDO...</span>
+                <span ng-hide="actualizarDatosFiscales.cargando">Actualizar</span>
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,37 +1,58 @@
-<div class="col-md-offset-3 col-md-6 col-xs-12 panelRegistro">
-    <div class="btn-group btn-group-justified" role="group" aria-label="...">
-        <br>
-        <form role="form" class="form-inline" id="reiniciarContraseniaFormId" name="reiniciarContraseniaForm"
-              nonvalidate autocomplete="off">
+<form role="form" class="property-submit-form" id="reiniciarContraseniaFormId" name="reiniciarContraseniaForm" nonvalidate autocomplete="off">
+    <div class="panel panel-default">
+        <titulo titulo="reiniciarContrasenia.titulo"></titulo>
+        <div class="panel-body">
             <div class="row">
-                <!-- CONTRASEÑA  -->
-                <div class="col-xs-8 col-sm-8">
-                    <div class="form-group" ng-class="{ 'has-error' : reiniciarContraseniaForm.newPassword.$invalid && !reiniciarContraseniaForm.newPassword.$pristine }">
-                        <input id="candidatoPasswordID" class="form-control" name="newPassword" type="password"
-                               placeholder="Nueva Contraseña" aria-describedby="basic-addon1" required ng-minlength="6" ng-maxlength="8" minlength="6" maxlength="8"
-                               ng-model="reiniciarContrasenia.newPassword">
-                        <div ng-messages="reiniciarContraseniaForm.newPassword.$dirty && reiniciarContraseniaForm.newPassword.$error" role="alert">
-                            <div class="ng-mensajes" ng-message="required">Campo requerido</div>
-                            <div class="ng-mensajes" ng-message="minlength, maxlength"> Minimo 6 caracteres, maximo 8</div>
+                <div class="col-sm-12">
+                    <!-- CONTRASEÑA  -->
+                    <div class="col-xs-12">
+                        <div class="form-group" ng-class="{ 'has-error' : reiniciarContraseniaForm.newPassword.$invalid && !reiniciarContraseniaForm.newPassword.$pristine }">
+                            <input id="candidatoPasswordID"
+                                   class="form-control"
+                                   name="newPassword"
+                                   type="password"
+                                   placeholder="Nueva Contraseña"
+                                   aria-describedby="basic-addon1"
+                                   required
+                                   ng-minlength="5"
+                                   ng-maxlength="8"
+                                   minlength="5"
+                                   maxlength="8"
+                                   ng-model="reiniciarContrasenia.newPassword">
+                            <div ng-messages="reiniciarContraseniaForm.newPassword.$dirty && reiniciarContraseniaForm.newPassword.$error" role="alert">
+                                <div class="ng-mensajes" ng-message="required">Campo requerido</div>
+                                <div class="ng-mensajes" ng-message="minlength, maxlength"> Minimo 6 caracteres, maximo 8</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CONFIRMAR CONTRASEÑA  -->
+                    <div class="col-xs-12">
+                        <div class="form-group" ng-class="{ 'has-error' : reiniciarContraseniaForm.confNewPassword.$invalid && !reiniciarContraseniaForm.confNewPassword.$pristine }">
+                            <input id="candidatoPasswordID" class="form-control" name="confNewPassword" type="password"
+                                   placeholder="Confirmar Nueva Contraseña" aria-describedby="basic-addon1" required
+                                   ng-minlength="6" ng-maxlength="8" minlength="6" maxlength="8" conf-invalida
+                                   ng-model="reiniciarContrasenia.confNewPassword">
+                            <div ng-messages="reiniciarContraseniaForm.confNewPassword.$dirty && reiniciarContraseniaForm.confNewPassword.$error" role="alert">
+                                <div class="ng-mensajes" ng-message="required">Campo requerido</div>
+                                <div class="ng-mensajes" ng-message="minlength, maxlength"> Minimo 6 caracteres, maximo 8</div>
+                                <div class="ng-mensajes" ng-message="confInvalida">Nueva Contraseña y confirmación no coinciden</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- CONFIRMAR CONTRASEÑA  -->
-                <div class="col-xs-8 col-sm-8">
-                    <div class="form-group" ng-class="{ 'has-error' : reiniciarContraseniaForm.confNewPassword.$invalid && !reiniciarContraseniaForm.confNewPassword.$pristine }">
-                        <input id="candidatoPasswordID" class="form-control" name="confNewPassword" type="password"
-                               placeholder="Confirmar Nueva Contraseña" aria-describedby="basic-addon1" required
-                               ng-minlength="6" ng-maxlength="8" minlength="6" maxlength="8" conf-invalida
-                               ng-model="reiniciarContrasenia.confNewPassword">
-                        <div ng-messages="reiniciarContraseniaForm.confNewPassword.$dirty && reiniciarContraseniaForm.confNewPassword.$error" role="alert">
-                            <div class="ng-mensajes" ng-message="required">Campo requerido</div>
-                            <div class="ng-mensajes" ng-message="minlength, maxlength"> Minimo 6 caracteres, maximo 8</div>
-                            <div class="ng-mensajes" ng-message="confInvalida">Nueva Contraseña y confirmación no coinciden</div>
-                        </div>
-                    </div>
+            </div>
+            <!-- ALERTA: COMBINACIÓN INCORRECTA -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <alertas tipo="reiniciarContrasenia.tipoMsj" mensaje="reiniciarContrasenia.msj"></alertas>
                 </div>
 
-                <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- BOTON-->
                     <button type="button"
                             class="btn btn-default btn-block"
                             ng-class="{'disabled': reiniciarContrasenia.cargando === true}"
@@ -43,14 +64,6 @@
                     </button>
                 </div>
             </div>
-            <!--ALERTAS-->
-            <div class="row">
-                <br>
-                <div class="col-xs-12">
-                    <alertas tipo="reiniciarContrasenia.tipoMsj" mensaje="reiniciarContrasenia.msj"></alertas>
-                </div>
-            </div>
-        </form>
-
+        </div>
     </div>
-</div>
+</form>

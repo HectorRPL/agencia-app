@@ -3,21 +3,40 @@ import angularMeteor from "angular-meteor";
 import uiRouter from "angular-ui-router";
 import uiBootstrap from "angular-ui-bootstrap";
 import ngAnimate from "angular-animate";
+import {Agencias} from "../../../api/agencias/collection";
+import {Direcciones} from "../../../api/direcciones/collection";
 import "./miCuenta.html";
-import {name as DatosPersonales} from "./datosPersonales/datosPersonales";
-import {name as ActualizarDireccion} from "./actualizarDireccion/actualizarDireccion";
-import {name as ConstraseniaCorreo} from "./constraseniaCorreo/constraseniaCorreo";
+import {name as ActualizarDatosFiscales} from "./actualizarDatosFiscales/actualizarDatosFiscales";
+import {name as ActualizarAgencia} from "../agencia/actualizarAgencia/actualizarAgencia";
+import {name as ActualizarDireccion} from "../direccion/actualizarDireccion/actualizarDireccion";
+import {name as CambiarContrasenia} from "./cambiarContrasenia/cambiarContrasenia";
+
 class MiCuenta {
   constructor($scope, $reactive) {
     'ngInject';
     $reactive(this).attach($scope);
 
+    this.direccion = {};
+
+    this.subscribe('direcciones.agencia');
+    this.subscribe('agencias');
+    this.helpers({
+      direccion(){
+        return Direcciones.findOne();
+      },
+      datosAgencia(){
+        return Agencias.findOne();
+      }
+    });
+
     $scope.oneAtATime   = true;
 
     this.titulo = 'Mi Cuenta';
-    this.subtitulo2 = 'Datos Fiscales';
-    this.subtitulo3 = 'Dirección';
-    this.subtitulo4 = 'Correo | Usuario | Contraseña';  }
+    this.subtitulo1 = 'Facturación';
+    this.subtitulo2 = 'Datos de Contacto';
+    this.subtitulo3 = 'Dirección de Agencia';
+    this.subtitulo4 = 'Cambiar Contraseña';
+  }
 }
 const name = 'miCuenta';
 
@@ -28,9 +47,10 @@ export default angular
   uiRouter,
   uiBootstrap,
   ngAnimate,
-  DatosPersonales,
+  ActualizarDatosFiscales,
+  ActualizarAgencia,
   ActualizarDireccion,
-  ConstraseniaCorreo
+  CambiarContrasenia
 ])
 .component(name, {
   templateUrl: `imports/ui/components/${name}/${name}.html`,

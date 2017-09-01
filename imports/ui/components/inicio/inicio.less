@@ -1,26 +1,49 @@
-inicio{
-  section.fondo {
-      background-color: @gray-lighter;
-      background-image: url("/images/agencia_supermercado.jpg");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-attachment: fixed;
-      height: auto;
-    }
-  div.panelRegistro {
-    background-color: rgba(0, 0, 0, .2);
-    border-style: none;
-    border-radius: 6px;
+inicio {
+  line-height: 30px;
+
+  titulo > h2 {
+    margin: 1%;
   }
 
-  select {
-    /*Desaparece la flecha de los selects en Chrome*/
-    -moz-appearance: none;
-    /*Desaparece la flecha de los selects en FireFox*/
-    -webkit-appearance:none;
+  h1 {
+    color: @color-02;
+    font-size: 400%;
+    font-weight: 500;
   }
-  /*Desaparece la flecha de los selects en IE10*/
-  select::-ms-expand {
-    display: none;
+
+  h2 {
+    color: @rosa-primario;
+  }
+
+  button {
+    color: @color-sobtiario !important;
+    font-weight: bolder;
+  }
+
+  div > div > p {
+    color: @color-sextario;
+    font-size: 200%;
+  }
+
+  section {
+    background-color: @amarillo-primario;
+  }
+
+  section > div {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  /* panel */
+
+  .panel-default {
+    border: none;
   }
 }

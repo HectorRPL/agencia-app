@@ -1,92 +1,94 @@
-<p><strong>Descripción: </strong> {{ desgloseCompra.totalpersonal }} {{desgloseCompra.descripcion}}</p>
-<p class="text-left"><strong>Desglose :</strong></p>
+DESCRIPCIÓN: <strong>{{desgloseCompra.totalpersonal}}</strong> {{desgloseCompra.descripcion}} <br><br>
 <!-- IMPORTE Y PRECIO UNITARIO -->
-<div class="row">
-    <div class="col-xs-12">
-        <table class="table text-center">
-            <tr>
-                <td><strong>Cantidad</strong></td>
-                <td><strong>Perfil</strong></td>
-                <td><strong>Precio/u</strong></td>
-                <td><strong>Importe</strong></td>
-            </tr>
-            <tr>
-                <td>{{desgloseCompra.numdemos}}</td>
-                <td>Demostrador(a)</td>
-                <td>{{desgloseCompra.precios.unidadDem = (desgloseCompra.datosFinancieros.precioDemos) | currency}}</td>
-                <td>
-                    {{desgloseCompra.precios.subtotalDem = (desgloseCompra.datosFinancieros.precioDemos * desgloseCompra.numdemos) | currency }}
-                </td>
-            </tr>
-            <tr>
-                <td>{{desgloseCompra.numpromotor}}</td>
-                <td>Promotor(a)</td>
-                <td>{{desgloseCompra.precios.unidadPro = (desgloseCompra.datosFinancieros.precioPromotor) | currency}}</td>
-                <td>
-                    {{desgloseCompra.precios.subtotalPro = (desgloseCompra.datosFinancieros.precioPromotor * desgloseCompra.numpromotor) | currency }}
-                </td>
-            </tr>
-            <tr>
-                <td>{{desgloseCompra.numsupervisor}}</td>
-                <td>Supervisor(a)</td>
-                <td>{{desgloseCompra.precios.unidadSup = (desgloseCompra.datosFinancieros.precioSupervisor) | currency}}</td>
-                <td>
-                    {{desgloseCompra.precios.subtotalSup = (desgloseCompra.datosFinancieros.precioSupervisor * desgloseCompra.numsupervisor) | currency }}
-                </td>
-            </tr>
-            <!-- SUBTOTAL -->
-            <tr>
-                <td></td>
-                <td></td>
-                <td>Subtotal:</td>
-                <td>
-                    <strong>
-                        {{ desgloseCompra.precios.subtotal = (desgloseCompra.precios.subtotalDem + desgloseCompra.precios.subtotalPro + desgloseCompra.precios.subtotalSup)| currency }}
-                    </strong>
-                </td>
-            </tr>
-            <!-- DESCUENTO -->
-            <tr ng-show="desgloseCompra.datosFinancieros.descuento>0">
-                <td></td>
-                <td></td>
-                <td> - {{ (desgloseCompra.datosFinancieros.descuento) * 100 }} %desc.:</td>
-                <td>
-                    - {{ desgloseCompra.precios.importeDescuento = ( desgloseCompra.precios.subtotal * desgloseCompra.datosFinancieros.descuento )  | currency }}
-                </td>
-            </tr>
-            <!--IMPORTE - DESCUENTO -->
-            <tr ng-show="desgloseCompra.datosFinancieros.descuento>0">
-                <td></td>
-                <td></td>
-                <td> Nvo. SubTotal:</td>
-                <td>
-                    <strong>
-                        {{ desgloseCompra.precios.subtotal = (desgloseCompra.precios.subtotal -  desgloseCompra.precios.importeDescuento)  | currency }}
-                    </strong>
-                </td>
-            </tr>
-            <!-- IVA -->
-            <tr>
-                <td></td>
-                <td></td>
-                <td>IVA({{ desgloseCompra.precios.iva = (desgloseCompra.datosFinancieros.iva * 100)}}%):</td>
-                <td>
-                    <strong>
-                        {{desgloseCompra.precios.importeiva = (desgloseCompra.precios.subtotal * desgloseCompra.datosFinancieros.iva) | currency }}
-                    </strong>
-                </td>
-            </tr>
-            <!-- TOTAL -->
-            <tr>
-                <td></td>
-                <td></td>
-                <td>TOTAL:</td>
-                <td>
-                    <strong>
-                        {{desgloseCompra.precios.total=(desgloseCompra.precios.subtotal * (1 + desgloseCompra.datosFinancieros.iva)) | currency}}
-                    </strong>
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
+<!--<div class="row">-->
+    <!--<div class="col-xs-12">-->
+{{desgloseCompra.preciosProds}}
+        <div class="table-responsive">
+            <table class="table table-condensed text-right">
+                <tr>
+                    <td class="text-center"><strong>Cantidad</strong></td>
+                    <td class="text-left"><strong>Perfil</strong></td>
+                    <td><strong>Precio/u</strong></td>
+                    <td><strong>Importe</strong></td>
+                </tr>
+                <tr>
+                    <td class="text-center">{{desgloseCompra.numdemos}}</td>
+                    <td class="text-left">Demostrador(a)</td>
+                    <td>{{desgloseCompra.precios.unidadDem = (desgloseCompra.datosFinancieros.precioDemos) | currency}}</td>
+                    <td>
+                        {{desgloseCompra.precios.subtotalDem = (desgloseCompra.datosFinancieros.precioDemos * desgloseCompra.numdemos) | currency }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">{{desgloseCompra.numpromotor}}</td>
+                    <td class="text-left">Promotor(a)</td>
+                    <td>{{desgloseCompra.precios.unidadPro = (desgloseCompra.datosFinancieros.precioPromotor) | currency}}</td>
+                    <td>
+                        {{desgloseCompra.precios.subtotalPro = (desgloseCompra.datosFinancieros.precioPromotor * desgloseCompra.numpromotor) | currency }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">{{desgloseCompra.numsupervisor}}</td>
+                    <td class="text-left">Supervisor(a)</td>
+                    <td>{{desgloseCompra.precios.unidadSup = (desgloseCompra.datosFinancieros.precioSupervisor) | currency}}</td>
+                    <td>
+                        {{desgloseCompra.precios.subtotalSup = (desgloseCompra.datosFinancieros.precioSupervisor * desgloseCompra.numsupervisor) | currency }}
+                    </td>
+                </tr>
+                <!-- SUBTOTAL -->
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Subtotal:</td>
+                    <td>
+                        <strong>
+                            {{ desgloseCompra.precios.subtotal = (desgloseCompra.precios.subtotalDem + desgloseCompra.precios.subtotalPro + desgloseCompra.precios.subtotalSup)| currency }}
+                        </strong>
+                    </td>
+                </tr>
+                <!-- DESCUENTO -->
+                <tr ng-show="desgloseCompra.datosFinancieros.descuento>0">
+                    <td></td>
+                    <td></td>
+                    <td> - {{ (desgloseCompra.datosFinancieros.descuento) * 100 }} %desc.:</td>
+                    <td>
+                        - {{ desgloseCompra.precios.importeDescuento = ( desgloseCompra.precios.subtotal * desgloseCompra.datosFinancieros.descuento )  | currency }}
+                    </td>
+                </tr>
+                <!--IMPORTE - DESCUENTO -->
+                <tr ng-show="desgloseCompra.datosFinancieros.descuento>0">
+                    <td></td>
+                    <td></td>
+                    <td> Nvo. SubTotal:</td>
+                    <td>
+                        <strong>
+                            {{ desgloseCompra.precios.subtotal = (desgloseCompra.precios.subtotal -  desgloseCompra.precios.importeDescuento)  | currency }}
+                        </strong>
+                    </td>
+                </tr>
+                <!-- IVA -->
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>IVA({{ desgloseCompra.precios.iva = (desgloseCompra.datosFinancieros.iva * 100)}}%):</td>
+                    <td>
+                        <strong>
+                            {{desgloseCompra.precios.importeiva = (desgloseCompra.precios.subtotal * desgloseCompra.datosFinancieros.iva) | currency }}
+                        </strong>
+                    </td>
+                </tr>
+                <!-- TOTAL -->
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>TOTAL:</td>
+                    <td>
+                        <strong>
+                            {{desgloseCompra.precios.total=(desgloseCompra.precios.subtotal * (1 + desgloseCompra.datosFinancieros.iva)) | currency}}
+                        </strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    <!--</div>-->
+<!--</div>-->

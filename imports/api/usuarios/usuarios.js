@@ -82,7 +82,7 @@ if (Meteor.isServer) {
      * @function {Function} subject Asunto del correo.
      */
     Accounts.emailTemplates.verifyEmail.from  = function () {
-        return "Demostradoras con experiencia <postmaster@sandboxb82e8f80c2074fe2aa151f5c42a4aa20.mailgun.org>";
+        return "Demostradoras con experiencia <postmaster@yodemos.com>";
     };
     Accounts.emailTemplates.verifyEmail.html = function (user, url) {
         url = url.replace("#", "agencia", "gi");
@@ -102,7 +102,7 @@ if (Meteor.isServer) {
      * @function {Function} subject Asunto del correo.
      */
     Accounts.emailTemplates.resetPassword.from  = function () {
-        return "Demostradoras con experiencia <postmaster@sandboxb82e8f80c2074fe2aa151f5c42a4aa20.mailgun.org>";
+        return "Demostradoras con experiencia <postmaster@yodemos.com>";
     };
     Accounts.emailTemplates.resetPassword.html = function (user, url) {
         url = url.replace("#", "agencia");

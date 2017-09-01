@@ -1,0 +1,26 @@
+<form name="actualizarDireccionFrm" autocomplete="off">
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <h4>Dirección</h4>
+            <forma-direccion direccion="actualizarDireccion.direccion"></forma-direccion>
+        </div>
+    </div>
+    <div class="row">
+        <!-- ALERTA: CAMBIOS EXITOSO -->
+        <div class="col-xs-12">
+            <alertas tipo="actualizarDireccion.tipoMsj" mensaje="actualizarDireccion.msj"></alertas>
+        </div>
+        <!-- BOTON GUARDAR CAMBIOS-->
+        <div class="col-xs-12">
+            <!-- ACTUALIZAR -->
+            <button class="btn btn-default"
+                    ng-class="{'disabled': actualizarDireccion.cargando === true}"
+                    ng-disabled="actualizarDireccionFrm.$invalid || actualizarDireccion.cargando === true"
+                    ng-click="actualizarDireccion.actualizarDireccion()">
+                <span ng-class="{'glyphicon glyphicon-refresh animacion-cargando' : actualizarDireccion.cargando}"></span>
+                <span ng-show="actualizarDireccion.cargando">PROCESANDO...</span>
+                <span ng-hide="actualizarDireccion.cargando">Actualizar</span>
+            </button>
+        </div>
+    </div>
+</form>

@@ -12,6 +12,8 @@ class CarritoCompras {
         'ngInject';
         $reactive(this).attach($scope);
 
+        this.titulo = 'Carrito de Compras';
+
         this.carritoId = $stateParams.carritoId;
         this.subscribe('productosCarritos.mostrar', ()=>[{carritoId: this.carritoId}]);
         this.subscribe('productosCarrito.count.candidatos', ()=>[{carritoId: this.carritoId}]);

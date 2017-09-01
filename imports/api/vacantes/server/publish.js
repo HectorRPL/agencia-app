@@ -142,6 +142,7 @@ if (Meteor.isServer) {
             vacantes.forEach((vacante)=> {
                 arrIds.push(vacante._id);
             });
+            console.log(arrIds, this.userId);
             Counts.publish(this, `count.mis.postulados.nuevos.${this.userId}`,
                 Postulaciones.find({
                     $and: [{vacanteId: {$in: arrIds}}, {estado: 1}, {postVistoAgencia: false}]
@@ -164,6 +165,7 @@ if (Meteor.isServer) {
             vacantes.forEach((vacante)=> {
                 arrIds.push(vacante._id);
             });
+            console.log(arrIds);
             Counts.publish(this, `count.mis.seleccionados.nuevos.${this.userId}`,
                 Postulaciones.find({
                     $and: [{vacanteId: {$in: arrIds}}, {estado: 2}, {selecVistoAgencia: false}]

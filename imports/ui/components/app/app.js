@@ -1,7 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import './app.html';
-
 import {name as Navigation} from '../navigation/navigation';
 import {name as Vacantes} from '../vacantes/vacantes';
 import {name as Reclutadores} from '../reclutadores/reclutadores';

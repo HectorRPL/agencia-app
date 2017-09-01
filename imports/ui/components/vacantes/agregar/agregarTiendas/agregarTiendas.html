@@ -1,7 +1,7 @@
-<div class="row">
+<ng-form name="tiendaFrm">
     <div class="col-sm-12 col-sm-12 col-md-7">
         <div class="panel panel-default">
-            <div class="panel-heading">Datos de la Vacante por tienda</div>
+            <titulo titulo="agregarTiendas.titulo"></titulo>
             <div class="panel-body">
                 <uib-tabset active="activeForm">
                     <!--TAB DATOS-->
@@ -46,225 +46,203 @@
                     </uib-tab>
                 </uib-tabset>
                 <hr>
-                <ng-form name="tiendaFrm">
-                    <div class="row" ng-show="agregarTiendas.mostrarElemento">
-                        <!-- ESTADO -->
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                            <div class="form-group"
-                                 ng-class="{ 'has-error' : tiendaFrm.estadoDesc.$invalid && !tiendaFrm.estadoDesc.$pristine}">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                    </span>
-                                    <input class="form-control" id="estadoDescID"
-                                           name="estadoDesc" type="text"
-                                           placeholder="Estado"
-                                           ng-model="agregarTiendas.estadoDesc.descripcion"
-                                           maxlength="20" ng-pattern="/^[a-zA-Z-ñáéíóú\s\d]+$/"
-                                           minlength="1"
-                                           ng-disabled="true">
-                                </div>
-                                <div ng-messages="tiendaFrm.estadoDesc.$dirty && tiendaFrm.estadoDesc.$error"
-                                     role="alert">
-                                    <div ng-message="required" style="color:red;">Campo requerido</div>
-                                </div>
+                <div class="row" ng-show="agregarTiendas.mostrarElemento">
+                    <!-- ESTADO -->
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-group" ng-class="{ 'has-error' : tiendaFrm.estadoDesc.$invalid && !tiendaFrm.estadoDesc.$pristine}">
+                            <input class="form-control" id="estadoDescID"
+                                   name="estadoDesc" type="text"
+                                   placeholder="Estado"
+                                   ng-model="agregarTiendas.estadoDesc.descripcion"
+                                   maxlength="20" ng-pattern="/^[a-zA-Z-ñáéíóú\s\d]+$/"
+                                   minlength="1"
+                                   ng-disabled="true">
+                            <div ng-messages="tiendaFrm.estadoDesc.$dirty && tiendaFrm.estadoDesc.$error"
+                                 role="alert">
+                                <div class="ng-mensajes" ng-message="required">Campo requerido</div>
                             </div>
                         </div>
-                        <!-- DELEGACIÓN MUNICIPIO -->
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                            <div class="form-group"
-                                 ng-class="{ 'has-error' : tiendaFrm.delMpio.$invalid && !tiendaFrm.delMpio.$pristine}">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        Tx
-                                    </span>
-                                    <input class="form-control" id="delMpioID" name="delMpio"
-                                           type="text"
-                                           ng-focus="A()"
-                                           placeholder="Delegación / Municipio"
-                                           ng-model="agregarTiendas.tienda.delMpio"
-                                           maxlength="20" ng-pattern="/^[a-zA-Z-ÑñáéíóúÁÉÍÓÚ\s\d]+$/"
-                                           minlength="1">
-                                </div>
-                                <div ng-messages="tiendaFrm.delMpio.$dirty && tiendaFrm.delMpio.$error" role="alert">
-                                    <div ng-message="pattern" style="color:red;">Caracteres invalidos.</div>
-                                </div>
+                    </div>
+                    <!-- DELEGACIÓN MUNICIPIO -->
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-group" ng-class="{ 'has-error' : tiendaFrm.delMpio.$invalid && !tiendaFrm.delMpio.$pristine}">
+                            <input class="form-control" id="delMpioID" name="delMpio"
+                                   type="text"
+                                   ng-focus="A()"
+                                   placeholder="Delegación / Municipio"
+                                   ng-model="agregarTiendas.tienda.delMpio"
+                                   maxlength="20" ng-pattern="/^[a-zA-Z-ÑñáéíóúÁÉÍÓÚ\s\d]+$/"
+                                   minlength="1">
+                            <div ng-messages="tiendaFrm.delMpio.$dirty && tiendaFrm.delMpio.$error" role="alert">
+                                <div class="ng-mensajes" ng-message="pattern">Caracteres invalidos.</div>
                             </div>
                         </div>
-                        <!-- CADENA -->
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                            <div class="form-group"
-                                 ng-class="{ 'has-error' : tiendaFrm.elegirCadena.$invalid && !tiendaFrm.elegirCadena.$pristine}">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                    </span>
-                                    <elegir-cadena cadenaid="agregarTiendas.tienda.cadenaId"></elegir-cadena>
-                                </div>
-                                <div ng-messages="tiendaFrm.elegirCadena.$dirty && tiendaFrm.elegirCadena.$error"
-                                     role="alert">
-                                    <div ng-message="required" style="color:red;">Campo requerido</div>
-                                </div>
+                    </div>
+                    <!-- CADENA -->
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-group" ng-class="{ 'has-error' : tiendaFrm.elegirCadena.$invalid && !tiendaFrm.elegirCadena.$pristine}">
+                            <elegir-cadena cadenaid="agregarTiendas.tienda.cadenaId"></elegir-cadena>
+                            <div ng-messages="tiendaFrm.elegirCadena.$dirty && tiendaFrm.elegirCadena.$error"
+                                 role="alert">
+                                <div class="ng-mensajes" ng-message="required">Campo requerido</div>
                             </div>
                         </div>
+                    </div>
+                    <!-- SUCURSAL -->
+                    <div class="col-sm-12 col-md-6 col-lg-3">
                         <!-- SUCURSAL -->
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                            <!-- SUCURSAL -->
-                            <div class="form-group"
-                                 ng-class="{ 'has-error' : tiendaFrm.sucursal.$invalid && !tiendaFrm.sucursal.$pristine}">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        Tx
-                                    </span>
-                                    <input class="form-control" id="sucursalID" name="sucursal"
-                                           type="text"
-                                           placeholder="Sucursal"
-                                           ng-model="agregarTiendas.tienda.sucursal"
-                                           maxlength="20" minlength="1"
-                                           ng-pattern="/^[a-zA-Z-ÑñáéíóúÁÉÍÓÚ\s\d]+$/" required>
-                                </div>
-                                <div ng-messages="tiendaFrm.sucursal.$dirty && tiendaFrm.sucursal.$error"
-                                     role="alert">
-                                    <div ng-message="required" style="color:red;">Campo requerido</div>
-                                    <div ng-message="pattern" style="color:red;">Caracteres invalidos.</div>
-                                </div>
+                        <div class="form-group" ng-class="{ 'has-error' : tiendaFrm.sucursal.$invalid && !tiendaFrm.sucursal.$pristine}">
+                            <input class="form-control" id="sucursalID" name="sucursal"
+                                   type="text"
+                                   placeholder="Sucursal"
+                                   ng-model="agregarTiendas.tienda.sucursal"
+                                   maxlength="20" minlength="1"
+                                   ng-pattern="/^[a-zA-Z-ÑñáéíóúÁÉÍÓÚ\s\d]+$/" required>
+                            <div ng-messages="tiendaFrm.sucursal.$dirty && tiendaFrm.sucursal.$error"
+                                 role="alert">
+                                <div class="ng-mensajes" ng-message="required">Campo requerido</div>
+                                <div class="ng-mensajes" ng-message="pattern">Caracteres invalidos.</div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-4">
-                            <a class="btn btn-primary" ui-sref="app.vacantes.agregar">
-                                <span class="fa fa-chevron-left " aria-hidden="true"></span>
-                                Atras
-                            </a>
-                        </div>
-                        <div class="col-xs-6 col-sm-offset-5 col-sm-3">
-                            <button type="button" class="btn btn-primary"
-                                    ng-show="agregarTiendas.mostrarElemento"
-                                    ng-click="agregarTiendas.agregarResumen(tiendaFrm)" ng-disabled="tiendaFrm.$invalid ||
-                                        agregarTiendas.respuestaExito.mostrar || agregarTiendas.respuestaError.mostrar">
-                                <span class="fa fa-plus" aria-hidden="true"></span>&nbsp;Tienda
-                            </button>
-                        </div>
-                    </div>
-                </ng-form>
+                </div>
             </div>
-            <!--PANEL BODY -->
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4">
+                        <a class="btn btn-default"
+                           ui-sref="app.vacantes.agregar">
+                            <span class="fa fa-chevron-left" aria-hidden="true"></span>Atras
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-offset-5 col-sm-3">
+                        <button type="button" class="btn btn-default"
+                                ng-show="agregarTiendas.mostrarElemento"
+                                ng-click="agregarTiendas.agregarResumen(tiendaFrm)" ng-disabled="tiendaFrm.$invalid ||
+                                        agregarTiendas.respuestaExito.mostrar || agregarTiendas.respuestaError.mostrar">
+                            Añadir Tienda
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-sm-12 col-sm-12 col-md-offset-3 col-md-offset-6">
             <alertas tipo="agregarTiendas.tipoAlerta" mensaje="agregarTiendas.msjAlerta"></alertas>
         </div>
-        <!--PANEL PANEL-DEFAULT -->
     </div>
-    <ng-form name="vacanteXtiendaFrm">
-        <div class="col-sx-12 col-sm-12 col-md-5">
-            <div class="panel panel-default">
-                <div class="panel-heading">Resumen</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <ul class="list-group">
-                                <li class="list-group-item"
-                                    ng-class="{'list-group-item-success' : tienda.exito, 'list-group-item-danger' : tienda.error}"
-                                    ng-repeat="tienda in agregarTiendas.tiendas"
-                                    ng-init="cadena = agregarTiendas.obtenerCadena(tienda.cadenaId)">
-                                    {{cadena.descripcion}}
-                                    /
-                                    {{tienda.sucursal}}
-                                    /
-                                    {{agregarTiendas.vacante.estadoId}}
-                                    <button type="button" class="close" aria-label="Close"
-                                            ng-show="agregarTiendas.mostrarElemento"
-                                            ng-click="agregarTiendas.eliminarTienda($index)">
-                                        <span class="fa fa-trash-o" aria-hidden="true"></span>
-                                    </button>
-                                    <span class="badge">{{agregarTiendas.numVacantes}}</span>
-                                </li>
-                            </ul>
+</ng-form>
+<ng-form name="vacanteXtiendaFrm">
+    <div class="col-sx-12 col-sm-12 col-md-5">
+        <div class="panel panel-default" ng-hide="agregarTiendas.tiendas.length === 0">
+            <titulo titulo="agregarTiendas.tituloDos"></titulo>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-group">
+                            <li class="list-group-item"
+                                ng-class="{'list-group-item-success' : tienda.exito, 'list-group-item-danger' : tienda.error}"
+                                ng-repeat="tienda in agregarTiendas.tiendas"
+                                ng-init="cadena = agregarTiendas.obtenerCadena(tienda.cadenaId)">
+                                {{cadena.descripcion}}
+                                /
+                                {{tienda.sucursal}}
+                                /
+                                {{agregarTiendas.vacante.estadoId}}
+                                <button type="button" class="close" aria-label="Close"
+                                        ng-show="agregarTiendas.mostrarElemento"
+                                        ng-click="agregarTiendas.eliminarTienda($index)">
+                                    <span class="fa fa-trash-o" aria-hidden="true"></span>
+                                </button>
+                                <span class="badge">{{agregarTiendas.numVacantes}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-md-8">
+                        <div class="form-group form-group-sm">
+                            <label for="">Total Tiendas:</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-8 col-md-8">
-                            <div class="form-group form-group-sm">
-                                <label for="">Total Tiendas:</label>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <div class="form-group form-group-sm">
-                                <input class="form-control" type="number" name="totalTiendas" ng-disabled="true"
-                                       ng-model="agregarTiendas.tiendas.length" required min="1">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-8 col-md-8">
-                            <div class="form-group form-group-sm">
-                                <label for="">Posibles entrevistas por tienda:</label>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <!-- NÚMERO DE VACANTES SOLICITADAS -->
-                            <div class="form-group form-group-sm"
-                                 ng-class="{ 'has-error' : vacanteXtiendaFrm.numeroVacantes.$invalid && !vacanteXtiendaFrm.numeroVacantes.$pristine}">
-                                <input class="form-control" id="numeroVacantesID" name="numeroVacantes" type="number"
-                                       min="1" max="5"
-                                       placeholder="No. vacantes por tienda" ng-model="agregarTiendas.numVacantes"
-                                       required ng-change="agregarTiendas.calcularVacantes()">
-                                <div ng-messages="vacanteXtiendaFrm.numeroVacantes.$dirty && vacanteXtiendaFrm.numeroVacantes.$error"
-                                     role="alert">
-                                    <div ng-message="number, required" style="color:red;">Campo Númerico</div>
-                                    <div ng-message="min, max" style="color:red;">Valor minimo 1, maximo 5</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-8 col-md-8">
-                            <div class="form-group form-group-sm">
-                                <label for="">Total de posibles entrevistas:</label>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <div class="form-group form-group-sm">
-                                <input class="form-control" type="number" name="totalCandidatos" ng-disabled="true"
-                                       ng-model="agregarTiendas.totalVacantes" required
-                                       min="1">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4><p class="text-success" ng-show="agregarTiendas.respuestaExito.mostrar"><span
-                                    class="fa fa-check"></span>&nbsp;&nbsp;
-                                {{agregarTiendas.respuestaExito.mensaje}}&nbsp;
-                                <strong><a ui-sref="app.vacantes.publicadas">Ver mis vacantes
-                                    publicadas</a></strong>
-                            </p>
-                                <p class="text-danger" ng-show="agregarTiendas.respuestaError.mostrar"><span
-                                        class="fa fa-exclamation-triangle"></span>&nbsp;&nbsp;
-                                    {{agregarTiendas.respuestaError.mensaje}}</p></h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-3">
-                            <a class="btn btn-primary" ng-click="agregarTiendas.limpiar()"
-                               ng-show="agregarTiendas.mostrarElemento">
-                                Limpiar
-                            </a>
-                        </div>
-                        <div class="col-xs-6 col-sm-offset-6 col-sm-3">
-                            <button class="btn btn-primary" type="button"
-                                    ng-show="agregarTiendas.mostrarElemento"
-                                    ng-click="agregarTiendas.agregarVacante()" ng-disabled="vacanteXtiendaFrm.$invalid ||
-                                    agregarTiendas.respuestaExito.mostrar || agregarTiendas.respuestaError.mostrar">
-                                Publicar
-                            </button>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group form-group-sm">
+                            <input class="form-control" type="number" name="totalTiendas" ng-disabled="true"
+                                   ng-model="agregarTiendas.tiendas.length" required min="1">
                         </div>
                     </div>
                 </div>
-                <!--PANEL BODY -->
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-md-8">
+                        <div class="form-group form-group-sm">
+                            <label for="">Posibles entrevistas por tienda:</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <!-- NÚMERO DE VACANTES SOLICITADAS -->
+                        <div class="form-group form-group-sm"
+                             ng-class="{ 'has-error' : vacanteXtiendaFrm.numeroVacantes.$invalid && !vacanteXtiendaFrm.numeroVacantes.$pristine}">
+                            <input class="form-control" id="numeroVacantesID" name="numeroVacantes" type="number"
+                                   min="1" max="5"
+                                   placeholder="No. vacantes por tienda" ng-model="agregarTiendas.numVacantes"
+                                   required ng-change="agregarTiendas.calcularVacantes()">
+                            <div ng-messages="vacanteXtiendaFrm.numeroVacantes.$dirty && vacanteXtiendaFrm.numeroVacantes.$error"
+                                 role="alert">
+                                <div class="ng-mensajes" ng-message="number, required">Campo Númerico</div>
+                                <div class="ng-mensajes" ng-message="min, max">Valor minimo 1, maximo 5</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-md-8">
+                        <div class="form-group form-group-sm">
+                            <label for="">Total de posibles entrevistas:</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group form-group-sm">
+                            <input class="form-control" type="number" name="totalCandidatos" ng-disabled="true"
+                                   ng-model="agregarTiendas.totalVacantes" required
+                                   min="1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4><p class="text-success" ng-show="agregarTiendas.respuestaExito.mostrar"><span
+                                class="fa fa-check"></span>&nbsp;&nbsp;
+                            {{agregarTiendas.respuestaExito.mensaje}}&nbsp;
+                            <strong><a ui-sref="app.vacantes.publicadas">Ver mis vacantes
+                                publicadas</a></strong>
+                        </p>
+                            <p class="text-danger" ng-show="agregarTiendas.respuestaError.mostrar"><span
+                                    class="fa fa-exclamation-triangle"></span>&nbsp;&nbsp;
+                                {{agregarTiendas.respuestaError.mensaje}}</p></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-3">
+                        <a class="btn btn-default" ng-click="agregarTiendas.limpiar()"
+                           ng-show="agregarTiendas.mostrarElemento">
+                            Limpiar
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-offset-6 col-sm-3">
+                        <button class="btn btn-default"
+                                type="button"
+                                ng-class="{'disabled': agregarTiendas.cargando === true}"
+                                ng-show="agregarTiendas.mostrarElemento"
+                                ng-disabled="vacanteXtiendaFrm.$invalid || agregarTiendas.respuestaExito.mostrar || agregarTiendas.respuestaError.mostrar || agregarTiendas.cargando === true"
+                                ng-click="agregarTiendas.agregarVacante()">
+                            <span ng-class="{'glyphicon glyphicon-refresh animacion-cargando' : agregarTiendas.cargando}"></span>
+                            <span ng-show="agregarTiendas.cargando">PROCESANDO...</span>
+                            <span ng-hide="agregarTiendas.cargando">Publicar</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-        <!--PANEL PANEL-DEFAULT -->
-    </ng-form>
-</div>
+    </div>
+</ng-form>

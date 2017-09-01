@@ -1,15 +1,28 @@
-<section class="fondo">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3 col-xs-12">
-        <img class="img-responsive" src="/images/logo500x500.png" alt="..."/>
-      </div>
+<section class="container-fluid">
+    <div class="img-responsive" style="background-image:url('/images/img1_fondo_web.png');">
+        <!--
+        <div class="row">
+            <div class="col-xs-4 col-sm-3 col-sm-offset-1 col-md-2">
+                <img class="img-responsive" src="/images/logo500x500.png" style="opacity:  0.8;" alt="..."/>
+            </div>
+        </div>
+        -->
+        <div class="row">
+            <div class="col-sm-11 col-sm-offset-1">
+                <h1 style="padding-top: 5%">
+                    PUBLICA TODAS TUS TIENDAS <br>
+                    DESCUBIERTAS DE FORMA GRATUITA
+                </h1>
+                <p>
+                    Somos la primera bolsa de trabajo especializada en reclutamiento <br>
+                    de demostradoras, promotores y supervisores en México.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-2 col-lg-4 col-lg-offset-2">
+                <div ui-view=""></div>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <!-- INSERTAR VISTAS ANIDADAS DEL FLUJO LOGIN: LOGIN-REGISTRO-DATOS-MAPA-->
-        <div ui-view="">
-      </div>
-    </div>
-  </div>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </section>

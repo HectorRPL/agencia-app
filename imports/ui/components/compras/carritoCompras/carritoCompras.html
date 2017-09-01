@@ -1,39 +1,43 @@
 <!-- TABLA /// RESUMEN DE TODOS LOS ÍTEMS A COMPRAR-->
-<div class="col-xs-12 col-md-8">
+<div class="col-sm-12 col-md-8">
     <div class="panel panel-default">
-        <div class="panel-heading">Carrito de Compras</div>
+        <titulo titulo="carritoCompras.titulo"></titulo>
         <!-- TABLA -->
-        <table class="table table-condensed">
-            <!--TÍTULOS DE LA TABLA-->
-            <thead>
-            <tr>
-                <th class="text-center">_</th>
-                <th><small>Candidato</small></th>
-                <th><small>Perfil</small></th>
-                <th><small>Marca</small></th>
-                <th><small>Cadena</small></th>
-                <th><small>Sucursal</small></th>
-                <th><small>Del/Mun</small></th>
-            </tr>
-            </thead>
-            <!--DATOS DE LA TABLA-->
-            <tr ng-repeat="producto in carritoCompras.productos">
-                <td class="text-center">
-                    <button class="btn btn-danger btn-sm" ng-click="carritoCompras.eliminiarProducto(producto._id)">
-                        <span class="fa fa-trash-o" aria-hidden="true"></span>
-                    </button>
-                </td>
-                <td><small>{{producto.postulacion().candidato().nombre}}&nbsp;{{producto.postulacion().candidato().apellidos}}</small></td>
-                <td><small>{{producto.puesto().descripcion}}</small></td>
-                <td><small>{{producto.postulacion().vacante().marca}}</small></td>
-                <td><small>{{producto.postulacion().tienda().cadena().descripcion}}</small></td>
-                <td><small>{{producto.postulacion().tienda().sucursal}}</small></td>
-                <td><small>{{producto.postulacion().tienda().delMpio}}</small></td>
-            </tr>
-        </table>
+        <div class="table-responsive" style="max-height: 500px">
+            <table class="table table-condensed">
+                <!--TÍTULOS DE LA TABLA-->
+                <thead>
+                <tr>
+                    <th class="text-center">_</th>
+                    <th><small>Candidato</small></th>
+                    <th><small>Perfil</small></th>
+                    <th><small>Marca</small></th>
+                    <th><small>Cadena</small></th>
+                    <th><small>Sucursal</small></th>
+                    <th><small>Del/Mun</small></th>
+                </tr>
+                </thead>
+                <!--DATOS DE LA TABLA-->
+                <tr ng-repeat="producto in carritoCompras.productos">
+                    <td class="text-center">
+                        <button class="btn btn-danger btn-sm" ng-click="carritoCompras.eliminiarProducto(producto._id)">
+                            <span class="fa fa-trash-o" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                    <td><small>{{producto.postulacion().candidato().nombre}}&nbsp;{{producto.postulacion().candidato().apellidos}}</small></td>
+                    <td><small>{{producto.puesto().descripcion}}</small></td>
+                    <td><small>{{producto.postulacion().vacante().marca}}</small></td>
+                    <td><small>{{producto.postulacion().tienda().cadena().descripcion}}</small></td>
+                    <td><small>{{producto.postulacion().tienda().sucursal}}</small></td>
+                    <td><small>{{producto.postulacion().tienda().delMpio}}</small></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
-<orden-compra totalpersonal="carritoCompras.totalPersonalCarrito" numdemos="carritoCompras.numDemosCarrito"
-              numpromotor="carritoCompras.numPromotorCarrito" numsupervisor="carritoCompras.numSupervisorCarrito"
-              carritoid="carritoCompras.carritoId">
-</orden-compra>
+<div class="col-sm-12 col-md-4">
+    <orden-compra totalpersonal="carritoCompras.totalPersonalCarrito" numdemos="carritoCompras.numDemosCarrito"
+                  numpromotor="carritoCompras.numPromotorCarrito" numsupervisor="carritoCompras.numSupervisorCarrito"
+                  carritoid="carritoCompras.carritoId">
+    </orden-compra>
+</div>

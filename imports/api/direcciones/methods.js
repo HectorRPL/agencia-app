@@ -7,7 +7,7 @@ import {_} from 'meteor/underscore';
 import {DDPRateLimiter}   from 'meteor/ddp-rate-limiter';
 import {Direcciones} from './collection.js';
 
-const ID = ['id'];
+const CAMPO_PROPIETARIO = ['propietario'];
 
 const CAMPOS_DIRECCION = ['calle', 'delMpio', 'estado', 'estadoId', 'colonia', 'codigoPostal', 'numExt', 'numInt'];
 
@@ -19,26 +19,27 @@ export const actualizar = new ValidatedMethod({
         message: 'Para modificar estos campos necesita registrarse.',
         reason: 'Usuario no logeado'
     },
-    validate: Direcciones.simpleSchema().pick(ID, CAMPOS_DIRECCION).validator({
+    validate: Direcciones.simpleSchema().pick(CAMPO_PROPIETARIO, CAMPOS_DIRECCION).validator({
         clean: true,
         filter: false
     }),
-    run({id, calle, delMpio, estado, estadoId, colonia, codigoPostal, numExt, numInt}) {
-
-        return Direcciones.update({
-            _id: id
-        }, {
-            $set: {
-                calle: calle,
-                delMpio: delMpio,
-                estado: estado,
-                estadoId: estadoId,
-                colonia: colonia,
-                codigoPostal: codigoPostal,
-                numExt: numExt,
-                numInt: numInt
-            }
-        });
+    run({propietario, calle, delMpio, estado, estadoId, colonia, codigoPostal, numExt, numInt}) {
+        if (Meteor.isServer) {
+            return Direcciones.update({
+                propietario: propietario
+            }, {
+                $set: {
+                    calle: calle,
+                    delMpio: delMpio,
+                    estado: estado,
+                    estadoId: estadoId,
+                    colonia: colonia,
+                    codigoPostal: codigoPostal,
+                    numExt: numExt,
+                    numInt: numInt
+                }
+            });
+        }
     }
 });
 

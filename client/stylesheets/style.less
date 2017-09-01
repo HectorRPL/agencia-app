@@ -1,0 +1,156 @@
+html {
+
+  body {
+    background-color: @color-noviario;
+    font-weight: normal;
+    font-family: zag-regular;
+    color: @color-quinario;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 15px; // Muy apreado afecta los font awesome, arreglar los fonts
+
+    /* p */
+
+    p {
+      font-size: 20px;
+    }
+
+    /* a */
+
+    a {
+      color: @color-quinario;
+    }
+
+    a:hover {
+      color: @color-terciario;
+    }
+
+    /* panel */
+
+    .panel {
+      .animated();
+      .fadeIn();
+    }
+
+    .panel-default {
+      border: none;
+      -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+      -moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+      box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+    }
+
+    .panel-heading > div > div,
+    .panel-heading {
+      //padding: 0px !important;
+      border: none;
+      background-color: transparent !important;
+      h2 {
+        color: @color-primario;
+      }
+    }
+
+    .panel-body {
+      padding-left:   25px;
+      padding-right:  25px;
+    }
+
+    .panel-footer {
+      padding-left:    25px;
+      padding-right:   25px;
+      padding-bottom:  20px;
+      padding-top:     20px;
+      border: none;
+      background-color: @color-primario-b;
+    }
+
+    /* buttons */
+
+    .btn {
+      border-radius: 0px;
+    }
+
+    .btn-default {
+      text-transform: uppercase;
+      background-color: transparent;
+      font-size: 100%;
+      font-weight: bolder;
+      border-color: @color-secundario;
+      letter-spacing: 2px;
+      color: @color-secundario;
+    }
+
+    /* input */
+
+    .form-control {
+      .animated();
+      .fadeInUp();
+      color: @color-quinario;
+      letter-spacing: inherit;
+      background-color: @color-sextario;
+      border: 1px solid @color-cuaternario-transparencia;
+      border-radius: 0px;
+
+    }
+
+    .form-control:focus {
+      border-color: @color-terciario;
+      outline: 0;
+      -webkit-box-shadow: inset 1 1px 1px @color-terciario-transparencia;
+      box-shadow: inset 1 1px 1px @color-terciario-transparencia;
+    }
+
+    .form-control::-moz-placeholder {
+      color: @color-septiario;
+      letter-spacing: 2px;
+    }
+
+    .form-control:-ms-input-placeholder {
+      color: @color-septiario;
+      letter-spacing: 2px;
+
+    }
+
+    .form-control::-webkit-input-placeholder {
+      color: @color-septiario;
+      letter-spacing: 2px;
+    }
+
+    .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+      background-color: @color-sextario;
+      opacity: 1
+    }
+
+    /* alertas */
+    .progress-bar-danger {
+      background-color: @color-deciario;
+    }
+
+    /* tabs */
+
+    .nav-tabs {
+      margin-bottom: 5%;
+    }
+
+    /* list group */
+
+    .list-group {
+      border-radius: 0px !important;
+    }
+
+    .list-group-item {
+      border-radius: 0px !important;
+    }
+
+    .list-group-item.active,
+    .list-group-item:hover,
+    .list-group-item.active:focus {
+      color: @color-sextario;
+      background-color: @color-terciario;
+      border-color: @color-terciario;
+    }
+  }
+}
+
+@import "../main.less";
+@import "./animate";
+

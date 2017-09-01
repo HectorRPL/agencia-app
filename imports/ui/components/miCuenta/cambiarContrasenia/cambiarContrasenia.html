@@ -1,0 +1,91 @@
+<form id="cambiarContraseniaFrmId" class="property-submit-form" name="cambiarContraseniaFrm" role="form" nonvalidate autocomplete="off">
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- CONTASEÑA ANTERIOR-->
+                <div class="form-group" ng-class="{ 'has-error' : cambiarContraseniaFrm.oldPassword.$invalid && !cambiarContraseniaFrm.oldPassword.$pristine }">
+                    <input id="candidatoPasswordID"
+                           class="form-control"
+                           name="oldPassword"
+                           type="password"
+                           placeholder="Contraseña Actual" aria-describedby="basic-addon1"
+                           required
+                           ng-minlength="5"
+                           ng-maxlength="8"
+                           minlength="5"
+                           maxlength="8"
+                           ng-model="cambiarContrasenia.credentials.oldPassword">
+                    <div role="alert" ng-messages="cambiarContraseniaFrm.oldPassword.$dirty && cambiarContraseniaFrm.oldPassword.$error">
+                        <div class="ng-mensajes" ng-message="required">Campo requerido</div>
+                        <div class="ng-mensajes" ng-message="minlength, maxlength"> Minimo 6 caracteres, maximo 8</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- CONTASEÑA NUEVA -->
+                <div class="form-group" ng-class="{ 'has-error' : cambiarContraseniaFrm.newPassword.$invalid && !cambiarContraseniaFrm.newPassword.$pristine }">
+                    <input id="candidatoPasswordID"
+                           class="form-control"
+                           name="newPassword"
+                           type="password"
+                           placeholder="Nueva Contraseña" aria-describedby="basic-addon1"
+                           required
+                           ng-minlength="5"
+                           ng-maxlength="8"
+                           minlength="5"
+                           maxlength="8"
+                           ng-model="cambiarContrasenia.credentials.newPassword">
+                    <div role="alert" ng-messages="cambiarContraseniaFrm.newPassword.$dirty && cambiarContraseniaFrm.newPassword.$error">
+                        <div class="ng-mensajes" ng-message="required">Campo requerido</div>
+                        <div class="ng-mensajes" ng-message="minlength, maxlength"> Minimo 6 caracteres, maximo 8</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!--CONFIRMAR CONTASEÑA NUEVA -->
+                <div class="form-group" ng-class="{ 'has-error' : cambiarContraseniaFrm.confNewPassword.$invalid && !cambiarContraseniaFrm.confNewPassword.$pristine }">
+                    <input id="candidatoPasswordID"
+                           class="form-control"
+                           name="confNewPassword"
+                           type="password"
+                           placeholder="Confirmar Nueva Contraseña" aria-describedby="basic-addon1"
+                           required
+                           ng-minlength="5"
+                           ng-maxlength="8"
+                           minlength="5"
+                           maxlength="8"
+                           conf-invalida
+                           ng-model="cambiarContrasenia.credentials.confNewPassword">
+                    <div role="alert" ng-messages="cambiarContraseniaFrm.confNewPassword.$dirty && cambiarContraseniaFrm.confNewPassword.$error">
+                        <div class="ng-mensajes" ng-message="required">Campo requerido</div>
+                        <div class="ng-mensajes" ng-message="minlength, maxlength"> Minimo 6 caracteres, maximo 8</div>
+                        <div class="ng-mensajes" ng-message="confInvalida">Nueva Contraseña y confirmación no coinciden</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- BOTON GUARDAR CAMBIOS-->
+            <div class="col-xs-12">
+                <button class="btn btn-default" type="submit" ng-click="cambiarContrasenia.cambiar()"
+                        ng-disabled="cambiarContraseniaFrm.$invalid">
+                    Guardar Cambios
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <br>
+            <div class="col-xs-12">
+                <!-- ALERTA: CAMBIOS EXITOSO -->
+                <alertas tipo="cambiarContrasenia.tipoMsj" mensaje="cambiarContrasenia.msj"></alertas>
+            </div>
+        </div>
+    </div>
+</form>

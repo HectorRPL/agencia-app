@@ -10,12 +10,16 @@ import {name as Registro} from '../registro/registro';
 import {name as Recuperar} from './recuperar/recuperar';
 import {name as Alertas} from '../comun/alertas/alertas';
 import {name as ReiniciarContrasenia} from './recuperar/reiniciarContrasenia/reiniciarContrasenia';
+import {name as Titulo} from "../comun/titulo/titulo";
 
 class Login {
     constructor($scope, $reactive, $state) {
         'ngInject';
         this.$state = $state;
         $reactive(this).attach($scope);
+
+        this.titulo = 'Ingresar';
+        this.cargando = false;
 
         this.ultimoEstado = Session.get('ultimoEstado');
 
@@ -28,17 +32,20 @@ class Login {
     }
 
     login() {
+        this.cargando = true;
         this.tipoAlerta = '';
         Meteor.loginWithPassword(this.credentials.email.toLowerCase(), 'agencia:' + this.credentials.password,
             this.$bindToContext((err) => {
                 if (err) {
                     this.msjAlerta = 'Combinación de usuario y contraseña incorrectos.';
                     this.tipoAlerta = 'danger';
+                    this.cargando = false;
                 } else {
                     obtenerEstadoReg.call({}, (err, result) => {
                         if (err) {
                             this.msjAlerta = 'Error, por favor inténtelo más tarde.';
                             this.tipoAlerta = 'danger';
+                            this.cargando = false;
                         } else {
                             if (this.ultimoEstado === undefined || this.ultimoEstado === null) {
                                 this.$state.go(result);
@@ -47,7 +54,6 @@ class Login {
                                 Session.clear('ultimoEstado');
                                 this.ultimoEstado = '';
                             }
-                            ;
                         }
                     });
                 }
@@ -67,7 +73,8 @@ export default angular
         Registro,
         Recuperar,
         Alertas,
-        ReiniciarContrasenia
+	ReiniciarContrasenia,
+        Titulo
     ])
     .component(name, {
         templateUrl: `imports/ui/components/login/${name}.html`,

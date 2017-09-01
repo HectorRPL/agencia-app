@@ -5,16 +5,32 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
         <uib-accordion close-others="oneAtATime">
-            <div uib-accordion-group class="panel-default" heading="{{miCuenta.subtitulo2}}">
-                <datos-personales></datos-personales>
+            <div uib-accordion-group
+                 class="panel-default"
+                 heading="{{miCuenta.subtitulo1}}">
+                <actualizar-datos-fiscales datos="miCuenta.datosFiscales"></actualizar-datos-fiscales>
             </div>
-            <div uib-accordion-group class="panel-default" heading="{{miCuenta.subtitulo3}}">
-                <actualizar-direccion></actualizar-direccion>
+            <div uib-accordion-group
+                 class="panel-default"
+                 heading="{{miCuenta.subtitulo2}}">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="text-justify"> <small><strong>Teléfono de contacto:&nbsp;</strong>Con el siguiente teléfono los canidatos podrán ponerse en contacto con la agencia.</small></p>
+                    </div>
+                </div>
+                <actualizar-agencia datos="miCuenta.datosAgencia"></actualizar-agencia>
             </div>
-            <div uib-accordion-group class="panel-default" heading="{{miCuenta.subtitulo4}}">
-                <constrasenia-correo></constrasenia-correo>
+            <div uib-accordion-group
+                 class="panel-default"
+                 heading="{{miCuenta.subtitulo3}}">
+                <actualizar-direccion direccion="miCuenta.direccion"></actualizar-direccion>
+            </div>
+            <div uib-accordion-group
+                 class="panel-default"
+                 heading="{{miCuenta.subtitulo4}}">
+                <cambiar-contrasenia></cambiar-contrasenia>
             </div>
         </uib-accordion>
     </div>

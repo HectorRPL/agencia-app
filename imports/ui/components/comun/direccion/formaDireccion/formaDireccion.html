@@ -1,0 +1,119 @@
+<ng-form name="direccionForm">
+    <!-- CÓDIGO POSTAL -->
+    <div class="col-sm-6">
+        <div class="form-group" ng-class="{ 'has-error' : direccionForm.codigoPostal.$invalid && !direccionForm.codigoPostal.$pristine}">
+            <codigos-postales direccion="formaDireccion.direccion"></codigos-postales>
+            <div ng-messages="direccionForm.codigoPostal.$dirty && direccionForm.codigoPostal.$error" role="alert">
+                <div class="ng-mensajes" ng-message="required">requerido</div>
+                <div class="ng-mensajes" ng-message="minlength, maxlength">5 dígitos requeridos</div>
+                <div class="ng-mensajes" ng-message="pattern">5 dígitos requeridos</div>
+                <div class="ng-mensajes" ng-message="cpinvalido">invalido</div>
+            </div>
+        </div>
+    </div>
+    <!-- COLONIA -->
+    <div class="col-sm-6">
+        <div class="form-group" ng-class="{ 'has-error' : direccionForm.colonia.$invalid && !direccionForm.colonia.$pristine}">
+            <select id="coloniaId"
+                    class="form-control"
+                    name="colonia"
+                    type="text"
+                    aria-describedby="sizing-addon1"
+                    required
+                    ng-options="colonia.colonia as colonia.colonia for colonia in formaDireccion.direccion.colonias track by colonia.colonia"
+                    ng-model="formaDireccion.direccion.colonia">
+                <option value="">Colonia</option>
+            </select>
+            <div ng-messages="direccionForm.colonia.$dirty && direccionForm.colonia.$error" role="alert">
+                <div class="ng-mensajes" ng-message="required">requerido</div>
+            </div>
+        </div>
+    </div>
+    <!-- ESTADO -->
+    <div class="col-sm-6">
+        <div class="form-group">
+            <input id="estadoId"
+                   class="form-control"
+                   name="estado"
+                   type="text"
+                   placeholder="Estado"
+                   aria-describedby="sizing-addon1"
+                   disabled="true"
+                   ng-model="formaDireccion.direccion.estado">
+        </div>
+    </div>
+    <!-- DELEGACIÓN o MUNICIPIO -->
+    <div class="col-sm-6">
+        <div class="form-group">
+            <input id="delMpioId"
+                   class="form-control"
+                   type="text"
+                   name="delMpio"
+                   placeholder="Del / Mun"
+                   aria-describedby="sizing-addon1"
+                   disabled="true"
+                   ng-model="formaDireccion.direccion.delMpio">
+        </div>
+    </div>
+    <!-- CALLE -->
+    <div class="col-sm-6">
+        <div class="form-group" ng-class="{ 'has-error' : direccionForm.calle.$invalid && !direccionForm.calle.$pristine}">
+            <input id="calleId"
+                   class="form-control"
+                   name="calle"
+                   type="text"
+                   placeholder="Calle"
+                   aria-describedby="sizing-addon1"
+                   maxlength="31"
+                   ng-maxlength="30"
+                   required
+                   ng-pattern="/^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/"
+                   ng-model="formaDireccion.direccion.calle">
+            <div ng-messages="direccionForm.calle.$dirty && direccionForm.calle.$error" role="alert">
+                <div class="ng-mensajes" ng-message="maxlength">min 1, max 30 letras</div>
+                <div class="ng-mensajes" ng-message="pattern">sólo letras y/o números</div>
+                <div class="ng-mensajes" ng-message="required">requerido</div>
+            </div>
+        </div>
+    </div>
+    <!-- NÚMERO EXTERIOR -->
+    <div class="col-sm-6">
+        <div class="form-group" ng-class="{ 'has-error' : direccionForm.numExt.$invalid && !direccionForm.numExt.$pristine}">
+            <input id="numExtId"
+                   class="form-control"
+                   name="numExt"
+                   type="text"
+                   placeholder="N° Exterior"
+                   aria-describedby="sizing-addon1"
+                   maxlength="11"
+                   ng-maxlength="10"
+                   required
+                   ng-pattern="/^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/"
+                   ng-model="formaDireccion.direccion.numExt">
+            <div ng-messages="direccionForm.numExt.$dirty && direccionForm.numExt.$error" role="alert">
+                <div class="ng-mensajes" ng-message="maxlength">min 1, max 10 letras</div>
+                <div class="ng-mensajes" ng-message="pattern">sólo letras y/o números</div>
+                <div class="ng-mensajes" ng-message="required">requerido</div>
+            </div>
+        </div>
+    </div>
+    <!-- NÚMERO INTERIOR -->
+    <div class="col-sm-6">
+        <div class="form-group" ng-class="{ 'has-error' : direccionForm.numInt.$invalid && !direccionForm.numInt.$pristine}">
+            <input id="numIntId"
+                   class="form-control"
+                   name="numInt"
+                   type="text"
+                   placeholder="N° Interior"
+                   aria-describedby="sizing-addon1"
+                   maxlength="11"
+                   ng-maxlength="10"
+                   ng-pattern="/^[a-zA-Z-/.&ÑñáéíóúÁÉÍÓÚ-\s\d]+$/"
+                   ng-model="formaDireccion.direccion.numInt">
+            <div ng-messages="direccionForm.numInt.$dirty && direccionForm.numInt.$error" role="alert">
+                <div class="ng-mensajes" ng-message="maxlength">min 1, max 10 letras</div>
+                <div class="ng-mensajes" ng-message="pattern">sólo letras y/o números</div>
+            </div>
+        </div>
+    </div>
+</ng-form>

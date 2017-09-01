@@ -9,9 +9,9 @@
                        ng-maxlength="30" ng-pattern="/^[a-zA-ZñáéíóúÁÉÍÓÚ\s]+$/"
                        ng-model="tarjeta.datos.nombreTitular" ng-disabled="deshabilitarCampos">
                 <div ng-messages="tarjetaFrm.nombreTitular.$dirty && tarjetaFrm.nombreTitular.$error" role="alert">
-                    <div style="color:red;" ng-message="required">Campo requerido.</div>
-                    <div style="color:red;" ng-message="minlength, maxlength">30 caracteres máximo</div>
-                    <div style="color:red;" ng-message="pattern">Únicamente caracteres alfabéticos</div>
+                    <div class="ng-mensajes" ng-message="required">Campo requerido.</div>
+                    <div class="ng-mensajes" ng-message="minlength, maxlength">30 caracteres máximo</div>
+                    <div class="ng-mensajes" ng-message="pattern">Únicamente caracteres alfabéticos</div>
                 </div>
             </div>
         </div>
@@ -23,21 +23,21 @@
             <div class="form-group"
                  ng-class="{ 'has-error' : tarjetaFrm.numeroTarjeta.$invalid && !tarjetaFrm.numeroTarjeta.$pristine}">
                 <input id="numeroTarjetaId" class="form-control" name="numeroTarjeta" type="text"
-                       autocomplete="off" placeholder="0000 0000 0000 0000" required ng-minlength="15"
+                       autocomplete="off" placeholder="Número de tarjeta" required ng-minlength="15"
                        ng-maxlength="16" num-tarjeta ng-model="tarjeta.datos.numeroTarjeta">
                 <div ng-messages="tarjetaFrm.numeroTarjeta.$dirty && tarjetaFrm.numeroTarjeta.$error"
                      role="alert">
-                    <div style="color:red;" ng-message="required">Campo requerido.</div>
-                    <div style="color:red;" ng-message="minlength">Minimo 15 caracteres numericos.</div>
-                    <div style="color:red;" ng-message="maxlength">Maximo 16 caracteres numericos.</div>
-                    <div style="color:red;" ng-message="numTarjeta">Número de tarjeta no valido</div>
+                    <div class="ng-mensajes" ng-message="required">Campo requerido.</div>
+                    <div class="ng-mensajes" ng-message="minlength">Minimo 15 caracteres numericos.</div>
+                    <div class="ng-mensajes" ng-message="maxlength">Maximo 16 caracteres numericos.</div>
+                    <div class="ng-mensajes" ng-message="numTarjeta">Número de tarjeta no valido</div>
                 </div>
             </div>
         </div>
         <!-- NÚMERO DE TARJETA BANCARIA (BLOQUE 4)-->
         <div class="col-sm-4">
             <div class="form-group">
-                <label for="marcaTarjeta">{{tarjeta.marca}}</label>
+                <img ng-hide="tarjeta.marca === ''" src="/images/{{tarjeta.marca}}.png" width="50">
             </div>
         </div>
     </div>
@@ -46,14 +46,14 @@
         <div class="col-sm-4">
             <div class="form-group"
                  ng-class="{ 'has-error' : tarjetaFrm.mesExpiracion.$invalid && !tarjetaFrm.mesExpiracion.$pristine}">
-                <input id="mesExpiracionId" class="form-control" name="mesExpiracion" type="text"
+                <input id="mesExpiracionId" class="form-control text-center" name="mesExpiracion" type="text"
                        autocomplete="off" placeholder="Mes" required ng-minlength="2" ng-maxlength="2"
                        mes-incorrecto ng-model="tarjeta.datos.mesExpiracion">
                 <div ng-messages="tarjetaFrm.mesExpiracion.$dirty && tarjetaFrm.mesExpiracion.$error"
                      role="alert">
-                    <div style="color:red;" ng-message="required">Campo requerido.</div>
-                    <div style="color:red;" ng-message="minlength, maxlength">2 caracteres numéricos</div>
-                    <div style="color:red;" ng-message="mesIncorrecto">Mes incorrento</div>
+                    <div class="ng-mensajes" ng-message="required">Campo requerido.</div>
+                    <div class="ng-mensajes" ng-message="minlength, maxlength">2 caracteres numéricos</div>
+                    <div class="ng-mensajes" ng-message="mesIncorrecto">Mes incorrento</div>
                 </div>
             </div>
         </div>
@@ -61,15 +61,15 @@
         <div class="col-sm-4">
             <div class="form-group"
                  ng-class="{ 'has-error' : tarjetaFrm.anioExpiracion.$invalid && !tarjetaFrm.anioExpiracion.$pristine}">
-                <input id="anioExpiracionId" class="form-control" name="anioExpiracion" type="text"
+                <input id="anioExpiracionId" class="form-control text-center" name="anioExpiracion" type="text"
                        autocomplete="off" placeholder="Año" required ng-minlength="2" ng-maxlength="2"
                        anio-incorrecto fecha-incorrecta ng-model="tarjeta.datos.anioExpiracion">
                 <div ng-messages="tarjetaFrm.anioExpiracion.$dirty && tarjetaFrm.anioExpiracion.$error"
                      role="alert">
-                    <div style="color:red;" ng-message="required">Campo requerido.</div>
-                    <div style="color:red;" ng-message="minlength, maxlength">2 caracteres numéricos</div>
-                    <div style="color:red;" ng-message="anioIncorrecto">Año incorrento</div>
-                    <div style="color:red;" ng-message="fechaIncorrecta">Fecha Exp. incorrecta</div>
+                    <div class="ng-mensajes" ng-message="required">Campo requerido.</div>
+                    <div class="ng-mensajes" ng-message="minlength, maxlength">2 caracteres numéricos</div>
+                    <div class="ng-mensajes" ng-message="anioIncorrecto">Año incorrento</div>
+                    <div class="ng-mensajes" ng-message="fechaIncorrecta">Fecha Exp. incorrecta</div>
                 </div>
             </div>
         </div>
@@ -77,12 +77,12 @@
         <div class="col-sm-4">
             <div class="form-group"
                  ng-class="{ 'has-error' : tarjetaFrm.codigoSeguridad.$invalid && !tarjetaFrm.codigoSeguridad.$pristine}">
-                <input id="codigoSeguridadId" class="form-control" name="codigoSeguridad" type="text"
+                <input id="codigoSeguridadId" class="form-control text-center" name="codigoSeguridad" type="text"
                        autocomplete="off" placeholder="CCV" required ng-minlength="3" ng-maxlength="3" ng-pattern="/^[0-9]{3}$/"
                        ng-model="tarjeta.datos.codigoSeguridad">
                 <div ng-messages="tarjetaFrm.codigoSeguridad.$dirty && tarjetaFrm.codigoSeguridad.$error" role="alert">
-                    <div style="color:red;" ng-message="required">Campo requerido.</div>
-                    <div style="color:red;" ng-message="minlength, maxlength, pattern">3 Dígitos necesarios</div>
+                    <div class="ng-mensajes" ng-message="required">Campo requerido.</div>
+                    <div class="ng-mensajes" ng-message="minlength, maxlength, pattern">3 Dígitos necesarios</div>
                 </div>
             </div>
         </div>
